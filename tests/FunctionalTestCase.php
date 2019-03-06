@@ -6,7 +6,7 @@ namespace Radarlog\S3Uploader\Tests;
 use Radarlog\S3Uploader\Kernel;
 use Symfony\Bundle\FrameworkBundle;
 
-class FunctionalTestCase extends FrameworkBundle\Test\KernelTestCase
+class FunctionalTestCase extends FrameworkBundle\Test\WebTestCase
 {
     use FixtureTrait;
 

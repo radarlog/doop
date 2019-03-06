@@ -119,6 +119,9 @@
     "sebastian/version": {
         "version": "2.0.1"
     },
+    "symfony/browser-kit": {
+        "version": "v4.2.4"
+    },
     "symfony/cache": {
         "version": "v4.2.4"
     },
@@ -145,6 +148,9 @@
         "version": "v4.2.4"
     },
     "symfony/dependency-injection": {
+        "version": "v4.2.4"
+    },
+    "symfony/dom-crawler": {
         "version": "v4.2.4"
     },
     "symfony/dotenv": {
