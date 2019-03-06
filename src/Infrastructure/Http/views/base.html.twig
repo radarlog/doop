@@ -11,6 +11,10 @@
 
 <h1>S3Uploader</h1>
 
+<div id="upload">
+	{{ include('form.html.twig') }}
+</div>
+
 <ul id="list">
 	{% for key, image in images %}
 		<img src="{{ image }}" alt="{{ key }}"/>{{ key }}<br/>
