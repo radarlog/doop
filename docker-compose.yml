@@ -30,3 +30,16 @@ services:
         environment:
             XDEBUG_CONFIG: "remote_host=172.18.0.1 remote_port=9009"
             PHP_IDE_CONFIG: serverName=s3uploader
+
+    minio:
+        container_name: s3uploader-minio
+        image: minio/minio:latest
+        restart: ${DOCKER_RESTART}
+        networks:
+            - s3uploader
+        ports:
+            - 9000:9000
+        environment:
+            MINIO_ACCESS_KEY: minio
+            MINIO_SECRET_KEY: minio330
+        command: server /data

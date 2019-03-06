@@ -34,4 +34,5 @@ run: up composer ; $(info $(M) Environment has been built succesfully:)
 
 .PHONY: tests
 tests: run ; $(info $(M) Running tests:)
+	$Q docker-compose exec -T minio mkdir -p /data/test-bucket
 	$Q docker-compose exec -T php vendor/bin/phpunit
