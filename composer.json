@@ -9,7 +9,6 @@
     },
     "require": {
         "php": "~7.3",
-        "ext-exif": "*",
         "ext-imagick": "*",
         "ext-json": "*",
         "ext-zip": "*",
