@@ -17,7 +17,9 @@
 
 <ul id="list">
 	{% for key, image in images %}
-		<img src="{{ image }}" alt="{{ key }}"/>{{ key }}<br/>
+		<img src="{{ image }}" alt="{{ key }}" width="640" height="480"/>
+		{{ key }}
+		<br/>
 	{% endfor %}
 </ul>
 </body>
