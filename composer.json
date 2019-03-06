@@ -1,0 +1,51 @@
+{
+    "name": "radarlog/s3uploader",
+    "description": "Simple File Uploader / AWS S3 Uploader",
+    "type": "project",
+    "license": "MIT",
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "require": {
+        "php": "~7.3",
+        "ext-exif": "*",
+        "ext-imagick": "*",
+        "ext-json": "*",
+        "ext-zip": "*",
+        "aws/aws-sdk-php": "^3.88",
+        "psr/log": "^1.1",
+        "symfony/config": "^4.2",
+        "symfony/console": "^4.2",
+        "symfony/dependency-injection": "^4.2",
+        "symfony/flex": "^1.2",
+        "symfony/framework-bundle": "^4.2",
+        "symfony/yaml": "^4.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0",
+        "symfony/dotenv": "^4.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Radarlog\\S3Uploader\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Radarlog\\S3Uploader\\": "tests"
+        }
+    },
+    "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+        },
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ]
+    }
+}
