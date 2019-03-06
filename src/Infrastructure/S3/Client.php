@@ -26,4 +26,15 @@ final class Client implements Domain\Storage
     {
         $this->client->upload($this->bucketName, $image->name(), $image->content(), self::ACL);
     }
+
+    public function list(): \Iterator
+    {
+        $objects = $this->client->getIterator('ListObjects', [
+            'Bucket' => $this->bucketName,
+        ]);
+
+        foreach ($objects as $object) {
+            yield $object['Key'] => $this->client->getObjectUrl($this->bucketName, $object['Key']);
+        }
+    }
 }

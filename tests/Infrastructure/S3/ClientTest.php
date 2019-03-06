@@ -16,8 +16,13 @@ class ClientTest extends FunctionalTestCase
 
         $image = new Image('avatar.jpg', $content);
 
-        self::$container->get(Client::class)->upload($image);
+        $client = self::$container->get(Client::class);
 
-        self::assertTrue(true);
+        $client->upload($image);
+
+        $objects = $client->list();
+
+        self::assertNotEmpty($objects);
+        self::assertArrayHasKey('avatar.jpg', iterator_to_array($objects));
     }
 }
