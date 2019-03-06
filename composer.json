@@ -32,7 +32,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Radarlog\\S3Uploader\\": "tests"
+            "Radarlog\\S3Uploader\\Tests\\": "tests"
         }
     },
     "scripts": {
