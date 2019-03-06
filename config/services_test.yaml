@@ -1,0 +1,13 @@
+parameters:
+    bucket: 'test-bucket'
+    region: 'test-region'
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: true
+
+    # S3
+    Radarlog\S3Uploader\Infrastructure\S3\Client:
+        arguments: ['%region%', '%bucket%']
