@@ -9,6 +9,17 @@ use Radarlog\S3Uploader\Tests\UnitTestCase;
 
 class ImageTest extends UnitTestCase
 {
+    /** @var string */
+    private $content;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $fixture = $this->fixturePath('Images/avatar.jpg');
+        $this->content = file_get_contents($fixture);
+    }
+
     public function testNonPictureType(): void
     {
         $content = __FILE__;
@@ -16,25 +27,26 @@ class ImageTest extends UnitTestCase
         $this->expectException(InvalidArgument::class);
         $this->expectExceptionCode(InvalidArgument::CODE_PICTURE);
 
-        new Image($content);
+        new Image('name', $content);
+    }
+
+    public function testName(): void
+    {
+        $picture = new Image('some', $this->content);
+
+        self::assertSame('some', $picture->name());
     }
 
     public function testContent(): void
     {
-        $fixture = $this->fixturePath('Images/avatar.jpg');
-        $content = file_get_contents($fixture);
+        $image = new Image('name', $this->content);
 
-        $image = new Image($content);
-
-        self::assertSame($content, $image->content());
+        self::assertSame($this->content, $image->content());
     }
 
     public function testFormat(): void
     {
-        $fixture = $this->fixturePath('Images/avatar.jpg');
-        $content = file_get_contents($fixture);
-
-        $image = new Image($content);
+        $image = new Image('name', $this->content);
 
         self::assertSame('jpeg', (string)$image->format());
     }
