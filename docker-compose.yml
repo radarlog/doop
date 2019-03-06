@@ -1,0 +1,32 @@
+version: '3'
+
+networks:
+    s3uploader:
+        driver: bridge
+
+services:
+    nginx:
+        depends_on:
+            - php
+        container_name: s3uploader-nginx
+        image: nginx:1.15-alpine
+        restart: ${DOCKER_RESTART}
+        networks:
+            - s3uploader
+        volumes:
+            - ./docker/nginx/s3.conf:/etc/nginx/conf.d/default.conf:ro
+        ports:
+            - 80:8080
+
+    php:
+        container_name: s3uploader-php
+        build: docker/php
+        restart: ${DOCKER_RESTART}
+        networks:
+            - s3uploader
+        user: 1000:1000
+        volumes:
+            - .:/app:rw
+        environment:
+            XDEBUG_CONFIG: "remote_host=172.18.0.1 remote_port=9009"
+            PHP_IDE_CONFIG: serverName=s3uploader
