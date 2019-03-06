@@ -8,6 +8,13 @@
 <body>
 {% block body %}{% endblock %}
 {% block javascripts %}{% endblock %}
-Hallo
+
+<h1>S3Uploader</h1>
+
+<ul id="list">
+	{% for key, image in images %}
+		<img src="{{ image }}" alt="{{ key }}"/>{{ key }}<br/>
+	{% endfor %}
+</ul>
 </body>
 </html>
