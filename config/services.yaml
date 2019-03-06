@@ -1,7 +1,3 @@
-parameters:
-    bucket: 'test-bucket'
-    region: 'test-region'
-
 services:
     _defaults:
         autowire: true
@@ -13,7 +9,7 @@ services:
 
     # S3
     Radarlog\S3Uploader\Infrastructure\S3\Connection:
-        arguments: ['%env(resolve:S3)%']
+        arguments: ['%env(resolve:S3_DSN)%']
 
     Radarlog\S3Uploader\Infrastructure\S3\Client:
-        arguments: ['%region%', '%bucket%']
+        arguments: ['%env(resolve:S3_BUCKET)%']

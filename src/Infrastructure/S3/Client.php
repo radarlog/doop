@@ -16,9 +16,9 @@ final class Client implements Domain\Storage
     /** @var string */
     private $bucketName;
 
-    public function __construct(string $region, string $bucketName, Connection $connection)
+    public function __construct(string $bucketName, Connection $connection)
     {
-        $this->client = $connection->createS3($region);
+        $this->client = $connection->createS3();
         $this->bucketName = $bucketName;
     }
 

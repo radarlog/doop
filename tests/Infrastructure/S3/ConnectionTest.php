@@ -16,8 +16,8 @@ class ConnectionTest extends UnitTestCase
     {
         parent::setUp();
 
-        $connection = new Connection('https://user:pass@some-s3-host.dtl:42');
-        $this->client = $connection->createS3('some_region');
+        $connection = new Connection('https://user:pass@some-s3-host.dtl:42/some_region');
+        $this->client = $connection->createS3();
     }
 
     public function testS3Region(): void
