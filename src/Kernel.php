@@ -1,8 +1,10 @@
 <?php
+declare(strict_types=1);
 
 namespace Radarlog\S3Uploader;
 
 use Symfony\Bundle\FrameworkBundle;
+use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel;
@@ -16,6 +18,7 @@ final class Kernel extends HttpKernel\Kernel
 
     private const BUNDLES = [
         FrameworkBundle\FrameworkBundle::class => ['all' => true],
+        TwigBundle::class => ['all' => true],
     ];
 
     private function getConfigDir(): string
@@ -66,8 +69,10 @@ final class Kernel extends HttpKernel\Kernel
      */
     protected function configureRoutes(RouteCollectionBuilder $routes): void
     {
-        $confDir = $this->getConfigDir();
+        $confDir = $this->getProjectDir() . '/config';
 
-        $routes->import($confDir . '/routes' . self::CONFIG_EXTS, '/', 'glob');
+        $routes->import($confDir . '/{routes}/' . $this->environment . '/**/*' . self::CONFIG_EXTS, '/', 'glob');
+        $routes->import($confDir . '/{routes}/*' . self::CONFIG_EXTS, '/', 'glob');
+        $routes->import($confDir . '/{routes}' . self::CONFIG_EXTS, '/', 'glob');
     }
 }
