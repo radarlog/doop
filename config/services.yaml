@@ -6,3 +6,7 @@ services:
 
     Radarlog\S3Uploader\:
         resource: '../src'
+
+    # S3
+    Radarlog\S3Uploader\Infrastructure\S3\Connection:
+        arguments: ['%env(resolve:S3)%']
