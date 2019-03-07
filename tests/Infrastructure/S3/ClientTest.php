@@ -22,7 +22,10 @@ class ClientTest extends FunctionalTestCase
 
         $objects = $client->list();
 
+        $key = $client->list()->current();
+
         self::assertNotEmpty($objects);
-        self::assertArrayHasKey('avatar.jpg', iterator_to_array($objects));
+        self::assertSame('avatar.jpg', $key);
+        self::assertSame($content, $client->get($key)->content());
     }
 }

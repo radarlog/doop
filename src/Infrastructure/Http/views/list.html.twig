@@ -1,6 +1,6 @@
-{% for key, image in images %}
+{% for key in images %}
 	<li>
-		<img src="{{ image }}" alt="{{ key }}" width="640" height="480"/> {{ key }}
-		<br/>
+		<img src="{{ path('image', {'key': key}) }}" alt="{{ key }}" width="640" height="480"/> {{ key }}
+		<br>
 	</li>
 {% endfor %}
