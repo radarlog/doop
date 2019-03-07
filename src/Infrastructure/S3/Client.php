@@ -8,7 +8,7 @@ use Radarlog\S3Uploader\Domain;
 
 final class Client implements Domain\Storage
 {
-    private const ACL = 'public-read';
+    private const ACL = 'private';
 
     /** @var S3ClientInterface */
     private $client;
@@ -24,7 +24,9 @@ final class Client implements Domain\Storage
 
     public function upload(Domain\Image $image): void
     {
-        $this->client->upload($this->bucketName, $image->name(), $image->content(), self::ACL);
+        $this->client->upload($this->bucketName, $image->name(), $image->content(), self::ACL, [
+            'ContentType' => $image->format()->mime(),
+        ]);
     }
 
     public function list(): \Iterator
