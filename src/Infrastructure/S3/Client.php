@@ -34,7 +34,9 @@ final class Client implements Domain\Storage
         ]);
 
         foreach ($objects as $object) {
-            yield $object['Key'] => $this->client->getObjectUrl($this->bucketName, $object['Key']);
+            $key = $object['Key'];
+
+            yield $key => $this->client->getObjectUrl($this->bucketName, $key);
         }
     }
 }
