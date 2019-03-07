@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Tests\Domain\Data\Meta\Picture;
+namespace Radarlog\S3Uploader\Tests\Domain;
 
 use Radarlog\S3Uploader\Domain\Image;
 use Radarlog\S3Uploader\Domain\InvalidArgument;

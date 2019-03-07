@@ -7,3 +7,8 @@ upload:
     path: /upload
     controller: Radarlog\S3Uploader\Infrastructure\Http\Controller\Upload
     methods: [POST]
+
+image:
+    path: /image/{key}
+    controller: Radarlog\S3Uploader\Infrastructure\Http\Controller\Image
+    methods: [GET]

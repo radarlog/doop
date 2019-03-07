@@ -34,9 +34,19 @@ final class Client implements Domain\Storage
         ]);
 
         foreach ($objects as $object) {
-            $key = $object['Key'];
-
-            yield $key => $this->client->getObjectUrl($this->bucketName, $key);
+            yield $object['Key'];
         }
+    }
+
+    public function get(string $key): Domain\Image
+    {
+        $command = $this->client->getCommand('GetObject', [
+            'Bucket' => $this->bucketName,
+            'Key' => $key,
+        ]);
+
+        $content = (string)$this->client->execute($command)->get('Body');
+
+        return new Domain\Image($key, $content);
     }
 }

@@ -46,4 +46,22 @@ class FormatTest extends UnitTestCase
 
         self::assertSame($format, strval(new Format($image)));
     }
+
+    public function mimeProvider(): \Generator
+    {
+        yield [$this->fixturePath('Images/avatar.jpg'), 'image/jpeg'];
+        yield [$this->fixturePath('Images/octopus.png'), 'image/png'];
+    }
+
+    /**
+     * @dataProvider mimeProvider
+     */
+    public function testMime(string $fixturePath, string $mime): void
+    {
+        $image = new \Imagick($fixturePath);
+
+        $format = new Format($image);
+
+        self::assertSame($mime, $format->mime());
+    }
 }

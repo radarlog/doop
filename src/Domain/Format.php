@@ -14,6 +14,9 @@ final class Format
     /** @var string */
     private $format;
 
+    /** @var string */
+    private $mime;
+
     /**
      * @throws InvalidArgument
      */
@@ -30,10 +33,16 @@ final class Format
         }
 
         $this->format = $format;
+        $this->mime = $image->getImageMimeType();
     }
 
     public function __toString(): string
     {
         return $this->format;
+    }
+
+    public function mime(): string
+    {
+        return $this->mime;
     }
 }

@@ -16,11 +16,7 @@
 </div>
 
 <ul id="list">
-	{% for key, image in images %}
-		<img src="{{ image }}" alt="{{ key }}" width="640" height="480"/>
-		{{ key }}
-		<br/>
-	{% endfor %}
+	{{ include('list.html.twig') }}
 </ul>
 </body>
 </html>
