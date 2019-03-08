@@ -1,3 +1,6 @@
+imports:
+    - { resource: 's3.yaml' }
+
 services:
     _defaults:
         autowire: true
@@ -6,10 +9,6 @@ services:
 
     Radarlog\S3Uploader\:
         resource: '../src'
-
-    # S3
-    Radarlog\S3Uploader\Infrastructure\S3\Connection:
-        arguments: ['%env(resolve:S3_DSN)%']
-
-    Radarlog\S3Uploader\Infrastructure\S3\Client:
-        arguments: ['%env(resolve:S3_BUCKET)%']
+        exclude:
+            - '../src/Kernel.php'
+            - '../src/Infrastructure/S3/*'

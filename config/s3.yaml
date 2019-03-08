@@ -1,0 +1,13 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Radarlog\S3Uploader\Infrastructure\S3\Connection:
+        arguments: ['%env(resolve:S3_DSN)%']
+
+    Radarlog\S3Uploader\Infrastructure\S3\Client:
+        arguments: ['%env(resolve:S3_BUCKET)%']
+
+    Radarlog\S3Uploader\Domain\Storage: '@Radarlog\S3Uploader\Infrastructure\S3\Client'
