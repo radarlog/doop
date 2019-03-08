@@ -20,3 +20,7 @@ services:
     # Command Bus
     Radarlog\S3Uploader\Application\Command\SimpleBus:
         arguments: [!tagged command.handler]
+    Radarlog\S3Uploader\Application\Command\LoggerBus:
+        decorates: Radarlog\S3Uploader\Application\Command\SimpleBus
+        arguments: ['@monolog.logger.commands']
+    Radarlog\S3Uploader\Application\Command\Bus: '@Radarlog\S3Uploader\Application\Command\LoggerBus'
