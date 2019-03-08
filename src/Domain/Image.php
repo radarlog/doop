@@ -25,7 +25,7 @@ final class Image
         try {
             $image->readImageBlob($content);
         } catch (\ImagickException $e) {
-            throw new InvalidArgument('Cannot create picture', InvalidArgument::CODE_PICTURE, $e);
+            throw new InvalidArgument('Cannot create picture', InvalidArgument::CODE_IMAGE, $e);
         }
 
         $this->name = $name;

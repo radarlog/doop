@@ -25,7 +25,7 @@ class ImageTest extends UnitTestCase
         $content = __FILE__;
 
         $this->expectException(InvalidArgument::class);
-        $this->expectExceptionCode(InvalidArgument::CODE_PICTURE);
+        $this->expectExceptionCode(InvalidArgument::CODE_IMAGE);
 
         new Image('name', $content);
     }

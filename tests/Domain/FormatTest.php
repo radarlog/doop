@@ -14,7 +14,7 @@ class FormatTest extends UnitTestCase
         $image = new \Imagick();
 
         $this->expectException(InvalidArgument::class);
-        $this->expectExceptionCode(InvalidArgument::CODE_PICTURE);
+        $this->expectExceptionCode(InvalidArgument::CODE_IMAGE);
         $this->expectExceptionMessage('Cannot read format');
 
         new Format($image);
@@ -25,7 +25,7 @@ class FormatTest extends UnitTestCase
         $image = new \Imagick($this->fixturePath('Images/avatar.tga'));
 
         $this->expectException(InvalidArgument::class);
-        $this->expectExceptionCode(InvalidArgument::CODE_PICTURE);
+        $this->expectExceptionCode(InvalidArgument::CODE_IMAGE);
         $this->expectExceptionMessage('Unsupported format');
 
         new Format($image);
