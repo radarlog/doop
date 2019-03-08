@@ -19,6 +19,7 @@
         "symfony/dependency-injection": "^4.2",
         "symfony/flex": "^1.2",
         "symfony/framework-bundle": "^4.2",
+        "symfony/monolog-bundle": "^3.3",
         "symfony/twig-bundle": "^4.2",
         "symfony/yaml": "^4.2"
     },

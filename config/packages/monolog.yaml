@@ -1,0 +1,7 @@
+monolog:
+    channels:
+        - commands
+    handlers:
+        main:
+            type:  stream
+            path:  "php://stderr"
