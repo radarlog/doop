@@ -7,8 +7,20 @@ services:
         autoconfigure: true
         public: false
 
+    _instanceof:
+        Radarlog\S3Uploader\Application\Command\Handler:
+            tags: ['command.handler']
+
     Radarlog\S3Uploader\:
         resource: '../src'
         exclude:
             - '../src/Kernel.php'
             - '../src/Infrastructure/S3/*'
+
+    # Command Bus
+    Radarlog\S3Uploader\Application\Command\SimpleBus:
+        arguments: [!tagged command.handler]
+    Radarlog\S3Uploader\Application\Command\LoggerBus:
+        decorates: Radarlog\S3Uploader\Application\Command\SimpleBus
+        arguments: ['@monolog.logger.commands']
+    Radarlog\S3Uploader\Application\Command\Bus: '@Radarlog\S3Uploader\Application\Command\LoggerBus'

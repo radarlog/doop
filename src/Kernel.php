@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Radarlog\S3Uploader;
 
 use Symfony\Bundle\FrameworkBundle;
+use Symfony\Bundle\MonologBundle\MonologBundle;
 use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -18,6 +19,7 @@ final class Kernel extends HttpKernel\Kernel
 
     private const BUNDLES = [
         FrameworkBundle\FrameworkBundle::class => ['all' => true],
+        MonologBundle::class => ['all' => true],
         TwigBundle::class => ['all' => true],
     ];
 
