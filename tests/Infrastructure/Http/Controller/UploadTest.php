@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Radarlog\S3Uploader\Tests\Infrastructure\Http\Controller;
 
