@@ -5,14 +5,16 @@ declare(strict_types=1);
 use Radarlog\S3Uploader\Kernel;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;
-use Symfony\Component\Debug\Debug;
 
 set_time_limit(0);
 
 require __DIR__ . '/../vendor/autoload.php';
 
 $input = new ArgvInput();
-if (null !== $_ENV['APP_ENV'] = $input->getParameterOption(['--env', '-e'], null, true)) {
+
+$_ENV['APP_ENV'] = $input->getParameterOption(['--env', '-e'], null, true);
+
+if (null !== $_ENV['APP_ENV']) {
     putenv('APP_ENV=' . $_ENV['APP_ENV']);
     // force loading .env files when --env is defined
     $_SERVER['APP_ENV'] = null;
@@ -23,11 +25,6 @@ if ($input->hasParameterOption('--no-debug', true)) {
 }
 
 require __DIR__ . '/../bootstrap.php';
-
-if ($_SERVER['APP_DEBUG']) {
-    umask(0000);
-    Debug::enable();
-}
 
 $kernel = new Kernel($_SERVER['APP_ENV'], (bool)$_SERVER['APP_DEBUG']);
 $application = new Application($kernel);

@@ -11,6 +11,9 @@
 	<arg name="colors"/>
 	<arg name="extensions" value="php"/>
 
+	<file>bin/</file>
+	<file>bootstrap.php</file>
+	<file>public/</file>
 	<file>src/</file>
 	<file>tests/</file>
 
