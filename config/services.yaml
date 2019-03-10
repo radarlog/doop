@@ -1,4 +1,5 @@
 imports:
+    - { resource: 'logs.yaml' }
     - { resource: 's3.yaml' }
 
 services:

@@ -1,0 +1,17 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Symfony\Bridge\Monolog\Processor\WebProcessor:
+        arguments:
+            -   agent: HTTP_USER_AGENT
+                client_ip: REMOTE_ADDR
+                host_name: HTTP_HOST
+                instance: HOSTNAME
+                method: REQUEST_METHOD
+                referrer: HTTP_REFERER
+                request_id: HTTP_X_REQUEST_ID
+                request: REQUEST_URI
+        tags: [ 'monolog.processor' ]
