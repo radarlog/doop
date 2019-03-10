@@ -19,6 +19,8 @@ services:
             - 80:8080
 
     php:
+        depends_on:
+            - minio
         container_name: s3uploader-php
         build: docker/php
         restart: ${DOCKER_RESTART}
@@ -43,3 +45,19 @@ services:
             MINIO_ACCESS_KEY: minio
             MINIO_SECRET_KEY: minio330
         command: server /data
+
+    minio-create-bucket:
+        depends_on:
+            - minio
+        container_name: s3uploader-minio-mc
+        image: minio/mc:latest
+        restart: ${DOCKER_RESTART}
+        networks:
+            - s3uploader
+        entrypoint: >-
+            sh -c "
+                mc config host add s3uploader http://minio:9000 minio minio330;
+                mc rm -r --force s3uploader/${S3_BUCKET};
+                mc mb s3uploader/${S3_BUCKET};
+                mc policy download s3uploader/${S3_BUCKET};
+            "

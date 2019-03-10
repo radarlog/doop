@@ -40,5 +40,4 @@ styles-check: ; $(info $(M) Checking coding style:)
 
 .PHONY: tests
 tests: run styles-check ; $(info $(M) Running tests:)
-	$Q docker-compose exec -T minio mkdir -p /data/$(S3_BUCKET)
 	$Q docker-compose exec -T php vendor/bin/phpunit
