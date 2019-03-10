@@ -5,6 +5,7 @@ namespace Radarlog\S3Uploader\Tests;
 
 use PHPUnit\Framework\TestCase;
 
+// phpcs:disable SlevomatCodingStandard.Classes.TraitUseSpacing.IncorrectLinesCountAfterLastUse
 class UnitTestCase extends TestCase
 {
     use FixtureTrait;

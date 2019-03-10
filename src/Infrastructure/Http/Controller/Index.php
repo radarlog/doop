@@ -18,6 +18,7 @@ final class Index extends AbstractController implements Controller
         $this->client = $client;
     }
 
+    // phpcs:disable SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter
     public function __invoke(HttpFoundation\Request $request): HttpFoundation\Response
     {
         return $this->render('base.html.twig', [

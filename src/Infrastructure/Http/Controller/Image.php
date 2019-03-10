@@ -27,12 +27,10 @@ final class Image extends AbstractController implements Controller
 
         $disposition = HeaderUtils::makeDisposition(HeaderUtils::DISPOSITION_ATTACHMENT, $image->name());
 
-        $response = new HttpFoundation\Response($image->content(), 200, [
+        return new HttpFoundation\Response($image->content(), 200, [
             'Content-Type' => $image->format()->mime(),
             'Content-Length' => strlen($image->content()),
             'Content-Disposition' => $disposition,
         ]);
-
-        return $response;
     }
 }

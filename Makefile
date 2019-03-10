@@ -34,7 +34,11 @@ composer: ; $(info $(M) Installing dependencies:)
 .PHONY: run
 run: up composer ; $(info $(M) Environment has been built succesfully:)
 
+.PHONY: styles-check
+styles-check: ; $(info $(M) Checking coding style:)
+	$Q docker-compose exec -T php vendor/bin/phpcs -ps
+
 .PHONY: tests
-tests: run ; $(info $(M) Running tests:)
+tests: run styles-check ; $(info $(M) Running tests:)
 	$Q docker-compose exec -T minio mkdir -p /data/$(S3_BUCKET)
 	$Q docker-compose exec -T php vendor/bin/phpunit
