@@ -1,4 +1,4 @@
-FROM php:7.3.2-fpm-alpine3.9
+FROM php:7.3.3-fpm-alpine3.9
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /tmp
