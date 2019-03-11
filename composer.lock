@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "332af9e54388721c582eb282c2e0a936",
+    "content-hash": "fb8291ee4b709da4015da0131cec0980",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -3870,6 +3870,34 @@
             ],
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
             "time": "2017-04-07T12:08:54+00:00"
+        },
+        {
+            "name": "thomas-schulz/symfony-meta",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/King2500/symfony-meta.git",
+                "reference": "b0e89d89386b6e5d458f7fce7233f34fd2f9d56c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/King2500/symfony-meta/zipball/b0e89d89386b6e5d458f7fce7233f34fd2f9d56c",
+                "reference": "b0e89d89386b6e5d458f7fce7233f34fd2f9d56c",
+                "shasum": ""
+            },
+            "require-dev": {
+                "symfony/symfony": "~4.2"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Thomas Schulz",
+                    "email": "mail@king2500.net"
+                }
+            ],
+            "description": "PhpStorm meta data for expected arguments completion in symfony projects.",
+            "time": "2019-03-08T12:24:01+00:00"
         },
         {
             "name": "webmozart/assert",
