@@ -5,9 +5,9 @@ namespace Radarlog\S3Uploader\Domain;
 
 interface Storage
 {
-    public function upload(Image $image): void;
+    public function upload(Image\File $file): void;
 
     public function list(): \Iterator;
 
-    public function get(string $key): Image;
+    public function get(string $name): Image\File;
 }

@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Domain;
+namespace Radarlog\S3Uploader\Domain\Image;
 
-final class Image
+final class File
 {
     /** @var string */
     private $name;
@@ -25,7 +25,7 @@ final class Image
         try {
             $image->readImageBlob($content);
         } catch (\ImagickException $e) {
-            throw new InvalidArgument('Cannot create picture', InvalidArgument::CODE_IMAGE, $e);
+            throw new InvalidArgument('Cannot create image', InvalidArgument::CODE_IMAGE, $e);
         }
 
         $this->name = $name;

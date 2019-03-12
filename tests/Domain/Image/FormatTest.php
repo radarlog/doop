@@ -1,10 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Tests\Domain;
+namespace Radarlog\S3Uploader\Tests\Domain\Image;
 
-use Radarlog\S3Uploader\Domain\Format;
-use Radarlog\S3Uploader\Domain\InvalidArgument;
+use Radarlog\S3Uploader\Domain\Image;
 use Radarlog\S3Uploader\Tests\UnitTestCase;
 
 class FormatTest extends UnitTestCase
@@ -13,22 +12,22 @@ class FormatTest extends UnitTestCase
     {
         $image = new \Imagick();
 
-        $this->expectException(InvalidArgument::class);
-        $this->expectExceptionCode(InvalidArgument::CODE_IMAGE);
+        $this->expectException(Image\InvalidArgument::class);
+        $this->expectExceptionCode(Image\InvalidArgument::CODE_IMAGE);
         $this->expectExceptionMessage('Cannot read format');
 
-        new Format($image);
+        new Image\Format($image);
     }
 
     public function testUnsupportedFormat(): void
     {
         $image = new \Imagick($this->fixturePath('Images/avatar.tga'));
 
-        $this->expectException(InvalidArgument::class);
-        $this->expectExceptionCode(InvalidArgument::CODE_IMAGE);
+        $this->expectException(Image\InvalidArgument::class);
+        $this->expectExceptionCode(Image\InvalidArgument::CODE_IMAGE);
         $this->expectExceptionMessage('Unsupported format');
 
-        new Format($image);
+        new Image\Format($image);
     }
 
     public function supportedFixturesProvider(): \Generator
@@ -44,7 +43,7 @@ class FormatTest extends UnitTestCase
     {
         $image = new \Imagick($fixturePath);
 
-        self::assertSame($format, strval(new Format($image)));
+        self::assertSame($format, strval(new Image\Format($image)));
     }
 
     public function mimeProvider(): \Generator
@@ -60,7 +59,7 @@ class FormatTest extends UnitTestCase
     {
         $image = new \Imagick($fixturePath);
 
-        $format = new Format($image);
+        $format = new Image\Format($image);
 
         self::assertSame($mime, $format->mime());
     }
