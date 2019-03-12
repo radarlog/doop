@@ -55,10 +55,11 @@ services:
         restart: ${DOCKER_RESTART}
         networks:
             - s3uploader
-        entrypoint: >-
-            sh -c "
-                mc config host add s3uploader http://minio:9000 minio minio330;
-                mc rm -r --force s3uploader/${S3_BUCKET};
-                mc mb s3uploader/${S3_BUCKET};
-                mc policy download s3uploader/${S3_BUCKET};
-            "
+        entrypoint:
+            - sh
+            - -c
+            - |-
+                mc config host add s3uploader http://minio:9000 minio minio330
+                mc rm -r --force s3uploader/${S3_BUCKET}
+                mc mb s3uploader/${S3_BUCKET}
+                mc policy download s3uploader/${S3_BUCKET}
