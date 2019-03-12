@@ -31,8 +31,19 @@ down: ; $(info $(M) Shutting down containers:)
 composer: ; $(info $(M) Installing dependencies:)
 	$Q docker-compose exec -T php composer install --ansi --no-interaction
 
+.PHONY: migrations
+migrations: ; $(info $(M) Running migrations:)
+	$Q echo -n "Waiting for mysql container to be up and running"
+	$Q until docker-compose exec -e MYSQL_PWD=s3uploader -T mysql mysql -us3uploader -e status > /dev/null 2>&1 ; \
+        do \
+            echo -n "." ; \
+            sleep 1 ; \
+        done
+	$Q echo ""
+	$Q docker-compose exec -T php bin/console migrations:migrate --no-interaction
+
 .PHONY: run
-run: up composer ; $(info $(M) Environment has been built succesfully:)
+run: up composer migrations ; $(info $(M) Environment has been built succesfully)
 
 .PHONY: styles-check
 styles-check: ; $(info $(M) Checking coding style:)
