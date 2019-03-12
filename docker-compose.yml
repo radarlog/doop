@@ -21,6 +21,7 @@ services:
     php:
         depends_on:
             - minio
+            - minio-create-bucket
         container_name: s3uploader-php
         build: docker/php
         restart: ${DOCKER_RESTART}
