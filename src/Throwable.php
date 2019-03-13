@@ -8,6 +8,7 @@ interface Throwable extends \Throwable
     # @formatter:off
     public const CODE_IMAGE          = 1000;
     public const CODE_UUID           = 1001;
+    public const CODE_STATE          = 1002;
 
     public const CODE_HANDLER        = 2000;
     public const CODE_MYSQL_SEVERS   = 3000;
