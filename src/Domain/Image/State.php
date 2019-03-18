@@ -12,7 +12,7 @@ final class State
         'uploaded_at',
     ];
 
-    public const DATETIME_FORMAT = 'Y-m-d H:s:i';
+    public const DATETIME_FORMAT = 'Y-m-d H:i:s';
 
     /** @var array */
     private $state;
