@@ -11,13 +11,13 @@ final class Image implements Aggregate
     /** @var Image\Name */
     private $name;
 
-    /** @var string */
+    /** @var Image\Hash */
     private $hash;
 
     /** @var \DateTimeImmutable */
     private $uploadedAt;
 
-    public function __construct(Image\Identity $id, string $hash, Image\Name $name)
+    public function __construct(Image\Identity $id, Image\Hash $hash, Image\Name $name)
     {
         $this->id = $id;
         $this->hash = $hash;
@@ -34,7 +34,7 @@ final class Image implements Aggregate
     {
         return new Image\State([
             'uuid' => $this->id->toString(),
-            'hash' => $this->hash,
+            'hash' => (string)$this->hash,
             'name' => (string)$this->name,
             'uploaded_at' => $this->uploadedAt->format(Image\State::DATETIME_FORMAT),
         ]);
@@ -45,9 +45,10 @@ final class Image implements Aggregate
         $state = $state->asArray();
 
         $id = new Image\Identity($state['uuid']);
+        $hash = new Image\Hash($state['hash']);
         $name = new Image\Name($state['name']);
 
-        $image = new self($id, $state['hash'], $name);
+        $image = new self($id, $hash, $name);
 
         $image->uploadedAt = new \DateTimeImmutable($state['uploaded_at']);
 

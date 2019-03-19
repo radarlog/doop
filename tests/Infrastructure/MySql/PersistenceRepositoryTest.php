@@ -26,8 +26,9 @@ class PersistenceRepositoryTest extends DbTestCase
     public function testAddNew(): void
     {
         $name = new Image\Name('name');
+        $hash = new Image\Hash('f32b67c7e26342af42efabc674d441dca0a281c5');
 
-        $image1 = new Image($this->uuid, 'hash', $name);
+        $image1 = new Image($this->uuid, $hash, $name);
 
         $this->repository->add($image1);
 
