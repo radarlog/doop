@@ -5,7 +5,7 @@ namespace Radarlog\S3Uploader\Domain\Image;
 
 final class File
 {
-    /** @var string */
+    /** @var Name */
     private $name;
 
     /** @var string */
@@ -28,14 +28,14 @@ final class File
             throw new InvalidArgument('Cannot create image', InvalidArgument::CODE_IMAGE, $e);
         }
 
-        $this->name = $name;
+        $this->name = new Name($name);
         $this->content = $content;
         $this->format = new Format($image);
     }
 
     public function name(): string
     {
-        return $this->name;
+        return (string)$this->name;
     }
 
     public function content(): string

@@ -11,11 +11,15 @@ class ImageTest extends UnitTestCase
     /** @var Image\Identity */
     private $uuid;
 
+    /** @var Image\Name */
+    private $name;
+
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->uuid = Image\Identity::new();
+        $this->name = new Image\Name('name');
     }
 
     public function testState(): void
@@ -50,7 +54,7 @@ class ImageTest extends UnitTestCase
 
     public function testGetState(): void
     {
-        $image = new Image($this->uuid, 'hash', 'name');
+        $image = new Image($this->uuid, 'hash', $this->name);
 
         $state = $image->getState();
 
@@ -59,7 +63,7 @@ class ImageTest extends UnitTestCase
 
     public function testId(): void
     {
-        $image = new Image($this->uuid, 'hash', 'name');
+        $image = new Image($this->uuid, 'hash', $this->name);
 
         self::assertSame($this->uuid->toString(), $image->id()->toString());
     }
