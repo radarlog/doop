@@ -5,9 +5,9 @@ namespace Radarlog\S3Uploader\Tests\Infrastructure\MySql;
 
 use Radarlog\S3Uploader\Domain\Image;
 use Radarlog\S3Uploader\Domain\Repository;
-use Radarlog\S3Uploader\Tests\FunctionalTestCase;
+use Radarlog\S3Uploader\Tests\DbTestCase;
 
-class PersistenceRepositoryTest extends FunctionalTestCase
+class PersistenceRepositoryTest extends DbTestCase
 {
     /** @var Repository */
     private $repository;
