@@ -45,7 +45,7 @@ class ImageTest extends UnitTestCase
 
         $image = Image::fromState($state);
 
-        self::assertSame('572b3706-ffb8-423c-a317-d0ca8016a345', $image->id());
+        self::assertSame('572b3706-ffb8-423c-a317-d0ca8016a345', $image->id()->toString());
     }
 
     public function testGetState(): void
@@ -61,6 +61,6 @@ class ImageTest extends UnitTestCase
     {
         $image = new Image($this->uuid, 'hash', 'name');
 
-        self::assertSame($this->uuid->toString(), $image->id());
+        self::assertSame($this->uuid->toString(), $image->id()->toString());
     }
 }

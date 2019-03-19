@@ -3,9 +3,10 @@ declare(strict_types=1);
 
 namespace Radarlog\S3Uploader\Domain\Image;
 
+use Radarlog\S3Uploader\Domain;
 use Ramsey\Uuid;
 
-final class Identity
+final class Identity implements Domain\Identity
 {
     /** @var Uuid\UuidInterface */
     private $uuid;

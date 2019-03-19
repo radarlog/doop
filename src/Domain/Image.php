@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Radarlog\S3Uploader\Domain;
 
-final class Image
+final class Image implements Aggregate
 {
     /** @var Image\Identity */
     private $id;
@@ -25,12 +25,12 @@ final class Image
         $this->uploadedAt = new \DateTimeImmutable();
     }
 
-    public function id(): string
+    public function id(): Identity
     {
-        return $this->id->toString();
+        return $this->id;
     }
 
-    public function getState(): Image\State
+    public function getState(): State
     {
         return new Image\State([
             'uuid' => $this->id->toString(),
@@ -40,7 +40,7 @@ final class Image
         ]);
     }
 
-    public static function fromState(Image\State $state): self
+    public static function fromState(State $state): Aggregate
     {
         $state = $state->asArray();
 

@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace Radarlog\S3Uploader\Domain\Image;
 
-final class State
+use Radarlog\S3Uploader\Domain;
+
+final class State implements Domain\State
 {
     private const KEYS = [
         'uuid',

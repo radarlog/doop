@@ -5,7 +5,7 @@ namespace Radarlog\S3Uploader\Domain;
 
 interface Repository
 {
-    public function add(Image $image): void;
+    public function add(Aggregate $entity): void;
 
-    public function getById(Image\Identity $id): Image;
+    public function getById(Identity $id): Aggregate;
 }

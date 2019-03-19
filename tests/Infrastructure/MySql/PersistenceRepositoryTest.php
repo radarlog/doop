@@ -31,6 +31,6 @@ class PersistenceRepositoryTest extends DbTestCase
 
         $image2 = $this->repository->getById($this->uuid);
 
-        self::assertSame($image1->id(), $image2->id());
+        self::assertSame($image1->id()->toString(), $image2->id()->toString());
     }
 }

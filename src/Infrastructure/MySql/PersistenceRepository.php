@@ -16,7 +16,7 @@ final class PersistenceRepository implements Domain\Repository
         $this->connection = $connection;
     }
 
-    public function add(Domain\Image $image): void
+    public function add(Domain\Aggregate $image): void
     {
         $table = $this->connection->imagesTable();
 
@@ -32,7 +32,7 @@ final class PersistenceRepository implements Domain\Repository
         );
     }
 
-    public function getById(Domain\Image\Identity $id): Domain\Image
+    public function getById(Domain\Identity $id): Domain\Aggregate
     {
         $qb = $this->connection->createQueryBuilder();
 
