@@ -5,3 +5,4 @@ services:
         public: true
 
     Radarlog\S3Uploader\Domain\Repository: '@Radarlog\S3Uploader\Infrastructure\MySql\PersistenceRepository'
+    Radarlog\S3Uploader\Application\Query\Image\FindAll: '@Radarlog\S3Uploader\Infrastructure\MySql\Read\FindAllImages'
