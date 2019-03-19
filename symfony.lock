@@ -2,8 +2,20 @@
     "aws/aws-sdk-php": {
         "version": "3.88.0"
     },
+    "doctrine/cache": {
+        "version": "v1.8.0"
+    },
+    "doctrine/dbal": {
+        "version": "v2.9.2"
+    },
+    "doctrine/event-manager": {
+        "version": "v1.0.0"
+    },
     "doctrine/instantiator": {
         "version": "1.1.0"
+    },
+    "doctrine/migrations": {
+        "version": "v2.0.0"
     },
     "guzzlehttp/guzzle": {
         "version": "6.3.3"
@@ -22,6 +34,15 @@
     },
     "myclabs/deep-copy": {
         "version": "1.8.1"
+    },
+    "ocramius/package-versions": {
+        "version": "1.4.0"
+    },
+    "ocramius/proxy-manager": {
+        "version": "2.2.2"
+    },
+    "paragonie/random_compat": {
+        "version": "v9.99.99"
     },
     "phar-io/manifest": {
         "version": "1.0.3"
@@ -88,6 +109,9 @@
     },
     "ralouphie/getallheaders": {
         "version": "2.0.5"
+    },
+    "ramsey/uuid": {
+        "version": "3.8.0"
     },
     "sebastian/code-unit-reverse-lookup": {
         "version": "1.0.1"
@@ -258,6 +282,9 @@
             "config/routes.yaml"
         ]
     },
+    "symfony/stopwatch": {
+        "version": "v4.2.4"
+    },
     "symfony/twig-bridge": {
         "version": "v4.2.4"
     },
@@ -292,5 +319,11 @@
     },
     "webmozart/assert": {
         "version": "1.4.0"
+    },
+    "zendframework/zend-code": {
+        "version": "3.3.1"
+    },
+    "zendframework/zend-eventmanager": {
+        "version": "3.2.1"
     }
 }

@@ -24,6 +24,7 @@ RUN set -e \
         exif \
         json \
         opcache \
+        pdo_mysql \
         zip \
     #
     # Compile and enable imagick extension

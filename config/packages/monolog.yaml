@@ -3,5 +3,6 @@ monolog:
         - commands
     handlers:
         main:
-            type:  stream
-            path:  "php://stderr"
+            type: stream
+            path: "php://stderr"
+            level: notice

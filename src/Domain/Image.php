@@ -3,48 +3,53 @@ declare(strict_types=1);
 
 namespace Radarlog\S3Uploader\Domain;
 
-final class Image
+final class Image implements Aggregate
 {
+    /** @var Image\Identity */
+    private $id;
+
     /** @var string */
     private $name;
 
     /** @var string */
-    private $content;
+    private $hash;
 
-    /** @var Format */
-    private $format;
+    /** @var \DateTimeImmutable */
+    private $uploadedAt;
 
-    /**
-     * @noinspection PhpDocMissingThrowsInspection
-     * @throws InvalidArgument
-     */
-    public function __construct(string $name, string $content)
+    public function __construct(Image\Identity $id, string $hash, string $name)
     {
-        $image = new \Imagick();
-
-        try {
-            $image->readImageBlob($content);
-        } catch (\ImagickException $e) {
-            throw new InvalidArgument('Cannot create picture', InvalidArgument::CODE_IMAGE, $e);
-        }
-
+        $this->id = $id;
+        $this->hash = $hash;
         $this->name = $name;
-        $this->content = $content;
-        $this->format = new Format($image);
+        $this->uploadedAt = new \DateTimeImmutable();
     }
 
-    public function name(): string
+    public function id(): Identity
     {
-        return $this->name;
+        return $this->id;
     }
 
-    public function content(): string
+    public function getState(): State
     {
-        return $this->content;
+        return new Image\State([
+            'uuid' => $this->id->toString(),
+            'hash' => $this->hash,
+            'name' => $this->name,
+            'uploaded_at' => $this->uploadedAt->format(Image\State::DATETIME_FORMAT),
+        ]);
     }
 
-    public function format(): Format
+    public static function fromState(State $state): Aggregate
     {
-        return $this->format;
+        $state = $state->asArray();
+
+        $id = new Image\Identity($state['uuid']);
+
+        $image = new self($id, $state['hash'], $state['name']);
+
+        $image->uploadedAt = new \DateTimeImmutable($state['uploaded_at']);
+
+        return $image;
     }
 }

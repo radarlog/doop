@@ -1,0 +1,38 @@
+parameters:
+    migrations_namespace: 'Radarlog\S3Uploader\Infrastructure\MySql\Migrations'
+    migrations_dir_name: '%kernel.project_dir%/src/Infrastructure/MySql/Migrations'
+    migrations_template: '%kernel.project_dir%/src/Infrastructure/MySql/Migrations/template.tmpl'
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Radarlog\S3Uploader\Infrastructure\MySql\:
+        resource: '../src/Infrastructure/MySql'
+        exclude:
+            - '../src/Infrastructure/MySql/Migrations'
+
+    Radarlog\S3Uploader\Domain\Repository: '@Radarlog\S3Uploader\Infrastructure\MySql\PersistenceRepository'
+    Radarlog\S3Uploader\Application\Query\Image\FindAll: '@Radarlog\S3Uploader\Infrastructure\MySql\Read\FindAllImages'
+
+    Radarlog\S3Uploader\Infrastructure\MySql\Connection:
+        factory: Radarlog\S3Uploader\Infrastructure\MySql\ConnectionFactory::create
+        arguments:
+            -   master: '%env(resolve:MYSQL_MASTER)%'
+                slaves: '%env(resolve:MYSQL_SLAVES)%'
+
+    Doctrine\Migrations\Configuration\Configuration:
+        arguments: ['@Radarlog\S3Uploader\Infrastructure\MySql\Connection']
+        calls:
+            - [setMigrationsNamespace, ['%migrations_namespace%']]
+            - [setMigrationsDirectory, ['%migrations_dir_name%']]
+            - [setCustomTemplate, ['%migrations_template%']]
+
+    Doctrine\Migrations\Tools\Console\Command\:
+        resource: '../vendor/doctrine/migrations/lib/Doctrine/Migrations/Tools/Console/Command'
+        exclude:
+            - '../vendor/doctrine/migrations/lib/Doctrine/Migrations/Tools/Console/Command/DiffCommand.php'
+        calls:
+            - [setMigrationConfiguration, ['@Doctrine\Migrations\Configuration\Configuration']]

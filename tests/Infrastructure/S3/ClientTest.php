@@ -14,11 +14,11 @@ class ClientTest extends FunctionalTestCase
         $fixture = $this->fixturePath('Images/avatar.jpg');
         $content = file_get_contents($fixture);
 
-        $image = new Image('avatar.jpg', $content);
+        $file = new Image\File('avatar.jpg', $content);
 
         $client = self::$container->get(Client::class);
 
-        $client->upload($image);
+        $client->upload($file);
 
         $objects = $client->list();
 

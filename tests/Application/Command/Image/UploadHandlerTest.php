@@ -20,8 +20,8 @@ class UploadHandlerTest extends UnitTestCase
         $storage
             ->expects($this->once())
             ->method('upload')
-            ->with(self::callback(static function (Domain\Image $image) use ($content) {
-                return 'name' === $image->name() && $content === $image->content();
+            ->with(self::callback(static function (Domain\Image\File $file) use ($content) {
+                return 'name' === $file->name() && $content === $file->content();
             }));
 
         $handler = new Command\Image\UploadHandler($storage);

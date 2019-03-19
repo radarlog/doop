@@ -1,5 +1,6 @@
 imports:
     - { resource: 'logs.yaml' }
+    - { resource: 'mysql.yaml' }
     - { resource: 's3.yaml' }
 
 services:
@@ -16,7 +17,8 @@ services:
         resource: '../src'
         exclude:
             - '../src/Kernel.php'
-            - '../src/Infrastructure/S3/*'
+            - '../src/Infrastructure/S3'
+            - '../src/Infrastructure/MySql'
 
     # Command Bus
     Radarlog\S3Uploader\Application\Command\SimpleBus:

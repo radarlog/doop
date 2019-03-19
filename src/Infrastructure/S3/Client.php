@@ -22,10 +22,10 @@ final class Client implements Domain\Storage
         $this->bucketName = $bucketName;
     }
 
-    public function upload(Domain\Image $image): void
+    public function upload(Domain\Image\File $file): void
     {
-        $this->client->upload($this->bucketName, $image->name(), $image->content(), self::ACL, [
-            'ContentType' => $image->format()->mime(),
+        $this->client->upload($this->bucketName, $file->name(), $file->content(), self::ACL, [
+            'ContentType' => $file->format()->mime(),
         ]);
     }
 
@@ -40,15 +40,15 @@ final class Client implements Domain\Storage
         }
     }
 
-    public function get(string $key): Domain\Image
+    public function get(string $name): Domain\Image\File
     {
         $command = $this->client->getCommand('GetObject', [
             'Bucket' => $this->bucketName,
-            'Key' => $key,
+            'Key' => $name,
         ]);
 
         $content = (string)$this->client->execute($command)->get('Body');
 
-        return new Domain\Image($key, $content);
+        return new Domain\Image\File($name, $content);
     }
 }

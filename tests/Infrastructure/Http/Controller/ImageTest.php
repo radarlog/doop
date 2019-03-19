@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Radarlog\S3Uploader\Tests\Infrastructure\Http\Controller;
 
-use Radarlog\S3Uploader\Domain;
+use Radarlog\S3Uploader\Domain\Image;
 use Radarlog\S3Uploader\Infrastructure\S3\Client;
 use Radarlog\S3Uploader\Tests\ControllerTestCase;
 
@@ -16,9 +16,9 @@ class ImageTest extends ControllerTestCase
         $fixture = $this->fixturePath('Images/avatar.jpg');
         $content = file_get_contents($fixture);
 
-        $image = new Domain\Image('avatar.jpg', $content);
+        $file = new Image\File('avatar.jpg', $content);
 
-        self::$container->get(Client::class)->upload($image);
+        self::$container->get(Client::class)->upload($file);
     }
 
     public function testAction(): void

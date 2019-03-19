@@ -22,6 +22,7 @@ services:
         depends_on:
             - minio
             - minio-create-bucket
+            - mysql
         container_name: s3uploader-php
         build: docker/php
         restart: ${DOCKER_RESTART}
@@ -33,6 +34,21 @@ services:
         environment:
             XDEBUG_CONFIG: "remote_host=172.18.0.1 remote_port=9009"
             PHP_IDE_CONFIG: serverName=s3uploader
+
+    mysql:
+        container_name: s3uploader-mysql
+        image: percona:8.0
+        command: --default-authentication-plugin=mysql_native_password
+        restart: ${DOCKER_RESTART}
+        networks:
+            - s3uploader
+        ports:
+            - 3306:3306
+        environment:
+            MYSQL_RANDOM_ROOT_PASSWORD: 'true'
+            MYSQL_DATABASE: s3uploader
+            MYSQL_USER: s3uploader
+            MYSQL_PASSWORD: s3uploader
 
     minio:
         container_name: s3uploader-minio
