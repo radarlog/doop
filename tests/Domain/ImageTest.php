@@ -8,9 +8,6 @@ use Radarlog\S3Uploader\Tests\UnitTestCase;
 
 class ImageTest extends UnitTestCase
 {
-    /** @var Image\Identity */
-    private $uuid;
-
     /** @var Image\Name */
     private $name;
 
@@ -21,7 +18,6 @@ class ImageTest extends UnitTestCase
     {
         parent::setUp();
 
-        $this->uuid = Image\Identity::new();
         $this->name = new Image\Name('name');
         $this->hash = new Image\Hash('f32b67c7e26342af42efabc674d441dca0a281c5');
     }
@@ -58,7 +54,7 @@ class ImageTest extends UnitTestCase
 
     public function testGetState(): void
     {
-        $image = new Image($this->uuid, $this->hash, $this->name);
+        $image = new Image($this->hash, $this->name);
 
         $state = $image->getState();
 
@@ -67,8 +63,8 @@ class ImageTest extends UnitTestCase
 
     public function testId(): void
     {
-        $image = new Image($this->uuid, $this->hash, $this->name);
+        $image = new Image($this->hash, $this->name);
 
-        self::assertSame($this->uuid->toString(), $image->id()->toString());
+        self::assertSame(36, strlen($image->id()->toString()));
     }
 }

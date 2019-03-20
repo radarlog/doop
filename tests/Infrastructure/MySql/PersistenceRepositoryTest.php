@@ -12,14 +12,10 @@ class PersistenceRepositoryTest extends DbTestCase
     /** @var Repository */
     private $repository;
 
-    /** @var Image\Identity */
-    private $uuid;
-
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->uuid = Image\Identity::new();
         $this->repository = self::$container->get(Repository::class);
     }
 
@@ -28,12 +24,13 @@ class PersistenceRepositoryTest extends DbTestCase
         $name = new Image\Name('name');
         $hash = new Image\Hash('f32b67c7e26342af42efabc674d441dca0a281c5');
 
-        $image1 = new Image($this->uuid, $hash, $name);
-
+        $image1 = new Image($hash, $name);
         $this->repository->add($image1);
 
-        $image2 = $this->repository->getById($this->uuid);
+        $id = $image1->id();
 
-        self::assertSame($image1->id()->toString(), $image2->id()->toString());
+        $image2 = $this->repository->getById($id);
+
+        self::assertSame($id->toString(), $image2->id()->toString());
     }
 }
