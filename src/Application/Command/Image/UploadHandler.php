@@ -5,15 +5,20 @@ namespace Radarlog\S3Uploader\Application\Command\Image;
 
 use Radarlog\S3Uploader\Application\Command;
 use Radarlog\S3Uploader\Domain;
+use Radarlog\S3Uploader\Domain\Image;
 
 final class UploadHandler implements Command\Handler
 {
     /** @var Domain\Storage */
     private $client;
 
-    public function __construct(Domain\Storage $client)
+    /** @var Domain\Repository */
+    private $repository;
+
+    public function __construct(Domain\Storage $client, Domain\Repository $repository)
     {
         $this->client = $client;
+        $this->repository = $repository;
     }
 
     /**
@@ -23,8 +28,13 @@ final class UploadHandler implements Command\Handler
      */
     public function handle(Command $command): void
     {
-        $file = new Domain\Image\File($command->name(), $command->content());
+        $name = new Image\Name($command->name());
+        $hash = Image\Hash::calculate($command->content());
 
+        $file = new Image\File((string)$hash, $command->content());
         $this->client->upload($file);
+
+        $image = new Image($hash, $name);
+        $this->repository->add($image);
     }
 }
