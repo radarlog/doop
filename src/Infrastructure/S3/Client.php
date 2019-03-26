@@ -29,17 +29,6 @@ final class Client implements Domain\Storage
         ]);
     }
 
-    public function list(): \Iterator
-    {
-        $objects = $this->client->getIterator('ListObjects', [
-            'Bucket' => $this->bucketName,
-        ]);
-
-        foreach ($objects as $object) {
-            yield $object['Key'];
-        }
-    }
-
     public function get(string $hash): Domain\Image\File
     {
         $hash = new Domain\Image\Hash($hash);

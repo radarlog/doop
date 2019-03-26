@@ -7,7 +7,5 @@ interface Storage
 {
     public function upload(Image\File $file): void;
 
-    public function list(): \Iterator;
-
     public function get(string $hash): Image\File;
 }
