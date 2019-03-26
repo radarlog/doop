@@ -5,8 +5,8 @@ namespace Radarlog\S3Uploader\Domain\Image;
 
 final class File
 {
-    /** @var Name */
-    private $name;
+    /** @var Hash */
+    private $hash;
 
     /** @var string */
     private $content;
@@ -18,7 +18,7 @@ final class File
      * @noinspection PhpDocMissingThrowsInspection
      * @throws InvalidArgument
      */
-    public function __construct(string $name, string $content)
+    public function __construct(Hash $hash, string $content)
     {
         $image = new \Imagick();
 
@@ -28,14 +28,14 @@ final class File
             throw new InvalidArgument('Cannot create image', InvalidArgument::CODE_IMAGE, $e);
         }
 
-        $this->name = new Name($name);
+        $this->hash = $hash;
         $this->content = $content;
         $this->format = new Format($image);
     }
 
-    public function name(): string
+    public function hash(): string
     {
-        return (string)$this->name;
+        return (string)$this->hash;
     }
 
     public function content(): string

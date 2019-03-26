@@ -9,23 +9,25 @@ use Radarlog\S3Uploader\Tests\FunctionalTestCase;
 
 class ClientTest extends FunctionalTestCase
 {
+    /** @var string */
+    private $hash = '2080492d54a6b8579968901f366b13614fe188f2';
+
     public function testUpload(): void
     {
         $fixture = $this->fixturePath('Images/avatar.jpg');
         $content = file_get_contents($fixture);
 
-        $file = new Image\File('avatar.jpg', $content);
+        $hash = new Image\Hash($this->hash);
+
+        $file = new Image\File($hash, $content);
 
         $client = self::$container->get(Client::class);
 
         $client->upload($file);
 
-        $objects = $client->list();
+        $object = $client->get($this->hash);
 
-        $key = $client->list()->current();
-
-        self::assertNotEmpty($objects);
-        self::assertSame('avatar.jpg', $key);
-        self::assertSame($content, $client->get($key)->content());
+        self::assertSame($this->hash, $object->hash());
+        self::assertSame($content, $object->content());
     }
 }

@@ -9,6 +9,9 @@ use Radarlog\S3Uploader\Tests\ControllerTestCase;
 
 class ImageTest extends ControllerTestCase
 {
+    /** @var string */
+    private $hash = '2080492d54a6b8579968901f366b13614fe188f2';
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -16,14 +19,16 @@ class ImageTest extends ControllerTestCase
         $fixture = $this->fixturePath('Images/avatar.jpg');
         $content = file_get_contents($fixture);
 
-        $file = new Image\File('avatar.jpg', $content);
+        $hash = new Image\Hash($this->hash);
+
+        $file = new Image\File($hash, $content);
 
         self::$container->get(Client::class)->upload($file);
     }
 
     public function testAction(): void
     {
-        $this->client->request('GET', '/image/avatar.jpg');
+        $this->client->request('GET', sprintf('/image/%s', $this->hash));
 
         $headers = $this->client->getResponse()->headers;
 
@@ -31,6 +36,6 @@ class ImageTest extends ControllerTestCase
 
         $this->assertSame('image/jpeg', $headers->get('Content-Type'));
         $this->assertSame(5580, $headers->get('Content-Length'));
-        $this->assertSame('attachment; filename=avatar.jpg', $headers->get('Content-Disposition'));
+        $this->assertSame(sprintf('attachment; filename=%s', $this->hash), $headers->get('Content-Disposition'));
     }
 }

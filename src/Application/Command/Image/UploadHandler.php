@@ -31,7 +31,7 @@ final class UploadHandler implements Command\Handler
         $name = new Image\Name($command->name());
         $hash = Image\Hash::calculate($command->content());
 
-        $file = new Image\File((string)$hash, $command->content());
+        $file = new Image\File($hash, $command->content());
         $this->client->upload($file);
 
         $image = new Image($hash, $name);

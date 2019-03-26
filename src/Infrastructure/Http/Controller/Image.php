@@ -21,15 +21,15 @@ final class Image extends AbstractController implements Controller
 
     public function __invoke(HttpFoundation\Request $request): HttpFoundation\Response
     {
-        $key = $request->attributes->get('key');
+        $hash = $request->attributes->get('hash');
 
-        $image = $this->client->get($key);
+        $file = $this->client->get($hash);
 
-        $disposition = HeaderUtils::makeDisposition(HeaderUtils::DISPOSITION_ATTACHMENT, $image->name());
+        $disposition = HeaderUtils::makeDisposition(HeaderUtils::DISPOSITION_ATTACHMENT, $file->hash());
 
-        return new HttpFoundation\Response($image->content(), 200, [
-            'Content-Type' => $image->format()->mime(),
-            'Content-Length' => strlen($image->content()),
+        return new HttpFoundation\Response($file->content(), 200, [
+            'Content-Type' => $file->format()->mime(),
+            'Content-Length' => strlen($file->content()),
             'Content-Disposition' => $disposition,
         ]);
     }

@@ -24,7 +24,7 @@ class UploadHandlerTest extends UnitTestCase
             ->expects($this->once())
             ->method('upload')
             ->with(self::callback(function (Domain\Image\File $file) {
-                return $this->hash === $file->name();
+                return $this->hash === $file->hash();
             }));
 
         $repository
