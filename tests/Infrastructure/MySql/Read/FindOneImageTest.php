@@ -39,16 +39,16 @@ class FindOneImageTest extends DbTestCase
     {
         $query = self::$container->get(Query\Image\FindOne::class);
 
-        $result = $query->nameByHash('f32b67c7e26342af42efabc674d441dca0a281c5');
+        $result = $query->hashByUuid('572b3706-ffb8-423c-a317-d0ca8016a345');
 
-        self::assertSame('name2', $result);
+        self::assertSame('f32b67c7e26342af42efabc674d441dca0a281c5', $result);
     }
 
     public function testNameByHashNotFound(): void
     {
         $query = self::$container->get(Query\Image\FindOne::class);
 
-        $result = $query->nameByHash('some_hash');
+        $result = $query->hashByUuid('some_hash');
 
         self::assertNull($result);
     }

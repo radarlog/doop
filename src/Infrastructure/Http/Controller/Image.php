@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Radarlog\S3Uploader\Infrastructure\Http\Controller;
 
+use Radarlog\S3Uploader\Application\Query;
 use Radarlog\S3Uploader\Domain\Storage;
 use Radarlog\S3Uploader\Infrastructure\Http\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,21 +12,27 @@ use Symfony\Component\HttpFoundation\HeaderUtils;
 
 final class Image extends AbstractController implements Controller
 {
+    /** @var Query\Image\FindOne */
+    private $findOne;
+
     /** @var Storage */
     private $client;
 
-    public function __construct(Storage $client)
+    public function __construct(Query\Image\FindOne $findOne, Storage $client)
     {
+        $this->findOne = $findOne;
         $this->client = $client;
     }
 
     public function __invoke(HttpFoundation\Request $request): HttpFoundation\Response
     {
-        $hash = $request->attributes->get('hash');
+        $uuid = $request->attributes->get('uuid');
+
+        $hash = $this->findOne->hashByUuid($uuid);
 
         $file = $this->client->get($hash);
 
-        $disposition = HeaderUtils::makeDisposition(HeaderUtils::DISPOSITION_ATTACHMENT, $file->hash());
+        $disposition = HeaderUtils::makeDisposition(HeaderUtils::DISPOSITION_ATTACHMENT, $hash);
 
         return new HttpFoundation\Response($file->content(), 200, [
             'Content-Type' => $file->format()->mime(),

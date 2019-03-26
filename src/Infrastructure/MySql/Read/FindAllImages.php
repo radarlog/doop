@@ -21,7 +21,7 @@ final class FindAllImages implements Query\Image\FindAll
         $qb = $this->connection->createQueryBuilder();
 
         $qb = $qb
-            ->select('name, hash')
+            ->select('uuid, name')
             ->from($this->connection->imagesTable())
             ->orderBy('uploaded_at', 'DESC');
 

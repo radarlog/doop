@@ -1,6 +1,6 @@
 {% for image in images %}
 	<li>
-        <img src="{{ path('image', {'hash': image.hash}) }}" alt="{{ image.name }}" width="640" height="480"/>
+        <img src="{{ path('image', {'uuid': image.uuid}) }}" alt="{{ image.name }}" width="640" height="480"/>
         {{ image.name }}
 		<br>
 	</li>
