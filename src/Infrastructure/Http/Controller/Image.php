@@ -28,11 +28,11 @@ final class Image extends AbstractController implements Controller
     {
         $uuid = $request->attributes->get('uuid');
 
-        $hash = $this->findOne->hashByUuid($uuid);
+        $result = $this->findOne->hashNameByUuid($uuid);
 
-        $file = $this->client->get($hash);
+        $file = $this->client->get($result['hash']);
 
-        $disposition = HeaderUtils::makeDisposition(HeaderUtils::DISPOSITION_ATTACHMENT, $hash);
+        $disposition = HeaderUtils::makeDisposition(HeaderUtils::DISPOSITION_ATTACHMENT, $result['name']);
 
         return new HttpFoundation\Response($file->content(), 200, [
             'Content-Type' => $file->format()->mime(),

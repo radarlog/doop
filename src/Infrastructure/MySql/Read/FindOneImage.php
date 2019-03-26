@@ -16,12 +16,12 @@ final class FindOneImage implements Query\Image\FindOne
         $this->connection = $connection;
     }
 
-    public function hashByUuid(string $uuid): ?string
+    public function hashNameByUuid(string $uuid): ?array
     {
         $qb = $this->connection->createQueryBuilder();
 
         $qb = $qb
-            ->select('hash')
+            ->select('hash', 'name')
             ->from($this->connection->imagesTable())
             ->where(
                 $qb->expr()->eq('uuid', $qb->createNamedParameter($uuid))
@@ -33,6 +33,6 @@ final class FindOneImage implements Query\Image\FindOne
             return null;
         }
 
-        return (string)$stmt->fetchColumn();
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 }

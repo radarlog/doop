@@ -45,6 +45,6 @@ class ImageTest extends ControllerTestCase
 
         $this->assertSame('image/jpeg', $headers->get('Content-Type'));
         $this->assertSame(5580, $headers->get('Content-Length'));
-        $this->assertSame(sprintf('attachment; filename=%s', $this->hash), $headers->get('Content-Disposition'));
+        $this->assertSame('attachment; filename=avatar.jpg', $headers->get('Content-Disposition'));
     }
 }

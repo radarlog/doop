@@ -5,5 +5,5 @@ namespace Radarlog\S3Uploader\Application\Query\Image;
 
 interface FindOne
 {
-    public function hashByUuid(string $uuid): ?string;
+    public function hashNameByUuid(string $uuid): ?array;
 }
