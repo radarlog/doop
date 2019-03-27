@@ -16,7 +16,7 @@ final class FindOneImage implements Query\Image\FindOne
         $this->connection = $connection;
     }
 
-    public function hashNameByUuid(string $uuid): ?array
+    public function hashNameByUuid(string $uuid): ?Query\Image\HashName
     {
         $qb = $this->connection->createQueryBuilder();
 
@@ -33,6 +33,8 @@ final class FindOneImage implements Query\Image\FindOne
             return null;
         }
 
-        return $stmt->fetch(\PDO::FETCH_ASSOC);
+        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        return new Query\Image\HashName($row['hash'], $row['name']);
     }
 }

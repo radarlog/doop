@@ -41,8 +41,8 @@ class FindOneImageTest extends DbTestCase
 
         $result = $query->hashNameByUuid('572b3706-ffb8-423c-a317-d0ca8016a345');
 
-        self::assertSame('f32b67c7e26342af42efabc674d441dca0a281c5', $result['hash']);
-        self::assertSame('name2', $result['name']);
+        self::assertSame('f32b67c7e26342af42efabc674d441dca0a281c5', $result->hash());
+        self::assertSame('name2', $result->name());
     }
 
     public function testNameByHashNotFound(): void

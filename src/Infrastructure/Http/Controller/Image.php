@@ -30,9 +30,9 @@ final class Image extends AbstractController implements Controller
 
         $result = $this->findOne->hashNameByUuid($uuid);
 
-        $file = $this->client->get($result['hash']);
+        $file = $this->client->get($result->hash());
 
-        $disposition = HeaderUtils::makeDisposition(HeaderUtils::DISPOSITION_ATTACHMENT, $result['name']);
+        $disposition = HeaderUtils::makeDisposition(HeaderUtils::DISPOSITION_ATTACHMENT, $result->name());
 
         return new HttpFoundation\Response($file->content(), 200, [
             'Content-Type' => $file->format()->mime(),
