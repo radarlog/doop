@@ -33,4 +33,11 @@ class PersistenceRepositoryTest extends DbTestCase
 
         self::assertSame($id->toString(), $image2->id()->toString());
     }
+
+    public function testGetByNonExistingId(): void
+    {
+        $identity = new Image\Identity('572b3706-ffb8-423c-a317-d0ca8016a345');
+
+        self::assertNull($this->repository->getById($identity));
+    }
 }

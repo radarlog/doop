@@ -32,7 +32,7 @@ final class PersistenceRepository implements Domain\Repository
         );
     }
 
-    public function getById(Domain\Identity $id): Domain\Aggregate
+    public function getById(Domain\Identity $id): ?Domain\Aggregate
     {
         $qb = $this->connection->createQueryBuilder();
 
@@ -43,7 +43,13 @@ final class PersistenceRepository implements Domain\Repository
                 $qb->expr()->eq('uuid', $qb->createNamedParameter($id->toString()))
             );
 
-        $row = $qb->execute()->fetch(\PDO::FETCH_ASSOC, \PDO::FETCH_ORI_FIRST);
+        $stmt = $qb->execute();
+
+        if ($stmt->rowCount() === 0) {
+            return null;
+        }
+
+        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
 
         $state = new Domain\Image\State($row);
 

@@ -7,5 +7,5 @@ interface Repository
 {
     public function add(Aggregate $entity): void;
 
-    public function getById(Identity $id): Aggregate;
+    public function getById(Identity $id): ?Aggregate;
 }
