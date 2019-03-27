@@ -16,7 +16,7 @@ class PersistenceRepositoryTest extends DbTestCase
     {
         parent::setUp();
 
-        $this->repository = self::$container->get(Repository::class);
+        $this->repository = self::$container->get('test.repository');
     }
 
     public function testAddNew(): void
