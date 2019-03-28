@@ -10,11 +10,15 @@ use Radarlog\S3Uploader\Tests\DbTestCase;
 
 class FindOneImageTest extends DbTestCase
 {
+    /** @var Query\Image\FindOne */
+    private $query;
+
     protected function setUp(): void
     {
         parent::setUp();
 
-        $repository = self::$container->get(Repository::class);
+        /** @var Repository $repository */
+        $repository = self::$container->get('test.repository');
 
         $state1 = new Image\State([
             'uuid' => '9f2149bb-b6e5-4ae0-a188-e616cddc8e98',
@@ -33,22 +37,21 @@ class FindOneImageTest extends DbTestCase
         ]);
         $image2 = Image::fromState($state2);
         $repository->add($image2);
+
+        $this->query = self::$container->get('test.query.one');
     }
 
     public function testNameByHash(): void
     {
-        $query = self::$container->get(Query\Image\FindOne::class);
+        $result = $this->query->hashNameByUuid('572b3706-ffb8-423c-a317-d0ca8016a345');
 
-        $result = $query->nameByHash('f32b67c7e26342af42efabc674d441dca0a281c5');
-
-        self::assertSame('name2', $result);
+        self::assertSame('f32b67c7e26342af42efabc674d441dca0a281c5', $result->hash());
+        self::assertSame('name2', $result->name());
     }
 
     public function testNameByHashNotFound(): void
     {
-        $query = self::$container->get(Query\Image\FindOne::class);
-
-        $result = $query->nameByHash('some_hash');
+        $result = $this->query->hashNameByUuid('some_hash');
 
         self::assertNull($result);
     }

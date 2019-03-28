@@ -24,31 +24,22 @@ final class Client implements Domain\Storage
 
     public function upload(Domain\Image\File $file): void
     {
-        $this->client->upload($this->bucketName, $file->name(), $file->content(), self::ACL, [
+        $this->client->upload($this->bucketName, $file->hash(), $file->content(), self::ACL, [
             'ContentType' => $file->format()->mime(),
         ]);
     }
 
-    public function list(): \Iterator
+    public function get(string $hash): Domain\Image\File
     {
-        $objects = $this->client->getIterator('ListObjects', [
-            'Bucket' => $this->bucketName,
-        ]);
+        $hash = new Domain\Image\Hash($hash);
 
-        foreach ($objects as $object) {
-            yield $object['Key'];
-        }
-    }
-
-    public function get(string $name): Domain\Image\File
-    {
         $command = $this->client->getCommand('GetObject', [
             'Bucket' => $this->bucketName,
-            'Key' => $name,
+            'Key' => (string)$hash,
         ]);
 
         $content = (string)$this->client->execute($command)->get('Body');
 
-        return new Domain\Image\File($name, $content);
+        return new Domain\Image\File($hash, $content);
     }
 }

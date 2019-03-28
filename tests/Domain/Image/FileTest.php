@@ -11,12 +11,17 @@ class FileTest extends UnitTestCase
     /** @var string */
     private $content;
 
+    /** @var Image\Hash */
+    private $hash;
+
     protected function setUp(): void
     {
         parent::setUp();
 
         $fixture = $this->fixturePath('Images/avatar.jpg');
         $this->content = file_get_contents($fixture);
+
+        $this->hash = new Image\Hash('f32b67c7e26342af42efabc674d441dca0a281c5');
     }
 
     public function testNonPictureType(): void
@@ -26,26 +31,26 @@ class FileTest extends UnitTestCase
         $this->expectException(Image\InvalidArgument::class);
         $this->expectExceptionCode(Image\InvalidArgument::CODE_IMAGE);
 
-        new Image\File('name', $content);
+        new Image\File($this->hash, $content);
     }
 
     public function testName(): void
     {
-        $file = new Image\File('some', $this->content);
+        $file = new Image\File($this->hash, $this->content);
 
-        self::assertSame('some', $file->name());
+        self::assertSame((string)$this->hash, $file->hash());
     }
 
     public function testContent(): void
     {
-        $file = new Image\File('name', $this->content);
+        $file = new Image\File($this->hash, $this->content);
 
         self::assertSame($this->content, $file->content());
     }
 
     public function testFormat(): void
     {
-        $file = new Image\File('name', $this->content);
+        $file = new Image\File($this->hash, $this->content);
 
         self::assertSame('jpeg', (string)$file->format());
     }

@@ -14,7 +14,8 @@ class FindAllImagesTest extends DbTestCase
     {
         parent::setUp();
 
-        $repository = self::$container->get(Repository::class);
+        /** @var Repository $repository */
+        $repository = self::$container->get('test.repository');
 
         $state1 = new Image\State([
             'uuid' => '9f2149bb-b6e5-4ae0-a188-e616cddc8e98',
@@ -37,16 +38,17 @@ class FindAllImagesTest extends DbTestCase
 
     public function testSortedByUploadDate(): void
     {
-        $query = self::$container->get(Query\Image\FindAll::class);
+        /** @var Query\Image\FindAll $query */
+        $query = self::$container->get('test.query.all');
 
         $result = $query->sortedByUploadDate();
 
         $expected = [
-            ['name' => 'name2', 'hash' => 'f32b67c7e26342af42efabc674d441dca0a281c5'],
-            ['name' => 'name1', 'hash' => '2346ad27d7568ba9896f1b7da6b5991251debdf2'],
+            new Query\Image\UuidName('572b3706-ffb8-423c-a317-d0ca8016a345', 'name2'),
+            new Query\Image\UuidName('9f2149bb-b6e5-4ae0-a188-e616cddc8e98', 'name1'),
         ];
 
         self::assertCount(2, $result);
-        self::assertSame($expected, $result);
+        self::assertEquals($expected, $result);
     }
 }

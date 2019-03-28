@@ -9,6 +9,6 @@ upload:
     methods: [POST]
 
 image:
-    path: /image/{key}
+    path: /image/{uuid}
     controller: Radarlog\S3Uploader\Infrastructure\Http\Controller\Image
     methods: [GET]
