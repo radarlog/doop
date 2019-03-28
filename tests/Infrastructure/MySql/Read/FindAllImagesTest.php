@@ -44,11 +44,11 @@ class FindAllImagesTest extends DbTestCase
         $result = $query->sortedByUploadDate();
 
         $expected = [
-            ['uuid' => '572b3706-ffb8-423c-a317-d0ca8016a345', 'name' => 'name2'],
-            ['uuid' => '9f2149bb-b6e5-4ae0-a188-e616cddc8e98', 'name' => 'name1'],
+            new Query\Image\UuidName('572b3706-ffb8-423c-a317-d0ca8016a345', 'name2'),
+            new Query\Image\UuidName('9f2149bb-b6e5-4ae0-a188-e616cddc8e98', 'name1'),
         ];
 
         self::assertCount(2, $result);
-        self::assertSame($expected, $result);
+        self::assertEquals($expected, $result);
     }
 }

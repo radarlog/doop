@@ -25,6 +25,12 @@ final class FindAllImages implements Query\Image\FindAll
             ->from($this->connection->imagesTable())
             ->orderBy('uploaded_at', 'DESC');
 
-        return $qb->execute()->fetchAll(\PDO::FETCH_ASSOC);
+        return $this->connection->project(
+            $qb->getSQL(),
+            $qb->getParameters(),
+            static function (array $row): Query\Image\UuidName {
+                return new Query\Image\UuidName($row['uuid'], $row['name']);
+            }
+        );
     }
 }
