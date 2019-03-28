@@ -6,7 +6,7 @@ namespace Radarlog\S3Uploader\Infrastructure\MySql\Migrations;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
-// phpcs:disable
+// phpcs:disable SlevomatCodingStandard.Functions.UnusedParameter
 final class Version20190312220423 extends AbstractMigration
 {
     public function getDescription(): string
