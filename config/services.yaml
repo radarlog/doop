@@ -1,7 +1,6 @@
 imports:
     - { resource: 'logs.yaml' }
-    - { resource: 'mysql.yaml' }
-    - { resource: 's3.yaml' }
+    - { resource: 'migrations.yaml' }
 
 services:
     _defaults:
@@ -17,8 +16,7 @@ services:
         resource: '../src'
         exclude:
             - '../src/Kernel.php'
-            - '../src/Infrastructure/S3'
-            - '../src/Infrastructure/MySql'
+            - '../src/Infrastructure/MySql/Migrations'
 
     # Command Bus
     Radarlog\S3Uploader\Application\Command\SimpleBus:
@@ -27,3 +25,16 @@ services:
         decorates: Radarlog\S3Uploader\Application\Command\SimpleBus
         arguments: ['@monolog.logger.commands']
     Radarlog\S3Uploader\Application\Command\Bus: '@Radarlog\S3Uploader\Application\Command\LoggerBus'
+
+    # S3
+    Radarlog\S3Uploader\Infrastructure\S3\Connection:
+        arguments: ['%env(resolve:S3_DSN)%']
+    Radarlog\S3Uploader\Infrastructure\S3\Client:
+        arguments: ['%env(resolve:S3_BUCKET)%']
+
+    # MySQL
+    Radarlog\S3Uploader\Infrastructure\MySql\Connection:
+        factory: Radarlog\S3Uploader\Infrastructure\MySql\ConnectionFactory::create
+        arguments:
+            -   master: '%env(resolve:MYSQL_MASTER)%'
+                slaves: '%env(resolve:MYSQL_SLAVES)%'
