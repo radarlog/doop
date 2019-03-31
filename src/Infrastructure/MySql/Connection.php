@@ -11,6 +11,6 @@ final class Connection extends MasterSlaveConnection
 
     public function imagesTable(): string
     {
-        return self::IMAGES_TABLE;
+        return $this->quoteIdentifier(self::IMAGES_TABLE);
     }
 }

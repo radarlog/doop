@@ -18,10 +18,8 @@ final class PersistenceRepository implements Domain\Repository
 
     public function add(Domain\Aggregate $image): void
     {
-        $table = $this->connection->imagesTable();
-
         $this->connection->insert(
-            $this->connection->quoteIdentifier($table),
+            $this->connection->imagesTable(),
             $image->getState()->asArray(),
             [
                 'uuid' => Type::STRING,
