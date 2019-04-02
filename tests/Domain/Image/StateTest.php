@@ -26,20 +26,14 @@ class StateTest extends UnitTestCase
         new Image\State($state);
     }
 
-    public function testInvalidDate(): void
-    {
-        $origin = ['uuid' => 'uuid', 'hash' => 'hash', 'name' => 'name', 'uploaded_at' => 'date'];
-
-        $this->expectException(Image\InvalidArgument::class);
-        $this->expectExceptionCode(Image\InvalidArgument::CODE_STATE);
-
-        new Image\State($origin);
-    }
-
-
     public function testAsArray(): void
     {
-        $origin = ['uuid' => 'uuid', 'hash' => 'hash', 'name' => 'name', 'uploaded_at' => '2019-03-18 23:22:36'];
+        $origin = [
+            'uuid' => 'uuid',
+            'hash' => 'hash',
+            'name' => 'name',
+            'uploaded_at' => new \DateTimeImmutable('2019-03-18 23:22:36'),
+        ];
 
         $state = new Image\State($origin);
 

@@ -36,7 +36,7 @@ final class Image implements Aggregate
             'uuid' => $this->id->toString(),
             'hash' => (string)$this->hash,
             'name' => (string)$this->name,
-            'uploaded_at' => $this->uploadedAt->format(Image\State::DATETIME_FORMAT),
+            'uploaded_at' => $this->uploadedAt,
         ]);
     }
 
@@ -50,7 +50,7 @@ final class Image implements Aggregate
         $image = new self($hash, $name);
 
         $image->id = new Image\Identity($state['uuid']);
-        $image->uploadedAt = new \DateTimeImmutable($state['uploaded_at']);
+        $image->uploadedAt = $state['uploaded_at'];
 
         return $image;
     }

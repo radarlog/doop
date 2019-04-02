@@ -28,14 +28,15 @@ class ImageTest extends UnitTestCase
             'uuid' => '572b3706-ffb8-423c-a317-d0ca8016a345',
             'hash' => 'f32b67c7e26342af42efabc674d441dca0a281c5',
             'name' => 'name',
-            'uploaded_at' => '2019-03-18 23:22:36',
+            'uploaded_at' => new \DateTimeImmutable('2019-03-18 23:22:36'),
         ];
 
-        $state = new Image\State($origin);
+        $image = Image::fromState(new Image\State($origin));
 
-        $image = Image::fromState($state);
+        $state = $image->getState()->asArray();
 
-        self::assertSame($origin, $image->getState()->asArray());
+        self::assertEquals(array_pop($origin), array_pop($state)); // uploaded_at
+        self::assertSame($origin, $state);
     }
 
     public function testFromState(): void
@@ -44,7 +45,7 @@ class ImageTest extends UnitTestCase
             'uuid' => '572b3706-ffb8-423c-a317-d0ca8016a345',
             'hash' => 'f32b67c7e26342af42efabc674d441dca0a281c5',
             'name' => 'name',
-            'uploaded_at' => '2019-03-18 23:22:36',
+            'uploaded_at' => new \DateTimeImmutable('2019-03-18 23:22:36'),
         ]);
 
         $image = Image::fromState($state);
