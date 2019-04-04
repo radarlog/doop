@@ -57,8 +57,8 @@ ENV PHP_OPCACHE_MAX_ACCELERATED_FILES 5000
 ENV PHP_OPCACHE_REVALIDATE_FREQ 2
 ENV PHP_OPCACHE_SAVE_COMMENTS 1
 
-COPY php.ini /usr/local/etc/php/
-COPY xdebug.ini /usr/local/etc/php/conf.d/
+COPY php.ini $PHP_INI_DIR/
+COPY xdebug.ini $PHP_INI_DIR/conf.d/
 
 ENV WORK_DIR /app
 WORKDIR $WORK_DIR
