@@ -1,4 +1,4 @@
-FROM php:7.3.3-fpm-alpine3.9
+FROM php:7.3.4-fpm-alpine3.9
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /tmp
@@ -7,7 +7,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin
 ENV BUILD_DEPS autoconf g++ imagemagick-dev libjpeg-turbo-dev libpng-dev libtool libzip-dev make zlib-dev
 ENV RUNTIME_DEPS imagemagick libzip
 
-ENV XDEBUG_VERSION 2.7.0
+ENV XDEBUG_VERSION 2.7.1
 ENV IMAGICK_VERSION 3.4.3
 
 RUN set -e \
@@ -34,6 +34,7 @@ RUN set -e \
     #
     # Compile Xdebug extension
     && pecl install xdebug-$XDEBUG_VERSION \
+    #
     # Clean up
     && apk del --purge $BUILD_DEPS \
     && rm -rf /tmp/* /var/cache/apk/* /var/lib/apt/lists/*
