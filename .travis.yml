@@ -16,6 +16,7 @@ services:
 
 before_install:
     - phpenv config-rm xdebug.ini
+    - echo "extension = imagick.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
     - composer self-update && composer install
     - docker run --name $MINIO_DOCKER_NAME -d -p 9000:9000 -e MINIO_ACCESS_KEY=$MINIO_ACCESS_KEY -e MINIO_SECRET_KEY=$MINIO_SECRET_KEY
         minio/minio server /data
