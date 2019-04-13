@@ -76,6 +76,6 @@ services:
             - -c
             - |-
                 mc config host add s3uploader http://minio:9000 minio minio330
-                mc rm -r --force s3uploader/${S3_BUCKET}
+                mc rm -r --force s3uploader/${S3_BUCKET} || true
                 mc mb s3uploader/${S3_BUCKET}
                 mc policy download s3uploader/${S3_BUCKET}
