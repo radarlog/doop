@@ -5,11 +5,12 @@ php:
     - '7.3'
 
 env:
-    - APP_ENV=test
-    - MINIO_DOCKER_NAME=test-minio
-    - MINIO_ACCESS_KEY=minio
-    - MINIO_SECRET_KEY=minio330
-    - MINIO_BUCKET=test-bucket
+    global:
+        - MINIO_DOCKER_NAME=test-minio
+        - MINIO_ACCESS_KEY=minio
+        - MINIO_SECRET_KEY=minio330
+        - MINIO_BUCKET=test-bucket
+        - APP_ENV=test
 
 services:
     - docker
