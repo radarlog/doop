@@ -22,7 +22,7 @@ before_install:
     - docker run --name $MINIO_DOCKER_NAME -d -p 9000:9000 -e MINIO_ACCESS_KEY=$MINIO_ACCESS_KEY -e MINIO_SECRET_KEY=$MINIO_SECRET_KEY
         minio/minio server /data
     - docker run --rm --link $MINIO_DOCKER_NAME:minio -e MINIO_BUCKET=$MINIO_BUCKET --entrypoint sh minio/mc -c "\
-        mc config host add s3uploader http://minio:9000 $MINIO_ENV_MINIO_ACCESS_KEY $MINIO_ENV_MINIO_SECRET_KEY \
+        mc config host add s3uploader http://minio:9000 $MINIO_ACCESS_KEY $MINIO_SECRET_KEY \
         && mc rm -r --force s3uploader/$MINIO_BUCKET || true \
         && mc mb s3uploader/$MINIO_BUCKET \
         && mc policy download s3uploader/$MINIO_BUCKET \
