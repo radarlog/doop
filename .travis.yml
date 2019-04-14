@@ -10,7 +10,6 @@ env:
         - MINIO_ACCESS_KEY=minio
         - MINIO_SECRET_KEY=minio330
         - MINIO_BUCKET=test-bucket
-        - MYSQL_DB_NAME=test-db
         - APP_ENV=test
         - MYSQL_MASTER=mysql://travis:@127.0.0.1:3306/test-db
         - MYSQL_SLAVES=mysql://travis:@127.0.0.1:3306/test-db
@@ -35,7 +34,7 @@ before_install:
         && mc mb s3uploader/$MINIO_BUCKET
         && mc policy download s3uploader/$MINIO_BUCKET
         "
-    - mysql -e "CREATE DATABASE IF NOT EXISTS $MYSQL_DB_NAME;"
+    - mysql -e "CREATE DATABASE IF NOT EXISTS test-db;"
     - phpenv config-rm xdebug.ini
     - pecl channel-update pecl.php.net
     - yes | pecl install imagick
