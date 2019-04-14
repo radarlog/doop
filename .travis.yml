@@ -33,12 +33,14 @@ before_install:
         minio/minio server /data
     - docker run --rm
         --link minio
-        --entrypoint "sh -c"
+        --entrypoint sh
         minio/mc
+        -c "
         mc config host add s3uploader http://minio:9000 $MINIO_ACCESS_KEY $MINIO_SECRET_KEY
         && mc rm -r --force s3uploader/$MINIO_BUCKET || true
         && mc mb s3uploader/$MINIO_BUCKET
         && mc policy download s3uploader/$MINIO_BUCKET
+        "
     - mysql -e "CREATE DATABASE IF NOT EXISTS test_db;"
     - pecl channel-update pecl.php.net
     - yes | pecl install imagick
