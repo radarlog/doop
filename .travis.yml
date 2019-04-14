@@ -12,13 +12,14 @@ cache:
         - vendor
 
 env:
-    - APP_ENV=test
-    - MINIO_ACCESS_KEY=minio
-    - MINIO_SECRET_KEY=minio330
-    - MINIO_BUCKET=test-bucket
-    - MYSQL_MASTER=mysql://travis:@127.0.0.1:3306/test_db
-    - MYSQL_SLAVES=mysql://travis:@127.0.0.1:3306/test_db
-    - S3_DSN=http://minio:minio330@127.0.0.1:9000/test_region
+    global:
+        - APP_ENV=test
+        - MINIO_ACCESS_KEY=minio
+        - MINIO_SECRET_KEY=minio330
+        - MINIO_BUCKET=test-bucket
+        - MYSQL_MASTER=mysql://travis:@127.0.0.1:3306/test_db
+        - MYSQL_SLAVES=mysql://travis:@127.0.0.1:3306/test_db
+        - S3_DSN=http://minio:minio330@127.0.0.1:9000/test_region
 
 services:
     - docker
