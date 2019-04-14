@@ -23,11 +23,6 @@ final class Kernel extends HttpKernel\Kernel
         TwigBundle::class => ['all' => true],
     ];
 
-    private function getConfigDir(): string
-    {
-        return $this->getProjectDir() . '/config';
-    }
-
     /**
      * @inheritdoc
      */
@@ -45,23 +40,12 @@ final class Kernel extends HttpKernel\Kernel
      */
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader): void
     {
-        /**
-         * This can drastically improve DX by reducing the time to load classes when the DebugClassLoader is enabled.
-         * If you're using FrameworkBundle, this performance improvement will also impact the "dev" environment:
-         *
-         * @link https://github.com/symfony/symfony/blob/3.4/UPGRADE-3.4.md
-         * @link https://twitter.com/nicolasgrekas/status/929032213815005184
-         */
         $container->setParameter('container.dumper.inline_class_loader', true);
 
-        $confDir = $this->getConfigDir();
+        $confDir = $this->getProjectDir() . '/config';
 
         $loader->load($confDir . '/packages/*' . self::CONFIG_EXTS, 'glob');
-
-        if (is_dir($confDir . '/packages/' . $this->environment)) {
-            $loader->load($confDir . '/packages/' . $this->environment . '/**/*' . self::CONFIG_EXTS, 'glob');
-        }
-
+        $loader->load($confDir . '/packages/' . $this->environment . '/**/*' . self::CONFIG_EXTS, 'glob');
         $loader->load($confDir . '/services' . self::CONFIG_EXTS, 'glob');
         $loader->load($confDir . '/services_' . $this->environment . self::CONFIG_EXTS, 'glob');
     }
