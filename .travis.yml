@@ -26,7 +26,7 @@ before_install:
         "
     - phpenv config-rm xdebug.ini
     - yes | pecl install imagick
-    - composer self-update && composer install
+    - composer install
 
 script:
     - vendor/bin/phpunit
