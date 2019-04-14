@@ -51,4 +51,4 @@ before_script: bin/console migrations:migrate --no-interaction
 
 script: vendor/bin/phpunit --coverage-text --coverage-clover var/cache/clover.xml
 
-after_success: travis_retry php vendor/bin/php-coveralls --coverage_clover=var/cache/clover.xml
+after_success: travis_retry vendor/bin/php-coveralls -e test -x var/cache/clover.xml -o var/cache/coveralls.json
