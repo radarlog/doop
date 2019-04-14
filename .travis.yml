@@ -38,7 +38,6 @@ before_install:
         && mc policy download s3uploader/$MINIO_BUCKET
         "
     - mysql -e "CREATE DATABASE IF NOT EXISTS test_db;"
-    - phpenv config-rm xdebug.ini
     - pecl channel-update pecl.php.net
     - yes | pecl install imagick
 
