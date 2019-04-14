@@ -9,10 +9,12 @@ env:
         - MINIO_ACCESS_KEY=minio
         - MINIO_SECRET_KEY=minio330
         - MINIO_BUCKET=test-bucket
+        - MYSQL_DB_NAME=test-db
         - APP_ENV=test
 
 services:
     - docker
+    - mysql
 
 before_install:
     - docker run --name minio -d
@@ -30,12 +32,16 @@ before_install:
         && mc mb s3uploader/$MINIO_BUCKET
         && mc policy download s3uploader/$MINIO_BUCKET
         "
+    - mysql -e 'CREATE DATABASE IF NOT EXISTS $MYSQL_DB_NAME;'
     - phpenv config-rm xdebug.ini
     - pecl channel-update pecl.php.net
     - yes | pecl install imagick
 
 install:
     - composer install
+
+before_script:
+    - bin/console migrations:migrate --no-interaction
 
 script:
     - vendor/bin/phpunit
