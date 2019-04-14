@@ -47,4 +47,4 @@ install: composer install
 
 before_script: bin/console migrations:migrate --no-interaction
 
-script: vendor/bin/phpunit
+script: vendor/bin/phpunit --coverage-text
