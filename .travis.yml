@@ -11,6 +11,8 @@ env:
         - MINIO_BUCKET=test-bucket
         - MYSQL_DB_NAME=test-db
         - APP_ENV=test
+        - MYSQL_MASTER=mysql://travis:@127.0.0.1:3306/test-db
+        - MYSQL_SLAVES=mysql://travis:@127.0.0.1:3306/test-db
 
 services:
     - docker
