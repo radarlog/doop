@@ -32,6 +32,8 @@ before_install:
         "
     - phpenv config-rm xdebug.ini
     - yes | pecl install imagick
+
+install:
     - composer install
 
 script:
