@@ -32,6 +32,7 @@ before_install:
         -e MINIO_SECRET_KEY=$MINIO_SECRET_KEY
         minio/minio server /data
     - docker run --rm
+        --link minio
         --entrypoint sh
         minio/mc
         -c "
