@@ -20,7 +20,7 @@
         "ext-json": "*",
         "ext-pdo": "*",
         "ext-zip": "*",
-        "aws/aws-sdk-php": "^3.88",
+        "aws/aws-sdk-php": "^3.91",
         "doctrine/dbal": "^2.9",
         "doctrine/migrations": "^2.0",
         "psr/log": "^1.1",
@@ -36,7 +36,7 @@
     },
     "require-dev": {
         "php-coveralls/php-coveralls": "^2.1",
-        "phpunit/phpunit": "^8.0",
+        "phpunit/phpunit": "^8.1",
         "slevomat/coding-standard": "^4.8",
         "squizlabs/php_codesniffer": "^3.4",
         "symfony/browser-kit": "^4.2",
