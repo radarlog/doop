@@ -5,6 +5,10 @@ language: php
 php:
     - '7.3'
 
+cache:
+    directories:
+        - $HOME/.composer/cache
+
 env:
     global:
         - APP_ENV=test
@@ -39,15 +43,8 @@ before_install:
     - pecl channel-update pecl.php.net
     - yes | pecl install imagick
 
-install:
-    - composer install
+install: composer install
 
-before_script:
-    - bin/console migrations:migrate --no-interaction
+before_script: bin/console migrations:migrate --no-interaction
 
-script:
-    - vendor/bin/phpunit
-
-cache:
-    directories:
-        - $HOME/.composer/cache
+script: vendor/bin/phpunit
