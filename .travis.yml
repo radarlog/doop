@@ -20,8 +20,11 @@ before_install:
         -e MINIO_ACCESS_KEY=$MINIO_ACCESS_KEY
         -e MINIO_SECRET_KEY=$MINIO_SECRET_KEY
         minio/minio server /data
-    - docker run --rm --link minio minio/mc
-        --entrypoint sh -c "
+    - docker run --rm
+        --link minio
+        --entrypoint sh
+        minio/mc
+        -c "
         mc config host add s3uploader http://minio:9000 $MINIO_ACCESS_KEY $MINIO_SECRET_KEY
         && mc rm -r --force s3uploader/$MINIO_BUCKET || true
         && mc mb s3uploader/$MINIO_BUCKET
