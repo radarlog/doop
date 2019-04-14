@@ -1,0 +1,54 @@
+dist: xenial
+sudo: false
+language: php
+
+php:
+    - '7.3'
+
+cache:
+    directories:
+        - $HOME/.composer/cache
+        - var/cache
+        - vendor
+
+env:
+    global:
+        - APP_ENV=test
+        - MINIO_ACCESS_KEY=minio
+        - MINIO_SECRET_KEY=minio330
+        - MINIO_BUCKET=test-bucket
+        - MYSQL_MASTER=mysql://travis:@127.0.0.1:3306/test_db
+        - MYSQL_SLAVES=mysql://travis:@127.0.0.1:3306/test_db
+        - S3_DSN=http://minio:minio330@127.0.0.1:9000/test_region
+
+services:
+    - docker
+    - mysql
+
+before_install:
+    - docker run --name minio -d
+        -p 9000:9000
+        -e MINIO_ACCESS_KEY=$MINIO_ACCESS_KEY
+        -e MINIO_SECRET_KEY=$MINIO_SECRET_KEY
+        minio/minio server /data
+    - docker run --rm
+        --link minio
+        --entrypoint sh
+        minio/mc
+        -c "
+        mc config host add s3uploader http://minio:9000 $MINIO_ACCESS_KEY $MINIO_SECRET_KEY
+        && mc rm -r --force s3uploader/$MINIO_BUCKET || true
+        && mc mb s3uploader/$MINIO_BUCKET
+        && mc policy download s3uploader/$MINIO_BUCKET
+        "
+    - mysql -e "CREATE DATABASE IF NOT EXISTS test_db;"
+    - pecl channel-update pecl.php.net
+    - yes | pecl install imagick
+
+install: composer install --no-interaction --no-suggest
+
+before_script: bin/console migrations:migrate --no-interaction
+
+script: vendor/bin/phpunit --coverage-clover var/cache/clover.xml
+
+after_success: travis_retry vendor/bin/php-coveralls -e test -x var/cache/clover.xml -o var/cache/coveralls.json
