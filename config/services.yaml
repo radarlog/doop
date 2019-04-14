@@ -15,7 +15,7 @@ services:
     Radarlog\S3Uploader\:
         resource: '../src'
         exclude:
-            - '../src/Kernel.php'
+            - '../src/Infrastructure/Kernel.php'
             - '../src/Infrastructure/MySql/Migrations'
 
     # Command Bus

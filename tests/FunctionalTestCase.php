@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Radarlog\S3Uploader\Tests;
 
-use Radarlog\S3Uploader\Kernel;
+use Radarlog\S3Uploader\Infrastructure\Kernel;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class FunctionalTestCase extends KernelTestCase
