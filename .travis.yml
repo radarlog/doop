@@ -49,4 +49,6 @@ install: composer install --no-interaction --no-suggest
 
 before_script: bin/console migrations:migrate --no-interaction
 
-script: vendor/bin/phpunit --coverage-text
+script: vendor/bin/phpunit --coverage-text --coverage-clover var/cache/clover.xml
+
+after_success: travis_retry php vendor/bin/php-coveralls
