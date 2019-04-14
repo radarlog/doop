@@ -8,6 +8,8 @@ php:
 cache:
     directories:
         - $HOME/.composer/cache
+        - var/cache
+        - vendor
 
 env:
     global:
@@ -43,7 +45,7 @@ before_install:
     - pecl channel-update pecl.php.net
     - yes | pecl install imagick
 
-install: composer install
+install: composer install --no-interaction --no-suggest
 
 before_script: bin/console migrations:migrate --no-interaction
 
