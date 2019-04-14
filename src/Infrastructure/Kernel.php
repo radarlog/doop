@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader;
+namespace Radarlog\S3Uploader\Infrastructure;
 
 use Symfony\Bundle\FrameworkBundle;
 use Symfony\Bundle\MonologBundle\MonologBundle;
