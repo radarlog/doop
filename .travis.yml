@@ -31,6 +31,7 @@ before_install:
         && mc policy download s3uploader/$MINIO_BUCKET
         "
     - phpenv config-rm xdebug.ini
+    - pecl channel-update pecl.php.net
     - yes | pecl install imagick
 
 install:
