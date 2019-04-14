@@ -10,11 +10,10 @@ env:
         - APP_ENV=test
         - MINIO_ACCESS_KEY=minio
         - MINIO_SECRET_KEY=minio330
-        - MINIO_BUCKET=test-bucket
         - MYSQL_MASTER=mysql://travis:@127.0.0.1:3306/test_db
         - MYSQL_SLAVES=mysql://travis:@127.0.0.1:3306/test_db
+        - S3_BUCKET=test_bucket
         - S3_DSN=http://minio:minio330@127.0.0.1:9000/test_region
-
 services:
     - docker
     - mysql
@@ -31,9 +30,9 @@ before_install:
         minio/mc
         -c "
         mc config host add s3uploader http://minio:9000 $MINIO_ACCESS_KEY $MINIO_SECRET_KEY
-        && mc rm -r --force s3uploader/$MINIO_BUCKET || true
-        && mc mb s3uploader/$MINIO_BUCKET
-        && mc policy download s3uploader/$MINIO_BUCKET
+        && mc rm -r --force s3uploader/$S3_BUCKET || true
+        && mc mb s3uploader/$S3_BUCKET
+        && mc policy download s3uploader/$S3_BUCKET
         "
     - mysql -e "CREATE DATABASE IF NOT EXISTS test_db;"
     - phpenv config-rm xdebug.ini
