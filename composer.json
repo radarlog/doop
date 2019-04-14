@@ -1,6 +1,13 @@
 {
     "name": "radarlog/s3uploader",
     "description": "Simple File Uploader / AWS S3 Uploader",
+    "keywords": [
+        "AWS",
+        "S3 Uploader",
+        "Symfony",
+        "Hexagonal Architecture",
+        "CQRS"
+    ],
     "type": "project",
     "license": "MIT",
     "config": {
