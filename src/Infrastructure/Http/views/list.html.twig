@@ -1,7 +1,7 @@
 {% for image in images %}
 	<li>
         <img src="{{ path('image', {'uuid': image.uuid}) }}" alt="{{ image.name }}" width="640" height="480"/>
-        {{ image.name }}
+        {{ image.name }} ({{ image.uploadedAt }})
 		<br>
 	</li>
 {% endfor %}

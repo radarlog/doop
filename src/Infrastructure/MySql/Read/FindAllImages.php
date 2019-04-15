@@ -21,15 +21,15 @@ final class FindAllImages implements Query\Image\FindAll
         $qb = $this->connection->createQueryBuilder();
 
         $qb = $qb
-            ->select('uuid, name')
+            ->select('uuid, name, uploaded_at')
             ->from($this->connection->imagesTable())
             ->orderBy('uploaded_at', 'DESC');
 
         return $this->connection->project(
             $qb->getSQL(),
             $qb->getParameters(),
-            static function (array $row): Query\Image\UuidName {
-                return new Query\Image\UuidName($row['uuid'], $row['name']);
+            static function (array $row) {
+                return new Query\Image\UuidNameDate($row['uuid'], $row['name'], $row['uploaded_at']);
             }
         );
     }

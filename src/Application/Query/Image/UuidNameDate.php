@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Radarlog\S3Uploader\Application\Query\Image;
 
-final class UuidName
+final class UuidNameDate
 {
     /** @var string */
     private $uuid;
@@ -11,10 +11,14 @@ final class UuidName
     /** @var string */
     private $name;
 
-    public function __construct(string $uuid, string $name)
+    /** @var string */
+    private $uploadedAt;
+
+    public function __construct(string $uuid, string $name, string $uploadedAt)
     {
         $this->uuid = $uuid;
         $this->name = $name;
+        $this->uploadedAt = $uploadedAt;
     }
 
     public function uuid(): string
@@ -25,5 +29,10 @@ final class UuidName
     public function name(): string
     {
         return $this->name;
+    }
+
+    public function uploadedAt(): string
+    {
+        return $this->uploadedAt;
     }
 }
