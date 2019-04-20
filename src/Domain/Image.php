@@ -5,6 +5,8 @@ namespace Radarlog\S3Uploader\Domain;
 
 final class Image implements Aggregate
 {
+    private const DATETIME_FORMAT = 'Y-m-d H:i:s';
+
     /** @var Image\Identity */
     private $id;
 
@@ -36,7 +38,7 @@ final class Image implements Aggregate
             'uuid' => $this->id->toString(),
             'hash' => (string)$this->hash,
             'name' => (string)$this->name,
-            'uploaded_at' => $this->uploadedAt,
+            'uploaded_at' => $this->uploadedAt->format(self::DATETIME_FORMAT),
         ]);
     }
 
@@ -50,8 +52,19 @@ final class Image implements Aggregate
         $image = new self($hash, $name);
 
         $image->id = new Image\Identity($state['uuid']);
-        $image->uploadedAt = $state['uploaded_at'];
+        $image->uploadedAt = self::hydrateDate($state['uploaded_at']);
 
         return $image;
+    }
+
+    private static function hydrateDate(string $uploadedAt): \DateTimeImmutable
+    {
+        $date = \DateTimeImmutable::createFromFormat(self::DATETIME_FORMAT, $uploadedAt);
+
+        if ($date && $date->format(self::DATETIME_FORMAT) === $uploadedAt) {
+            return $date;
+        }
+
+        throw new Image\InvalidArgument('Invalid date format', Image\InvalidArgument::CODE_DATE);
     }
 }

@@ -25,7 +25,7 @@ final class PersistenceRepository implements Domain\Repository
                 'uuid' => Type::STRING,
                 'hash' => Type::STRING,
                 'name' => Type::STRING,
-                'uploaded_at' => Type::DATETIME_IMMUTABLE,
+                'uploaded_at' => Type::STRING,
             ]
         );
     }

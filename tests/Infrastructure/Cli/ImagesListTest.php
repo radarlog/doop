@@ -42,7 +42,7 @@ class ImagesListTest extends DbTestCase
             'uuid' => '572b3706-ffb8-423c-a317-d0ca8016a345',
             'hash' => 'f32b67c7e26342af42efabc674d441dca0a281c5',
             'name' => 'unique_name',
-            'uploaded_at' => new \DateTimeImmutable('2018-03-18 23:22:36'),
+            'uploaded_at' => '2018-03-18 23:22:36',
         ]);
         $image = Image::fromState($state);
         $this->repository->add($image);

@@ -13,6 +13,7 @@ interface Throwable extends \Throwable
     public const CODE_STATE          = 1002;
     public const CODE_NAME           = 1003;
     public const CODE_HASH           = 1004;
+    public const CODE_DATE           = 1005;
 
     # APPLICATION LAYER
     public const CODE_HANDLER        = 2000;

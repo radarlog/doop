@@ -28,7 +28,7 @@ class ImageTest extends UnitTestCase
             'uuid' => '572b3706-ffb8-423c-a317-d0ca8016a345',
             'hash' => 'f32b67c7e26342af42efabc674d441dca0a281c5',
             'name' => 'name',
-            'uploaded_at' => new \DateTimeImmutable('2019-03-18 23:22:36'),
+            'uploaded_at' => '2019-03-18 23:22:36',
         ];
 
         $image = Image::fromState(new Image\State($origin));
@@ -45,12 +45,27 @@ class ImageTest extends UnitTestCase
             'uuid' => '572b3706-ffb8-423c-a317-d0ca8016a345',
             'hash' => 'f32b67c7e26342af42efabc674d441dca0a281c5',
             'name' => 'name',
-            'uploaded_at' => new \DateTimeImmutable('2019-03-18 23:22:36'),
+            'uploaded_at' => '2019-03-18 23:22:36',
         ]);
 
         $image = Image::fromState($state);
 
         self::assertSame('572b3706-ffb8-423c-a317-d0ca8016a345', $image->id()->toString());
+    }
+
+    public function testFromStateWithWrongUploadedAtFormat(): void
+    {
+        $state = new Image\State([
+            'uuid' => '572b3706-ffb8-423c-a317-d0ca8016a345',
+            'hash' => 'f32b67c7e26342af42efabc674d441dca0a281c5',
+            'name' => 'name',
+            'uploaded_at' => '2019-03-18 23:22',
+        ]);
+
+        $this->expectException(Image\InvalidArgument::class);
+        $this->expectExceptionCode(Image\InvalidArgument::CODE_DATE);
+
+        Image::fromState($state);
     }
 
     public function testGetState(): void
