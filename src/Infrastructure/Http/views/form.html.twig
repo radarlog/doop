@@ -1,4 +1,5 @@
-<form action="/upload" method="POST" enctype="multipart/form-data">
-	<input type="file" name="image" accept="image/*" required>
-	<input type="submit" value="Upload">
-</form>
+{{ form_start(form, {'action': path("upload") }) }}
+    {{ form_errors(form) }}
+    {{ form_row(form.image) }}
+    {{ form_row(form.submit) }}
+{{ form_end(form) }}

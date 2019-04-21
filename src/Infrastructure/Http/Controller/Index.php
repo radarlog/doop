@@ -4,11 +4,11 @@ declare(strict_types=1);
 namespace Radarlog\S3Uploader\Infrastructure\Http\Controller;
 
 use Radarlog\S3Uploader\Application\Query;
-use Radarlog\S3Uploader\Infrastructure\Http\Controller;
+use Radarlog\S3Uploader\Infrastructure\Http;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation;
 
-final class Index extends AbstractController implements Controller
+final class Index extends AbstractController implements Http\Controller
 {
     /** @var Query\Image\FindAll */
     private $findAll;
@@ -21,8 +21,11 @@ final class Index extends AbstractController implements Controller
     // phpcs:disable SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter
     public function __invoke(HttpFoundation\Request $request): HttpFoundation\Response
     {
+        $form = $this->createForm(Http\Form\UploadType::class);
+
         return $this->render('base.html.twig', [
             'images' => $this->findAll->sortedByUploadDate(),
+            'form' => $form->createView(),
         ]);
     }
 }
