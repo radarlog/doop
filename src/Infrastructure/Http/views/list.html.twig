@@ -1,7 +1,16 @@
 {% for image in images %}
-	<li>
-        <img src="{{ path('image', {'uuid': image.uuid}) }}" alt="{{ image.name }}" width="640" height="480"/>
-        {{ image.name }} ({{ image.uploadedAt }})
-		<br>
-	</li>
+    <div class="col-4 mb-4">
+        <a href="{{ path('image', {'uuid': image.uuid}) }}" class="thumbnail">
+            <img
+                alt="{{ image.name }}"
+                class="img-fluid img-thumbnail"
+                width="640"
+                height="480"
+                src="{{ path('image', {'uuid': image.uuid}) }}"
+            />
+            <div class="caption">
+                {{ image.name }} ({{ image.uploadedAt }})
+            </div>
+        </a>
+    </div>
 {% endfor %}

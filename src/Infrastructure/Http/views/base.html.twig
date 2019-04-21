@@ -11,18 +11,16 @@
 </head>
 <body>
 <div class="container">
+    <h1>S3Uploader</h1>
+
     <div class="row">
-        <div class="col-sm-5">
-            <h1>S3Uploader</h1>
-
-            <div id="upload">
-                {{ include('form.html.twig') }}
-            </div>
-
-            <ul id="list">
-                {{ include('list.html.twig') }}
-            </ul>
+        <div class="col-5">
+            {{ include('form.html.twig') }}
         </div>
+    </div>
+
+    <div class="row">
+        {{ include('list.html.twig') }}
     </div>
 </div>
 {% block body %}{% endblock %}
