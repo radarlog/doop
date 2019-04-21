@@ -14,7 +14,12 @@ class UploadTest extends ControllerTestCase
 
         $image = new UploadedFile($fixture, 'avatar.jpg');
 
-        $this->client->request('POST', '/upload', [], ['image' => $image]);
+        $this->client->request('POST', '/upload', [], [
+            'upload' => [
+                'image' => $image,
+                'submit' => true,
+            ],
+        ]);
 
         $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
     }

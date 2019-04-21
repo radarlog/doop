@@ -4,11 +4,11 @@ declare(strict_types=1);
 namespace Radarlog\S3Uploader\Infrastructure\Http\Controller;
 
 use Radarlog\S3Uploader\Application\Command;
-use Radarlog\S3Uploader\Infrastructure\Http\Controller;
+use Radarlog\S3Uploader\Infrastructure\Http;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation;
 
-final class Upload extends AbstractController implements Controller
+final class Upload extends AbstractController implements Http\Controller
 {
     /** @var Command\Bus */
     private $bus;
@@ -20,15 +20,21 @@ final class Upload extends AbstractController implements Controller
 
     public function __invoke(HttpFoundation\Request $request): HttpFoundation\Response
     {
-        /** @var HttpFoundation\File\UploadedFile $file */
-        $file = $request->files->get('image');
+        $form = $this->createForm(Http\Form\UploadType::class);
 
-        $name = $file->getClientOriginalName();
-        $content = file_get_contents($file->getRealPath());
+        $form->handleRequest($request);
 
-        $command = new Command\Image\Upload($name, $content);
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var HttpFoundation\File\UploadedFile $file */
+            $file = $form->getData();
 
-        $this->bus->execute($command);
+            $name = $file->getClientOriginalName();
+            $content = file_get_contents($file->getRealPath());
+
+            $command = new Command\Image\Upload($name, $content);
+
+            $this->bus->execute($command);
+        }
 
         return $this->redirect($this->generateUrl('index'));
     }
