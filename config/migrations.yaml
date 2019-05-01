@@ -1,7 +1,7 @@
 parameters:
-    migrations_namespace: 'Radarlog\S3Uploader\Infrastructure\MySql\Migrations'
-    migrations_dir_name: '%kernel.project_dir%/src/Infrastructure/MySql/Migrations'
-    migrations_template: '%kernel.project_dir%/src/Infrastructure/MySql/Migrations/template.tmpl'
+    migrations_namespace: 'Radarlog\S3Uploader\Infrastructure\Sql\Migrations'
+    migrations_dir_name: '%kernel.project_dir%/src/Infrastructure/Sql/Migrations'
+    migrations_template: '%kernel.project_dir%/src/Infrastructure/Sql/Migrations/template.tmpl'
 
 services:
     _defaults:
@@ -10,7 +10,7 @@ services:
         public: false
 
     Doctrine\Migrations\Configuration\Configuration:
-        arguments: ['@Radarlog\S3Uploader\Infrastructure\MySql\Connection']
+        arguments: ['@Radarlog\S3Uploader\Infrastructure\Sql\Connection']
         calls:
             - [setMigrationsNamespace, ['%migrations_namespace%']]
             - [setMigrationsDirectory, ['%migrations_dir_name%']]

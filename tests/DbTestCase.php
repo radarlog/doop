@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Radarlog\S3Uploader\Tests;
 
-use Radarlog\S3Uploader\Infrastructure\MySql\Connection;
+use Radarlog\S3Uploader\Infrastructure\Sql\Connection;
 
 class DbTestCase extends FunctionalTestCase
 {

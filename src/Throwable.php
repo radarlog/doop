@@ -19,7 +19,7 @@ interface Throwable extends \Throwable
     public const CODE_HANDLER        = 2000;
 
     # INFRASTRUCTURE LAYER
-    public const CODE_MYSQL_SEVERS   = 3000;
+    public const CODE_SQL_SERVERS    = 3000;
     public const CODE_READ_FILE      = 3100;
 
     # @formatter:on

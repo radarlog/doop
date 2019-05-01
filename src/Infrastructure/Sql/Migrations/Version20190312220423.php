@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Infrastructure\MySql\Migrations;
+namespace Radarlog\S3Uploader\Infrastructure\Sql\Migrations;
 
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
@@ -17,26 +17,26 @@ final class Version20190312220423 extends AbstractMigration
     public function up(Schema $schema): void
     {
         $this->abortIf(
-            $this->connection->getDatabasePlatform()->getName() !== 'mysql',
-            'Migration can only be executed safely on "mysql"'
+            $this->connection->getDatabasePlatform()->getName() !== 'postgresql',
+            'Migration can only be executed safely on "postgres"'
         );
 
         $this->addSql("
             CREATE TABLE images (
-                uuid        CHAR(36)   NOT NULL,
-                hash        CHAR(40)   NOT NULL,
-                name        CHAR(255)  NOT NULL,
-                uploaded_at DATETIME   NOT NULL,
+                uuid        UUID          NOT NULL,
+                hash        VARCHAR(40)   NOT NULL,
+                name        VARCHAR(255)  NOT NULL,
+                uploaded_at TIMESTAMP     NOT NULL,
                 PRIMARY KEY (uuid)
-            ) ENGINE = InnoDB DEFAULT CHARACTER SET utf8
+            )
         ");
     }
 
     public function down(Schema $schema): void
     {
         $this->abortIf(
-            $this->connection->getDatabasePlatform()->getName() !== 'mysql',
-            'Migration can only be executed safely on "mysql"'
+            $this->connection->getDatabasePlatform()->getName() !== 'postgresql',
+            'Migration can only be executed safely on "postgres"'
         );
 
         $this->addSql('DROP TABLE images');

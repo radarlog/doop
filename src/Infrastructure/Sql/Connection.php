@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Infrastructure\MySql;
+namespace Radarlog\S3Uploader\Infrastructure\Sql;
 
 use Doctrine\DBAL\Connections\MasterSlaveConnection;
 

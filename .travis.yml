@@ -15,13 +15,13 @@ env:
         - MINIO_ACCESS_KEY=minio
         - MINIO_SECRET_KEY=minio330
         - MINIO_BUCKET=test-bucket
-        - MYSQL_MASTER=mysql://travis:@127.0.0.1:3306/test_db
-        - MYSQL_SLAVES=mysql://travis:@127.0.0.1:3306/test_db
+        - SQL_MASTER=pgsql://postgres:@127.0.0.1:5432/test_db
+        - SQL_SLAVES=pgsql://postgres:@127.0.0.1:5432/test_db
         - S3_DSN=http://minio:minio330@127.0.0.1:9000/test_region
 
 services:
     - docker
-    - mysql
+    - postgresql
 
 before_install:
     - docker run --name minio -d
@@ -39,7 +39,7 @@ before_install:
         && mc mb s3uploader/$MINIO_BUCKET
         && mc policy download s3uploader/$MINIO_BUCKET
         "
-    - mysql -e "CREATE DATABASE IF NOT EXISTS test_db;"
+    - psql -c "CREATE DATABASE test_db;" -U postgres
     - pecl channel-update pecl.php.net
     - yes | pecl install imagick
 

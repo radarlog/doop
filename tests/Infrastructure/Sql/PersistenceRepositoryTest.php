@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Tests\Infrastructure\MySql;
+namespace Radarlog\S3Uploader\Tests\Infrastructure\Sql;
 
 use Radarlog\S3Uploader\Domain\Image;
 use Radarlog\S3Uploader\Domain\Repository;

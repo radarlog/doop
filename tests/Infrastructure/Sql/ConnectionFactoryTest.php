@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Tests\Infrastructure\MySql;
+namespace Radarlog\S3Uploader\Tests\Infrastructure\Sql;
 
-use Radarlog\S3Uploader\Infrastructure\MySql;
+use Radarlog\S3Uploader\Infrastructure\Sql;
 use Radarlog\S3Uploader\Tests\UnitTestCase;
 
 class ConnectionFactoryTest extends UnitTestCase
@@ -19,10 +19,10 @@ class ConnectionFactoryTest extends UnitTestCase
      */
     public function testCreateFromInvalidParamsThrowsException(array $params): void
     {
-        $this->expectException(MySql\InvalidArgument::class);
-        $this->expectExceptionCode(MySql\InvalidArgument::CODE_MYSQL_SEVERS);
+        $this->expectException(Sql\InvalidArgument::class);
+        $this->expectExceptionCode(Sql\InvalidArgument::CODE_SQL_SERVERS);
 
-        MySql\ConnectionFactory::create($params);
+        Sql\ConnectionFactory::create($params);
     }
 
     public function slaveDelimitersProvider(): \Generator
@@ -38,11 +38,11 @@ class ConnectionFactoryTest extends UnitTestCase
     public function testCreateTwoSlaves(string $delimiter): void
     {
         $params = [
-            'master' => 'mysql://user:user@host:3306/db',
-            'slaves' => sprintf('mysql://user:user@host:3306/db1%smysql://user:user@host:3306/db2', $delimiter),
+            'master' => 'pgsql://user:user@host:3306/db',
+            'slaves' => sprintf('pgsql://user:user@host:3306/db1%spgsql://user:user@host:3306/db2', $delimiter),
         ];
 
-        $connection = MySql\ConnectionFactory::create($params);
+        $connection = Sql\ConnectionFactory::create($params);
 
         self::assertCount(2, $connection->getParams()['slaves']);
     }
