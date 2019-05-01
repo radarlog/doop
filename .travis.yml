@@ -43,7 +43,9 @@ before_install:
     - pecl channel-update pecl.php.net
     - yes | pecl install imagick
 
-install: composer install --no-interaction --no-suggest
+install:
+    - composer validate  --no-interaction --strict
+    - composer install --no-interaction --no-suggest
 
 before_script: bin/console migrations:migrate --no-interaction
 

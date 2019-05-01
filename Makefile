@@ -28,6 +28,7 @@ down: ; $(info $(M) Shutting down containers:)
 
 .PHONY: composer
 composer: ; $(info $(M) Installing dependencies:)
+	docker-compose exec -T php composer validate --ansi --no-interaction --strict
 	docker-compose exec -T php composer install --ansi --no-interaction
 
 .PHONY: migrations
