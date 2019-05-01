@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Infrastructure\MySql\Read;
+namespace Radarlog\S3Uploader\Infrastructure\Sql\Read;
 
 use Radarlog\S3Uploader\Application\Query;
-use Radarlog\S3Uploader\Infrastructure\MySql\Connection;
+use Radarlog\S3Uploader\Infrastructure\Sql\Connection;
 
 final class FindAllImages implements Query\Image\FindAll
 {

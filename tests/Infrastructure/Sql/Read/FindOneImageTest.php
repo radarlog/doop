@@ -1,15 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Tests\Infrastructure\MySql\Read;
+namespace Radarlog\S3Uploader\Tests\Infrastructure\Sql\Read;
 
 use Radarlog\S3Uploader\Application\Query;
 use Radarlog\S3Uploader\Domain\Image;
 use Radarlog\S3Uploader\Domain\Repository;
 use Radarlog\S3Uploader\Tests\DbTestCase;
 
-class FindAllImagesTest extends DbTestCase
+class FindOneImageTest extends DbTestCase
 {
+    /** @var Query\Image\FindOne */
+    private $query;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -34,21 +37,22 @@ class FindAllImagesTest extends DbTestCase
         ]);
         $image2 = Image::fromState($state2);
         $repository->add($image2);
+
+        $this->query = self::$container->get('test.query.one');
     }
 
-    public function testSortedByUploadDate(): void
+    public function testNameByHash(): void
     {
-        /** @var Query\Image\FindAll $query */
-        $query = self::$container->get('test.query.all');
+        $result = $this->query->hashNameByUuid('572b3706-ffb8-423c-a317-d0ca8016a345');
 
-        $result = $query->sortedByUploadDate();
+        self::assertSame('f32b67c7e26342af42efabc674d441dca0a281c5', $result->hash());
+        self::assertSame('name2', $result->name());
+    }
 
-        $expected = [
-            new Query\Image\UuidNameDate('572b3706-ffb8-423c-a317-d0ca8016a345', 'name2', '2018-03-18 23:22:36'),
-            new Query\Image\UuidNameDate('9f2149bb-b6e5-4ae0-a188-e616cddc8e98', 'name1', '2018-01-01 23:22:36'),
-        ];
+    public function testNameByHashNotFound(): void
+    {
+        $result = $this->query->hashNameByUuid('some_hash');
 
-        self::assertCount(2, $result);
-        self::assertEquals($expected, $result);
+        self::assertNull($result);
     }
 }

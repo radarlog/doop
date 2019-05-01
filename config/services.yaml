@@ -16,7 +16,7 @@ services:
         resource: '../src'
         exclude:
             - '../src/Infrastructure/Kernel.php'
-            - '../src/Infrastructure/MySql/Migrations'
+            - '../src/Infrastructure/Sql/Migrations'
 
     # Command Bus
     Radarlog\S3Uploader\Application\Command\SimpleBus:
@@ -32,9 +32,9 @@ services:
     Radarlog\S3Uploader\Infrastructure\S3\Client:
         arguments: ['%env(resolve:S3_BUCKET)%']
 
-    # MySQL
-    Radarlog\S3Uploader\Infrastructure\MySql\Connection:
-        factory: Radarlog\S3Uploader\Infrastructure\MySql\ConnectionFactory::create
+    # SQL
+    Radarlog\S3Uploader\Infrastructure\Sql\Connection:
+        factory: Radarlog\S3Uploader\Infrastructure\Sql\ConnectionFactory::create
         arguments:
-            -   master: '%env(resolve:MYSQL_MASTER)%'
-                slaves: '%env(resolve:MYSQL_SLAVES)%'
+            -   master: '%env(resolve:SQL_MASTER)%'
+                slaves: '%env(resolve:SQL_SLAVES)%'

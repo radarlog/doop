@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Infrastructure\MySql;
+namespace Radarlog\S3Uploader\Infrastructure\Sql;
 
 use Doctrine\DBAL;
 
@@ -13,7 +13,7 @@ final class ConnectionFactory
     private function __construct(array $params)
     {
         if (!isset($params['slaves'], $params['master'])) {
-            throw new InvalidArgument('Master or slaves configuration is missing', InvalidArgument::CODE_MYSQL_SEVERS);
+            throw new InvalidArgument('Master or slaves configuration is missing', InvalidArgument::CODE_SQL_SERVERS);
         }
 
         $masterConnection = $this->dbalConnection($params['master']);

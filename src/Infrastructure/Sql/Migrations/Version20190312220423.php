@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Infrastructure\MySql\Migrations;
+namespace Radarlog\S3Uploader\Infrastructure\Sql\Migrations;
 
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
