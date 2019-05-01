@@ -4,8 +4,8 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /tmp
 COPY --from=composer:latest /usr/bin/composer /usr/bin
 
-ENV BUILD_DEPS autoconf g++ imagemagick-dev libjpeg-turbo-dev libpng-dev libtool libzip-dev make zlib-dev
-ENV RUNTIME_DEPS imagemagick libzip
+ENV BUILD_DEPS autoconf g++ imagemagick-dev libjpeg-turbo-dev libpng-dev libtool libzip-dev make postgresql-dev zlib-dev
+ENV RUNTIME_DEPS imagemagick libzip postgresql-libs
 
 ENV XDEBUG_VERSION 2.7.1
 ENV IMAGICK_VERSION 3.4.3
@@ -24,7 +24,7 @@ RUN set -e \
         exif \
         json \
         opcache \
-        pdo_mysql \
+        pdo_pgsql \
         zip \
     #
     # Compile and enable imagick extension

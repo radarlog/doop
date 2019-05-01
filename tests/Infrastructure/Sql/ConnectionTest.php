@@ -26,6 +26,6 @@ class ConnectionTest extends FunctionalTestCase
 
     public function testImportResultsTable(): void
     {
-        self::assertSame('`images`', $this->connection->imagesTable());
+        self::assertSame('"images"', $this->connection->imagesTable());
     }
 }

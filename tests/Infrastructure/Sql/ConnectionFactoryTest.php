@@ -38,8 +38,8 @@ class ConnectionFactoryTest extends UnitTestCase
     public function testCreateTwoSlaves(string $delimiter): void
     {
         $params = [
-            'master' => 'mysql://user:user@host:3306/db',
-            'slaves' => sprintf('mysql://user:user@host:3306/db1%smysql://user:user@host:3306/db2', $delimiter),
+            'master' => 'pgsql://user:user@host:3306/db',
+            'slaves' => sprintf('pgsql://user:user@host:3306/db1%spgsql://user:user@host:3306/db2', $delimiter),
         ];
 
         $connection = Sql\ConnectionFactory::create($params);

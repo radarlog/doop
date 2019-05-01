@@ -51,7 +51,7 @@ class FindOneImageTest extends DbTestCase
 
     public function testNameByHashNotFound(): void
     {
-        $result = $this->query->hashNameByUuid('some_hash');
+        $result = $this->query->hashNameByUuid('384a2c67-4d6d-41a9-9954-b5bf75de708e');
 
         self::assertNull($result);
     }

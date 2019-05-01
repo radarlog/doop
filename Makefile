@@ -32,8 +32,8 @@ composer: ; $(info $(M) Installing dependencies:)
 
 .PHONY: migrations
 migrations: ; $(info $(M) Running migrations:)
-	echo -n "Waiting for mysql container to be up and running"
-	until docker-compose exec -e MYSQL_PWD=s3uploader -T mysql mysql -us3uploader -e status > /dev/null 2>&1 ; \
+	echo -n "Waiting for SQL container to be up and running"
+	until docker-compose exec -T postgres pg_isready -h postgres --quiet ; \
         do \
             echo -n "." ; \
             sleep 1 ; \
