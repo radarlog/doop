@@ -24,7 +24,7 @@ final class Version20190312220423 extends AbstractMigration
         $this->addSql("
             CREATE TABLE images (
                 uuid        UUID          NOT NULL,
-                hash        VARCHAR(40)   NOT NULL,
+                hash        CHAR(40)      NOT NULL,
                 name        VARCHAR(255)  NOT NULL,
                 uploaded_at TIMESTAMP     NOT NULL,
                 PRIMARY KEY (uuid)
