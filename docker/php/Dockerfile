@@ -7,7 +7,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin
 ENV BUILD_DEPS autoconf g++ imagemagick-dev libjpeg-turbo-dev libpng-dev libtool libzip-dev make postgresql-dev zlib-dev
 ENV RUNTIME_DEPS imagemagick libzip postgresql-libs
 
-ENV XDEBUG_VERSION 2.7.1
+ENV XDEBUG_VERSION 2.7.2
 ENV IMAGICK_VERSION 3.4.3
 
 RUN set -e \
