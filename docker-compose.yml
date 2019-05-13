@@ -37,7 +37,7 @@ services:
 
     postgres:
         container_name: s3uploader-postgres
-        image: postgres:11.2-alpine
+        image: postgres:11.3-alpine
         restart: ${DOCKER_RESTART}
         networks:
             - s3uploader
