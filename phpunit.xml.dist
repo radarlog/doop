@@ -9,7 +9,7 @@
          executionOrder="random"
 >
 	<testsuites>
-		<testsuite name="S3 Uploader Test Suite">
+        <testsuite name="Doop Test Suite">
 			<directory>tests/</directory>
 		</testsuite>
 	</testsuites>
