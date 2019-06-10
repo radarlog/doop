@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Tests\Infrastructure\Sql;
+namespace Radarlog\Doop\Tests\Infrastructure\Sql;
 
 use Doctrine\DBAL\Connections\MasterSlaveConnection;
-use Radarlog\S3Uploader\Infrastructure\Sql\Connection;
-use Radarlog\S3Uploader\Tests\FunctionalTestCase;
+use Radarlog\Doop\Infrastructure\Sql\Connection;
+use Radarlog\Doop\Tests\FunctionalTestCase;
 
 class ConnectionTest extends FunctionalTestCase
 {

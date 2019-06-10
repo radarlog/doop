@@ -34,10 +34,10 @@ before_install:
         --entrypoint sh
         minio/mc
         -c "
-        mc config host add s3uploader http://minio:9000 $MINIO_ACCESS_KEY $MINIO_SECRET_KEY
-        && mc rm -r --force s3uploader/$MINIO_BUCKET || true
-        && mc mb s3uploader/$MINIO_BUCKET
-        && mc policy download s3uploader/$MINIO_BUCKET
+        mc config host add doop http://minio:9000 $MINIO_ACCESS_KEY $MINIO_SECRET_KEY
+        && mc rm -r --force doop/$MINIO_BUCKET || true
+        && mc mb doop/$MINIO_BUCKET
+        && mc policy download doop/$MINIO_BUCKET
         "
     - psql -c "CREATE DATABASE test_db;" -U postgres
     - pecl channel-update pecl.php.net

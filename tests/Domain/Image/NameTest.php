@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Tests\Domain\Image;
+namespace Radarlog\Doop\Tests\Domain\Image;
 
-use Radarlog\S3Uploader\Domain\Image;
-use Radarlog\S3Uploader\Tests\UnitTestCase;
+use Radarlog\Doop\Domain\Image;
+use Radarlog\Doop\Tests\UnitTestCase;
 
 class NameTest extends UnitTestCase
 {

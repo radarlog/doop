@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Tests\Application\Command;
+namespace Radarlog\Doop\Tests\Application\Command;
 
-use Radarlog\S3Uploader\Application\Command;
-use Radarlog\S3Uploader\Tests\UnitTestCase;
+use Radarlog\Doop\Application\Command;
+use Radarlog\Doop\Tests\UnitTestCase;
 
 class SimpleBusTest extends UnitTestCase
 {

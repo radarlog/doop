@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Tests;
+namespace Radarlog\Doop\Tests;
 
-use Radarlog\S3Uploader\Infrastructure\Sql\Connection;
+use Radarlog\Doop\Infrastructure\Sql\Connection;
 
 class DbTestCase extends FunctionalTestCase
 {

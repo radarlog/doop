@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Tests\Application\Command;
+namespace Radarlog\Doop\Tests\Application\Command;
 
-use Radarlog\S3Uploader\Application\Command;
+use Radarlog\Doop\Application\Command;
 
 final class SpyHandler implements Command\Handler
 {

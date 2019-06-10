@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Infrastructure\S3;
+namespace Radarlog\Doop\Infrastructure\S3;
 
 use Aws\S3\S3ClientInterface;
-use Radarlog\S3Uploader\Domain;
+use Radarlog\Doop\Domain;
 
 final class Client implements Domain\Storage
 {

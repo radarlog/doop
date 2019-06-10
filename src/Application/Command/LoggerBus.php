@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Application\Command;
+namespace Radarlog\Doop\Application\Command;
 
 use Psr\Log\LoggerInterface;
-use Radarlog\S3Uploader\Application\Command;
+use Radarlog\Doop\Application\Command;
 
 final class LoggerBus implements Bus
 {

@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Application\Command\Image;
+namespace Radarlog\Doop\Application\Command\Image;
 
-use Radarlog\S3Uploader\Application\Command;
-use Radarlog\S3Uploader\Domain;
-use Radarlog\S3Uploader\Domain\Image;
+use Radarlog\Doop\Application\Command;
+use Radarlog\Doop\Domain;
+use Radarlog\Doop\Domain\Image;
 
 final class UploadHandler implements Command\Handler
 {

@@ -1,7 +1,7 @@
-# S3 Uploader
+# Doop
 
-[![Build Status](https://travis-ci.org/radarlog/s3uploader.svg?branch=master)](https://travis-ci.org/radarlog/s3uploader)
-[![Coverage Status](https://coveralls.io/repos/github/radarlog/s3uploader/badge.svg?branch=master)](https://coveralls.io/github/radarlog/s3uploader?branch=master)
+[![Build Status](https://travis-ci.org/radarlog/doop.svg?branch=master)](https://travis-ci.org/radarlog/doop)
+[![Coverage Status](https://coveralls.io/repos/github/radarlog/doop/badge.svg?branch=master)](https://coveralls.io/github/radarlog/doop?branch=master)
 
 ## Testing
 
@@ -11,7 +11,7 @@ $ make tests
 
 ## License
 
-S3 Uploader is licensed under MIT License. Please see [LICENSE](LICENSE) for details.
+Doop is licensed under MIT License. Please see [LICENSE](LICENSE) for details.
 
 
 ## Changelog

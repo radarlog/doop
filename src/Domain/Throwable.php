@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Domain;
+namespace Radarlog\Doop\Domain;
 
-use Radarlog\S3Uploader;
+use Radarlog\Doop;
 
-interface Throwable extends S3Uploader\Throwable
+interface Throwable extends Doop\Throwable
 {
 }

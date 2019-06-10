@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Tests\Infrastructure\Http\Controller;
+namespace Radarlog\Doop\Tests\Infrastructure\Http\Controller;
 
-use Radarlog\S3Uploader\Tests\ControllerTestCase;
+use Radarlog\Doop\Tests\ControllerTestCase;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class UploadTest extends ControllerTestCase

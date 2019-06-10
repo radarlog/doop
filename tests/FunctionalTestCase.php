@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Tests;
+namespace Radarlog\Doop\Tests;
 
-use Radarlog\S3Uploader\Infrastructure\Kernel;
+use Radarlog\Doop\Infrastructure\Kernel;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class FunctionalTestCase extends KernelTestCase

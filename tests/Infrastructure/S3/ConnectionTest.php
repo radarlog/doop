@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Tests\Infrastructure\S3;
+namespace Radarlog\Doop\Tests\Infrastructure\S3;
 
 use Aws\S3\S3ClientInterface;
-use Radarlog\S3Uploader\Infrastructure\S3\Connection;
-use Radarlog\S3Uploader\Tests\UnitTestCase;
+use Radarlog\Doop\Infrastructure\S3\Connection;
+use Radarlog\Doop\Tests\UnitTestCase;
 
 class ConnectionTest extends UnitTestCase
 {

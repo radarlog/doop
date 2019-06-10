@@ -1,20 +1,20 @@
 version: '3'
 
 networks:
-    s3uploader:
+    doop:
         driver: bridge
 
 services:
     nginx:
         depends_on:
             - php
-        container_name: s3uploader-nginx
+        container_name: doop-nginx
         image: nginx:1.15-alpine
         restart: ${DOCKER_RESTART}
         networks:
-            - s3uploader
+            - doop
         volumes:
-            - ./docker/nginx/s3.conf:/etc/nginx/conf.d/default.conf:ro
+            - ./docker/nginx/doop.conf:/etc/nginx/conf.d/default.conf:ro
         ports:
             - 80:8080
 
@@ -23,38 +23,38 @@ services:
             - minio
             - minio-create-bucket
             - postgres
-        container_name: s3uploader-php
+        container_name: doop-php
         build: docker/php
         restart: ${DOCKER_RESTART}
         networks:
-            - s3uploader
+            - doop
         user: 1000:1000
         volumes:
             - .:/app:rw
         environment:
             XDEBUG_CONFIG: "remote_host=172.18.0.1 remote_port=9009"
-            PHP_IDE_CONFIG: serverName=s3uploader
+            PHP_IDE_CONFIG: serverName=doop
 
     postgres:
-        container_name: s3uploader-postgres
+        container_name: doop-postgres
         image: postgres:11.3-alpine
         restart: ${DOCKER_RESTART}
         networks:
-            - s3uploader
+            - doop
         ports:
             - 5432:5432
         environment:
-            POSTGRES_DB: s3uploader
-            POSTGRES_USER: s3uploader
-            POSTGRES_PASSWORD: s3uploader
+            POSTGRES_DB: doop
+            POSTGRES_USER: doop
+            POSTGRES_PASSWORD: doop
             POSTGRES_INITDB_ARGS: "--no-sync"
 
     minio:
-        container_name: s3uploader-minio
+        container_name: doop-minio
         image: minio/minio:latest
         restart: ${DOCKER_RESTART}
         networks:
-            - s3uploader
+            - doop
         ports:
             - 9000:9000
         environment:
@@ -65,16 +65,16 @@ services:
     minio-create-bucket:
         depends_on:
             - minio
-        container_name: s3uploader-minio-mc
+        container_name: doop-minio-mc
         image: minio/mc:latest
         restart: ${DOCKER_RESTART}
         networks:
-            - s3uploader
+            - doop
         entrypoint:
             - sh
             - -c
             - |-
-                mc config host add s3uploader http://minio:9000 minio minio330
-                mc rm -r --force s3uploader/${S3_BUCKET} || true
-                mc mb s3uploader/${S3_BUCKET}
-                mc policy download s3uploader/${S3_BUCKET}
+                mc config host add doop http://minio:9000 minio minio330
+                mc rm -r --force doop/${S3_BUCKET} || true
+                mc mb doop/${S3_BUCKET}
+                mc policy download doop/${S3_BUCKET}

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-use Radarlog\S3Uploader\Infrastructure\Kernel;
+use Radarlog\Doop\Infrastructure\Kernel;
 use Symfony\Component\HttpFoundation\Request;
 
 require __DIR__ . '/../bootstrap.php';

@@ -105,8 +105,8 @@
 	<rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
 		<properties>
 			<property name="rootNamespaces" type="array">
-				<element key="src" value="Radarlog\S3Uploader"/>
-				<element key="tests" value="Radarlog\S3Uploader\Tests"/>
+                <element key="src" value="Radarlog\Doop"/>
+                <element key="tests" value="Radarlog\Doop\Tests"/>
 			</property>
 		</properties>
 	</rule>

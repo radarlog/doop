@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Application\Query\Image;
+namespace Radarlog\Doop\Application\Query\Image;
 
 interface FindAll
 {

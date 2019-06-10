@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Tests\Application\Command\Image;
+namespace Radarlog\Doop\Tests\Application\Command\Image;
 
-use Radarlog\S3Uploader\Application\Command;
-use Radarlog\S3Uploader\Domain;
-use Radarlog\S3Uploader\Tests\UnitTestCase;
+use Radarlog\Doop\Application\Command;
+use Radarlog\Doop\Domain;
+use Radarlog\Doop\Tests\UnitTestCase;
 
 class UploadHandlerTest extends UnitTestCase
 {

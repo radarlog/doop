@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Tests\Infrastructure\Sql\Read;
+namespace Radarlog\Doop\Tests\Infrastructure\Sql\Read;
 
-use Radarlog\S3Uploader\Application\Query;
-use Radarlog\S3Uploader\Domain\Image;
-use Radarlog\S3Uploader\Domain\Repository;
-use Radarlog\S3Uploader\Tests\DbTestCase;
+use Radarlog\Doop\Application\Query;
+use Radarlog\Doop\Domain\Image;
+use Radarlog\Doop\Domain\Repository;
+use Radarlog\Doop\Tests\DbTestCase;
 
 class FindAllImagesTest extends DbTestCase
 {

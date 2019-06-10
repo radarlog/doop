@@ -1,5 +1,5 @@
 {
-    "name": "radarlog/s3uploader",
+    "name": "radarlog/doop",
     "description": "Simple File Uploader / AWS S3 Uploader",
     "keywords": [
         "AWS",
@@ -47,12 +47,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Radarlog\\S3Uploader\\": "src"
+            "Radarlog\\Doop\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Radarlog\\S3Uploader\\Tests\\": "tests"
+            "Radarlog\\Doop\\Tests\\": "tests"
         }
     },
     "scripts": {
