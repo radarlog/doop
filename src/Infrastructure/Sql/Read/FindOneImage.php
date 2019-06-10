@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Infrastructure\Sql\Read;
+namespace Radarlog\Doop\Infrastructure\Sql\Read;
 
-use Radarlog\S3Uploader\Application\Query;
-use Radarlog\S3Uploader\Infrastructure\Sql\Connection;
+use Radarlog\Doop\Application\Query;
+use Radarlog\Doop\Infrastructure\Sql\Connection;
 
 final class FindOneImage implements Query\Image\FindOne
 {

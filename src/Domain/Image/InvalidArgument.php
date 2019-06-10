@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Domain\Image;
+namespace Radarlog\Doop\Domain\Image;
 
-use Radarlog\S3Uploader\Domain\Throwable;
+use Radarlog\Doop\Domain\Throwable;
 
 class InvalidArgument extends \InvalidArgumentException implements Throwable
 {

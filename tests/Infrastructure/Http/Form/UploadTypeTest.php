@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Tests\Infrastructure\Http\Form;
+namespace Radarlog\Doop\Tests\Infrastructure\Http\Form;
 
-use Radarlog\S3Uploader\Infrastructure\Http\Form\UploadType;
+use Radarlog\Doop\Infrastructure\Http\Form\UploadType;
 use Symfony\Component\Form;
 
 class UploadTypeTest extends Form\Test\TypeTestCase

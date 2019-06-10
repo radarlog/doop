@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Infrastructure\Cli;
+namespace Radarlog\Doop\Infrastructure\Cli;
 
-use Radarlog\S3Uploader\Application\Command;
+use Radarlog\Doop\Application\Command;
 use Symfony\Component\Console;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;

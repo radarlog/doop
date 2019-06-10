@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Infrastructure\Http\Controller;
+namespace Radarlog\Doop\Infrastructure\Http\Controller;
 
-use Radarlog\S3Uploader\Application\Query;
-use Radarlog\S3Uploader\Domain\Storage;
-use Radarlog\S3Uploader\Infrastructure\Http\Controller;
+use Radarlog\Doop\Application\Query;
+use Radarlog\Doop\Domain\Storage;
+use Radarlog\Doop\Infrastructure\Http\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation;
 use Symfony\Component\HttpFoundation\HeaderUtils;

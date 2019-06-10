@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Tests\Infrastructure\S3;
+namespace Radarlog\Doop\Tests\Infrastructure\S3;
 
-use Radarlog\S3Uploader\Domain\Image;
-use Radarlog\S3Uploader\Infrastructure\S3\Client;
-use Radarlog\S3Uploader\Tests\FunctionalTestCase;
+use Radarlog\Doop\Domain\Image;
+use Radarlog\Doop\Infrastructure\S3\Client;
+use Radarlog\Doop\Tests\FunctionalTestCase;
 
 class ClientTest extends FunctionalTestCase
 {

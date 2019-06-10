@@ -9,32 +9,32 @@ services:
         public: false
 
     _instanceof:
-        Radarlog\S3Uploader\Application\Command\Handler:
+        Radarlog\Doop\Application\Command\Handler:
             tags: ['command.handler']
 
-    Radarlog\S3Uploader\:
+    Radarlog\Doop\:
         resource: '../src'
         exclude:
             - '../src/Infrastructure/Kernel.php'
             - '../src/Infrastructure/Sql/Migrations'
 
     # Command Bus
-    Radarlog\S3Uploader\Application\Command\SimpleBus:
+    Radarlog\Doop\Application\Command\SimpleBus:
         arguments: [!tagged command.handler]
-    Radarlog\S3Uploader\Application\Command\LoggerBus:
-        decorates: Radarlog\S3Uploader\Application\Command\SimpleBus
+    Radarlog\Doop\Application\Command\LoggerBus:
+        decorates: Radarlog\Doop\Application\Command\SimpleBus
         arguments: ['@monolog.logger.commands']
-    Radarlog\S3Uploader\Application\Command\Bus: '@Radarlog\S3Uploader\Application\Command\LoggerBus'
+    Radarlog\Doop\Application\Command\Bus: '@Radarlog\Doop\Application\Command\LoggerBus'
 
     # S3
-    Radarlog\S3Uploader\Infrastructure\S3\Connection:
+    Radarlog\Doop\Infrastructure\S3\Connection:
         arguments: ['%env(resolve:S3_DSN)%']
-    Radarlog\S3Uploader\Infrastructure\S3\Client:
+    Radarlog\Doop\Infrastructure\S3\Client:
         arguments: ['%env(resolve:S3_BUCKET)%']
 
     # SQL
-    Radarlog\S3Uploader\Infrastructure\Sql\Connection:
-        factory: Radarlog\S3Uploader\Infrastructure\Sql\ConnectionFactory::create
+    Radarlog\Doop\Infrastructure\Sql\Connection:
+        factory: Radarlog\Doop\Infrastructure\Sql\ConnectionFactory::create
         arguments:
             -   master: '%env(resolve:SQL_MASTER)%'
                 slaves: '%env(resolve:SQL_SLAVES)%'

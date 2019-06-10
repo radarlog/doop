@@ -4,6 +4,6 @@ services:
         autoconfigure: true
         public: true
 
-    test.repository: '@Radarlog\S3Uploader\Domain\Repository'
-    test.query.all: '@Radarlog\S3Uploader\Application\Query\Image\FindAll'
-    test.query.one: '@Radarlog\S3Uploader\Application\Query\Image\FindOne'
+    test.repository: '@Radarlog\Doop\Domain\Repository'
+    test.query.all: '@Radarlog\Doop\Application\Query\Image\FindAll'
+    test.query.one: '@Radarlog\Doop\Application\Query\Image\FindOne'

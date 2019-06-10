@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Tests\Infrastructure\Cli;
+namespace Radarlog\Doop\Tests\Infrastructure\Cli;
 
-use Radarlog\S3Uploader\Tests\DbTestCase;
+use Radarlog\Doop\Tests\DbTestCase;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Exception\RuntimeException;
 use Symfony\Component\Console\Tester\CommandTester;

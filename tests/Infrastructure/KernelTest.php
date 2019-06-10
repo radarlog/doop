@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Tests\Infrastructure;
+namespace Radarlog\Doop\Tests\Infrastructure;
 
-use Radarlog\S3Uploader\Infrastructure\Kernel;
-use Radarlog\S3Uploader\Tests\FunctionalTestCase;
+use Radarlog\Doop\Infrastructure\Kernel;
+use Radarlog\Doop\Tests\FunctionalTestCase;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\HttpFoundation\Request;
 

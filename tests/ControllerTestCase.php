@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Tests;
+namespace Radarlog\Doop\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Client;
 

@@ -1,16 +1,16 @@
 index:
     path: /
-    controller: Radarlog\S3Uploader\Infrastructure\Http\Controller\Index
+    controller: Radarlog\Doop\Infrastructure\Http\Controller\Index
     methods: [GET]
 
 upload:
     path: /upload
-    controller: Radarlog\S3Uploader\Infrastructure\Http\Controller\Upload
+    controller: Radarlog\Doop\Infrastructure\Http\Controller\Upload
     methods: [POST]
 
 image:
     path: /image/{uuid}
     requirements:
         uuid: '[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}'
-    controller: Radarlog\S3Uploader\Infrastructure\Http\Controller\Image
+    controller: Radarlog\Doop\Infrastructure\Http\Controller\Image
     methods: [GET]

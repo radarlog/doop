@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Domain\Image;
+namespace Radarlog\Doop\Domain\Image;
 
-use Radarlog\S3Uploader\Domain;
+use Radarlog\Doop\Domain;
 use Ramsey\Uuid;
 
 final class Identity implements Domain\Identity

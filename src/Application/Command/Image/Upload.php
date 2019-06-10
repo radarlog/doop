@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Application\Command\Image;
+namespace Radarlog\Doop\Application\Command\Image;
 
-use Radarlog\S3Uploader\Application\Command;
+use Radarlog\Doop\Application\Command;
 
 final class Upload implements Command
 {

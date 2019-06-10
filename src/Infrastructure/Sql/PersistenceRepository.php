@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Infrastructure\Sql;
+namespace Radarlog\Doop\Infrastructure\Sql;
 
 use Doctrine\DBAL\Types\Type;
-use Radarlog\S3Uploader\Domain;
+use Radarlog\Doop\Domain;
 
 final class PersistenceRepository implements Domain\Repository
 {

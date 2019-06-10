@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Tests\Application\Query\Image;
+namespace Radarlog\Doop\Tests\Application\Query\Image;
 
-use Radarlog\S3Uploader\Application\Query\Image\UuidNameDate;
-use Radarlog\S3Uploader\Tests\UnitTestCase;
+use Radarlog\Doop\Application\Query\Image\UuidNameDate;
+use Radarlog\Doop\Tests\UnitTestCase;
 
 class UuidNameDateTest extends UnitTestCase
 {

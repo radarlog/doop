@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Radarlog\S3Uploader\Tests\Infrastructure\Sql;
+namespace Radarlog\Doop\Tests\Infrastructure\Sql;
 
-use Radarlog\S3Uploader\Domain\Image;
-use Radarlog\S3Uploader\Domain\Repository;
-use Radarlog\S3Uploader\Tests\DbTestCase;
+use Radarlog\Doop\Domain\Image;
+use Radarlog\Doop\Domain\Repository;
+use Radarlog\Doop\Tests\DbTestCase;
 
 class PersistenceRepositoryTest extends DbTestCase
 {
