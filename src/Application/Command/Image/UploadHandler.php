@@ -10,14 +10,14 @@ use Radarlog\Doop\Domain\Image;
 final class UploadHandler implements Command\Handler
 {
     /** @var Domain\Storage */
-    private $client;
+    private $storage;
 
     /** @var Domain\Repository */
     private $repository;
 
-    public function __construct(Domain\Storage $client, Domain\Repository $repository)
+    public function __construct(Domain\Storage $storage, Domain\Repository $repository)
     {
-        $this->client = $client;
+        $this->storage = $storage;
         $this->repository = $repository;
     }
 
@@ -30,7 +30,7 @@ final class UploadHandler implements Command\Handler
     {
         $file = new Image\File($command->content());
 
-        $this->client->upload($file);
+        $this->storage->upload($file);
 
         $name = new Image\Name($command->name());
         $image = new Image($file->hash(), $name);

@@ -16,12 +16,12 @@ final class Image extends AbstractController implements Controller
     private $findOne;
 
     /** @var Storage */
-    private $client;
+    private $storage;
 
-    public function __construct(Query\Image\FindOne $findOne, Storage $client)
+    public function __construct(Query\Image\FindOne $findOne, Storage $storage)
     {
         $this->findOne = $findOne;
-        $this->client = $client;
+        $this->storage = $storage;
     }
 
     public function __invoke(HttpFoundation\Request $request): HttpFoundation\Response
@@ -30,7 +30,7 @@ final class Image extends AbstractController implements Controller
 
         $result = $this->findOne->hashNameByUuid($uuid);
 
-        $file = $this->client->get($result->hash());
+        $file = $this->storage->download($result->hash());
 
         $disposition = HeaderUtils::makeDisposition(HeaderUtils::DISPOSITION_ATTACHMENT, $result->name());
 

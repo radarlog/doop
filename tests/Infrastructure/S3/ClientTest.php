@@ -23,7 +23,7 @@ class ClientTest extends FunctionalTestCase
 
         $client->upload($file);
 
-        $object = $client->get($this->hash);
+        $object = $client->download($this->hash);
 
         self::assertSame((string)$file->hash(), (string)$object->hash());
         self::assertSame($content, $object->content());
