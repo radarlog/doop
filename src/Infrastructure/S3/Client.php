@@ -31,15 +31,13 @@ final class Client implements Domain\Storage
 
     public function get(string $hash): Domain\Image\File
     {
-        $hash = new Domain\Image\Hash($hash);
-
         $command = $this->client->getCommand('GetObject', [
             'Bucket' => $this->bucketName,
-            'Key' => (string)$hash,
+            'Key' => $hash,
         ]);
 
         $content = (string)$this->client->execute($command)->get('Body');
 
-        return new Domain\Image\File($hash, $content);
+        return new Domain\Image\File($content);
     }
 }

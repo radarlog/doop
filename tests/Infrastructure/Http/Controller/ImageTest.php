@@ -22,12 +22,10 @@ class ImageTest extends ControllerTestCase
         $fixture = $this->fixturePath('Images/avatar.jpg');
         $content = file_get_contents($fixture);
 
-        $hash = new Image\Hash($this->hash);
-
-        $file = new Image\File($hash, $content);
+        $file = new Image\File($content);
 
         $name = new Image\Name('avatar.jpg');
-        $image = new Image($hash, $name);
+        $image = new Image($file->hash(), $name);
 
         $this->uuid = $image->id();
 

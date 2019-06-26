@@ -24,17 +24,17 @@ final class UploadHandler implements Command\Handler
     /**
      * @param Upload $command
      *
-     * @throws Domain\Image\InvalidArgument
+     * @throws Image\InvalidArgument
      */
     public function handle(Command $command): void
     {
-        $name = new Image\Name($command->name());
-        $hash = Image\Hash::calculate($command->content());
+        $file = new Image\File($command->content());
 
-        $file = new Image\File($hash, $command->content());
         $this->client->upload($file);
 
-        $image = new Image($hash, $name);
+        $name = new Image\Name($command->name());
+        $image = new Image($file->hash(), $name);
+
         $this->repository->add($image);
     }
 }

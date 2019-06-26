@@ -17,9 +17,7 @@ class ClientTest extends FunctionalTestCase
         $fixture = $this->fixturePath('Images/avatar.jpg');
         $content = file_get_contents($fixture);
 
-        $hash = new Image\Hash($this->hash);
-
-        $file = new Image\File($hash, $content);
+        $file = new Image\File($content);
 
         $client = self::$container->get(Client::class);
 
@@ -27,7 +25,7 @@ class ClientTest extends FunctionalTestCase
 
         $object = $client->get($this->hash);
 
-        self::assertSame($this->hash, $object->hash());
+        self::assertSame((string)$file->hash(), (string)$object->hash());
         self::assertSame($content, $object->content());
     }
 }

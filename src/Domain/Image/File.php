@@ -18,7 +18,7 @@ final class File
      * @noinspection PhpDocMissingThrowsInspection
      * @throws InvalidArgument
      */
-    public function __construct(Hash $hash, string $content)
+    public function __construct(string $content)
     {
         $image = new \Imagick();
 
@@ -28,14 +28,14 @@ final class File
             throw new InvalidArgument('Cannot create image', InvalidArgument::CODE_IMAGE, $e);
         }
 
-        $this->hash = $hash;
+        $this->hash = Hash::calculate($content);
         $this->content = $content;
         $this->format = new Format($image);
     }
 
-    public function hash(): string
+    public function hash(): Hash
     {
-        return (string)$this->hash;
+        return $this->hash;
     }
 
     public function content(): string
