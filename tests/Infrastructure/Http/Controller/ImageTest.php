@@ -9,9 +9,6 @@ use Radarlog\Doop\Tests\ControllerTestCase;
 
 class ImageTest extends ControllerTestCase
 {
-    /** @var string */
-    private $hash = '2080492d54a6b8579968901f366b13614fe188f2';
-
     /** @var Domain\Identity */
     private $uuid;
 
