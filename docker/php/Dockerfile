@@ -1,14 +1,14 @@
-FROM php:7.3.6-fpm-alpine3.9
+FROM php:7.3.7-fpm-alpine3.10
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /tmp
 COPY --from=composer:latest /usr/bin/composer /usr/bin
 
-ENV BUILD_DEPS autoconf g++ imagemagick-dev libjpeg-turbo-dev libpng-dev libtool libzip-dev make postgresql-dev zlib-dev
+ENV BUILD_DEPS $PHPIZE_DEPS imagemagick-dev libjpeg-turbo-dev libpng-dev libtool libzip-dev make postgresql-dev zlib-dev
 ENV RUNTIME_DEPS imagemagick libzip postgresql-libs
 
 ENV XDEBUG_VERSION 2.7.2
-ENV IMAGICK_VERSION 3.4.3
+ENV IMAGICK_VERSION 3.4.4
 
 RUN set -e \
     && cd /tmp \
@@ -19,7 +19,9 @@ RUN set -e \
     # Install dependencies
     && apk --no-cache add --update $BUILD_DEPS $RUNTIME_DEPS \
     #
-    # Install extensions
+    # Configure and install extensions
+    && export CFLAGS="$PHP_CFLAGS" CPPFLAGS="$PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS" \
+    && docker-php-ext-configure zip --with-libzip \
     && docker-php-ext-install \
         exif \
         json \
@@ -28,7 +30,6 @@ RUN set -e \
         zip \
     #
     # Compile and enable imagick extension
-    && export CFLAGS="$PHP_CFLAGS" CPPFLAGS="$PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS" \
     && pecl install imagick-$IMAGICK_VERSION \
     && docker-php-ext-enable imagick \
     #
