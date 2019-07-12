@@ -21,7 +21,7 @@ final class Image implements Aggregate
 
     public function __construct(Image\Hash $hash, Image\Name $name)
     {
-        $this->id = Image\Identity::new();
+        $this->id = new Image\Identity();
         $this->hash = $hash;
         $this->name = $name;
         $this->uploadedAt = new \DateTimeImmutable();

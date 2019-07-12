@@ -8,30 +8,32 @@ use Ramsey\Uuid;
 
 final class Identity implements Domain\Identity
 {
-    /** @var Uuid\UuidInterface */
+    private const UUID_PATTERN = '/[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[0-9a-f]{4}-[0-9a-f]{12}/';
+
+    /** @var string */
     private $uuid;
 
     /**
      * @throws InvalidArgument
      */
-    public function __construct(string $uuid)
+    public function __construct(?string $uuid = null)
     {
-        try {
-            $this->uuid = Uuid\Uuid::fromString($uuid);
-        } catch (\Throwable $e) {
+        $uuid = $uuid ?? $this->new();
+
+        if (preg_match(self::UUID_PATTERN, $uuid) !== 1) {
             throw new InvalidArgument('Invalid UUID', InvalidArgument::CODE_UUID);
         }
+
+        $this->uuid = $uuid;
     }
 
     public function toString(): string
     {
-        return $this->uuid->toString();
+        return $this->uuid;
     }
 
-    public static function new(): Identity
+    private function new(): string
     {
-        $uuid = Uuid\Uuid::uuid4();
-
-        return new self($uuid->toString());
+        return Uuid\Uuid::uuid4()->toString();
     }
 }
