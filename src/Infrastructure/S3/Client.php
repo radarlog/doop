@@ -24,7 +24,7 @@ final class Client implements Domain\Storage
 
     public function upload(Domain\Image\File $file): void
     {
-        $this->client->upload($this->bucketName, $file->hash(), $file->content(), self::ACL, [
+        $this->client->upload($this->bucketName, (string)$file->hash(), $file->content(), self::ACL, [
             'ContentType' => $file->format()->mime(),
         ]);
     }
