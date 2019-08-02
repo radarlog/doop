@@ -24,11 +24,22 @@ final class Image extends AbstractController implements Controller
         $this->storage = $storage;
     }
 
+    /**
+     * @param HttpFoundation\Request $request
+     *
+     * @return HttpFoundation\Response
+     * @throws \InvalidArgumentException
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     */
     public function __invoke(HttpFoundation\Request $request): HttpFoundation\Response
     {
         $uuid = $request->attributes->get('uuid');
 
         $result = $this->findOne->hashNameByUuid($uuid);
+
+        if ($result === null) {
+            throw $this->createNotFoundException();
+        }
 
         $file = $this->storage->download($result->hash());
 
