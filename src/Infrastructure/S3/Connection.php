@@ -15,19 +15,15 @@ final class Connection
     /** @var Sdk */
     private $sdk;
 
-    /** @var string */
-    private $region;
-
     public function __construct(string $dsn)
     {
         $this->sdk = new Sdk([
             'credentials' => $this->credentialsFromDsn($dsn),
             'endpoint' => $this->endpointFromDsn($dsn),
+            'region' => $this->regionFromDsn($dsn),
             'use_path_style_endpoint' => true,
             'version' => self::LATEST_VERSION,
         ]);
-
-        $this->region = $this->regionFromDsn($dsn);
     }
 
     /**
@@ -35,9 +31,7 @@ final class Connection
      */
     public function createS3(): S3ClientInterface
     {
-        return $this->sdk->createS3([
-            'region' => $this->region,
-        ]);
+        return $this->sdk->createS3();
     }
 
     private function credentialsFromDsn(string $dsn): Credentials\CredentialsInterface
