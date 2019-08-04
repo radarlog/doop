@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Tests\Infrastructure\S3;
 
+use Aws\Credentials\CredentialsInterface;
 use Aws\S3\S3ClientInterface;
 use Radarlog\Doop\Infrastructure\S3;
 use Radarlog\Doop\Tests\UnitTestCase;
@@ -51,7 +52,7 @@ class ConnectionTest extends UnitTestCase
 
     public function testCredentials(): void
     {
-        /** @var \Aws\Credentials\CredentialsInterface $credentials */
+        /** @var CredentialsInterface $credentials */
         $credentials = $this->client->getCredentials()->wait();
 
         self::assertSame('user', $credentials->getAccessKeyId());
