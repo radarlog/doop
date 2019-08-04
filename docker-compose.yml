@@ -75,6 +75,5 @@ services:
             - -c
             - |-
                 mc config host add doop http://minio:9000 minio minio330
-                mc rm -r --force doop/${S3_BUCKET} || true
                 mc mb doop/${S3_BUCKET}
                 mc policy download doop/${S3_BUCKET}
