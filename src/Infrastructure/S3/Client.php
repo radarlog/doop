@@ -8,6 +8,9 @@ use Radarlog\Doop\Domain;
 
 final class Client implements Domain\Storage
 {
+    public const PATH_STYLE = true;
+    public const HOST_STYLE = false;
+
     private const ACL = 'private';
 
     /** @var S3ClientInterface */
@@ -16,9 +19,9 @@ final class Client implements Domain\Storage
     /** @var string */
     private $bucketName;
 
-    public function __construct(string $bucketName, Connection $connection)
+    public function __construct(string $bucketName, bool $usePathStyle, Connection $connection)
     {
-        $this->client = $connection->createS3();
+        $this->client = $connection->createS3Client($usePathStyle);
         $this->bucketName = $bucketName;
     }
 

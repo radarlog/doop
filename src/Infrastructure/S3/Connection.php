@@ -21,7 +21,6 @@ final class Connection
             'credentials' => $this->credentialsFromDsn($dsn),
             'endpoint' => $this->endpointFromDsn($dsn),
             'region' => $this->regionFromDsn($dsn),
-            'use_path_style_endpoint' => true,
             'version' => self::LATEST_VERSION,
         ]);
     }
@@ -29,9 +28,11 @@ final class Connection
     /**
      * @link https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region
      */
-    public function createS3(): S3ClientInterface
+    public function createS3Client(bool $usePathStyle): S3ClientInterface
     {
-        return $this->sdk->createS3();
+        return $this->sdk->createS3([
+            'use_path_style_endpoint' => $usePathStyle,
+        ]);
     }
 
     private function credentialsFromDsn(string $dsn): Credentials\CredentialsInterface

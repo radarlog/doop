@@ -30,7 +30,7 @@ services:
     Radarlog\Doop\Infrastructure\S3\Connection:
         arguments: ['%env(resolve:S3_DSN)%']
     Radarlog\Doop\Infrastructure\S3\Client:
-        arguments: ['%env(resolve:S3_BUCKET)%']
+        arguments: ['%env(resolve:S3_BUCKET)%', '%env(bool:S3_USE_PATH_STYLE)%']
 
     # SQL
     Radarlog\Doop\Infrastructure\Sql\Connection:
