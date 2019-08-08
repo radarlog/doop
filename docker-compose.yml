@@ -32,7 +32,7 @@ services:
         volumes:
             - .:/app:rw
         environment:
-            XDEBUG_CONFIG: "remote_host=172.18.0.1 remote_port=9009"
+            XDEBUG_CONFIG: "remote_host=host.docker.internal remote_port=9009"
             PHP_IDE_CONFIG: serverName=doop
 
     postgres:
