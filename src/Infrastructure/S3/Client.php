@@ -24,7 +24,7 @@ final class Client implements Domain\Storage
 
     public function upload(Domain\Image\File $file): void
     {
-        $this->client->upload($this->bucketName, (string)$file->hash(), $file->content(), self::ACL, [
+        $this->client->upload($this->bucketName, (string) $file->hash(), $file->content(), self::ACL, [
             'ContentType' => $file->format()->mime(),
         ]);
     }
@@ -36,7 +36,7 @@ final class Client implements Domain\Storage
             'Key' => $hash,
         ]);
 
-        $content = (string)$this->client->execute($command)->get('Body');
+        $content = (string) $this->client->execute($command)->get('Body');
 
         return new Domain\Image\File($content);
     }

@@ -36,8 +36,8 @@ final class Image implements Aggregate
     {
         return new Image\State([
             'uuid' => $this->id->toString(),
-            'hash' => (string)$this->hash,
-            'name' => (string)$this->name,
+            'hash' => (string) $this->hash,
+            'name' => (string) $this->name,
             'uploaded_at' => $this->uploadedAt->format(self::DATETIME_FORMAT),
         ]);
     }

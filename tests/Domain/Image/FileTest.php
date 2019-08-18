@@ -33,7 +33,7 @@ class FileTest extends UnitTestCase
     {
         $file = new Image\File($this->content);
 
-        self::assertSame('2080492d54a6b8579968901f366b13614fe188f2', (string)$file->hash());
+        self::assertSame('2080492d54a6b8579968901f366b13614fe188f2', (string) $file->hash());
     }
 
     public function testContent(): void
@@ -47,6 +47,6 @@ class FileTest extends UnitTestCase
     {
         $file = new Image\File($this->content);
 
-        self::assertSame('jpeg', (string)$file->format());
+        self::assertSame('jpeg', (string) $file->format());
     }
 }

@@ -32,6 +32,6 @@ class NameTest extends UnitTestCase
     {
         $name = new Image\Name('some_valid');
 
-        self::assertSame('some_valid', (string)$name);
+        self::assertSame('some_valid', (string) $name);
     }
 }

@@ -8,27 +8,27 @@
          colors="true"
          executionOrder="random"
 >
-	<testsuites>
+    <testsuites>
         <testsuite name="Doop Test Suite">
-			<directory>tests/</directory>
-		</testsuite>
-	</testsuites>
+            <directory>tests/</directory>
+        </testsuite>
+    </testsuites>
 
-	<filter>
-		<whitelist processUncoveredFilesFromWhitelist="true">
-			<directory suffix=".php">src/</directory>
-			<exclude>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">src/</directory>
+            <exclude>
                 <directory suffix=".php">src/Infrastructure/Sql/Migrations/</directory>
-			</exclude>
-		</whitelist>
-	</filter>
+            </exclude>
+        </whitelist>
+    </filter>
 
     <logging>
         <log type="coverage-text" target="php://stdout"/>
     </logging>
 
     <php>
-		<ini name="error_reporting" value="-1"/>
-		<env name="APP_ENV" value="test"/>
-	</php>
+        <ini name="error_reporting" value="-1"/>
+        <env name="APP_ENV" value="test"/>
+    </php>
 </phpunit>
