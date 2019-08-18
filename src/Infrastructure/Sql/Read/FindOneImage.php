@@ -21,7 +21,7 @@ final class FindOneImage implements Query\Image\FindOne
         $qb = $this->connection->createQueryBuilder();
 
         $qb = $qb
-            ->select('hash', 'name')
+            ->select(['hash', 'name'])
             ->from($this->connection->imagesTable())
             ->where(
                 $qb->expr()->eq('uuid', $qb->createNamedParameter($uuid))
