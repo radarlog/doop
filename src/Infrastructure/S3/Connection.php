@@ -15,28 +15,23 @@ final class Connection
     /** @var Sdk */
     private $sdk;
 
-    /** @var string */
-    private $region;
-
     public function __construct(string $dsn)
     {
         $this->sdk = new Sdk([
             'credentials' => $this->credentialsFromDsn($dsn),
             'endpoint' => $this->endpointFromDsn($dsn),
-            'use_path_style_endpoint' => true,
+            'region' => $this->regionFromDsn($dsn),
             'version' => self::LATEST_VERSION,
         ]);
-
-        $this->region = $this->regionFromDsn($dsn);
     }
 
     /**
      * @link https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region
      */
-    public function createS3(): S3ClientInterface
+    public function createS3Client(bool $usePathStyle): S3ClientInterface
     {
         return $this->sdk->createS3([
-            'region' => $this->region,
+            'use_path_style_endpoint' => $usePathStyle,
         ]);
     }
 

@@ -28,13 +28,13 @@ services:
 
     # S3
     Radarlog\Doop\Infrastructure\S3\Connection:
-        arguments: ['%env(resolve:S3_DSN)%']
+        arguments: ['%env(string:S3_DSN)%']
     Radarlog\Doop\Infrastructure\S3\Client:
-        arguments: ['%env(resolve:S3_BUCKET)%']
+        arguments: ['%env(string:S3_BUCKET)%', '%env(bool:S3_USE_PATH_STYLE)%']
 
     # SQL
     Radarlog\Doop\Infrastructure\Sql\Connection:
         factory: Radarlog\Doop\Infrastructure\Sql\ConnectionFactory::create
         arguments:
-            -   master: '%env(resolve:SQL_MASTER)%'
-                slaves: '%env(resolve:SQL_SLAVES)%'
+            -   master: '%env(string:SQL_MASTER)%'
+                slaves: '%env(string:SQL_SLAVES)%'
