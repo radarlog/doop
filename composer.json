@@ -19,7 +19,6 @@
         "ext-imagick": "*",
         "ext-json": "*",
         "ext-pdo": "*",
-        "ext-zip": "*",
         "aws/aws-sdk-php": "^3.98",
         "doctrine/dbal": "^2.9",
         "doctrine/migrations": "^2.0",

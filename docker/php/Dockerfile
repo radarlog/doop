@@ -4,8 +4,8 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /tmp
 COPY --from=composer:latest /usr/bin/composer /usr/bin
 
-ENV BUILD_DEPS $PHPIZE_DEPS imagemagick-dev libjpeg-turbo-dev libpng-dev libtool libzip-dev make postgresql-dev zlib-dev
-ENV RUNTIME_DEPS imagemagick libzip postgresql-libs
+ENV BUILD_DEPS $PHPIZE_DEPS imagemagick-dev libjpeg-turbo-dev libpng-dev libtool postgresql-dev
+ENV RUNTIME_DEPS imagemagick postgresql-libs
 
 ENV XDEBUG_VERSION 2.7.2
 ENV IMAGICK_VERSION 3.4.4
@@ -25,13 +25,10 @@ RUN set -e \
     #
     # Configure and install extensions
     && export CFLAGS="$PHP_CFLAGS" CPPFLAGS="$PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS" \
-    && docker-php-ext-configure zip --with-libzip \
     && docker-php-ext-install \
         exif \
-        json \
         opcache \
         pdo_pgsql \
-        zip \
     #
     # Compile and enable imagick extension
     && pecl install imagick-$IMAGICK_VERSION \
