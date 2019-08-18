@@ -36,7 +36,7 @@ before_install:
         -c "
         mc config host add doop http://minio:9000 $MINIO_ACCESS_KEY $MINIO_SECRET_KEY
         && mc mb doop/$MINIO_BUCKET
-        && mc policy download doop/$MINIO_BUCKET
+        && mc policy set download doop/$MINIO_BUCKET
         "
     - psql -c "CREATE DATABASE test_db;" -U postgres
     - pecl channel-update pecl.php.net
