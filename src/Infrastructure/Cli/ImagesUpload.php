@@ -71,7 +71,7 @@ final class ImagesUpload extends Console\Command\Command
         if ($fileInfo->isFile() && $fileInfo->isReadable()) {
             $file = $fileInfo->openFile();
 
-            return (string)$file->fread($file->getSize());
+            return (string) $file->fread($file->getSize());
         }
 
         throw new InvalidArgument('File is not readable', InvalidArgument::CODE_READ_FILE);

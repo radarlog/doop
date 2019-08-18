@@ -30,27 +30,27 @@ class HashTest extends UnitTestCase
     {
         $hash = Image\Hash::calculate('value');
 
-        self::assertSame('f32b67c7e26342af42efabc674d441dca0a281c5', (string)$hash);
+        self::assertSame('f32b67c7e26342af42efabc674d441dca0a281c5', (string) $hash);
     }
 
     public function testValue(): void
     {
         $hash = new Image\Hash('f32b67c7e26342af42efabc674d441dca0a281c5');
 
-        self::assertSame('f32b67c7e26342af42efabc674d441dca0a281c5', (string)$hash);
+        self::assertSame('f32b67c7e26342af42efabc674d441dca0a281c5', (string) $hash);
     }
 
     public function testLength(): void
     {
         $hash = new Image\Hash('f32b67c7e26342af42efabc674d441dca0a281c5');
 
-        self::assertSame(40, strlen((string)$hash));
+        self::assertSame(40, strlen((string) $hash));
     }
 
     public function testLowerCase(): void
     {
         $hash = new Image\Hash('F32B67C7E26342AF42EFABC674D441DCA0A281C5');
 
-        self::assertSame('f32b67c7e26342af42efabc674d441dca0a281c5', (string)$hash);
+        self::assertSame('f32b67c7e26342af42efabc674d441dca0a281c5', (string) $hash);
     }
 }

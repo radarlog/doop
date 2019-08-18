@@ -27,7 +27,7 @@ class ConnectionTest extends UnitTestCase
 
     public function testEndpoint(): void
     {
-        self::assertSame('https://some-s3-host.dtl:42', (string)$this->client->getEndpoint());
+        self::assertSame('https://some-s3-host.dtl:42', (string) $this->client->getEndpoint());
     }
 
     public function testStyleEndpoint(): void
