@@ -30,7 +30,7 @@ final class FindAllImages implements Query\Image\FindAll
             $qb->getParameters(),
             static function (array $row) {
                 return new Query\Image\UuidNameDate($row['uuid'], $row['name'], $row['uploaded_at']);
-            }
+            },
         );
     }
 }

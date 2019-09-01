@@ -8,5 +8,5 @@ use PHPUnit\Framework\TestCase;
 // phpcs:disable SlevomatCodingStandard.Classes.TraitUseSpacing.IncorrectLinesCountAfterLastUse
 class UnitTestCase extends TestCase
 {
-    use FixtureTrait;
+    use Fixtures;
 }

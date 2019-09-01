@@ -18,7 +18,7 @@ final class Version20190312220423 extends AbstractMigration
     {
         $this->abortIf(
             $this->connection->getDatabasePlatform()->getName() !== 'postgresql',
-            'Migration can only be executed safely on "postgres"'
+            'Migration can only be executed safely on "postgres"',
         );
 
         $this->addSql("
@@ -36,7 +36,7 @@ final class Version20190312220423 extends AbstractMigration
     {
         $this->abortIf(
             $this->connection->getDatabasePlatform()->getName() !== 'postgresql',
-            'Migration can only be executed safely on "postgres"'
+            'Migration can only be executed safely on "postgres"',
         );
 
         $this->addSql('DROP TABLE images');

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Tests;
 
-trait FixtureTrait
+trait Fixtures
 {
     protected function fixturePath(string $path): string
     {

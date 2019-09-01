@@ -37,7 +37,7 @@ class LoggerBusTest extends UnitTestCase
                 return $context['code'] === $exception->getCode()
                     && $context['exception'] === $exception
                     && $context['unique_command_fqcn']['fqcnHandler'] === 'unique_fqcn_handler';
-            })
+            }),
         );
 
         $loggerBus = new Command\LoggerBus($logger, $innerBus);

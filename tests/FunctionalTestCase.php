@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class FunctionalTestCase extends KernelTestCase
 {
-    use FixtureTrait;
+    use Fixtures;
 
     /** @var Kernel */
     protected static $kernel;
