@@ -1,4 +1,4 @@
-version: '3'
+version: '3.4'
 
 networks:
     doop:
@@ -24,7 +24,9 @@ services:
             - minio-create-bucket
             - postgres
         container_name: doop-php
-        build: docker/php
+        build:
+            context: docker/php
+            target: development
         restart: ${DOCKER_RESTART}
         networks:
             - doop
