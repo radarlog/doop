@@ -50,7 +50,7 @@ class UploadTypeTest extends Form\Test\TypeTestCase
     {
         $this->form->submit(['image' => true, 'submit' => true]);
 
-        $this->assertTrue($this->form->isValid());
-        $this->assertTrue($this->form->isSubmitted());
+        self::assertTrue($this->form->isValid());
+        self::assertTrue($this->form->isSubmitted());
     }
 }

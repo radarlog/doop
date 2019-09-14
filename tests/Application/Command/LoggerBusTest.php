@@ -14,7 +14,7 @@ class LoggerBusTest extends UnitTestCase
         $innerBus = $this->createMock(Command\Bus::class);
 
         $logger = $this->createMock(LoggerInterface::class);
-        $logger->expects($this->never())->method('error');
+        $logger->expects(self::never())->method('error');
 
         $loggerBus = new Command\LoggerBus($logger, $innerBus);
 
@@ -31,7 +31,7 @@ class LoggerBusTest extends UnitTestCase
         $innerBus->method('execute')->willThrowException($exception);
 
         $logger = $this->createMock(LoggerInterface::class);
-        $logger->expects($this->once())->method('error')->with(
+        $logger->expects(self::once())->method('error')->with(
             'catch me',
             self::callback(static function (array $context) use ($exception) {
                 return $context['code'] === $exception->getCode()
@@ -55,7 +55,7 @@ class LoggerBusTest extends UnitTestCase
             ->setMethods(['fqcnHandler', 'method'])
             ->getMock();
 
-        $command->expects($this->any())
+        $command->expects(self::any())
             ->method('fqcnHandler')
             ->willReturn('unique_fqcn_handler');
 

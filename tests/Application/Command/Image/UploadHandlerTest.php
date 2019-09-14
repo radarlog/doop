@@ -21,14 +21,14 @@ class UploadHandlerTest extends UnitTestCase
         $repository = $this->createMock(Domain\Repository::class);
 
         $storage
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('upload')
             ->with(self::callback(function (Domain\Image\File $file) {
                 return $this->hash === (string) $file->hash();
             }));
 
         $repository
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('add')
             ->with(self::callback(function (Domain\Image $image) {
                 $state = $image->getState()->asArray();
