@@ -34,13 +34,11 @@ class ImageTest extends ControllerTestCase
     {
         $this->client->request('GET', sprintf('/image/%s', $this->uuid->toString()));
 
-        $headers = $this->client->getResponse()->headers;
+        self::assertResponseIsSuccessful();
 
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-
-        $this->assertSame('image/jpeg', $headers->get('Content-Type'));
-        $this->assertSame('5580', $headers->get('Content-Length'));
-        $this->assertSame('attachment; filename=avatar.jpg', $headers->get('Content-Disposition'));
+        self::assertResponseHeaderSame('Content-Type', 'image/jpeg');
+        self::assertResponseHeaderSame('Content-Length', '5580');
+        self::assertResponseHeaderSame('Content-Disposition', 'attachment; filename=avatar.jpg');
     }
 
     public function testNotFound(): void

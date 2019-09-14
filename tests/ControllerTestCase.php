@@ -3,18 +3,23 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Tests;
 
-use Symfony\Bundle\FrameworkBundle\Client;
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestAssertionsTrait;
 
 class ControllerTestCase extends DbTestCase
 {
-    /** @var Client */
+    use WebTestAssertionsTrait;
+
+    /** @var KernelBrowser */
     protected $client;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->client = self::$container->get('test.client');
-        $this->client->disableReboot();
+        $client = self::$container->get('test.client');
+        $client->disableReboot();
+
+        $this->client = self::getClient($client);
     }
 }

@@ -11,6 +11,6 @@ class IndexTest extends ControllerTestCase
     {
         $this->client->request('GET', '/');
 
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        self::assertResponseIsSuccessful();
     }
 }

@@ -21,6 +21,6 @@ class UploadTest extends ControllerTestCase
             ],
         ]);
 
-        $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
+        self::assertResponseStatusCodeSame(302);
     }
 }
