@@ -39,7 +39,7 @@ class ImageTest extends ControllerTestCase
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
         $this->assertSame('image/jpeg', $headers->get('Content-Type'));
-        $this->assertSame(5580, $headers->get('Content-Length'));
+        $this->assertSame('5580', $headers->get('Content-Length'));
         $this->assertSame('attachment; filename=avatar.jpg', $headers->get('Content-Disposition'));
     }
 
@@ -47,6 +47,6 @@ class ImageTest extends ControllerTestCase
     {
         $this->client->request('GET', '/image/572b3706-ffb8-423c-a317-d0ca8016a345');
 
-        $this->assertEquals(404, $this->client->getResponse()->getStatusCode());
+        self::assertResponseStatusCodeSame(404);
     }
 }
