@@ -10,10 +10,6 @@ ENV RUNTIME_DEPS imagemagick postgresql-libs
 ENV XDEBUG_VERSION 2.7.2
 ENV IMAGICK_VERSION 3.4.4
 
-# workaround https://github.com/docker/for-linux/issues/264
-ENV DOCKER_HOSTS host.docker.internal gateway.docker.internal
-RUN ip -4 route list match 0/0 | awk '{print $3 "$DOCKER_HOSTS"}' >> /etc/hosts
-
 RUN set -e \
     && cd /tmp \
     #
