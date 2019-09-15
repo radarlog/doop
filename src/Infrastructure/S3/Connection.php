@@ -3,9 +3,12 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Infrastructure\S3;
 
-use Aws\Credentials;
+use Aws\Credentials\Credentials;
 use Aws\S3\S3ClientInterface;
 use Aws\Sdk;
+use Radarlog\Doop\Infrastructure\S3\Connection\Endpoint;
+use Radarlog\Doop\Infrastructure\S3\Connection\Key;
+use Radarlog\Doop\Infrastructure\S3\Connection\Region;
 
 final class Connection
 {
@@ -15,47 +18,28 @@ final class Connection
     /** @var Sdk */
     private $sdk;
 
-    public function __construct(string $dsn)
+    public function __construct(Endpoint $endpoint, Key $key, Key $secret, Region $region)
     {
         $this->sdk = new Sdk([
-            'credentials' => $this->credentialsFromDsn($dsn),
-            'endpoint' => $this->endpointFromDsn($dsn),
-            'region' => $this->regionFromDsn($dsn),
+            'credentials' => new Credentials($key->decoded(), $secret->decoded()),
+            'endpoint' => $endpoint->url(),
+            'region' => $region->name(),
             'version' => self::LATEST_VERSION,
         ]);
     }
 
     /**
-     * @link https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region
+     * @throws InvalidArgument
      */
+    public static function from(string $endpoint, string $key, string $secret, string $region): self
+    {
+        return new self(new Endpoint($endpoint), new Key($key), new Key($secret), new Region($region));
+    }
+
     public function createS3Client(bool $usePathStyle): S3ClientInterface
     {
         return $this->sdk->createS3([
             'use_path_style_endpoint' => $usePathStyle,
         ]);
-    }
-
-    private function credentialsFromDsn(string $dsn): Credentials\CredentialsInterface
-    {
-        $user = parse_url($dsn, PHP_URL_USER);
-        $pass = parse_url($dsn, PHP_URL_PASS);
-
-        return new Credentials\Credentials($user, $pass);
-    }
-
-    private function endpointFromDsn(string $dsn): string
-    {
-        $scheme = parse_url($dsn, PHP_URL_SCHEME);
-        $host = parse_url($dsn, PHP_URL_HOST);
-        $port = parse_url($dsn, PHP_URL_PORT) ?? 443;
-
-        return sprintf('%s://%s:%d', $scheme, $host, $port);
-    }
-
-    private function regionFromDsn(string $dsn): string
-    {
-        $region = parse_url($dsn, PHP_URL_PATH);
-
-        return ltrim($region, '/');
     }
 }

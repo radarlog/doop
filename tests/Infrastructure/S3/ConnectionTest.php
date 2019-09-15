@@ -4,58 +4,58 @@ declare(strict_types=1);
 namespace Radarlog\Doop\Tests\Infrastructure\S3;
 
 use Aws\Credentials\CredentialsInterface;
-use Aws\S3\S3ClientInterface;
 use Radarlog\Doop\Infrastructure\S3;
+use Radarlog\Doop\Infrastructure\S3\Connection;
 use Radarlog\Doop\Tests\UnitTestCase;
 
 class ConnectionTest extends UnitTestCase
 {
-    /** @var S3ClientInterface */
-    private $client;
+    private const ENDPOINT = 'http://host:42';
+    private const KEY = 'key';
+    private const SECRET = 'secret';
+    private const REGION = 'region';
 
-    /** @var S3\Connection */
-    private $connection;
-
-    protected function setUp(): void
+    public function testFrom(): void
     {
-        parent::setUp();
+        $endpoint = new Connection\Endpoint(self::ENDPOINT);
+        $key = new Connection\Key(self::KEY);
+        $secret = new Connection\Key(self::SECRET);
+        $region = new Connection\Region(self::REGION);
 
-        $this->connection = new S3\Connection('https://user:pass@some-s3-host.dtl:42/some_region');
-        $this->client = $this->connection->createS3Client(S3\Client::PATH_STYLE);
+        $connection1 = new Connection($endpoint, $key, $secret, $region);
+        $connection2 = Connection::from(self::ENDPOINT, self::KEY, self::SECRET, self::REGION);
+
+        self::assertEquals($connection1, $connection2);
     }
 
-    public function testS3Region(): void
+    public function testRegion(): void
     {
-        self::assertSame('some_region', $this->client->getRegion());
+        $connection = Connection::from(self::ENDPOINT, self::KEY, self::SECRET, self::REGION);
+
+        $client = $connection->createS3Client(S3\Client::USE_PATH_STYLE);
+
+        self::assertSame(self::REGION, $client->getRegion());
     }
 
     public function testEndpoint(): void
     {
-        self::assertSame('https://some-s3-host.dtl:42', (string) $this->client->getEndpoint());
-    }
+        $connection = Connection::from(self::ENDPOINT, self::KEY, self::SECRET, self::REGION);
 
-    public function styleEndpointProvider(): iterable
-    {
-        yield [S3\Client::PATH_STYLE];
-        yield [S3\Client::HOST_STYLE];
-    }
+        $client = $connection->createS3Client(S3\Client::USE_PATH_STYLE);
 
-    /**
-     * @dataProvider styleEndpointProvider
-     */
-    public function testStyleEndpoint(bool $usePathStyle): void
-    {
-        $client = $this->connection->createS3Client($usePathStyle);
-
-        self::assertSame($usePathStyle, (bool)$client->getConfig('use_path_style_endpoint'));
+        self::assertSame(self::ENDPOINT, (string) $client->getEndpoint());
     }
 
     public function testCredentials(): void
     {
-        /** @var CredentialsInterface $credentials */
-        $credentials = $this->client->getCredentials()->wait();
+        $connection = Connection::from(self::ENDPOINT, self::KEY, self::SECRET, self::REGION);
 
-        self::assertSame('user', $credentials->getAccessKeyId());
-        self::assertSame('pass', $credentials->getSecretKey());
+        $client = $connection->createS3Client(S3\Client::USE_PATH_STYLE);
+
+        /** @var CredentialsInterface $credentials */
+        $credentials = $client->getCredentials()->wait();
+
+        self::assertSame(self::KEY, $credentials->getAccessKeyId());
+        self::assertSame(self::SECRET, $credentials->getSecretKey());
     }
 }

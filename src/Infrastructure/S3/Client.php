@@ -8,8 +8,7 @@ use Radarlog\Doop\Domain;
 
 final class Client implements Domain\Storage
 {
-    public const PATH_STYLE = true;
-    public const HOST_STYLE = false;
+    public const USE_PATH_STYLE = true;
 
     private const ACL = 'private';
 

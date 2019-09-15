@@ -60,8 +60,9 @@ services:
         ports:
             - 9000:9000
         environment:
-            MINIO_ACCESS_KEY: minio
-            MINIO_SECRET_KEY: minio330
+            MINIO_ACCESS_KEY: ${S3_KEY}
+            MINIO_SECRET_KEY: ${S3_SECRET}
+            MINIO_REGION: ${S3_REGION}
         command: server /data
 
     minio-create-bucket:
@@ -76,6 +77,6 @@ services:
             - sh
             - -c
             - |-
-                mc config host add doop http://minio:9000 minio minio330
-                mc mb doop/${S3_BUCKET}
+                mc config host add doop ${S3_ENDPOINT} ${S3_KEY} ${S3_SECRET}
+                mc mb --region ${S3_REGION} --ignore-existing doop/${S3_BUCKET}
                 mc policy set download doop/${S3_BUCKET}

@@ -28,7 +28,12 @@ services:
 
     # S3
     Radarlog\Doop\Infrastructure\S3\Connection:
-        arguments: ['%env(string:S3_DSN)%']
+        factory: Radarlog\Doop\Infrastructure\S3\Connection::from
+        arguments:
+            - '%env(string:S3_ENDPOINT)%'
+            - '%env(string:S3_KEY)%'
+            - '%env(string:S3_SECRET)%'
+            - '%env(string:S3_REGION)%'
     Radarlog\Doop\Infrastructure\S3\Client:
         arguments: ['%env(string:S3_BUCKET)%', '%env(bool:S3_USE_PATH_STYLE)%']
 

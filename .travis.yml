@@ -12,12 +12,13 @@ cache:
 env:
     global:
         - APP_ENV=test
-        - MINIO_ACCESS_KEY=minio
-        - MINIO_SECRET_KEY=minio330
-        - MINIO_BUCKET=test-bucket
         - SQL_MASTER=pgsql://postgres:@127.0.0.1:5432/test_db
         - SQL_SLAVES=pgsql://postgres:@127.0.0.1:5432/test_db
-        - S3_DSN=http://minio:minio330@127.0.0.1:9000/test_region
+        - S3_ENDPOINT=http://minio:9000
+        - S3_KEY=minio
+        - S3_SECRET=minio330
+        - S3_REGION=test-region
+        - S3_BUCKET=test-bucket
 
 services:
     - docker
@@ -26,17 +27,18 @@ services:
 before_install:
     - docker run --name minio -d
         -p 9000:9000
-        -e MINIO_ACCESS_KEY=$MINIO_ACCESS_KEY
-        -e MINIO_SECRET_KEY=$MINIO_SECRET_KEY
+        -e MINIO_ACCESS_KEY=$S3_KEY
+        -e MINIO_SECRET_KEY=$S3_SECRET
+        -e MINIO_REGION=$S3_REGION
         minio/minio server /data
     - docker run --rm
         --link minio
         --entrypoint sh
         minio/mc
         -c "
-        mc config host add doop http://minio:9000 $MINIO_ACCESS_KEY $MINIO_SECRET_KEY
-        && mc mb doop/$MINIO_BUCKET
-        && mc policy set download doop/$MINIO_BUCKET
+        mc config host add doop $S3_ENDPOINT $S3_KEY $S3_SECRET
+        && mc mb --region $S3_REGION --ignore-existing doop/$S3_BUCKET
+        && mc policy set download doop/$S3_BUCKET
         "
     - psql -c "CREATE DATABASE test_db;" -U postgres
     - pecl channel-update pecl.php.net
