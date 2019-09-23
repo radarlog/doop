@@ -14,7 +14,7 @@ env:
         - APP_ENV=test
         - SQL_MASTER=pgsql://postgres:@127.0.0.1:5432/test_db
         - SQL_SLAVES=pgsql://postgres:@127.0.0.1:5432/test_db
-        - S3_ENDPOINT=http://minio:9000
+        - S3_ENDPOINT=http://127.0.0.1:9000
         - S3_KEY=minio
         - S3_SECRET=minio330
         - S3_REGION=test-region
