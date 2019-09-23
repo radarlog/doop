@@ -33,6 +33,7 @@ before_install:
         minio/minio server /data
     - docker run --rm
         --link minio
+        --network host
         --entrypoint sh
         minio/mc
         -c "
