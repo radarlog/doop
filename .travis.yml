@@ -32,7 +32,6 @@ before_install:
         -e MINIO_REGION=$S3_REGION
         minio/minio server /data
     - docker run --rm
-        --link minio
         --network host
         --entrypoint sh
         minio/mc
