@@ -24,6 +24,9 @@ services:
     - docker
     - postgresql
 
+addons:
+    postgresql: "12.0"
+
 before_install:
     - docker run --name minio -d
         -p 9000:9000

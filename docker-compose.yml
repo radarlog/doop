@@ -39,7 +39,7 @@ services:
 
     postgres:
         container_name: doop-postgres
-        image: postgres:11.3-alpine
+        image: postgres:12.0-alpine
         restart: ${DOCKER_RESTART}
         networks:
             - doop
