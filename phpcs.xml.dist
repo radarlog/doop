@@ -31,12 +31,16 @@
             <property name="lineLimit" value="120"/>
         </properties>
     </rule>
+    <rule ref="Generic.ControlStructures.DisallowYodaConditions"/>
     <rule ref="Generic.Functions.CallTimePassByReference"/>
     <rule ref="Generic.NamingConventions.UpperCaseConstantName"/>
     <rule ref="Generic.PHP.LowerCaseConstant"/>
+    <rule ref="Generic.PHP.RequireStrictTypes"/>
+    <rule ref="Generic.WhiteSpace.SpreadOperatorSpacingAfter"/>
 
     <rule ref="PSR1"/>
     <rule ref="PSR2"/>
+    <rule ref="PSR12"/>
 
     <rule ref="SlevomatCodingStandard.Arrays.DisallowImplicitArrayCreation"/>
     <rule ref="SlevomatCodingStandard.Arrays.TrailingArrayComma"/>
@@ -84,7 +88,7 @@
                 <element value="T_RETURN"/>
                 <element value="T_THROW"/>
                 <!--<element value="T_YIELD"/>-->
-                <!--<element value="T_YIELD_FROM"/>-->
+                <element value="T_YIELD_FROM"/>
             </property>
         </properties>
     </rule>
@@ -147,7 +151,7 @@
     <rule ref="SlevomatCodingStandard.PHP.UselessSemicolon"/>
     <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
         <properties>
-            <property name="newlinesCountBetweenOpenTagAndDeclare" value="1"/>
+            <property name="newlinesCountBetweenOpenTagAndDeclare" value="2"/>
             <property name="newlinesCountAfterDeclare" value="2"/>
             <property name="spacesCountAroundEqualsSign" value="0"/>
         </properties>
@@ -181,6 +185,7 @@
     <rule ref="Squiz.ControlStructures.ForEachLoopDeclaration"/>
     <rule ref="Squiz.ControlStructures.ForLoopDeclaration"/>
     <rule ref="Squiz.ControlStructures.LowercaseDeclaration"/>
+    <rule ref="Squiz.PHP.DisallowMultipleAssignments"/>
     <rule ref="Squiz.PHP.LowercasePHPFunctions"/>
     <rule ref="Squiz.Scope.MemberVarScope"/>
 </ruleset>
