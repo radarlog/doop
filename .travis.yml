@@ -27,9 +27,13 @@ services:
 addons:
     postgresql: "12"
     apt:
+        sources:
+            -   sourceline: deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main 12
+                key_url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
         packages:
             - postgresql-12
             - postgresql-client-12
+            - postgresql-common
 
 before_install:
     - docker run --name minio -d
