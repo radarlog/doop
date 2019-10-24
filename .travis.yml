@@ -54,6 +54,7 @@ before_install:
         && mc mb --region $S3_REGION --ignore-existing doop/$S3_BUCKET
         && mc policy set download doop/$S3_BUCKET
         "
+    - sudo /etc/init.d/postgresql restart
     - psql -c "CREATE DATABASE test_db;" -U postgres
     - pecl channel-update pecl.php.net
     - yes | pecl install imagick
