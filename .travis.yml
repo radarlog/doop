@@ -14,9 +14,9 @@ env:
         - APP_ENV=test
         - PGUSER=postgres
         - PGDATABASE=postgres
-        - PGPORT=5432
-        - SQL_MASTER=pgsql://postgres:postgres@127.0.0.1:5432/test_db
-        - SQL_SLAVES=pgsql://postgres:postgres@127.0.0.1:5432/test_db
+        - PGPORT=5433
+        - SQL_MASTER=pgsql://postgres:postgres@127.0.0.1:5433/test_db
+        - SQL_SLAVES=pgsql://postgres:postgres@127.0.0.1:5433/test_db
         - S3_ENDPOINT=http://127.0.0.1:9000
         - S3_KEY=minio
         - S3_SECRET=minio330
