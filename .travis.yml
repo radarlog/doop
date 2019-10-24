@@ -12,11 +12,9 @@ cache:
 env:
     global:
         - APP_ENV=test
-        - PGUSER=postgres
-        - PGDATABASE=postgres
         - PGPORT=5433
-        - SQL_MASTER=pgsql://postgres:postgres@127.0.0.1:5433/test_db
-        - SQL_SLAVES=pgsql://postgres:postgres@127.0.0.1:5433/test_db
+        - SQL_MASTER=pgsql://postgres:@127.0.0.1:5433/test_db
+        - SQL_SLAVES=pgsql://postgres:@127.0.0.1:5433/test_db
         - S3_ENDPOINT=http://127.0.0.1:9000
         - S3_KEY=minio
         - S3_SECRET=minio330
@@ -29,14 +27,6 @@ services:
 
 addons:
     postgresql: "12"
-    apt:
-        sources:
-            -   sourceline: deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main 12
-                key_url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
-        packages:
-            - postgresql-12
-            - postgresql-client-12
-            - postgresql-common
 
 before_install:
     - docker run --name minio -d
@@ -54,7 +44,6 @@ before_install:
         && mc mb --region $S3_REGION --ignore-existing doop/$S3_BUCKET
         && mc policy set download doop/$S3_BUCKET
         "
-    - sudo /etc/init.d/postgresql restart
     - psql -c "CREATE DATABASE test_db;" -U postgres
     - pecl channel-update pecl.php.net
     - yes | pecl install imagick
