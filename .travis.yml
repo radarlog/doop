@@ -25,7 +25,11 @@ services:
     - postgresql
 
 addons:
-    postgresql: "12.0"
+    postgresql: "12"
+    apt:
+        packages:
+            - postgresql-12
+            - postgresql-client-12
 
 before_install:
     - docker run --name minio -d
