@@ -10,6 +10,7 @@ final class Format
         'gif',
         'jpeg',
         'png',
+        'svg',
     ];
 
     /** @var string */
