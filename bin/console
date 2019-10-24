@@ -16,16 +16,14 @@ $_ENV['APP_ENV'] = $input->getParameterOption(['--env', '-e'], null, true);
 
 if (null !== $_ENV['APP_ENV']) {
     putenv('APP_ENV=' . $_ENV['APP_ENV']);
-    // force loading .env files when --env is defined
-    $_SERVER['APP_ENV'] = null;
 }
 
 if ($input->hasParameterOption('--no-debug', true)) {
-    putenv('APP_DEBUG=' . $_SERVER['APP_DEBUG'] = $_ENV['APP_DEBUG'] = '0');
+    putenv('APP_DEBUG=' . $_ENV['APP_DEBUG'] = '0');
 }
 
 require __DIR__ . '/../bootstrap.php';
 
-$kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
+$kernel = new Kernel($_ENV['APP_ENV'], (bool) $_ENV['APP_DEBUG']);
 $application = new Application($kernel);
 $application->run($input);
