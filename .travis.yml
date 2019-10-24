@@ -38,6 +38,7 @@ addons:
             - postgresql-12
             - postgresql-client-12
             - postgresql-common
+            - postgresql-plpython3-12
 
 before_install:
     - docker run --name minio -d
