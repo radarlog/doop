@@ -41,15 +41,16 @@ before_install:
         && mc mb --region $S3_REGION --ignore-existing doop/$S3_BUCKET
         && mc policy set download doop/$S3_BUCKET
         "
-    - psql -c "CREATE DATABASE test_db;"
-    - pecl channel-update pecl.php.net
-    - yes | pecl install imagick-$IMAGICK_VERSION
 
 install:
+    - pecl channel-update pecl.php.net
+    - yes | pecl install imagick-$IMAGICK_VERSION
     - composer validate  --no-interaction --strict
     - composer install --no-interaction --no-suggest
 
-before_script: bin/console migrations:migrate --no-interaction
+before_script:
+    - psql -c "CREATE DATABASE test_db;"
+    - bin/console migrations:migrate --no-interaction
 
 script:
     - vendor/bin/phpcs -ps
