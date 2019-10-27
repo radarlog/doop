@@ -9,8 +9,6 @@ use Ramsey\Uuid;
 
 final class Identity implements Domain\Identity
 {
-    private const UUID_PATTERN = '/[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[0-9a-f]{4}-[0-9a-f]{12}/';
-
     /** @var string */
     private $uuid;
 
@@ -21,7 +19,7 @@ final class Identity implements Domain\Identity
     {
         $uuid = $uuid ?? $this->new();
 
-        if (preg_match(self::UUID_PATTERN, $uuid) !== 1) {
+        if (!Uuid\Uuid::isValid($uuid)) {
             throw new InvalidArgument('Invalid UUID', InvalidArgument::CODE_UUID);
         }
 
