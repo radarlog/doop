@@ -19,15 +19,15 @@ require __DIR__ . '/vendor/autoload.php';
 
     private const APP_DEBUG = 'APP_DEBUG';
 
+    /**
+     * Load cached env vars if the .env.local.php file exists
+     * Run "composer dump-env prod" to create it (requires symfony/flex >=1.2)
+     */
+    private const CACHED_ENV_FILE = __DIR__ . '/.env.local.php';
+
     public function __construct()
     {
-        // Load cached env vars if the .env.local.php file exists
-        // Run "composer dump-env prod" to create it (requires symfony/flex >=1.2)
-        $env = @include_once __DIR__ . '/.env.local.php';
-
-        if (is_array($env)) {
-            $_ENV += $env;
-        }
+        $this->loadCachedEnv();
 
         $appEnv = $_ENV[self::APP_ENV] ?? self::ENV_DEV;
 
@@ -48,6 +48,20 @@ require __DIR__ . '/vendor/autoload.php';
         // store calculated values
         $_ENV[self::APP_ENV] = $appEnv;
         $_ENV[self::APP_DEBUG] = $appDebug;
+    }
+
+    private function loadCachedEnv(): void
+    {
+        if (!file_exists(self::CACHED_ENV_FILE)) {
+            return;
+        }
+
+        $cachedEnv = require_once self::CACHED_ENV_FILE;
+
+        // phpcs:disable SlevomatCodingStandard.ControlStructures.EarlyExit
+        if (is_array($cachedEnv)) {
+            $_ENV += $cachedEnv;
+        }
     }
 
     private function isAllowedEnv(string $appEnv): bool
