@@ -6,6 +6,7 @@ namespace Radarlog\Doop\Infrastructure\Cli;
 
 use Radarlog\Doop\Application\Query;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Exception\InvalidArgumentException;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -45,7 +46,9 @@ final class ImagesList extends Command
     }
 
     /**
-     * @param array&Query\Image\UuidNameDate[] $images
+     * @param Query\Image\UuidNameDate[] $images
+     *
+     * @throws InvalidArgumentException
      */
     private function renderImages(array $images, Table $table): void
     {

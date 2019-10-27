@@ -23,7 +23,7 @@ final class UploadHandler implements Command\Handler
     }
 
     /**
-     * @param Upload $command
+     * @param Command&Upload $command
      *
      * @throws Image\InvalidArgument
      */

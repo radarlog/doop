@@ -1,0 +1,14 @@
+parameters:
+    paths:
+        - bin
+        - public
+        - src
+        - tests
+
+    level: 5
+
+    ignoreErrors:
+        - '/does not accept (.+)|null/'
+        - '/PHPUnit\\Framework\\MockObject\\MockObject given/'
+        - message: '#Result of || is always true#'
+          path: src/Infrastructure/Kernel.php

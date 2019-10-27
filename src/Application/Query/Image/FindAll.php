@@ -7,7 +7,7 @@ namespace Radarlog\Doop\Application\Query\Image;
 interface FindAll
 {
     /**
-     * @return array&UuidNameDate[]
+     * @return UuidNameDate[]
      */
     public function sortedByUploadDate(): array;
 }
