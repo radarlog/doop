@@ -45,10 +45,14 @@ migrations: ; $(info $(M) Running migrations:)
 .PHONY: run
 run: up composer migrations ; $(info $(M) Environment has been built succesfully)
 
+.PHONY: static-analyze
+static-analyze: ; $(info $(M) Performing static analyze:)
+	docker-compose exec -T php vendor/bin/phpstan analyse
+
 .PHONY: styles-check
 styles-check: ; $(info $(M) Checking coding style:)
 	docker-compose exec -T php vendor/bin/phpcs -ps
 
 .PHONY: tests
-tests: run styles-check ; $(info $(M) Running tests:)
+tests: run styles-check static-analyze ; $(info $(M) Running tests:)
 	docker-compose exec -T php vendor/bin/phpunit
