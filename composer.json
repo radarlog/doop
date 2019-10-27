@@ -42,7 +42,8 @@
         "squizlabs/php_codesniffer": "^3.5",
         "symfony/browser-kit": "^4.3",
         "symfony/dotenv": "^4.3",
-        "thomas-schulz/symfony-meta": "^1.0"
+        "thomas-schulz/symfony-meta": "^1.0",
+        "vimeo/psalm": "^3.6"
     },
     "autoload": {
         "psr-4": {

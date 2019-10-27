@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Infrastructure\Sql\Read;
 
+use Doctrine\DBAL\Driver\Statement;
 use Radarlog\Doop\Application\Query;
 use Radarlog\Doop\Infrastructure\Sql\Connection;
 
@@ -26,8 +27,9 @@ final class FindOneImage implements Query\Image\FindOne
             ->from($this->connection->imagesTable())
             ->where(
                 $qb->expr()->eq('uuid', $qb->createNamedParameter($uuid)),
-            );
+                );
 
+        /** @var Statement $stmt */
         $stmt = $qb->execute();
 
         if ($stmt->rowCount() === 0) {

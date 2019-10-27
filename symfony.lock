@@ -1,4 +1,10 @@
 {
+    "amphp/amp": {
+        "version": "v2.3.2"
+    },
+    "amphp/byte-stream": {
+        "version": "v1.7.0"
+    },
     "aws/aws-sdk-php": {
         "version": "3.88.0"
     },
@@ -20,6 +26,12 @@
     "doctrine/migrations": {
         "version": "v2.0.0"
     },
+    "felixfbecker/advanced-json-rpc": {
+        "version": "v3.0.4"
+    },
+    "felixfbecker/language-server-protocol": {
+        "version": "v1.4.0"
+    },
     "guzzlehttp/guzzle": {
         "version": "6.3.3"
     },
@@ -40,6 +52,9 @@
     },
     "myclabs/deep-copy": {
         "version": "1.8.1"
+    },
+    "netresearch/jsonmapper": {
+        "version": "v1.6.0"
     },
     "nette/bootstrap": {
         "version": "v3.0.1"
@@ -73,6 +88,9 @@
     },
     "ocramius/proxy-manager": {
         "version": "2.2.2"
+    },
+    "openlss/lib-array2xml": {
+        "version": "1.0.0"
     },
     "paragonie/random_compat": {
         "version": "v9.99.99"
@@ -395,8 +413,17 @@
     "twig/twig": {
         "version": "v2.6.2"
     },
+    "vimeo/psalm": {
+        "version": "3.6.2"
+    },
     "webmozart/assert": {
         "version": "1.4.0"
+    },
+    "webmozart/glob": {
+        "version": "4.1.0"
+    },
+    "webmozart/path-util": {
+        "version": "2.3.0"
     },
     "zendframework/zend-code": {
         "version": "3.3.1"

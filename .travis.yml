@@ -55,6 +55,7 @@ before_script:
 script:
     - vendor/bin/phpcs -ps
     - vendor/bin/phpstan analyse --no-progress
+    - vendor/bin/psalm --no-progress --show-info=false
     - vendor/bin/phpunit --coverage-clover var/cache/clover.xml
 
 after_success:
