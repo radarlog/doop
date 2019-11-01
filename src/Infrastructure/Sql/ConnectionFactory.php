@@ -24,7 +24,7 @@ final class ConnectionFactory
         $params = [
             'master' => $masterConnection->getParams(),
             'slaves' => $this->parseSlaves($params['slaves']),
-            'driver' => $driver->getName(),
+            'driver' => $driver,
         ];
 
         $this->connection = new Connection($params, $driver);

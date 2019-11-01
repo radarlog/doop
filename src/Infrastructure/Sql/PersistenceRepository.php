@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Radarlog\Doop\Infrastructure\Sql;
 
 use Doctrine\DBAL\Driver\Statement;
-use Doctrine\DBAL\Types\Type;
+use Doctrine\DBAL\Types\Types;
 use Radarlog\Doop\Domain;
 
 final class PersistenceRepository implements Domain\Repository
@@ -24,10 +24,10 @@ final class PersistenceRepository implements Domain\Repository
             $this->connection->imagesTable(),
             $image->getState()->asArray(),
             [
-                'uuid' => Type::STRING,
-                'hash' => Type::STRING,
-                'name' => Type::STRING,
-                'uploaded_at' => Type::STRING,
+                'uuid' => Types::STRING,
+                'hash' => Types::STRING,
+                'name' => Types::STRING,
+                'uploaded_at' => Types::STRING,
             ],
         );
     }

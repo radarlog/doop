@@ -1,4 +1,4 @@
-FROM php:7.3.10-fpm-alpine3.10 as development
+FROM php:7.3.11-fpm-alpine3.10 as development
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /tmp
@@ -7,7 +7,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin
 ENV BUILD_DEPS $PHPIZE_DEPS imagemagick-dev libjpeg-turbo-dev libpng-dev libtool postgresql-dev
 ENV RUNTIME_DEPS imagemagick postgresql-libs
 
-ENV XDEBUG_VERSION 2.7.2
+ENV XDEBUG_VERSION 2.8.0
 ENV IMAGICK_VERSION 3.4.4
 
 RUN set -e \
