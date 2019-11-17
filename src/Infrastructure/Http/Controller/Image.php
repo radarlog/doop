@@ -13,11 +13,9 @@ use Symfony\Component\HttpFoundation\HeaderUtils;
 
 final class Image extends AbstractController implements Controller
 {
-    /** @var Query\Image\FindOne */
-    private $findOne;
+    private Query\Image\FindOne $findOne;
 
-    /** @var Storage */
-    private $storage;
+    private Storage $storage;
 
     public function __construct(Query\Image\FindOne $findOne, Storage $storage)
     {

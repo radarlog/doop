@@ -9,11 +9,9 @@ use Radarlog\Doop\Tests\UnitTestCase;
 
 class ImageTest extends UnitTestCase
 {
-    /** @var Image\Name */
-    private $name;
+    private Image\Name $name;
 
-    /** @var Image\Hash */
-    private $hash;
+    private Image\Hash $hash;
 
     protected function setUp(): void
     {

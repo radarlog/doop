@@ -9,8 +9,7 @@ use Radarlog\Doop\Tests\UnitTestCase;
 
 class UploadTest extends UnitTestCase
 {
-    /** @var Command\Image\Upload */
-    private $command;
+    private Command\Image\Upload $command;
 
     protected function setUp(): void
     {

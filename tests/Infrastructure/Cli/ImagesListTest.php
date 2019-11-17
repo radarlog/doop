@@ -12,11 +12,9 @@ use Symfony\Component\Console\Tester\CommandTester;
 
 class ImagesListTest extends DbTestCase
 {
-    /** @var Repository */
-    private $repository;
+    private Repository $repository;
 
-    /** @var CommandTester */
-    private $commandTester;
+    private CommandTester $commandTester;
 
     protected function setUp(): void
     {

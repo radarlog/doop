@@ -9,8 +9,7 @@ use Radarlog\Doop\Tests\UnitTestCase;
 
 class FileTest extends UnitTestCase
 {
-    /** @var string */
-    private $content;
+    private string $content;
 
     protected function setUp(): void
     {

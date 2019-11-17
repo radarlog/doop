@@ -10,11 +10,9 @@ use Radarlog\Doop\Tests\UnitTestCase;
 
 class UploadHandlerTest extends UnitTestCase
 {
-    /** @var string */
-    private $name = 'some_name';
+    private string $name = 'some_name';
 
-    /** @var string */
-    private $hash = '2080492d54a6b8579968901f366b13614fe188f2';
+    private string $hash = '2080492d54a6b8579968901f366b13614fe188f2';
 
     public function testHandle(): void
     {

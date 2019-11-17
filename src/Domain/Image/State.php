@@ -15,8 +15,8 @@ final class State implements Domain\State
         'uploaded_at',
     ];
 
-    /** @var array */
-    private $state = [];
+    /** @var string[] */
+    private array $state = [];
 
     public function __construct(array $state)
     {

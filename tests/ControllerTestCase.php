@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Tests;
 
-use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestAssertionsTrait;
+use Symfony\Component\BrowserKit\AbstractBrowser;
 
 class ControllerTestCase extends DbTestCase
 {
     use WebTestAssertionsTrait;
 
-    /** @var KernelBrowser */
-    protected $client;
+    protected AbstractBrowser $client;
 
     protected function setUp(): void
     {

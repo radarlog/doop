@@ -8,17 +8,13 @@ final class Image implements Aggregate
 {
     private const DATETIME_FORMAT = 'Y-m-d H:i:s';
 
-    /** @var Image\Identity */
-    private $id;
+    private Image\Identity $id;
 
-    /** @var Image\Name */
-    private $name;
+    private Image\Name $name;
 
-    /** @var Image\Hash */
-    private $hash;
+    private Image\Hash $hash;
 
-    /** @var \DateTimeImmutable */
-    private $uploadedAt;
+    private \DateTimeImmutable $uploadedAt;
 
     public function __construct(Image\Hash $hash, Image\Name $name)
     {

@@ -8,8 +8,7 @@ final class Hash
 {
     private const SHA1_LENGTH = 40;
 
-    /** @var string */
-    private $hash;
+    private string $hash;
 
     public function __construct(string $hash)
     {

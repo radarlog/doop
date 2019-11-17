@@ -16,8 +16,7 @@ final class ImagesList extends Command
     /** @var string */
     protected static $defaultName = 'images:list';
 
-    /** @var Query\Image\FindAll */
-    private $findAll;
+    private Query\Image\FindAll $findAll;
 
     public function __construct(Query\Image\FindAll $findAll)
     {

@@ -8,8 +8,7 @@ use Doctrine\DBAL;
 
 final class ConnectionFactory
 {
-    /** @var Connection */
-    private $connection;
+    private Connection $connection;
 
     private function __construct(array $params)
     {

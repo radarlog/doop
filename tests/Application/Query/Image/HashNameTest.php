@@ -9,8 +9,7 @@ use Radarlog\Doop\Tests\UnitTestCase;
 
 class HashNameTest extends UnitTestCase
 {
-    /** @var HashName */
-    private $queryDto;
+    private HashName $queryDto;
 
     protected function setUp(): void
     {

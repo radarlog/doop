@@ -9,8 +9,7 @@ use Radarlog\Doop\Tests\UnitTestCase;
 
 class UuidNameDateTest extends UnitTestCase
 {
-    /** @var UuidNameDate */
-    private $queryDto;
+    private UuidNameDate $queryDto;
 
     protected function setUp(): void
     {

@@ -9,8 +9,7 @@ use Ramsey\Uuid;
 
 final class Identity implements Domain\Identity
 {
-    /** @var string */
-    private $uuid;
+    private string $uuid;
 
     /**
      * @throws InvalidArgument

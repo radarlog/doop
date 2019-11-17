@@ -10,8 +10,7 @@ use Radarlog\Doop\Tests\FunctionalTestCase;
 
 class ConnectionTest extends FunctionalTestCase
 {
-    /** @var Connection */
-    private $connection;
+    private Connection $connection;
 
     protected function setUp(): void
     {

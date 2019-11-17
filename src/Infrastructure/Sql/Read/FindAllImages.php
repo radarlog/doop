@@ -9,8 +9,7 @@ use Radarlog\Doop\Infrastructure\Sql\Connection;
 
 final class FindAllImages implements Query\Image\FindAll
 {
-    /** @var Connection */
-    private $connection;
+    private Connection $connection;
 
     public function __construct(Connection $connection)
     {

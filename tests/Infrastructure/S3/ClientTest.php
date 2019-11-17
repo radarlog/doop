@@ -10,8 +10,7 @@ use Radarlog\Doop\Tests\FunctionalTestCase;
 
 class ClientTest extends FunctionalTestCase
 {
-    /** @var string */
-    private $hash = '2080492d54a6b8579968901f366b13614fe188f2';
+    private string $hash = '2080492d54a6b8579968901f366b13614fe188f2';
 
     public function testUpload(): void
     {

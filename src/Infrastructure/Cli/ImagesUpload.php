@@ -15,11 +15,10 @@ final class ImagesUpload extends Console\Command\Command
     /** @var string */
     protected static $defaultName = 'images:upload';
 
-    /** @var Command\Bus */
-    private $bus;
+    private Command\Bus $bus;
 
     /** @var string[] */
-    private $paths = [];
+    private array $paths = [];
 
     public function __construct(Command\Bus $bus)
     {

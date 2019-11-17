@@ -9,11 +9,9 @@ use Radarlog\Doop\Application\Command;
 
 final class LoggerBus implements Bus
 {
-    /** @var LoggerInterface */
-    private $logger;
+    private LoggerInterface $logger;
 
-    /** @var Bus */
-    private $innerBus;
+    private Bus $innerBus;
 
     public function __construct(LoggerInterface $logger, Bus $innerBus)
     {
