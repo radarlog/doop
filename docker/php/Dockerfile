@@ -30,8 +30,9 @@ RUN set -e \
     && pecl install imagick-$IMAGICK_VERSION \
     && docker-php-ext-enable imagick \
     #
-    # Compile Xdebug extension
-    && pecl install xdebug-$XDEBUG_VERSION \
+    # Compile PCOV and Xdebug extensions
+    && yes | pecl install pcov \
+    && yes | pecl install xdebug-$XDEBUG_VERSION \
     #
     # Clean up
     && apk del --purge $BUILD_DEPS \
