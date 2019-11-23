@@ -1,4 +1,7 @@
 parameters:
+    parameters:
+        tmpDir: var/cache/phpstan
+
     paths:
         - bin
         - public

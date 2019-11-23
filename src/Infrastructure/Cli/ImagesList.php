@@ -32,17 +32,19 @@ final class ImagesList extends Command
     }
 
     // phpcs:disable SlevomatCodingStandard.Functions.UnusedParameter
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $images = $this->findAll->sortedByUploadDate();
 
-        if (count($images) === 0) {
+        if ($images === []) {
             $output->writeln('No images uploaded');
 
-            return;
+            return 0;
         }
 
         $this->renderImages($images, new Table($output));
+
+        return 0;
     }
 
     /**

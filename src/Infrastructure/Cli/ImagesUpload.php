@@ -44,7 +44,7 @@ final class ImagesUpload extends Console\Command\Command
     }
 
     // phpcs:disable SlevomatCodingStandard.Functions.UnusedParameter
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         foreach ($this->paths as $path) {
             try {
@@ -55,6 +55,8 @@ final class ImagesUpload extends Console\Command\Command
                 $output->writeln(sprintf('%s: <error>%s</error>', $path, $e->getMessage()));
             }
         }
+
+        return 0;
     }
 
     private function uploadFile(string $path): void
