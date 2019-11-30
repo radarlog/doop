@@ -17,7 +17,7 @@ final class Identity implements Domain\Identity
      */
     public function __construct(?string $uuid = null)
     {
-        $uuid = $uuid ?? $this->new();
+        $uuid ??= $this->new();
 
         if (!Uuid\Uuid::isValid($uuid)) {
             throw new InvalidArgument('Invalid UUID', InvalidArgument::CODE_UUID);
