@@ -29,9 +29,11 @@ final class FindAllImages implements Query\Image\FindAll
         return $this->connection->project(
             $qb->getSQL(),
             $qb->getParameters(),
-            static function (array $row) {
-                return new Query\Image\UuidNameDate($row['uuid'], $row['name'], $row['uploaded_at']);
-            },
+            fn(array $row) => new Query\Image\UuidNameDate(
+                $row['uuid'],
+                $row['name'],
+                $row['uploaded_at'],
+            ),
         );
     }
 }
