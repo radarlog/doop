@@ -9,7 +9,7 @@ use Radarlog\Doop\Application\Command;
 final class SimpleBus implements Bus
 {
     /** @var Handler[] */
-    private array $handlers = [];
+    private array $handlers;
 
     public function __construct(iterable $handlers)
     {

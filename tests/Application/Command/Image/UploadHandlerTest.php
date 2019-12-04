@@ -10,9 +10,9 @@ use Radarlog\Doop\Tests\UnitTestCase;
 
 class UploadHandlerTest extends UnitTestCase
 {
-    private string $name = 'some_name';
+    private const NAME = 'some_name';
 
-    private string $hash = '2080492d54a6b8579968901f366b13614fe188f2';
+    private const HASH = '2080492d54a6b8579968901f366b13614fe188f2';
 
     public function testHandle(): void
     {
@@ -22,23 +22,23 @@ class UploadHandlerTest extends UnitTestCase
         $storage
             ->expects(self::once())
             ->method('upload')
-            ->with(self::callback(function (Domain\Image\File $file) {
-                return $this->hash === (string) $file->hash();
-            }));
+            ->with(self::callback(
+                static fn(Domain\Image\File $file): bool => self::HASH === (string) $file->hash(),
+            ));
 
         $repository
             ->expects(self::once())
             ->method('add')
-            ->with(self::callback(function (Domain\Image $image) {
+            ->with(self::callback(static function (Domain\Image $image) {
                 $state = $image->getState()->asArray();
 
-                return $this->hash === $state['hash'] && $this->name === $state['name'];
+                return self::HASH === $state['hash'] && self::NAME === $state['name'];
             }));
 
         $fixture = $this->fixturePath('Images/avatar.jpg');
         $content = file_get_contents($fixture);
 
-        $command = new Command\Image\Upload($this->name, $content);
+        $command = new Command\Image\Upload(self::NAME, $content);
 
         $handler = new Command\Image\UploadHandler($storage, $repository);
 

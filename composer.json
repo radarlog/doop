@@ -19,15 +19,15 @@
         "ext-imagick": "*",
         "ext-json": "*",
         "ext-pdo": "*",
-        "aws/aws-sdk-php": "^3.117",
+        "aws/aws-sdk-php": "^3.125",
         "doctrine/dbal": "^2.10",
         "doctrine/migrations": "^2.2",
         "psr/log": "^1.1",
-        "ramsey/uuid": "^3.8",
+        "ramsey/uuid": "^3.9",
         "symfony/config": "^5.0",
         "symfony/console": "^5.0",
         "symfony/dependency-injection": "^5.0",
-        "symfony/flex": "^1.4",
+        "symfony/flex": "^1.5",
         "symfony/form": "^5.0",
         "symfony/framework-bundle": "^5.0",
         "symfony/monolog-bundle": "^3.3",
@@ -35,14 +35,14 @@
         "symfony/yaml": "^5.0"
     },
     "require-dev": {
-        "phpstan/phpstan-shim": "^0.11.19",
+        "phpstan/phpstan": "^0.12.0",
         "phpunit/phpunit": "^8.4",
-        "psalm/phar": "^3.6",
         "slevomat/coding-standard": "^5.0",
         "squizlabs/php_codesniffer": "^3.5",
         "symfony/browser-kit": "^5.0",
         "symfony/dotenv": "^5.0",
-        "thomas-schulz/symfony-meta": "^1.4"
+        "thomas-schulz/symfony-meta": "^1.4",
+        "vimeo/psalm": "^3.7"
     },
     "autoload": {
         "psr-4": {

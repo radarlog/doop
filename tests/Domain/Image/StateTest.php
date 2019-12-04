@@ -33,7 +33,7 @@ class StateTest extends UnitTestCase
             'uuid' => 'uuid',
             'hash' => 'hash',
             'name' => 'name',
-            'uploaded_at' => new \DateTimeImmutable('2019-03-18 23:22:36'),
+            'uploaded_at' => '2019-03-18 23:22:36',
         ];
 
         $state = new Image\State($origin);

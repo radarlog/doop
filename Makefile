@@ -48,7 +48,7 @@ run: up composer migrations ; $(info $(M) Environment has been built succesfully
 .PHONY: static-analyze
 static-analyze: ; $(info $(M) Performing static analyze:)
 	docker-compose exec -T php vendor/bin/phpstan.phar analyse
-	docker-compose exec -T php vendor/bin/psalm.phar --show-info=false
+	docker-compose exec -T php vendor/bin/psalm --show-info=false
 
 .PHONY: styles-check
 styles-check: ; $(info $(M) Checking coding style:)

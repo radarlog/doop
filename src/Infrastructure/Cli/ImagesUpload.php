@@ -18,7 +18,7 @@ final class ImagesUpload extends Console\Command\Command
     private Command\Bus $bus;
 
     /** @var string[] */
-    private array $paths = [];
+    private array $paths;
 
     public function __construct(Command\Bus $bus)
     {
@@ -37,7 +37,7 @@ final class ImagesUpload extends Console\Command\Command
     // phpcs:disable SlevomatCodingStandard.Functions.UnusedParameter
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
-        $paths = (array) $input->getArgument('path') ?? [];
+        $paths = (array) $input->getArgument('path');
 
         $this->paths = array_unique($paths);
     }
