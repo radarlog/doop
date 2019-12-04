@@ -11,8 +11,7 @@ use Symfony\Component\HttpFoundation;
 
 final class Index extends AbstractController implements Http\Controller
 {
-    /** @var Query\Image\FindAll */
-    private $findAll;
+    private Query\Image\FindAll $findAll;
 
     public function __construct(Query\Image\FindAll $findAll)
     {

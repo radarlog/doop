@@ -9,8 +9,7 @@ use Radarlog\Doop\Infrastructure\Sql\Connection;
 
 final class FindAllImages implements Query\Image\FindAll
 {
-    /** @var Connection */
-    private $connection;
+    private Connection $connection;
 
     public function __construct(Connection $connection)
     {
@@ -29,9 +28,11 @@ final class FindAllImages implements Query\Image\FindAll
         return $this->connection->project(
             $qb->getSQL(),
             $qb->getParameters(),
-            static function (array $row) {
-                return new Query\Image\UuidNameDate($row['uuid'], $row['name'], $row['uploaded_at']);
-            },
+            static fn(array $row) => new Query\Image\UuidNameDate(
+                $row['uuid'],
+                $row['name'],
+                $row['uploaded_at'],
+            ),
         );
     }
 }

@@ -10,8 +10,7 @@ use Radarlog\Doop\Tests\FunctionalTestCase;
 
 class ClientTest extends FunctionalTestCase
 {
-    /** @var string */
-    private $hash = '2080492d54a6b8579968901f366b13614fe188f2';
+    private const HASH = '2080492d54a6b8579968901f366b13614fe188f2';
 
     public function testUpload(): void
     {
@@ -24,7 +23,7 @@ class ClientTest extends FunctionalTestCase
 
         $client->upload($file);
 
-        $object = $client->download($this->hash);
+        $object = $client->download(self::HASH);
 
         self::assertSame((string) $file->hash(), (string) $object->hash());
         self::assertSame($content, $object->content());

@@ -16,8 +16,7 @@ final class Connection
     /** @link https://docs.aws.amazon.com/sdk-for-php/v3/developer-guide/guide_configuration.html#cfg-version */
     private const LATEST_VERSION = '2006-03-01';
 
-    /** @var Sdk */
-    private $sdk;
+    private Sdk $sdk;
 
     public function __construct(Endpoint $endpoint, Key $key, Key $secret, Region $region)
     {

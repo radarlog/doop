@@ -8,8 +8,7 @@ use Radarlog\Doop\Infrastructure\S3\InvalidArgument;
 
 final class Endpoint
 {
-    /** @var string */
-    private $url;
+    private string $url;
 
     public function __construct(string $url)
     {

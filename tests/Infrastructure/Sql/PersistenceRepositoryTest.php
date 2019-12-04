@@ -10,8 +10,7 @@ use Radarlog\Doop\Tests\DbTestCase;
 
 class PersistenceRepositoryTest extends DbTestCase
 {
-    /** @var Repository */
-    private $repository;
+    private Repository $repository;
 
     protected function setUp(): void
     {

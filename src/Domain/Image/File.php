@@ -6,14 +6,11 @@ namespace Radarlog\Doop\Domain\Image;
 
 final class File
 {
-    /** @var Hash */
-    private $hash;
+    private Hash $hash;
 
-    /** @var string */
-    private $content;
+    private string $content;
 
-    /** @var Format */
-    private $format;
+    private Format $format;
 
     /**
      * @noinspection PhpDocMissingThrowsInspection

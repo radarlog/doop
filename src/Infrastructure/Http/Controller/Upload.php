@@ -11,8 +11,7 @@ use Symfony\Component\HttpFoundation;
 
 final class Upload extends AbstractController implements Http\Controller
 {
-    /** @var Command\Bus */
-    private $bus;
+    private Command\Bus $bus;
 
     public function __construct(Command\Bus $bus)
     {

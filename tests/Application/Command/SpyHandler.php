@@ -8,8 +8,7 @@ use Radarlog\Doop\Application\Command;
 
 final class SpyHandler implements Command\Handler
 {
-    /** @var Command */
-    public $command;
+    public Command $command;
 
     public function handle(Command $command): void
     {

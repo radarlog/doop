@@ -13,11 +13,9 @@ final class Format
         'svg',
     ];
 
-    /** @var string */
-    private $format;
+    private string $format;
 
-    /** @var string */
-    private $mime;
+    private string $mime;
 
     /**
      * @throws InvalidArgument

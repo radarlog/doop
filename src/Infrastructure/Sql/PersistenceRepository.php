@@ -10,8 +10,7 @@ use Radarlog\Doop\Domain;
 
 final class PersistenceRepository implements Domain\Repository
 {
-    /** @var Connection */
-    private $connection;
+    private Connection $connection;
 
     public function __construct(Connection $connection)
     {

@@ -10,8 +10,7 @@ use Radarlog\Doop\Infrastructure\Sql\Connection;
 
 final class FindOneImage implements Query\Image\FindOne
 {
-    /** @var Connection */
-    private $connection;
+    private Connection $connection;
 
     public function __construct(Connection $connection)
     {

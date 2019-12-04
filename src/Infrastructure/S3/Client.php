@@ -13,11 +13,9 @@ final class Client implements Domain\Storage
 
     private const ACL = 'private';
 
-    /** @var S3ClientInterface */
-    private $client;
+    private S3ClientInterface $client;
 
-    /** @var string */
-    private $bucketName;
+    private string $bucketName;
 
     public function __construct(string $bucketName, bool $usePathStyle, Connection $connection)
     {

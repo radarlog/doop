@@ -11,8 +11,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 
 class ImagesUploadTest extends DbTestCase
 {
-    /** @var CommandTester */
-    private $commandTester;
+    private CommandTester $commandTester;
 
     protected function setUp(): void
     {

@@ -9,8 +9,7 @@ final class Name
     private const LENGTH_MIN = 3;
     private const LENGTH_MAX = 255;
 
-    /** @var string */
-    private $name;
+    private string $name;
 
     public function __construct(string $name)
     {

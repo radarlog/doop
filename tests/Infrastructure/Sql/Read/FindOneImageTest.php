@@ -11,8 +11,7 @@ use Radarlog\Doop\Tests\DbTestCase;
 
 class FindOneImageTest extends DbTestCase
 {
-    /** @var Query\Image\FindOne */
-    private $query;
+    private Query\Image\FindOne $query;
 
     protected function setUp(): void
     {

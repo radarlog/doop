@@ -11,8 +11,7 @@ class ControllerTestCase extends DbTestCase
 {
     use WebTestAssertionsTrait;
 
-    /** @var AbstractBrowser */
-    protected $client;
+    protected AbstractBrowser $client;
 
     protected function setUp(): void
     {

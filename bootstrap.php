@@ -7,7 +7,6 @@ use Symfony\Component\ErrorHandler\Debug;
 
 require __DIR__ . '/vendor/autoload.php';
 
-// phpcs:disable PSR12.Classes.AnonClassDeclaration.CloseBraceSameLine
 (new class ()
 {
     private const APP_ENV = 'APP_ENV';

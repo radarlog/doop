@@ -6,11 +6,9 @@ namespace Radarlog\Doop\Application\Query\Image;
 
 final class HashName
 {
-    /** @var string */
-    private $hash;
+    private string $hash;
 
-    /** @var string */
-    private $name;
+    private string $name;
 
     public function __construct(string $hash, string $name)
     {
