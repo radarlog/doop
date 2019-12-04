@@ -49,6 +49,9 @@ class LoggerBusTest extends UnitTestCase
          * @see LoggerBus::dumpCommandMethods
          * @see \PHPUnit\Framework\MockObject\Generator::generateMock
          * @see vendor/phpunit/phpunit/src/Framework/MockObject/Generator/mocked_class_method.tpl.dist
+         *
+         * @psalm-suppress DeprecatedMethod
+         * @see https://github.com/sebastianbergmann/phpunit/issues/3911
          */
         $command = $this
             ->getMockBuilder(Command::class)
@@ -63,6 +66,9 @@ class LoggerBusTest extends UnitTestCase
         $this->expectException(Command\RuntimeException::class);
         $this->expectExceptionCode($exception->getCode());
 
+        /**
+         * @psalm-suppress InvalidArgument
+         */
         $loggerBus->execute($command);
     }
 }

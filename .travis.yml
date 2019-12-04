@@ -56,7 +56,7 @@ before_script:
 script:
     - vendor/bin/phpcs -ps
     - vendor/bin/phpstan.phar analyse --no-progress
-    - vendor/bin/psalm.phar --no-progress --show-info=false
+    - vendor/bin/psalm --no-progress --show-info=false
     - vendor/bin/phpunit -d pcov.enabled=1 --coverage-clover var/cache/clover.xml
 
 after_success:

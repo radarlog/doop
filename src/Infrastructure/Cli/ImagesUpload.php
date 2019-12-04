@@ -38,7 +38,7 @@ final class ImagesUpload extends Console\Command\Command
     // phpcs:disable SlevomatCodingStandard.Functions.UnusedParameter
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
-        $paths = (array) $input->getArgument('path') ?? [];
+        $paths = (array) $input->getArgument('path');
 
         $this->paths = array_unique($paths);
     }
