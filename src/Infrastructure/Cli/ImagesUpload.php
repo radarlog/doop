@@ -10,6 +10,9 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * @psalm-suppress PropertyNotSetInConstructor
+ */
 final class ImagesUpload extends Console\Command\Command
 {
     /** @var string */

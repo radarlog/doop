@@ -10,7 +10,11 @@ use Radarlog\Doop\Infrastructure\Http\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation;
 use Symfony\Component\HttpFoundation\HeaderUtils;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+/**
+ * @psalm-suppress PropertyNotSetInConstructor
+ */
 final class Image extends AbstractController implements Controller
 {
     private Query\Image\FindOne $findOne;
@@ -26,9 +30,9 @@ final class Image extends AbstractController implements Controller
     /**
      * @param HttpFoundation\Request $request
      *
-     * @return HttpFoundation\Response
      * @throws \InvalidArgumentException
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @throws NotFoundHttpException
+     * @return HttpFoundation\Response
      */
     public function __invoke(HttpFoundation\Request $request): HttpFoundation\Response
     {

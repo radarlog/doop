@@ -16,10 +16,11 @@
     </projectFiles>
 
     <issueHandlers>
-        <MoreSpecificImplementedParamType errorLevel="suppress"/>
-        <PropertyNotSetInConstructor errorLevel="suppress"/>
-
-        <!-- tests folder -->
+        <PropertyNotSetInConstructor>
+            <errorLevel type="suppress">
+                <directory name="tests"/>
+            </errorLevel>
+        </PropertyNotSetInConstructor>
         <InternalMethod>
             <errorLevel type="suppress">
                 <directory name="tests"/>
