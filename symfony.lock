@@ -35,6 +35,9 @@
     "myclabs/deep-copy": {
         "version": "1.8.1"
     },
+    "nikic/php-parser": {
+        "version": "v4.3.0"
+    },
     "ocramius/package-versions": {
         "version": "1.4.0"
     },
@@ -64,6 +67,9 @@
     },
     "phpspec/prophecy": {
         "version": "1.8.0"
+    },
+    "phpstan/phpdoc-parser": {
+        "version": "0.3.5"
     },
     "phpstan/phpstan": {
         "version": "0.11.19"

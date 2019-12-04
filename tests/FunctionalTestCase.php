@@ -6,12 +6,13 @@ namespace Radarlog\Doop\Tests;
 
 use Radarlog\Doop\Infrastructure\Kernel;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\HttpKernel\KernelInterface;
 
 class FunctionalTestCase extends KernelTestCase
 {
     use Fixtures;
 
-    /** @var Kernel */
+    /** @var Kernel|KernelInterface */
     protected static $kernel;
 
     protected function setUp(): void
@@ -25,6 +26,6 @@ class FunctionalTestCase extends KernelTestCase
     {
         parent::tearDown();
 
-        self::$kernel = null;
+        self::ensureKernelShutdown();
     }
 }
