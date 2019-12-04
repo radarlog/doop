@@ -28,7 +28,7 @@ final class FindOneImage implements Query\Image\FindOne
             ->from($this->connection->imagesTable())
             ->where(
                 $qb->expr()->eq('uuid', $qb->createNamedParameter($uuid)),
-                );
+            );
 
         $stmt = $qb->execute();
 

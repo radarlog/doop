@@ -27,7 +27,7 @@ final class PersistenceRepository implements Domain\Repository
                 'name' => Types::STRING,
                 'uploaded_at' => Types::STRING,
             ],
-            );
+        );
     }
 
     /**
@@ -42,7 +42,7 @@ final class PersistenceRepository implements Domain\Repository
             ->from($this->connection->imagesTable())
             ->where(
                 $qb->expr()->eq('uuid', $qb->createNamedParameter($id->toString())),
-                );
+            );
 
         $stmt = $qb->execute();
 
