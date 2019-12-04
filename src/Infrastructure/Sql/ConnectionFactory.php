@@ -10,6 +10,12 @@ final class ConnectionFactory
 {
     private Connection $connection;
 
+    /**
+     * @param string[] $params
+     *
+     * @throws InvalidArgument
+     * @throws \InvalidArgumentException
+     */
     private function __construct(array $params)
     {
         if (!isset($params['slaves'], $params['master'])) {
@@ -29,6 +35,12 @@ final class ConnectionFactory
         $this->connection = new Connection($params, $driver);
     }
 
+    /**
+     * @param string[] $params
+     *
+     * @throws InvalidArgument
+     * @throws \InvalidArgumentException
+     */
     public static function create(array $params): Connection
     {
         $factory = new self($params);
@@ -36,6 +48,9 @@ final class ConnectionFactory
         return $factory->connection;
     }
 
+    /**
+     * @return string[][]
+     */
     private function parseSlaves(string $slaves): array
     {
         $slaves = preg_split('/[\n|,]/', $slaves);

@@ -18,9 +18,14 @@ final class State implements Domain\State
     /** @var string[] */
     private array $state;
 
+    /**
+     * @param string[] $state
+     *
+     * @throws InvalidArgument
+     */
     public function __construct(array $state)
     {
-        $expected = array_flip(self::EXPECTED_KEYS);
+        $expected = array_combine(self::EXPECTED_KEYS, self::EXPECTED_KEYS);
 
         // check whether all keys are exactly the same
         if (array_diff_key($state, $expected) !== array_diff_key($expected, $state)) {
@@ -30,6 +35,9 @@ final class State implements Domain\State
         $this->state = $state;
     }
 
+    /**
+     * @return string[]
+     */
     public function asArray(): array
     {
         return $this->state;

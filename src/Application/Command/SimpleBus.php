@@ -14,6 +14,9 @@ final class SimpleBus implements Bus
     /** @var Handler[] */
     private array $handlers;
 
+    /**
+     * @param Handler[] $handlers
+     */
     public function __construct(iterable $handlers)
     {
         foreach ($handlers as $handler) {

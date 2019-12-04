@@ -34,6 +34,9 @@ final class LoggerBus implements Bus
         }
     }
 
+    /**
+     * @return string[]
+     */
     private function dumpCommandMethods(Command $command): array
     {
         $methods = [];
@@ -42,7 +45,7 @@ final class LoggerBus implements Bus
             try {
                 $methods[$methodName] = call_user_func([$command, $methodName]);
             } catch (\Throwable $e) {
-                $methods[$methodName] = $e;
+                $methods[$methodName] = (string) $e;
             }
         }
 
