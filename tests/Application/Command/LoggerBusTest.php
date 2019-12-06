@@ -35,7 +35,7 @@ class LoggerBusTest extends UnitTestCase
         $logger->expects(self::once())->method('error')->with(
             'catch me',
             self::callback(static function (array $context) use ($exception) {
-                return $context['code'] === $exception->getCode()
+                return $context['code'] === 330
                     && $context['exception'] === $exception
                     && $context['unique_command_fqcn']['fqcnHandler'] === 'unique_fqcn_handler';
             }),
@@ -48,15 +48,12 @@ class LoggerBusTest extends UnitTestCase
          *
          * @see LoggerBus::dumpCommandMethods
          * @see \PHPUnit\Framework\MockObject\Generator::generateMock
-         * @see vendor/phpunit/phpunit/src/Framework/MockObject/Generator/mocked_class_method.tpl.dist
-         *
-         * @psalm-suppress DeprecatedMethod
-         * @see https://github.com/sebastianbergmann/phpunit/issues/3911
          */
         $command = $this
             ->getMockBuilder(Command::class)
             ->setMockClassName('unique_command_fqcn')
-            ->setMethods(['fqcnHandler', 'method'])
+            ->onlyMethods(['fqcnHandler'])
+            ->addMethods(['method'])
             ->getMock();
 
         $command->expects(self::any())
@@ -64,7 +61,7 @@ class LoggerBusTest extends UnitTestCase
             ->willReturn('unique_fqcn_handler');
 
         $this->expectException(Command\RuntimeException::class);
-        $this->expectExceptionCode($exception->getCode());
+        $this->expectExceptionCode(330);
 
         /**
          * @psalm-suppress InvalidArgument
