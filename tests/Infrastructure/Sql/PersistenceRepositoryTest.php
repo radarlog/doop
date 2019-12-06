@@ -30,11 +30,9 @@ class PersistenceRepositoryTest extends DbTestCase
         $image1 = new Image($hash, $name);
         $this->repository->add($image1);
 
-        $id = $image1->id();
+        $image2 = $this->repository->getById($image1->id());
 
-        $image2 = $this->repository->getById($id);
-
-        self::assertSame($id->toString(), $image2->id()->toString());
+        self::assertEquals($image1->id(), $image2->id());
     }
 
     public function testGetByNonExistingId(): void

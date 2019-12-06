@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Domain;
 
-final class Image implements Aggregate
+final class Image
 {
     private const DATETIME_FORMAT = 'Y-m-d H:i:s';
 
@@ -24,12 +24,12 @@ final class Image implements Aggregate
         $this->uploadedAt = new \DateTimeImmutable();
     }
 
-    public function id(): Identity
+    public function id(): Image\Identity
     {
         return $this->id;
     }
 
-    public function getState(): State
+    public function getState(): Image\State
     {
         return new Image\State([
             'uuid' => $this->id->toString(),
@@ -39,7 +39,7 @@ final class Image implements Aggregate
         ]);
     }
 
-    public static function fromState(State $state): Aggregate
+    public static function fromState(Image\State $state): self
     {
         $state = $state->asArray();
 
