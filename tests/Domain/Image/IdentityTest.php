@@ -12,7 +12,7 @@ class IdentityTest extends UnitTestCase
     public function testNonUuid(): void
     {
         $this->expectException(Image\InvalidArgument::class);
-        $this->expectExceptionCode(Image\InvalidArgument::CODE_UUID);
+        $this->expectExceptionCode(1001);
 
         new Image\Identity('non-uuid');
     }

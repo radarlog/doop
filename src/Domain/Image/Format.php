@@ -25,11 +25,11 @@ final class Format
         try {
             $format = strtolower($image->getImageFormat());
         } catch (\ImagickException $e) {
-            throw new InvalidArgument('Cannot read format', InvalidArgument::CODE_IMAGE, $e);
+            throw new InvalidArgument($e->getMessage(), InvalidArgument::CODE_FORMAT_READ, $e);
         }
 
         if (!in_array($format, self::SUPPORTED, true)) {
-            throw new InvalidArgument('Unsupported format', InvalidArgument::CODE_IMAGE);
+            throw new InvalidArgument('Unsupported format', InvalidArgument::CODE_FORMAT_CREATE);
         }
 
         $this->format = $format;

@@ -21,7 +21,7 @@ class ConnectionFactoryTest extends UnitTestCase
     public function testCreateFromInvalidParamsThrowsException(array $params): void
     {
         $this->expectException(Sql\InvalidArgument::class);
-        $this->expectExceptionCode(Sql\InvalidArgument::CODE_SQL_SERVERS);
+        $this->expectExceptionCode(3000);
 
         Sql\ConnectionFactory::create($params);
     }

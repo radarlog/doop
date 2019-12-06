@@ -53,7 +53,7 @@ class FindOneImageTest extends DbTestCase
     public function testNameByHashNotFound(): void
     {
         $this->expectException(Sql\NotFound::class);
-        $this->expectExceptionCode(Sql\NotFound::CODE_SQL_NOT_FOUND);
+        $this->expectExceptionCode(3001);
 
         $this->query->hashNameByUuid('384a2c67-4d6d-41a9-9954-b5bf75de708e');
     }

@@ -62,7 +62,7 @@ class ImageTest extends UnitTestCase
         ]);
 
         $this->expectException(Image\InvalidArgument::class);
-        $this->expectExceptionCode(Image\InvalidArgument::CODE_DATE);
+        $this->expectExceptionCode(1005);
 
         Image::fromState($state);
     }

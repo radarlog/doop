@@ -14,8 +14,7 @@ class FormatTest extends UnitTestCase
         $image = new \Imagick();
 
         $this->expectException(Image\InvalidArgument::class);
-        $this->expectExceptionCode(Image\InvalidArgument::CODE_IMAGE);
-        $this->expectExceptionMessage('Cannot read format');
+        $this->expectExceptionCode(1006);
 
         new Image\Format($image);
     }
@@ -25,8 +24,7 @@ class FormatTest extends UnitTestCase
         $image = new \Imagick($this->fixturePath('Images/avatar.tga'));
 
         $this->expectException(Image\InvalidArgument::class);
-        $this->expectExceptionCode(Image\InvalidArgument::CODE_IMAGE);
-        $this->expectExceptionMessage('Unsupported format');
+        $this->expectExceptionCode(1007);
 
         new Image\Format($image);
     }
@@ -45,7 +43,7 @@ class FormatTest extends UnitTestCase
     {
         $image = new \Imagick($fixturePath);
 
-        self::assertSame($format, strval(new Image\Format($image)));
+        self::assertSame($format, (string) new Image\Format($image));
     }
 
     public function mimeProvider(): \Generator

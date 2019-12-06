@@ -22,7 +22,7 @@ class HashTest extends UnitTestCase
     public function testInvalidHash(string $value): void
     {
         $this->expectException(Image\InvalidArgument::class);
-        $this->expectExceptionCode(Image\InvalidArgument::CODE_HASH);
+        $this->expectExceptionCode(1004);
 
         new Image\Hash($value);
     }

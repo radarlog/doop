@@ -29,7 +29,7 @@ class EndpointTest extends UnitTestCase
     public function testExceptionOnInvalidUrl(): void
     {
         $this->expectException(InvalidArgument::class);
-        $this->expectExceptionCode(InvalidArgument::CODE_S3_ENDPOINT);
+        $this->expectExceptionCode(3200);
 
         new Endpoint('non-url');
     }

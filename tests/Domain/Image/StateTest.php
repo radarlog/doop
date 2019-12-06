@@ -22,7 +22,7 @@ class StateTest extends UnitTestCase
     public function testInvalidKeysThrowException(array $state): void
     {
         $this->expectException(Image\InvalidArgument::class);
-        $this->expectExceptionCode(Image\InvalidArgument::CODE_STATE);
+        $this->expectExceptionCode(1002);
 
         new Image\State($state);
     }

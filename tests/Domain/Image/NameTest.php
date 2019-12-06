@@ -24,7 +24,7 @@ class NameTest extends UnitTestCase
     public function testInvalidLength(string $origin): void
     {
         $this->expectException(Image\InvalidArgument::class);
-        $this->expectExceptionCode(Image\InvalidArgument::CODE_NAME);
+        $this->expectExceptionCode(1003);
 
         new Image\Name($origin);
     }

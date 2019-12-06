@@ -40,7 +40,7 @@ class PersistenceRepositoryTest extends DbTestCase
         $identity = new Image\Identity('572b3706-ffb8-423c-a317-d0ca8016a345');
 
         $this->expectException(NotFound::class);
-        $this->expectExceptionCode(NotFound::CODE_SQL_NOT_FOUND);
+        $this->expectExceptionCode(3001);
 
         $this->repository->getById($identity);
     }
