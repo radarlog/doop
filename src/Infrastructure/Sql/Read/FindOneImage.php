@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Radarlog\Doop\Infrastructure\Sql\Read;
 
 use Radarlog\Doop\Application\Query;
-use Radarlog\Doop\Infrastructure\Sql\Connection;
+use Radarlog\Doop\Infrastructure\Sql;
 
 final class FindOneImage implements Query\Image\FindOne
 {
-    private Connection $connection;
+    private Sql\Connection $connection;
 
-    public function __construct(Connection $connection)
+    public function __construct(Sql\Connection $connection)
     {
         $this->connection = $connection;
     }
@@ -19,7 +19,7 @@ final class FindOneImage implements Query\Image\FindOne
     /**
      * @psalm-suppress PossiblyInvalidMethodCall
      */
-    public function hashNameByUuid(string $uuid): ?Query\Image\HashName
+    public function hashNameByUuid(string $uuid): Query\Image\HashName
     {
         $qb = $this->connection->createQueryBuilder();
 
@@ -33,7 +33,7 @@ final class FindOneImage implements Query\Image\FindOne
         $stmt = $qb->execute();
 
         if ($stmt->rowCount() === 0) {
-            return null;
+            throw new Sql\NotFound('Not found', Sql\NotFound::CODE_SQL_NOT_FOUND);
         }
 
         $row = $stmt->fetch(\PDO::FETCH_ASSOC);

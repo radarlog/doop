@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Radarlog\Doop\Infrastructure\Sql\Read;
 
 use Radarlog\Doop\Application\Query;
-use Radarlog\Doop\Infrastructure\Sql\Connection;
+use Radarlog\Doop\Infrastructure\Sql;
 
 final class FindAllImages implements Query\Image\FindAll
 {
-    private Connection $connection;
+    private Sql\Connection $connection;
 
-    public function __construct(Connection $connection)
+    public function __construct(Sql\Connection $connection)
     {
         $this->connection = $connection;
     }

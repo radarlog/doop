@@ -33,7 +33,7 @@ final class PersistenceRepository implements Domain\Repository
     /**
      * @psalm-suppress PossiblyInvalidMethodCall
      */
-    public function getById(Domain\Identity $id): ?Domain\Aggregate
+    public function getById(Domain\Identity $id): Domain\Aggregate
     {
         $qb = $this->connection->createQueryBuilder();
 
@@ -47,7 +47,7 @@ final class PersistenceRepository implements Domain\Repository
         $stmt = $qb->execute();
 
         if ($stmt->rowCount() === 0) {
-            return null;
+            throw new NotFound('Not found', NotFound::CODE_SQL_NOT_FOUND);
         }
 
         $row = $stmt->fetch(\PDO::FETCH_ASSOC);

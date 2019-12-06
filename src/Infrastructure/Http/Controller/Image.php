@@ -7,6 +7,7 @@ namespace Radarlog\Doop\Infrastructure\Http\Controller;
 use Radarlog\Doop\Application\Query;
 use Radarlog\Doop\Domain\Storage;
 use Radarlog\Doop\Infrastructure\Http\Controller;
+use Radarlog\Doop\Infrastructure\Sql;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation;
 use Symfony\Component\HttpFoundation\HeaderUtils;
@@ -35,10 +36,10 @@ final class Image extends AbstractController implements Controller
     {
         $uuid = $request->attributes->get('uuid');
 
-        $result = $this->findOne->hashNameByUuid($uuid);
-
-        if ($result === null) {
-            throw $this->createNotFoundException();
+        try {
+            $result = $this->findOne->hashNameByUuid($uuid);
+        } catch (Sql\NotFound $e) {
+            throw new NotFoundHttpException($e->getMessage(), $e);
         }
 
         $file = $this->storage->download($result->hash());

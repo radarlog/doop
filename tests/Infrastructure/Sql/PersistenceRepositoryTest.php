@@ -6,6 +6,7 @@ namespace Radarlog\Doop\Tests\Infrastructure\Sql;
 
 use Radarlog\Doop\Domain\Image;
 use Radarlog\Doop\Domain\Repository;
+use Radarlog\Doop\Infrastructure\Sql\NotFound;
 use Radarlog\Doop\Tests\DbTestCase;
 
 class PersistenceRepositoryTest extends DbTestCase
@@ -38,6 +39,9 @@ class PersistenceRepositoryTest extends DbTestCase
     {
         $identity = new Image\Identity('572b3706-ffb8-423c-a317-d0ca8016a345');
 
-        self::assertNull($this->repository->getById($identity));
+        $this->expectException(NotFound::class);
+        $this->expectExceptionCode(NotFound::CODE_SQL_NOT_FOUND);
+
+        $this->repository->getById($identity);
     }
 }

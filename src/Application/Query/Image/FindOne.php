@@ -6,5 +6,5 @@ namespace Radarlog\Doop\Application\Query\Image;
 
 interface FindOne
 {
-    public function hashNameByUuid(string $uuid): ?HashName;
+    public function hashNameByUuid(string $uuid): HashName;
 }
