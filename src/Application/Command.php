@@ -10,4 +10,9 @@ interface Command
      * Fully Qualified Class Name of a corresponding command handler
      */
     public function fqcnHandler(): string;
+
+    /**
+     * @return string[]
+     */
+    public function serialize(): array;
 }

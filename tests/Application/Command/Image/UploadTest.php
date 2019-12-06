@@ -15,21 +15,34 @@ class UploadTest extends UnitTestCase
     {
         parent::setUp();
 
-        $this->command = new Command\Image\Upload('name', 'content');
+        $this->command = new Command\Image\Upload('some_name', 'some_content');
     }
 
     public function testName(): void
     {
-        self::assertSame('name', $this->command->name());
+        self::assertSame('some_name', $this->command->name());
     }
 
     public function testContent(): void
     {
-        self::assertSame('content', $this->command->content());
+        self::assertSame('some_content', $this->command->content());
     }
 
     public function testFqcnHandler(): void
     {
         self::assertSame(Command\Image\UploadHandler::class, $this->command->fqcnHandler());
+    }
+
+    public function testSerialize(): void
+    {
+        $dump = $this->command->serialize();
+
+        self::assertCount(2, $dump);
+
+        self::assertArrayHasKey('name', $dump);
+        self::assertArrayHasKey('content', $dump);
+
+        self::assertSame('some_name', $dump['name']);
+        self::assertSame('some_content', $dump['content']);
     }
 }

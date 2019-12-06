@@ -32,4 +32,9 @@ final class Upload implements Command
     {
         return UploadHandler::class;
     }
+
+    public function serialize(): array
+    {
+        return get_object_vars($this);
+    }
 }

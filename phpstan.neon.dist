@@ -10,8 +10,6 @@ parameters:
     level: 6
 
     ignoreErrors:
-        - message: '/PHPUnit\\Framework\\MockObject\\MockObject given/'
-          path: tests/Application/Command/LoggerBusTest.php
         - message: '/Result of || is always true/'
           path: src/Infrastructure/Kernel.php
         - message: '/no value type specified in iterable type/'
