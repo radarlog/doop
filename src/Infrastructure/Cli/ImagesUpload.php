@@ -15,7 +15,11 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 final class ImagesUpload extends Console\Command\Command
 {
-    /** @var string */
+    /**
+     * @var string
+     *
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     */
     protected static $defaultName = 'images:upload';
 
     private Command\Bus $bus;

@@ -23,7 +23,7 @@ class UploadHandlerTest extends UnitTestCase
             ->expects(self::once())
             ->method('upload')
             ->with(self::callback(
-                static fn(Domain\Image\File $file): bool => self::HASH === (string) $file->hash(),
+                static fn(Domain\Image\File $file): bool => (string) $file->hash() === self::HASH,
             ));
 
         $repository
@@ -32,7 +32,7 @@ class UploadHandlerTest extends UnitTestCase
             ->with(self::callback(static function (Domain\Image $image) {
                 $state = $image->getState()->asArray();
 
-                return self::HASH === $state['hash'] && self::NAME === $state['name'];
+                return $state['hash'] === self::HASH && $state['name'] === self::NAME;
             }));
 
         $fixture = $this->fixturePath('Images/avatar.jpg');

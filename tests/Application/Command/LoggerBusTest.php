@@ -34,11 +34,11 @@ class LoggerBusTest extends UnitTestCase
         $logger = $this->createMock(LoggerInterface::class);
         $logger->expects(self::once())->method('error')->with(
             'catch me',
-            self::callback(static function (array $context) use ($exception) {
-                return $context['code'] === 330
+            self::callback(
+                static fn(array $context): bool => $context['code'] === 330
                     && $context['exception'] === $exception
-                    && $context['unique_command_fqcn']['fqcnHandler'] === 'unique_fqcn_handler';
-            }),
+                    && $context['unique_command_fqcn']['fqcnHandler'] === 'unique_fqcn_handler',
+            ),
         );
 
         $loggerBus = new Command\LoggerBus($logger, $innerBus);

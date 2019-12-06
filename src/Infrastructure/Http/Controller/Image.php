@@ -28,11 +28,8 @@ final class Image extends AbstractController implements Controller
     }
 
     /**
-     * @param HttpFoundation\Request $request
-     *
      * @throws \InvalidArgumentException
      * @throws NotFoundHttpException
-     * @return HttpFoundation\Response
      */
     public function __invoke(HttpFoundation\Request $request): HttpFoundation\Response
     {

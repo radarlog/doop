@@ -13,7 +13,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class ImagesList extends Command
 {
-    /** @var string */
+    /**
+     * @var string
+     *
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
+     */
     protected static $defaultName = 'images:list';
 
     private Query\Image\FindAll $findAll;

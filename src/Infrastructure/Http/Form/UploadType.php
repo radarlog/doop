@@ -32,7 +32,7 @@ final class UploadType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'empty_data' => fn(FormInterface $form): ?UploadedFile => $form->get('image')->getData(),
+            'empty_data' => static fn(FormInterface $form): ?UploadedFile => $form->get('image')->getData(),
         ]);
     }
 }

@@ -16,6 +16,9 @@ final class FindAllImages implements Query\Image\FindAll
         $this->connection = $connection;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function sortedByUploadDate(): array
     {
         $qb = $this->connection->createQueryBuilder();

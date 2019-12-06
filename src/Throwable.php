@@ -6,9 +6,9 @@ namespace Radarlog\Doop;
 
 interface Throwable extends \Throwable
 {
-    # @formatter:off
+    // @formatter:off
 
-    # DOMAIN LAYER
+    // DOMAIN LAYER
     public const CODE_IMAGE          = 1000;
     public const CODE_UUID           = 1001;
     public const CODE_STATE          = 1002;
@@ -16,13 +16,13 @@ interface Throwable extends \Throwable
     public const CODE_HASH           = 1004;
     public const CODE_DATE           = 1005;
 
-    # APPLICATION LAYER
+    // APPLICATION LAYER
     public const CODE_HANDLER        = 2000;
 
-    # INFRASTRUCTURE LAYER
+    // INFRASTRUCTURE LAYER
     public const CODE_SQL_SERVERS    = 3000;
     public const CODE_READ_FILE      = 3100;
     public const CODE_S3_ENDPOINT    = 3200;
 
-    # @formatter:on
+    // @formatter:on
 }

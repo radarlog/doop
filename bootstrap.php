@@ -55,7 +55,7 @@ require __DIR__ . '/vendor/autoload.php';
             return;
         }
 
-        $cachedEnv = require_once self::CACHED_ENV_FILE;
+        $cachedEnv = require self::CACHED_ENV_FILE;
 
         // phpcs:disable SlevomatCodingStandard.ControlStructures.EarlyExit
         if (is_array($cachedEnv)) {
@@ -65,7 +65,7 @@ require __DIR__ . '/vendor/autoload.php';
 
     private function isAllowedEnv(string $appEnv): bool
     {
-        return in_array($appEnv, [self::ENV_PROD, self::ENV_DEV, self::ENV_TEST]);
+        return in_array($appEnv, [self::ENV_PROD, self::ENV_DEV, self::ENV_TEST], true);
     }
 
     private function isDevEnv(string $appEnv): bool

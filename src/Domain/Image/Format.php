@@ -28,7 +28,7 @@ final class Format
             throw new InvalidArgument('Cannot read format', InvalidArgument::CODE_IMAGE, $e);
         }
 
-        if (!in_array($format, self::SUPPORTED)) {
+        if (!in_array($format, self::SUPPORTED, true)) {
             throw new InvalidArgument('Unsupported format', InvalidArgument::CODE_IMAGE);
         }
 

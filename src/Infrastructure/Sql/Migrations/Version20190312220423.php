@@ -22,7 +22,7 @@ final class Version20190312220423 extends AbstractMigration
             'Migration can only be executed safely on "postgres"',
         );
 
-        $this->addSql("
+        $this->addSql('
             CREATE TABLE images (
                 uuid        UUID          NOT NULL,
                 hash        CHAR(40)      NOT NULL,
@@ -30,7 +30,7 @@ final class Version20190312220423 extends AbstractMigration
                 uploaded_at TIMESTAMP     NOT NULL,
                 PRIMARY KEY (uuid)
             )
-        ");
+        ');
     }
 
     public function down(Schema $schema): void

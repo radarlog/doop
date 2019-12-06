@@ -13,7 +13,6 @@ final class File
     private Format $format;
 
     /**
-     * @noinspection PhpDocMissingThrowsInspection
      * @throws InvalidArgument
      */
     public function __construct(string $content)
