@@ -8,5 +8,5 @@ interface Storage
 {
     public function upload(Image\File $file): void;
 
-    public function download(string $hash): Image\File;
+    public function download(Image\Hash $hash): Image\File;
 }

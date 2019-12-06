@@ -4,24 +4,26 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Application\Query\Image;
 
+use Radarlog\Doop\Domain\Image;
+
 final class HashName
 {
-    private string $hash;
+    private Image\Hash $hash;
 
-    private string $name;
+    private Image\Name $name;
 
     public function __construct(string $hash, string $name)
     {
-        $this->hash = $hash;
-        $this->name = $name;
+        $this->hash = new Image\Hash($hash);
+        $this->name = new Image\Name($name);
     }
 
-    public function hash(): string
+    public function hash(): Image\Hash
     {
         return $this->hash;
     }
 
-    public function name(): string
+    public function name(): Image\Name
     {
         return $this->name;
     }

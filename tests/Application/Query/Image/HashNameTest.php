@@ -15,16 +15,16 @@ class HashNameTest extends UnitTestCase
     {
         parent::setUp();
 
-        $this->queryDto = new HashName('hash', 'name');
+        $this->queryDto = new HashName('f32b67c7e26342af42efabc674d441dca0a281c5', 'name');
     }
 
     public function testHash(): void
     {
-        self::assertSame('hash', $this->queryDto->hash());
+        self::assertSame('f32b67c7e26342af42efabc674d441dca0a281c5', (string) $this->queryDto->hash());
     }
 
     public function testName(): void
     {
-        self::assertSame('name', $this->queryDto->name());
+        self::assertSame('name', (string) $this->queryDto->name());
     }
 }

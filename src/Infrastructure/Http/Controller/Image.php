@@ -41,7 +41,7 @@ final class Image extends AbstractController implements Controller
 
         $file = $this->storage->download($result->hash());
 
-        $disposition = HeaderUtils::makeDisposition(HeaderUtils::DISPOSITION_ATTACHMENT, $result->name());
+        $disposition = HeaderUtils::makeDisposition(HeaderUtils::DISPOSITION_ATTACHMENT, (string) $result->name());
 
         return new HttpFoundation\Response($file->content(), 200, [
             'Content-Type' => $file->format()->mime(),

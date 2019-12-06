@@ -30,11 +30,11 @@ final class Client implements Domain\Storage
         ]);
     }
 
-    public function download(string $hash): Domain\Image\File
+    public function download(Domain\Image\Hash $hash): Domain\Image\File
     {
         $object = $this->client->getObject([
             'Bucket' => $this->bucketName,
-            'Key' => $hash,
+            'Key' => (string) $hash,
         ]);
 
         $content = $object->getBody()->getContentAsString();
