@@ -30,7 +30,7 @@ final class Kernel extends HttpKernel\Kernel
     public function registerBundles(): iterable
     {
         foreach (self::BUNDLES as $class => $envs) {
-            if (isset($envs['all']) || isset($envs[$this->environment])) {
+            if ($envs[$this->environment] ?? $envs['all'] ?? false) {
                 yield new $class();
             }
         }
