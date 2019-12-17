@@ -7,7 +7,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin
 ENV BUILD_DEPS $PHPIZE_DEPS imagemagick-dev libjpeg-turbo-dev libpng-dev libtool postgresql-dev
 ENV RUNTIME_DEPS imagemagick postgresql-libs
 
-ENV XDEBUG_VERSION 2.8.1
+ENV XDEBUG_VERSION 2.9.2
 ENV IMAGICK_VERSION 3.4.4
 
 RUN set -e \
@@ -32,6 +32,7 @@ RUN set -e \
     #
     # Compile PCOV and Xdebug extensions
     && yes | pecl install pcov \
+    && docker-php-ext-enable pcov \
     && yes | pecl install xdebug-$XDEBUG_VERSION \
     #
     # Clean up

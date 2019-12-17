@@ -8,6 +8,9 @@
     "aws/aws-sdk-php": {
         "version": "3.88.0"
     },
+    "composer/semver": {
+        "version": "1.5.1"
+    },
     "composer/xdebug-handler": {
         "version": "1.4.0"
     },
@@ -40,6 +43,9 @@
     },
     "guzzlehttp/psr7": {
         "version": "1.5.2"
+    },
+    "laminas/laminas-zendframework-bridge": {
+        "version": "1.0.1"
     },
     "monolog/monolog": {
         "version": "1.24.0"
@@ -100,6 +106,9 @@
     },
     "phpunit/php-file-iterator": {
         "version": "2.0.2"
+    },
+    "phpunit/php-invoker": {
+        "version": "3.0.0"
     },
     "phpunit/php-text-template": {
         "version": "1.2.1"
@@ -400,6 +409,9 @@
     },
     "vimeo/psalm": {
         "version": "3.7.2"
+    },
+    "webimpress/safe-writer": {
+        "version": "2.0.0"
     },
     "webmozart/assert": {
         "version": "1.4.0"

@@ -9,7 +9,7 @@ services:
         depends_on:
             - php
         container_name: doop-nginx
-        image: nginx:1.15-alpine
+        image: nginx:1.17-alpine
         restart: ${DOCKER_RESTART}
         networks:
             - doop
