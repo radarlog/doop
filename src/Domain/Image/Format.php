@@ -6,39 +6,28 @@ namespace Radarlog\Doop\Domain\Image;
 
 final class Format
 {
-    private const SUPPORTED = [
-        'gif',
-        'jpeg',
-        'png',
-        'svg',
+    private const SUPPORTED_MIME_TYPES = [
+        'image/gif',
+        'image/jpeg',
+        'image/png',
+        'image/svg+xml',
     ];
-
-    private string $format;
 
     private string $mime;
 
     /**
      * @throws InvalidArgument
      */
-    public function __construct(\Imagick $image)
+    public function __construct(string $content)
     {
-        try {
-            $format = strtolower($image->getImageFormat());
-        } catch (\ImagickException $e) {
-            throw InvalidArgument::formatRead($e->getMessage(), $e);
+        $fileInfo = new \finfo(FILEINFO_MIME_TYPE);
+        $mime = (string) $fileInfo->buffer($content);
+
+        if (!in_array($mime, self::SUPPORTED_MIME_TYPES, true)) {
+            throw InvalidArgument::formatCreate($mime);
         }
 
-        if (!in_array($format, self::SUPPORTED, true)) {
-            throw InvalidArgument::formatCreate($format);
-        }
-
-        $this->format = $format;
-        $this->mime = $image->getImageMimeType();
-    }
-
-    public function __toString(): string
-    {
-        return $this->format;
+        $this->mime = $mime;
     }
 
     public function mime(): string

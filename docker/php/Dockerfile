@@ -23,6 +23,7 @@ RUN set -e \
     && export CFLAGS="$PHP_CFLAGS" CPPFLAGS="$PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS" \
     && docker-php-ext-install \
         exif \
+        fileinfo \
         opcache \
         pdo_pgsql \
     #

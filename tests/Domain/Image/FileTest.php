@@ -9,6 +9,8 @@ use Radarlog\Doop\Tests\UnitTestCase;
 
 class FileTest extends UnitTestCase
 {
+    private Image\File $file;
+
     private string $content;
 
     protected function setUp(): void
@@ -16,37 +18,27 @@ class FileTest extends UnitTestCase
         parent::setUp();
 
         $fixture = $this->fixturePath('Images/avatar.jpg');
-        $this->content = (string) file_get_contents($fixture);
-    }
+        $content = (string) file_get_contents($fixture);
 
-    public function testNonPictureType(): void
-    {
-        $content = __FILE__;
+        $this->file = new Image\File($content);
 
-        $this->expectException(Image\InvalidArgument::class);
-        $this->expectExceptionCode(1000);
-
-        new Image\File($content);
+        $this->content = $content;
     }
 
     public function testName(): void
     {
-        $file = new Image\File($this->content);
-
-        self::assertSame('2080492d54a6b8579968901f366b13614fe188f2', (string) $file->hash());
+        self::assertSame('2080492d54a6b8579968901f366b13614fe188f2', (string) $this->file->hash());
     }
 
     public function testContent(): void
     {
-        $file = new Image\File($this->content);
-
-        self::assertSame($this->content, $file->content());
+        self::assertSame($this->content, $this->file->content());
     }
 
     public function testFormat(): void
     {
-        $file = new Image\File($this->content);
+        $format = new Image\Format($this->content);
 
-        self::assertSame('jpeg', (string) $file->format());
+        self::assertEquals($format, $this->file->format());
     }
 }

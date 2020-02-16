@@ -17,17 +17,9 @@ final class File
      */
     public function __construct(string $content)
     {
-        $image = new \Imagick();
-
-        try {
-            $image->readImageBlob($content);
-        } catch (\ImagickException $e) {
-            throw InvalidArgument::image();
-        }
-
         $this->hash = Hash::calculate($content);
         $this->content = $content;
-        $this->format = new Format($image);
+        $this->format = new Format($content);
     }
 
     public function hash(): Hash
