@@ -46,7 +46,7 @@ final class Kernel extends HttpKernel\Kernel
         $confDir = $this->getProjectDir() . '/config';
 
         $loader->load($confDir . '/packages/*' . self::CONFIG_EXTS, 'glob');
-        $loader->load($confDir . '/packages/' . $this->environment . '/**/*' . self::CONFIG_EXTS, 'glob');
+        $loader->load($confDir . '/packages/' . $this->environment . '/*' . self::CONFIG_EXTS, 'glob');
         $loader->load($confDir . '/services' . self::CONFIG_EXTS, 'glob');
         $loader->load($confDir . '/services_' . $this->environment . self::CONFIG_EXTS, 'glob');
     }
@@ -58,7 +58,7 @@ final class Kernel extends HttpKernel\Kernel
     {
         $confDir = $this->getProjectDir() . '/config';
 
-        $routes->import($confDir . '/{routes}/' . $this->environment . '/**/*' . self::CONFIG_EXTS, '/', 'glob');
+        $routes->import($confDir . '/{routes}/' . $this->environment . '/*' . self::CONFIG_EXTS, '/', 'glob');
         $routes->import($confDir . '/{routes}/*' . self::CONFIG_EXTS, '/', 'glob');
         $routes->import($confDir . '/{routes}' . self::CONFIG_EXTS, '/', 'glob');
     }
