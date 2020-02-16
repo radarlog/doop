@@ -43,6 +43,8 @@ services:
         restart: ${DOCKER_RESTART}
         networks:
             - doop
+        volumes:
+            - ./docker/postgres/create-test-db.sql:/docker-entrypoint-initdb.d/create-test-db.sql:ro
         ports:
             - 5432:5432
         environment:

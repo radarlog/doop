@@ -41,6 +41,7 @@ migrations: ; $(info $(M) Running migrations:)
         done
 	echo ""
 	docker-compose exec -T php bin/console migrations:migrate --no-interaction
+	docker-compose exec -T php bin/console --env test migrations:migrate --no-interaction
 
 .PHONY: run
 run: up composer migrations ; $(info $(M) Environment has been built succesfully)
