@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Tests;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestAssertionsTrait;
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
+use Symfony\Bundle\FrameworkBundle\Test\BrowserKitAssertionsTrait;
 use Symfony\Component\BrowserKit\AbstractBrowser;
 
 class ControllerTestCase extends DbTestCase
 {
-    use WebTestAssertionsTrait;
+    use BrowserKitAssertionsTrait;
 
     protected AbstractBrowser $client;
 
@@ -17,6 +18,7 @@ class ControllerTestCase extends DbTestCase
     {
         parent::setUp();
 
+        /** @var KernelBrowser $client */
         $client = self::$container->get('test.client');
         $client->disableReboot();
 

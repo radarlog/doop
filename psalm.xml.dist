@@ -20,33 +20,23 @@
     <issueHandlers>
         <PropertyNotSetInConstructor>
             <errorLevel type="suppress">
-                <directory name="tests"/>
+                <file name="tests/Application/Command/SpyHandler.php"/>
             </errorLevel>
         </PropertyNotSetInConstructor>
         <InternalMethod>
             <errorLevel type="suppress">
-                <directory name="tests"/>
+                <file name="tests/Application/Command/Image/UploadHandlerTest.php"/>
+                <file name="tests/Application/Command/LoggerBusTest.php"/>
             </errorLevel>
         </InternalMethod>
-        <PossiblyNullReference>
-            <errorLevel type="suppress">
-                <directory name="tests"/>
-            </errorLevel>
-        </PossiblyNullReference>
         <PossiblyNullPropertyAssignmentValue>
             <errorLevel type="suppress">
-                <directory name="tests"/>
+                <file name="tests/ControllerTestCase.php"/>
             </errorLevel>
         </PossiblyNullPropertyAssignmentValue>
-        <ArgumentTypeCoercion>
-            <errorLevel type="suppress">
-                <directory name="tests"/>
-            </errorLevel>
-        </ArgumentTypeCoercion>
-        <PropertyTypeCoercion>
-            <errorLevel type="suppress">
-                <directory name="tests"/>
-            </errorLevel>
-        </PropertyTypeCoercion>
     </issueHandlers>
+    <plugins>
+        <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
+        <pluginClass class="Seferov\SymfonyPsalmPlugin\Plugin"/>
+    </plugins>
 </psalm>

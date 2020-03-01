@@ -1,9 +1,0 @@
-services:
-    _defaults:
-        autowire: true
-        autoconfigure: true
-        public: true
-
-    test.repository: '@Radarlog\Doop\Domain\Repository'
-    test.query.all: '@Radarlog\Doop\Application\Query\Image\FindAll'
-    test.query.one: '@Radarlog\Doop\Application\Query\Image\FindOne'

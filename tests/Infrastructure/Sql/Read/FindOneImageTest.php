@@ -18,8 +18,7 @@ class FindOneImageTest extends DbTestCase
     {
         parent::setUp();
 
-        /** @var Repository $repository */
-        $repository = self::$container->get('test.repository');
+        $repository = self::$container->get(Repository::class);
 
         $state1 = new Image\State([
             'uuid' => '9f2149bb-b6e5-4ae0-a188-e616cddc8e98',
@@ -39,7 +38,7 @@ class FindOneImageTest extends DbTestCase
         $image2 = Image::fromState($state2);
         $repository->add($image2);
 
-        $this->query = self::$container->get('test.query.one');
+        $this->query = self::$container->get(Query\Image\FindOne::class);
     }
 
     public function testNameByHash(): void
