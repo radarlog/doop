@@ -19,7 +19,7 @@
         "ext-imagick": "*",
         "ext-json": "*",
         "ext-pdo": "*",
-        "aws/aws-sdk-php": "^3.125",
+        "aws/aws-sdk-php": "^3.133",
         "doctrine/dbal": "^2.10",
         "doctrine/migrations": "^2.2",
         "psr/log": "^1.1",
@@ -30,7 +30,7 @@
         "symfony/flex": "^1.6",
         "symfony/form": "^5.0",
         "symfony/framework-bundle": "^5.0",
-        "symfony/monolog-bundle": "^3.3",
+        "symfony/monolog-bundle": "^3.5",
         "symfony/twig-bundle": "^5.0",
         "symfony/yaml": "^5.0"
     },
