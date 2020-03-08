@@ -7,6 +7,7 @@
          cacheResultFile="var/cache/phpunit.cache"
          colors="true"
          executionOrder="random"
+         verbose="true"
 >
     <testsuites>
         <testsuite name="Doop Test Suite">
