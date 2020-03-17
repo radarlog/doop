@@ -37,7 +37,7 @@ class ImagesUploadTest extends DbTestCase
             'path' => ['/path/to/file'],
         ]);
 
-        self::assertStringContainsString('/path/to/file: File is not readable', $this->commandTester->getDisplay());
+        self::assertStringContainsString('File "/path/to/file" is not readable', $this->commandTester->getDisplay());
     }
 
     public function testExecuteUpload(): void

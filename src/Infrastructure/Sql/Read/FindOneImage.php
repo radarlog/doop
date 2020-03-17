@@ -32,7 +32,7 @@ final class FindOneImage implements Query\Image\FindOne
         $stmt = $qb->execute();
 
         if ($stmt->rowCount() === 0) {
-            throw new Sql\NotFound('Not found', Sql\NotFound::CODE_SQL_NOT_FOUND);
+            throw Sql\NotFound::uuid($uuid);
         }
 
         $row = $stmt->fetch(\PDO::FETCH_ASSOC);

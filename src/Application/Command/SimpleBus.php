@@ -34,7 +34,7 @@ final class SimpleBus implements Bus
         $handlerClass = $command->fqcnHandler();
 
         if (!array_key_exists($handlerClass, $this->handlers)) {
-            throw new RuntimeException('No handler', RuntimeException::CODE_HANDLER);
+            throw RuntimeException::handler($handlerClass);
         }
 
         return $this->handlers[$handlerClass];

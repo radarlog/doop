@@ -46,7 +46,7 @@ final class PersistenceRepository implements Domain\Repository
         $stmt = $qb->execute();
 
         if ($stmt->rowCount() === 0) {
-            throw new NotFound('Not found', NotFound::CODE_SQL_NOT_FOUND);
+            throw NotFound::uuid($id->toString());
         }
 
         $row = $stmt->fetch(\PDO::FETCH_ASSOC);

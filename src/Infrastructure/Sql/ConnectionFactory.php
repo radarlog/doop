@@ -19,7 +19,7 @@ final class ConnectionFactory
     private function __construct(array $params)
     {
         if (!isset($params['slaves'], $params['master'])) {
-            throw new InvalidArgument('Master or slaves configuration is missing', InvalidArgument::CODE_SQL_SERVERS);
+            throw InvalidArgument::configuration();
         }
 
         $masterConnection = $this->dbalConnection($params['master']);

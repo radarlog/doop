@@ -22,7 +22,7 @@ final class File
         try {
             $image->readImageBlob($content);
         } catch (\ImagickException $e) {
-            throw new InvalidArgument('Cannot create image', InvalidArgument::CODE_IMAGE, $e);
+            throw InvalidArgument::image();
         }
 
         $this->hash = Hash::calculate($content);

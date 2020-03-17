@@ -62,6 +62,6 @@ final class Image implements Aggregate
             return $date;
         }
 
-        throw new Image\InvalidArgument('Invalid date format', Image\InvalidArgument::CODE_DATE);
+        throw Image\InvalidArgument::date($uploadedAt);
     }
 }

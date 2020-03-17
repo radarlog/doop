@@ -8,4 +8,14 @@ use Radarlog\Doop\Infrastructure\Throwable;
 
 class InvalidArgument extends \InvalidArgumentException implements Throwable
 {
+    // phpcs:disable Generic.CodeAnalysis.UselessOverridingMethod.Found
+    final private function __construct(string $message = '', int $code = 0, ?\Throwable $previous = null)
+    {
+        parent::__construct($message, $code, $previous);
+    }
+
+    public static function configuration(): self
+    {
+        return new self('Master or slaves configuration is missing', self::CODE_SQL_SERVERS);
+    }
 }

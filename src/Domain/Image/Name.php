@@ -16,7 +16,7 @@ final class Name
         $length = strlen(trim($name));  // trimmed
 
         if ($length < self::LENGTH_MIN || $length > self::LENGTH_MAX) {
-            throw new InvalidArgument('Invalid name', InvalidArgument::CODE_NAME);
+            throw InvalidArgument::name($name);
         }
 
         $this->name = $name;

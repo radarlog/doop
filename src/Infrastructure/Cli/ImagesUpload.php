@@ -82,6 +82,6 @@ final class ImagesUpload extends Console\Command\Command
             return (string) $file->fread($file->getSize());
         }
 
-        throw new InvalidArgument('File is not readable', InvalidArgument::CODE_CLI_FILE_READ);
+        throw InvalidArgument::file($fileInfo->getPathname());
     }
 }

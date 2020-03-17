@@ -15,7 +15,7 @@ final class Hash
         $length = strlen($hash);
 
         if ($length !== self::SHA1_LENGTH) {
-            throw new InvalidArgument('Invalid hash', InvalidArgument::CODE_HASH);
+            throw InvalidArgument::hash($hash);
         }
 
         $this->hash = strtolower($hash);

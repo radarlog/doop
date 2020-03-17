@@ -29,7 +29,7 @@ final class State implements Domain\State
 
         // check whether all keys are exactly the same
         if (array_diff_key($state, $expected) !== array_diff_key($expected, $state)) {
-            throw new InvalidArgument('Invalid state provided', InvalidArgument::CODE_STATE);
+            throw InvalidArgument::state();
         }
 
         $this->state = $state;

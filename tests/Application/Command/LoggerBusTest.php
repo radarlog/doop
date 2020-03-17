@@ -27,7 +27,7 @@ class LoggerBusTest extends UnitTestCase
 
     public function testExceptionIsLogged(): void
     {
-        $exception = new Command\RuntimeException('catch me', 330);
+        $exception = Command\RuntimeException::handler(SpyHandler::class);
 
         $innerBus = $this->createMock(Command\Bus::class);
         $innerBus->method('execute')->willThrowException($exception);

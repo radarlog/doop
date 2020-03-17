@@ -13,7 +13,7 @@ final class Endpoint
     public function __construct(string $url)
     {
         if (filter_var($url, FILTER_VALIDATE_URL) === false) {
-            throw new InvalidArgument('Invalid Endpoint', InvalidArgument::CODE_S3_ENDPOINT);
+            throw InvalidArgument::endpoint($url);
         }
 
         $scheme = parse_url($url, PHP_URL_SCHEME);
