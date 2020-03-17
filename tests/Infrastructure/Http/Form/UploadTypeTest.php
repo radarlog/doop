@@ -12,7 +12,7 @@ class UploadTypeTest extends Form\Test\TypeTestCase
     private Form\FormInterface $form;
 
     /** @var Form\FormView[] */
-    private array $children;
+    private array $children = [];
 
     public function setUp(): void
     {
@@ -30,9 +30,6 @@ class UploadTypeTest extends Form\Test\TypeTestCase
         self::assertArrayHasKey('submit', $this->children);
     }
 
-    /**
-     * @psalm-suppress MissingPropertyType
-     */
     public function testSubmitButton(): void
     {
         $submit = $this->children['submit']->vars;
@@ -40,9 +37,6 @@ class UploadTypeTest extends Form\Test\TypeTestCase
         self::assertSame('submit', $submit['name']);
     }
 
-    /**
-     * @psalm-suppress MissingPropertyType
-     */
     public function testFileInput(): void
     {
         $image = $this->children['image']->vars;

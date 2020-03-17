@@ -9,9 +9,6 @@ use Radarlog\Doop\Infrastructure\Http;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- */
 final class Upload extends AbstractController implements Http\Controller
 {
     private Command\Bus $bus;

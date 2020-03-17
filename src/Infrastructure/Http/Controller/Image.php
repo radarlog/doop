@@ -13,9 +13,6 @@ use Symfony\Component\HttpFoundation;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- */
 final class Image extends AbstractController implements Controller
 {
     private Query\Image\FindOne $findOne;

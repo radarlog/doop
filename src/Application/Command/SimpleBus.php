@@ -6,13 +6,10 @@ namespace Radarlog\Doop\Application\Command;
 
 use Radarlog\Doop\Application\Command;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- */
 final class SimpleBus implements Bus
 {
     /** @var Handler[] */
-    private array $handlers;
+    private array $handlers = [];
 
     /**
      * @param Handler[] $handlers
