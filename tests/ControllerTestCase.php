@@ -6,13 +6,12 @@ namespace Radarlog\Doop\Tests;
 
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\BrowserKitAssertionsTrait;
-use Symfony\Component\BrowserKit\AbstractBrowser;
 
 class ControllerTestCase extends DbTestCase
 {
     use BrowserKitAssertionsTrait;
 
-    protected AbstractBrowser $client;
+    protected KernelBrowser $client;
 
     protected function setUp(): void
     {
@@ -22,6 +21,9 @@ class ControllerTestCase extends DbTestCase
         $client = self::$container->get('test.client');
         $client->disableReboot();
 
-        $this->client = self::getClient($client);
+        /** @var KernelBrowser $client */
+        $client = self::getClient($client);
+
+        $this->client = $client;
     }
 }

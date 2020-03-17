@@ -1,6 +1,8 @@
 parameters:
     tmpDir: var/cache/phpstan
 
+    checkMissingIterableValueType: false
+
     paths:
         - bin
         - public
@@ -12,7 +14,3 @@ parameters:
     ignoreErrors:
         - message: '/condition is always true/'
           path: src/Infrastructure/Kernel.php
-        - message: '/no value type specified in iterable type/'
-          paths:
-            - src/Infrastructure/Http/Form/UploadType.php
-            - tests/**/*Test.php
