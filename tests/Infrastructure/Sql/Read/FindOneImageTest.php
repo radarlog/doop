@@ -18,6 +18,7 @@ class FindOneImageTest extends DbTestCase
     {
         parent::setUp();
 
+        /** @var Repository $repository */
         $repository = self::$container->get(Repository::class);
 
         $state1 = new Image\State([
@@ -38,7 +39,9 @@ class FindOneImageTest extends DbTestCase
         $image2 = Image::fromState($state2);
         $repository->add($image2);
 
-        $this->query = self::$container->get(Query\Image\FindOne::class);
+        /** @var Query\Image\FindOne $query */
+        $query = self::$container->get(Query\Image\FindOne::class);
+        $this->query = $query;
     }
 
     public function testNameByHash(): void

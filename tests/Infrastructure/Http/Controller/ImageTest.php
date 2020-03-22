@@ -17,7 +17,7 @@ class ImageTest extends ControllerTestCase
         parent::setUp();
 
         $fixture = $this->fixturePath('Images/avatar.jpg');
-        $content = file_get_contents($fixture);
+        $content = (string) file_get_contents($fixture);
 
         $file = new Image\File($content);
 
@@ -26,8 +26,13 @@ class ImageTest extends ControllerTestCase
 
         $this->uuid = $image->id();
 
-        self::$container->get(Domain\Storage::class)->upload($file);
-        self::$container->get(Domain\Repository::class)->add($image);
+        /** @var Domain\Storage $storage */
+        $storage = self::$container->get(Domain\Storage::class);
+        $storage->upload($file);
+
+        /** @var Domain\Repository $repository */
+        $repository = self::$container->get(Domain\Repository::class);
+        $repository->add($image);
     }
 
     public function testAction(): void

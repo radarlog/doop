@@ -9,8 +9,4 @@ parameters:
         - src
         - tests
 
-    level: 6
-
-    ignoreErrors:
-        - message: '/condition is always true/'
-          path: src/Infrastructure/Kernel.php
+    level: max

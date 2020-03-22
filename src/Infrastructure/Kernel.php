@@ -18,22 +18,14 @@ final class Kernel extends HttpKernel\Kernel
 
     private const CONFIG_EXTS = '.{yaml}';
 
-    private const BUNDLES = [
-        FrameworkBundle\FrameworkBundle::class => ['all' => true],
-        MonologBundle::class => ['all' => true],
-        TwigBundle::class => ['all' => true],
-    ];
-
     /**
      * @inheritdoc
      */
     public function registerBundles(): iterable
     {
-        foreach (self::BUNDLES as $class => $envs) {
-            if ($envs[$this->environment] ?? $envs['all'] ?? false) {
-                yield new $class();
-            }
-        }
+        yield new FrameworkBundle\FrameworkBundle();
+        yield new MonologBundle();
+        yield new TwigBundle();
     }
 
     /**

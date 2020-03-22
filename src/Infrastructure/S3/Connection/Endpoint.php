@@ -16,16 +16,16 @@ final class Endpoint
             throw InvalidArgument::endpoint($url);
         }
 
-        $scheme = parse_url($url, PHP_URL_SCHEME);
-        $host = parse_url($url, PHP_URL_HOST);
-        $port = parse_url($url, PHP_URL_PORT);
+        $scheme = (string) parse_url($url, PHP_URL_SCHEME);
+        $host = (string) parse_url($url, PHP_URL_HOST);
+        $port = (int) parse_url($url, PHP_URL_PORT);
 
         $this->url = $this->from($scheme, $host, $port);
     }
 
-    private function from(string $scheme, string $host, ?int $port): string
+    private function from(string $scheme, string $host, int $port): string
     {
-        if ($port === null) {
+        if ($port === 0) {
             return sprintf('%s://%s', $scheme, $host);
         }
 

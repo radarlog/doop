@@ -20,7 +20,9 @@ class ImagesListTest extends DbTestCase
     {
         parent::setUp();
 
-        $this->repository = self::$container->get(Repository::class);
+        /** @var Repository $repository */
+        $repository = self::$container->get(Repository::class);
+        $this->repository = $repository;
 
         $application = new Application(self::$kernel);
         $command = $application->find('images:list');

@@ -53,7 +53,7 @@ final class ConnectionFactory
      */
     private function parseSlaves(string $slaves): array
     {
-        $slaves = preg_split('/[\n|,]/', $slaves);
+        $slaves = (array) preg_split('/[\n|,]/', $slaves);
         $slaves = array_filter($slaves);
         $slaves = array_unique($slaves);
 

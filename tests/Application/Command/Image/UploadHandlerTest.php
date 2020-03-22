@@ -36,7 +36,7 @@ class UploadHandlerTest extends UnitTestCase
             }));
 
         $fixture = $this->fixturePath('Images/avatar.jpg');
-        $content = file_get_contents($fixture);
+        $content = (string) file_get_contents($fixture);
 
         $command = new Command\Image\Upload(self::NAME, $content);
 

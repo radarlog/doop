@@ -15,10 +15,11 @@ class ClientTest extends FunctionalTestCase
     public function testUpload(): void
     {
         $fixture = $this->fixturePath('Images/avatar.jpg');
-        $content = file_get_contents($fixture);
+        $content = (string) file_get_contents($fixture);
 
         $file = new Image\File($content);
 
+        /** @var Client $client */
         $client = self::$container->get(Client::class);
 
         $client->upload($file);

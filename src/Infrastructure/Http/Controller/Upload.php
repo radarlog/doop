@@ -29,7 +29,7 @@ final class Upload extends AbstractController implements Http\Controller
             $file = $form->getData();
 
             $name = (string) $file->getClientOriginalName();
-            $content = file_get_contents($file->getRealPath());
+            $content = (string) file_get_contents((string) $file->getRealPath());
 
             $command = new Command\Image\Upload($name, $content);
 

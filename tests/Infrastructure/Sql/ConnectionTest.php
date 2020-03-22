@@ -16,7 +16,9 @@ class ConnectionTest extends FunctionalTestCase
     {
         parent::setUp();
 
-        $this->connection = self::$container->get(Connection::class);
+        /** @var Connection $connection */
+        $connection = self::$container->get(Connection::class);
+        $this->connection = $connection;
     }
 
     public function testIsMasterSlave(): void

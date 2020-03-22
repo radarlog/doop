@@ -16,7 +16,7 @@ class FileTest extends UnitTestCase
         parent::setUp();
 
         $fixture = $this->fixturePath('Images/avatar.jpg');
-        $this->content = file_get_contents($fixture);
+        $this->content = (string) file_get_contents($fixture);
     }
 
     public function testNonPictureType(): void
