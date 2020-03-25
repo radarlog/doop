@@ -8,6 +8,9 @@
     "aws/aws-sdk-php": {
         "version": "3.88.0"
     },
+    "brick/math": {
+        "version": "0.8.14"
+    },
     "composer/semver": {
         "version": "1.5.1"
     },
@@ -70,9 +73,6 @@
     },
     "openlss/lib-array2xml": {
         "version": "1.0.0"
-    },
-    "paragonie/random_compat": {
-        "version": "v9.99.99"
     },
     "phar-io/manifest": {
         "version": "1.0.3"
@@ -157,6 +157,9 @@
     },
     "ralouphie/getallheaders": {
         "version": "2.0.5"
+    },
+    "ramsey/collection": {
+        "version": "1.0.1"
     },
     "ramsey/uuid": {
         "version": "3.8.0"
