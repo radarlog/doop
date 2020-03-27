@@ -52,7 +52,12 @@ services:
         environment:
             NPM_CONFIG_LOGLEVEL: info
             NODE_ENV: ${APP_ENV}
-        command: yarn dev-server --public localhost:80
+        command:
+            - sh
+            - -c
+            - |-
+                yarn install --frozen-lockfile
+                yarn dev-server --public localhost:80
 
     postgres:
         container_name: doop-postgres
