@@ -13,7 +13,7 @@ class KernelTest extends FunctionalTestCase
 {
     public function testRegisterBundles(): void
     {
-        self::assertCount(3, self::$kernel->getBundles());
+        self::assertCount(4, self::$kernel->getBundles());
     }
 
     public function testBuild(): void

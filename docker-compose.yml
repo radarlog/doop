@@ -15,6 +15,7 @@ services:
             - doop
         volumes:
             - ./docker/nginx/doop.conf:/etc/nginx/conf.d/default.conf:ro
+            - .:/app:ro
         ports:
             - 80:8080
 

@@ -11,6 +11,7 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
+use Symfony\WebpackEncoreBundle\WebpackEncoreBundle;
 
 final class Kernel extends HttpKernel\Kernel
 {
@@ -26,6 +27,7 @@ final class Kernel extends HttpKernel\Kernel
         yield new FrameworkBundle\FrameworkBundle();
         yield new MonologBundle();
         yield new TwigBundle();
+        yield new WebpackEncoreBundle();
     }
 
     /**

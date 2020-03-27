@@ -17,3 +17,8 @@
 /.phpcs-cache
 /phpcs.xml
 ###< squizlabs/php_codesniffer ###
+
+###> symfony/webpack-encore-bundle ###
+/node_modules/
+/public/build/
+###< symfony/webpack-encore-bundle ###
