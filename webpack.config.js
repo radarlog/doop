@@ -72,6 +72,10 @@ Encore
         css: 'css/[name]-[hash:12].css',
         js: 'js/[name]-[hash:12].js'
     })
+
+    .configureWatchOptions(watchOptions => {
+        watchOptions.poll = 250;
+    })
 ;
 
 module.exports = Encore.getWebpackConfig();

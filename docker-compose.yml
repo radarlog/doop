@@ -21,6 +21,7 @@ services:
 
     php:
         depends_on:
+            - encore
             - minio
             - minio-create-bucket
             - postgres
@@ -37,6 +38,23 @@ services:
         environment:
             XDEBUG_CONFIG: "remote_host=172.18.0.1 remote_port=9009"
             PHP_IDE_CONFIG: serverName=doop
+
+    encore:
+        container_name: doop-encore
+        image: node:13.11-alpine3.11
+        restart: ${DOCKER_RESTART}
+        networks:
+            - doop
+        user: 1000:1000
+        volumes:
+            - .:/app:rw
+        ports:
+            - 8765:8765
+        working_dir: /app
+        environment:
+            NPM_CONFIG_LOGLEVEL: info
+            NODE_ENV: ${APP_ENV}
+        command: yarn dev-server
 
     postgres:
         container_name: doop-postgres
