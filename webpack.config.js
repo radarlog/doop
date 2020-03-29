@@ -76,6 +76,12 @@ Encore
     .configureWatchOptions(watchOptions => {
         watchOptions.poll = 250;
     })
+
+    .enablePostCssLoader(options => {
+        options.plugins = [
+            require('cssnano')()
+        ]
+    })
 ;
 
 module.exports = Encore.getWebpackConfig();
