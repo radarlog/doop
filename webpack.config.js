@@ -82,6 +82,8 @@ Encore
             require('cssnano')()
         ]
     })
+
+    .enableEslintLoader()
 ;
 
 module.exports = Encore.getWebpackConfig();
