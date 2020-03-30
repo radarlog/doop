@@ -13,7 +13,7 @@ final class Name
 
     public function __construct(string $name)
     {
-        $length = strlen(trim($name));  // trimmed
+        $length = strlen(trim($name)); // trimmed
 
         if ($length < self::LENGTH_MIN || $length > self::LENGTH_MAX) {
             throw InvalidArgument::name($name);

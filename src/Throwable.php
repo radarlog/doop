@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop;
 
+// phpcs:disable SlevomatCodingStandard.Whitespaces.DuplicateSpaces
 interface Throwable extends \Throwable
 {
     // @formatter:off

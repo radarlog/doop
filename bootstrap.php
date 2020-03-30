@@ -7,6 +7,7 @@ use Symfony\Component\ErrorHandler\Debug;
 
 require __DIR__ . '/vendor/autoload.php';
 
+// phpcs:disable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable
 (new class ()
 {
     private const APP_ENV = 'APP_ENV';

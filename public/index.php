@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 require __DIR__ . '/../bootstrap.php';
 
+// phpcs:disable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable
+
 $trustedProxies = $_ENV['TRUSTED_PROXIES'] ?? false;
 $trustedHosts = $_ENV['TRUSTED_HOSTS'] ?? false;
 
