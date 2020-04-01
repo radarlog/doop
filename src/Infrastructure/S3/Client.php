@@ -4,40 +4,40 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Infrastructure\S3;
 
-use Aws\S3\S3ClientInterface;
+use AsyncAws\S3;
 use Radarlog\Doop\Domain;
 
 final class Client implements Domain\Storage
 {
-    public const USE_PATH_STYLE = true;
-
-    private const ACL = 'private';
-
-    private S3ClientInterface $client;
+    private S3\S3Client $client;
 
     private string $bucketName;
 
-    public function __construct(string $bucketName, bool $usePathStyle, Connection $connection)
+    public function __construct(string $bucketName, Connection $connection)
     {
-        $this->client = $connection->createS3Client($usePathStyle);
+        $this->client = new S3\S3Client($connection->configuration());
         $this->bucketName = $bucketName;
     }
 
     public function upload(Domain\Image\File $file): void
     {
-        $this->client->upload($this->bucketName, (string) $file->hash(), $file->content(), self::ACL, [
+        $this->client->putObject([
+            'Bucket' => $this->bucketName,
+            'Key' => (string) $file->hash(),
+            'Body' => $file->content(),
             'ContentType' => $file->format()->mime(),
+            'ACL' => S3\Enum\ObjectCannedACL::PRIVATE,
         ]);
     }
 
     public function download(string $hash): Domain\Image\File
     {
-        $command = $this->client->getCommand('GetObject', [
+        $object = $this->client->getObject([
             'Bucket' => $this->bucketName,
             'Key' => $hash,
         ]);
 
-        $content = (string) $this->client->execute($command)->get('Body');
+        $content = $object->getBody()->getContentAsString();
 
         return new Domain\Image\File($content);
     }

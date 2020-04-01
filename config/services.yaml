@@ -35,7 +35,7 @@ services:
             - '%env(string:S3_SECRET)%'
             - '%env(string:S3_REGION)%'
     Radarlog\Doop\Infrastructure\S3\Client:
-        arguments: ['%env(string:S3_BUCKET)%', '%env(bool:S3_USE_PATH_STYLE)%']
+        arguments: ['%env(string:S3_BUCKET)%']
 
     # SQL
     Radarlog\Doop\Infrastructure\Sql\Connection:

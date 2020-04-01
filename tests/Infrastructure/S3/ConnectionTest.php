@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Tests\Infrastructure\S3;
 
-use Aws\Credentials\CredentialsInterface;
-use Radarlog\Doop\Infrastructure\S3;
+use AsyncAws\Core\Configuration;
 use Radarlog\Doop\Infrastructure\S3\Connection;
 use Radarlog\Doop\Tests\UnitTestCase;
 
@@ -33,30 +32,27 @@ class ConnectionTest extends UnitTestCase
     {
         $connection = Connection::from(self::ENDPOINT, self::KEY, self::SECRET, self::REGION);
 
-        $client = $connection->createS3Client(S3\Client::USE_PATH_STYLE);
+        $configuration = $connection->configuration();
 
-        self::assertSame(self::REGION, $client->getRegion());
+        self::assertSame(self::REGION, $configuration->get(Configuration::OPTION_REGION));
     }
 
     public function testEndpoint(): void
     {
         $connection = Connection::from(self::ENDPOINT, self::KEY, self::SECRET, self::REGION);
 
-        $client = $connection->createS3Client(S3\Client::USE_PATH_STYLE);
+        $configuration = $connection->configuration();
 
-        self::assertSame(self::ENDPOINT, (string) $client->getEndpoint());
+        self::assertSame(self::ENDPOINT, $configuration->get(Configuration::OPTION_ENDPOINT));
     }
 
     public function testCredentials(): void
     {
         $connection = Connection::from(self::ENDPOINT, self::KEY, self::SECRET, self::REGION);
 
-        $client = $connection->createS3Client(S3\Client::USE_PATH_STYLE);
+        $configuration = $connection->configuration();
 
-        /** @var CredentialsInterface $credentials */
-        $credentials = $client->getCredentials()->wait();
-
-        self::assertSame(self::KEY, $credentials->getAccessKeyId());
-        self::assertSame(self::SECRET, $credentials->getSecretKey());
+        self::assertSame(self::KEY, $configuration->get(Configuration::OPTION_ACCESS_KEY_ID));
+        self::assertSame(self::SECRET, $configuration->get(Configuration::OPTION_SECRET_ACCESS_KEY));
     }
 }
