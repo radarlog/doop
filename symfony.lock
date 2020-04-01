@@ -5,6 +5,12 @@
     "amphp/byte-stream": {
         "version": "v1.7.1"
     },
+    "async-aws/core": {
+        "version": "0.4.0"
+    },
+    "async-aws/s3": {
+        "version": "0.3.0"
+    },
     "aws/aws-sdk-php": {
         "version": "3.88.0"
     },
@@ -300,6 +306,12 @@
             "src/Controller/.gitignore",
             "src/Kernel.php"
         ]
+    },
+    "symfony/http-client": {
+        "version": "v5.0.7"
+    },
+    "symfony/http-client-contracts": {
+        "version": "v2.0.1"
     },
     "symfony/http-foundation": {
         "version": "v4.2.4"
