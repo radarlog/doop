@@ -1,4 +1,4 @@
-var Encore = require('@symfony/webpack-encore');
+const Encore = require('@symfony/webpack-encore');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -70,17 +70,17 @@ Encore
 
     .configureFilenames({
         css: 'css/[name]-[hash:12].css',
-        js: 'js/[name]-[hash:12].js'
+        js: 'js/[name]-[hash:12].js',
     })
 
-    .configureWatchOptions(watchOptions => {
+    .configureWatchOptions((watchOptions) => {
         watchOptions.poll = 250;
     })
 
-    .enablePostCssLoader(options => {
+    .enablePostCssLoader((options) => {
         options.plugins = [
-            require('cssnano')()
-        ]
+            require('cssnano')(),
+        ];
     })
 
     .enableEslintLoader()
