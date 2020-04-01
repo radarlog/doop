@@ -19,7 +19,7 @@
         "ext-imagick": "*",
         "ext-json": "*",
         "ext-pdo": "*",
-        "aws/aws-sdk-php": "^3.133",
+        "async-aws/s3": "^0.3.0",
         "doctrine/dbal": "^2.10",
         "doctrine/migrations": "^2.2",
         "psr/log": "^1.1",

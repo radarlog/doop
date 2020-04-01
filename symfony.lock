@@ -5,8 +5,11 @@
     "amphp/byte-stream": {
         "version": "v1.7.1"
     },
-    "aws/aws-sdk-php": {
-        "version": "3.88.0"
+    "async-aws/core": {
+        "version": "0.4.0"
+    },
+    "async-aws/s3": {
+        "version": "0.3.0"
     },
     "brick/math": {
         "version": "0.8.14"
@@ -38,23 +41,11 @@
     "felixfbecker/language-server-protocol": {
         "version": "v1.4.0"
     },
-    "guzzlehttp/guzzle": {
-        "version": "6.3.3"
-    },
-    "guzzlehttp/promises": {
-        "version": "v1.3.1"
-    },
-    "guzzlehttp/psr7": {
-        "version": "1.5.2"
-    },
     "laminas/laminas-zendframework-bridge": {
         "version": "1.0.1"
     },
     "monolog/monolog": {
         "version": "1.24.0"
-    },
-    "mtdowling/jmespath.php": {
-        "version": "2.4.0"
     },
     "myclabs/deep-copy": {
         "version": "1.8.1"
@@ -149,14 +140,8 @@
     "psr/event-dispatcher": {
         "version": "1.0.0"
     },
-    "psr/http-message": {
-        "version": "1.0.1"
-    },
     "psr/log": {
         "version": "1.1.0"
-    },
-    "ralouphie/getallheaders": {
-        "version": "2.0.5"
     },
     "ramsey/collection": {
         "version": "1.0.1"
@@ -300,6 +285,12 @@
             "src/Controller/.gitignore",
             "src/Kernel.php"
         ]
+    },
+    "symfony/http-client": {
+        "version": "v5.0.7"
+    },
+    "symfony/http-client-contracts": {
+        "version": "v2.0.1"
     },
     "symfony/http-foundation": {
         "version": "v4.2.4"
