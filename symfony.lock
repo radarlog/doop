@@ -11,9 +11,6 @@
     "async-aws/s3": {
         "version": "0.3.0"
     },
-    "aws/aws-sdk-php": {
-        "version": "3.88.0"
-    },
     "brick/math": {
         "version": "0.8.14"
     },
@@ -44,23 +41,11 @@
     "felixfbecker/language-server-protocol": {
         "version": "v1.4.0"
     },
-    "guzzlehttp/guzzle": {
-        "version": "6.3.3"
-    },
-    "guzzlehttp/promises": {
-        "version": "v1.3.1"
-    },
-    "guzzlehttp/psr7": {
-        "version": "1.5.2"
-    },
     "laminas/laminas-zendframework-bridge": {
         "version": "1.0.1"
     },
     "monolog/monolog": {
         "version": "1.24.0"
-    },
-    "mtdowling/jmespath.php": {
-        "version": "2.4.0"
     },
     "myclabs/deep-copy": {
         "version": "1.8.1"
@@ -155,14 +140,8 @@
     "psr/event-dispatcher": {
         "version": "1.0.0"
     },
-    "psr/http-message": {
-        "version": "1.0.1"
-    },
     "psr/log": {
         "version": "1.1.0"
-    },
-    "ralouphie/getallheaders": {
-        "version": "2.0.5"
     },
     "ramsey/collection": {
         "version": "1.0.1"
