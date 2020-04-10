@@ -1,5 +1,5 @@
 twig:
-    default_path: '%kernel.project_dir%/assets/views'
+    default_path: '%kernel.project_dir%/src/Frontend/html'
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     form_themes: ['bootstrap_4_layout.html.twig']
