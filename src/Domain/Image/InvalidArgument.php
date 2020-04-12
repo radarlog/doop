@@ -14,11 +14,6 @@ class InvalidArgument extends \InvalidArgumentException implements Throwable
         parent::__construct($message, $code, $previous);
     }
 
-    public static function image(): self
-    {
-        return new self('Cannot create image', self::CODE_IMAGE);
-    }
-
     public static function uuid(string $uuid): self
     {
         return new self(sprintf('UUID "%s" is invalid', $uuid), self::CODE_UUID);
@@ -44,13 +39,8 @@ class InvalidArgument extends \InvalidArgumentException implements Throwable
         return new self(sprintf('Date format "%s" is invalid', $date), self::CODE_DATE);
     }
 
-    public static function formatRead(string $message, \Throwable $previous): self
-    {
-        return new self($message, self::CODE_FORMAT_READ, $previous);
-    }
-
     public static function formatCreate(string $format): self
     {
-        return new self(sprintf('Format "%s" is unsupported', $format), self::CODE_FORMAT_CREATE);
+        return new self(sprintf('Format "%s" is unsupported', $format), self::CODE_MIME_TYPE);
     }
 }
