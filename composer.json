@@ -18,7 +18,6 @@
     "require": {
         "php": "~7.4",
         "ext-fileinfo": "*",
-        "ext-imagick": "*",
         "ext-json": "*",
         "ext-pdo": "*",
         "async-aws/s3": "^0.4.0",

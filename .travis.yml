@@ -12,7 +12,6 @@ cache:
 env:
     global:
         - APP_ENV=test
-        - IMAGICK_VERSION=3.4.4
         - SQL_MASTER=pgsql://postgres:@127.0.0.1:5432/test_db
         - SQL_SLAVES=pgsql://postgres:@127.0.0.1:5432/test_db
         - S3_ENDPOINT=http://127.0.0.1:9000
@@ -45,7 +44,6 @@ before_install:
 
 install:
     - pecl channel-update pecl.php.net
-    - yes | pecl install imagick-$IMAGICK_VERSION
     - yes | pecl install pcov
     - composer validate --no-interaction --strict
     - composer install --no-interaction --no-suggest
