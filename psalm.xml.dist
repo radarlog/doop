@@ -12,6 +12,7 @@
         <directory name="public"/>
         <directory name="src"/>
         <directory name="tests"/>
+        <file name="bootstrap.php"/>
         <ignoreFiles>
             <directory name="vendor"/>
         </ignoreFiles>
