@@ -12,9 +12,6 @@ ENV XDEBUG_VERSION 2.9.3
 RUN set -e \
     && cd /tmp \
     #
-    # Set timezone
-    && ln -fs /usr/share/zoneinfo/UTC /etc/localtime \
-    #
     # Install dependencies
     && apk --no-cache add --update $BUILD_DEPS $RUNTIME_DEPS \
     #
