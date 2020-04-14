@@ -5,6 +5,7 @@ parameters:
 
     paths:
         - bin
+        - bootstrap.php
         - public
         - src
         - tests

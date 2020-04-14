@@ -1,20 +1,16 @@
-FROM php:7.4-fpm-alpine3.10 as development
+FROM php:7.4-fpm-alpine3.11 as development
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /tmp
 COPY --from=composer:latest /usr/bin/composer /usr/bin
 
-ENV BUILD_DEPS $PHPIZE_DEPS imagemagick-dev libjpeg-turbo-dev libpng-dev libtool postgresql-dev
-ENV RUNTIME_DEPS imagemagick postgresql-libs
+ENV BUILD_DEPS $PHPIZE_DEPS postgresql-dev
+ENV RUNTIME_DEPS postgresql-libs
 
 ENV XDEBUG_VERSION 2.9.3
-ENV IMAGICK_VERSION 3.4.4
 
 RUN set -e \
     && cd /tmp \
-    #
-    # Set timezone
-    && ln -fs /usr/share/zoneinfo/UTC /etc/localtime \
     #
     # Install dependencies
     && apk --no-cache add --update $BUILD_DEPS $RUNTIME_DEPS \
@@ -22,13 +18,9 @@ RUN set -e \
     # Configure and install extensions
     && export CFLAGS="$PHP_CFLAGS" CPPFLAGS="$PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS" \
     && docker-php-ext-install \
-        exif \
+        fileinfo \
         opcache \
         pdo_pgsql \
-    #
-    # Compile and enable imagick extension
-    && pecl install imagick-$IMAGICK_VERSION \
-    && docker-php-ext-enable imagick \
     #
     # Compile PCOV and Xdebug extensions
     && yes | pecl install pcov \
