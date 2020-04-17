@@ -57,7 +57,7 @@ services:
             - -c
             - |-
                 yarn install --frozen-lockfile
-                yarn dev-server --public localhost:80 --config config/webpack.js
+                yarn dev-server --host 0.0.0.0 --port 8765 --public localhost:80
 
     postgres:
         container_name: doop-postgres

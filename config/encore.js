@@ -7,6 +7,11 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 }
 
 Encore
+    .configureDevServerOptions((options) => {
+        options.compress = true;
+        options.hot = true;
+    })
+
     // directory where compiled assets will be stored
     .setOutputPath('public/build/')
     // public path used by the web server to access the output path
