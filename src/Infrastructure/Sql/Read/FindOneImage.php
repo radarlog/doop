@@ -17,7 +17,7 @@ final class FindOneImage implements Query\Image\FindOne
         $this->connection = $connection;
     }
 
-    public function hashNameByUuid(string $uuid): Query\Image\HashName
+    public function hashNameById(string $id): Query\Image\HashName
     {
         $qb = $this->connection->createQueryBuilder();
 
@@ -25,14 +25,14 @@ final class FindOneImage implements Query\Image\FindOne
             ->select(['hash', 'name'])
             ->from($this->connection->imagesTable())
             ->where(
-                $qb->expr()->eq('uuid', $qb->createNamedParameter($uuid)),
+                $qb->expr()->eq('uuid', $qb->createNamedParameter($id)),
             );
 
         /** @var Statement $stmt */
         $stmt = $qb->execute();
 
         if ($stmt->rowCount() === 0) {
-            throw Sql\NotFound::uuid($uuid);
+            throw Sql\NotFound::uuid($id);
         }
 
         $row = $stmt->fetch(\PDO::FETCH_ASSOC);

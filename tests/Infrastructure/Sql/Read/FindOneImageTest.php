@@ -46,7 +46,7 @@ class FindOneImageTest extends DbTestCase
 
     public function testNameByHash(): void
     {
-        $result = $this->query->hashNameByUuid('572b3706-ffb8-423c-a317-d0ca8016a345');
+        $result = $this->query->hashNameById('572b3706-ffb8-423c-a317-d0ca8016a345');
 
         self::assertSame('f32b67c7e26342af42efabc674d441dca0a281c5', (string) $result->hash());
         self::assertSame('name2', (string) $result->name());
@@ -57,6 +57,6 @@ class FindOneImageTest extends DbTestCase
         $this->expectException(Sql\NotFound::class);
         $this->expectExceptionCode(3001);
 
-        $this->query->hashNameByUuid('384a2c67-4d6d-41a9-9954-b5bf75de708e');
+        $this->query->hashNameById('384a2c67-4d6d-41a9-9954-b5bf75de708e');
     }
 }
