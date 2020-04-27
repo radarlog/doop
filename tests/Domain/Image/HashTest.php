@@ -12,8 +12,9 @@ class HashTest extends UnitTestCase
     public function invalidHashProvider(): \Generator
     {
         yield [''];
-        yield [str_repeat('x', 39)];
-        yield [str_repeat('x', 41)];
+        yield [str_repeat('a', 39)];
+        yield [str_repeat('b', 41)];
+        yield [str_repeat('x', 40)];
     }
 
     /**

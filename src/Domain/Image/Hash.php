@@ -14,7 +14,7 @@ final class Hash
     {
         $length = strlen($hash);
 
-        if ($length !== self::SHA1_LENGTH) {
+        if ($length !== self::SHA1_LENGTH || ctype_xdigit($hash) === false) {
             throw InvalidArgument::hash($hash);
         }
 
