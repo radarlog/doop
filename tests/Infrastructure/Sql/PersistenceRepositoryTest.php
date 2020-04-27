@@ -44,4 +44,20 @@ class PersistenceRepositoryTest extends DbTestCase
 
         $this->repository->getById($identity);
     }
+
+    public function testRemove(): void
+    {
+        $name = new Image\Name('name');
+        $hash = new Image\Hash('f32b67c7e26342af42efabc674d441dca0a281c5');
+
+        $image = new Image($hash, $name);
+        $this->repository->add($image);
+
+        $this->repository->remove($image->id());
+
+        $this->expectException(NotFound::class);
+        $this->expectExceptionCode(3001);
+
+        $this->repository->getById($image->id());
+    }
 }

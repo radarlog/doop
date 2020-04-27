@@ -56,4 +56,13 @@ final class PersistenceRepository implements Repository
 
         return Image::fromState($state);
     }
+
+    public function remove(Image\Identity $id): void
+    {
+        $this->connection->delete(
+            $this->connection->imagesTable(),
+            ['uuid' => $id->toString()],
+            ['uuid' => Types::STRING],
+        );
+    }
 }

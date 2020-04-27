@@ -9,4 +9,6 @@ interface Repository
     public function add(Image $image): void;
 
     public function getById(Image\Identity $id): Image;
+
+    public function remove(Image\Identity $id): void;
 }
