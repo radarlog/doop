@@ -20,11 +20,11 @@ final class ImagesList extends Command
      */
     protected static $defaultName = 'images:list';
 
-    private Query\Image\FindAll $findAll;
+    private Query $query;
 
-    public function __construct(Query\Image\FindAll $findAll)
+    public function __construct(Query $query)
     {
-        $this->findAll = $findAll;
+        $this->query = $query;
 
         parent::__construct();
     }
@@ -37,7 +37,7 @@ final class ImagesList extends Command
     // phpcs:disable SlevomatCodingStandard.Functions.UnusedParameter
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $images = $this->findAll->sortedByUploadDate();
+        $images = $this->query->findAllSortedByUploadDate();
 
         if ($images === []) {
             $output->writeln('No images uploaded');
@@ -51,7 +51,7 @@ final class ImagesList extends Command
     }
 
     /**
-     * @param Query\Image\UuidNameDate[] $images
+     * @param Query\UuidNameDate[] $images
      *
      * @throws InvalidArgumentException
      */

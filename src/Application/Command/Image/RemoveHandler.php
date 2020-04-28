@@ -15,16 +15,16 @@ final class RemoveHandler implements Command\Handler
 
     private Domain\Repository $repository;
 
-    private Query\Image\FindHashCount $countHashes;
+    private Query $query;
 
     public function __construct(
         Domain\Storage $storage,
         Domain\Repository $repository,
-        Query\Image\FindHashCount $countHashes
+        Query $query
     ) {
         $this->storage = $storage;
         $this->repository = $repository;
-        $this->countHashes = $countHashes;
+        $this->query = $query;
     }
 
     /**
@@ -38,7 +38,7 @@ final class RemoveHandler implements Command\Handler
     {
         $id = $command->id();
 
-        $result = $this->countHashes->byId($id);
+        $result = $this->query->countHashesById($id);
 
         $identity = new Image\Identity($id);
         $this->repository->remove($identity);

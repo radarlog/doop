@@ -19,8 +19,8 @@ class RemoveHandlerTest extends UnitTestCase
     /** @var MockObject&Domain\Storage */
     private Domain\Storage $storage;
 
-    /** @var MockObject&Query\Image\FindHashCount */
-    private Query\Image\FindHashCount $query;
+    /** @var MockObject&Query */
+    private Query $query;
 
     private Command\Image\RemoveHandler $handler;
 
@@ -29,7 +29,7 @@ class RemoveHandlerTest extends UnitTestCase
         parent::setUp();
 
         $this->storage = $this->createMock(Domain\Storage::class);
-        $this->query = $this->createMock(Query\Image\FindHashCount::class);
+        $this->query = $this->createMock(Query::class);
 
         $repository = $this->createMock(Domain\Repository::class);
         $repository
@@ -44,8 +44,8 @@ class RemoveHandlerTest extends UnitTestCase
     {
         $this->query
             ->expects(self::once())
-            ->method('byId')
-            ->willReturn(new Query\Image\HashCount(self::HASH, 1));
+            ->method('countHashesById')
+            ->willReturn(new Query\HashCount(self::HASH, 1));
 
         $this->storage
             ->expects(self::once())
@@ -61,8 +61,8 @@ class RemoveHandlerTest extends UnitTestCase
     {
         $this->query
             ->expects(self::once())
-            ->method('byId')
-            ->willReturn(new Query\Image\HashCount(self::HASH, 3));
+            ->method('countHashesById')
+            ->willReturn(new Query\HashCount(self::HASH, 3));
 
         $this->storage
             ->expects(self::never())

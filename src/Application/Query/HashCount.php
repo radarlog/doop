@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Radarlog\Doop\Application\Query\Image;
+namespace Radarlog\Doop\Application\Query;
 
 use Radarlog\Doop\Domain\Image;
 

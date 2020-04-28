@@ -11,11 +11,11 @@ use Symfony\Component\HttpFoundation;
 
 final class Index extends AbstractController implements Http\Controller
 {
-    private Query\Image\FindAll $findAll;
+    private Query $query;
 
-    public function __construct(Query\Image\FindAll $findAll)
+    public function __construct(Query $query)
     {
-        $this->findAll = $findAll;
+        $this->query = $query;
     }
 
     // phpcs:disable SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter
@@ -24,7 +24,7 @@ final class Index extends AbstractController implements Http\Controller
         $form = $this->createForm(Http\Form\UploadType::class);
 
         return $this->render('base.html.twig', [
-            'images' => $this->findAll->sortedByUploadDate(),
+            'images' => $this->query->findAllSortedByUploadDate(),
             'form' => $form->createView(),
         ]);
     }

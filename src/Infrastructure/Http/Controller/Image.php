@@ -15,13 +15,13 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 final class Image extends AbstractController implements Controller
 {
-    private Query\Image\FindOne $findOne;
+    private Query $query;
 
     private Storage $storage;
 
-    public function __construct(Query\Image\FindOne $findOne, Storage $storage)
+    public function __construct(Query $query, Storage $storage)
     {
-        $this->findOne = $findOne;
+        $this->query = $query;
         $this->storage = $storage;
     }
 
@@ -34,7 +34,7 @@ final class Image extends AbstractController implements Controller
         $uuid = (string) $request->attributes->get('uuid');
 
         try {
-            $result = $this->findOne->hashNameById($uuid);
+            $result = $this->query->findOneHashNameById($uuid);
         } catch (Sql\NotFound $e) {
             throw new NotFoundHttpException($e->getMessage(), $e);
         }
