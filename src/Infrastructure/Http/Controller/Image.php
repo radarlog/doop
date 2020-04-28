@@ -31,7 +31,7 @@ final class Image extends AbstractController implements Controller
      */
     public function __invoke(HttpFoundation\Request $request): HttpFoundation\Response
     {
-        $uuid = $request->attributes->get('uuid');
+        $uuid = (string) $request->attributes->get('uuid');
 
         try {
             $result = $this->findOne->hashNameById($uuid);
