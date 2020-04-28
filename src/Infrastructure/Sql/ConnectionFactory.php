@@ -30,6 +30,10 @@ final class ConnectionFactory
             'master' => $masterConnection->getParams(),
             'slaves' => $this->parseSlaves($params['slaves']),
             'driver' => $driver,
+            'driverOptions' => [
+                \PDO::ATTR_EMULATE_PREPARES => false,
+                \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
+            ],
         ];
 
         $this->connection = new Connection($params, $driver);

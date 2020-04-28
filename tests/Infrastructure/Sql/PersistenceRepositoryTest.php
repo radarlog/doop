@@ -30,11 +30,9 @@ class PersistenceRepositoryTest extends DbTestCase
         $image1 = new Image($hash, $name);
         $this->repository->add($image1);
 
-        $id = $image1->id();
+        $image2 = $this->repository->getById($image1->id());
 
-        $image2 = $this->repository->getById($id);
-
-        self::assertSame($id->toString(), $image2->id()->toString());
+        self::assertEquals($image1->id(), $image2->id());
     }
 
     public function testGetByNonExistingId(): void
@@ -45,5 +43,21 @@ class PersistenceRepositoryTest extends DbTestCase
         $this->expectExceptionCode(3001);
 
         $this->repository->getById($identity);
+    }
+
+    public function testRemove(): void
+    {
+        $name = new Image\Name('name');
+        $hash = new Image\Hash('f32b67c7e26342af42efabc674d441dca0a281c5');
+
+        $image = new Image($hash, $name);
+        $this->repository->add($image);
+
+        $this->repository->remove($image->id());
+
+        $this->expectException(NotFound::class);
+        $this->expectExceptionCode(3001);
+
+        $this->repository->getById($image->id());
     }
 }

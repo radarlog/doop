@@ -19,7 +19,7 @@ class IdentityTest extends UnitTestCase
 
     public function testNew(): void
     {
-        $identity = new Image\Identity();
+        $identity = Image\Identity::new();
 
         self::assertSame(36, strlen($identity->toString()));
     }

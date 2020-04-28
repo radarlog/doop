@@ -1,5 +1,8 @@
 {% for image in images %}
     <div class="col-4 mb-4">
+        <button type="button" class="close" aria-label="Close">
+            <a href="{{ path('remove', {'uuid': image.uuid}) }}" class="badge badge-danger">×</a>
+        </button>
         <a href="{{ path('image', {'uuid': image.uuid}) }}" class="thumbnail">
             <img
                 alt="{{ image.name }}"

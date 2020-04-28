@@ -30,15 +30,29 @@ final class Client implements Domain\Storage
         ]);
     }
 
-    public function download(string $hash): Domain\Image\File
+    public function download(Domain\Image\Hash $hash): Domain\Image\File
     {
-        $object = $this->client->getObject([
+        $input = [
             'Bucket' => $this->bucketName,
-            'Key' => $hash,
-        ]);
+            'Key' => (string) $hash,
+        ];
+
+        if ($this->client->objectNotExists($input)->isSuccess()) {
+            throw NotFound::hash((string) $hash);
+        }
+
+        $object = $this->client->getObject($input);
 
         $content = $object->getBody()->getContentAsString();
 
         return new Domain\Image\File($content);
+    }
+
+    public function delete(Domain\Image\Hash $hash): void
+    {
+        $this->client->deleteObject([
+            'Bucket' => $this->bucketName,
+            'Key' => (string) $hash,
+        ]);
     }
 }

@@ -58,7 +58,6 @@ require __DIR__ . '/vendor/autoload.php';
 
         $cachedEnv = require self::CACHED_ENV_FILE;
 
-        // phpcs:disable SlevomatCodingStandard.ControlStructures.EarlyExit
         if (is_array($cachedEnv)) {
             $_ENV += $cachedEnv;
         }
