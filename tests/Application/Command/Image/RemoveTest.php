@@ -25,7 +25,7 @@ class RemoveTest extends UnitTestCase
 
     public function testFqcnHandler(): void
     {
-        self::assertSame('RemoveHandler::class', $this->command->fqcnHandler());
+        self::assertSame(Command\Image\RemoveHandler::class, $this->command->fqcnHandler());
     }
 
     public function testSerialize(): void

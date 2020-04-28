@@ -22,7 +22,7 @@ final class Remove implements Command
 
     public function fqcnHandler(): string
     {
-        return 'RemoveHandler::class';
+        return RemoveHandler::class;
     }
 
     public function serialize(): array
