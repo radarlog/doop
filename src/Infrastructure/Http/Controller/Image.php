@@ -31,17 +31,17 @@ final class Image extends AbstractController implements Controller
      */
     public function __invoke(HttpFoundation\Request $request): HttpFoundation\Response
     {
-        $uuid = $request->attributes->get('uuid');
+        $uuid = (string) $request->attributes->get('uuid');
 
         try {
-            $result = $this->findOne->hashNameByUuid($uuid);
+            $result = $this->findOne->hashNameById($uuid);
         } catch (Sql\NotFound $e) {
             throw new NotFoundHttpException($e->getMessage(), $e);
         }
 
         $file = $this->storage->download($result->hash());
 
-        $disposition = HeaderUtils::makeDisposition(HeaderUtils::DISPOSITION_ATTACHMENT, $result->name());
+        $disposition = HeaderUtils::makeDisposition(HeaderUtils::DISPOSITION_ATTACHMENT, (string) $result->name());
 
         return new HttpFoundation\Response($file->content(), 200, [
             'Content-Type' => $file->format()->mime(),

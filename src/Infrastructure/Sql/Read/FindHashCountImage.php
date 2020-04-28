@@ -8,7 +8,7 @@ use Doctrine\DBAL\Driver\Statement;
 use Radarlog\Doop\Application\Query;
 use Radarlog\Doop\Infrastructure\Sql;
 
-final class FindOneImage implements Query\Image\FindOne
+final class FindHashCountImage implements Query\Image\FindHashCount
 {
     private Sql\Connection $connection;
 
@@ -17,16 +17,18 @@ final class FindOneImage implements Query\Image\FindOne
         $this->connection = $connection;
     }
 
-    public function hashNameById(string $id): Query\Image\HashName
+    public function byId(string $id): Query\Image\HashCount
     {
         $qb = $this->connection->createQueryBuilder();
 
         $qb = $qb
-            ->select(['hash', 'name'])
-            ->from($this->connection->imagesTable())
+            ->select('i1.hash as hash, COUNT(i1.*) as count')
+            ->from($this->connection->imagesTable(), 'i1')
+            ->innerJoin('i1', $this->connection->imagesTable(), 'i2', 'i1.hash = i2.hash')
             ->where(
-                $qb->expr()->eq('uuid', $qb->createNamedParameter($id)),
-            );
+                $qb->expr()->eq('i1.uuid', $qb->createNamedParameter($id)),
+            )
+            ->groupBy('i1.hash');
 
         /** @var Statement $stmt */
         $stmt = $qb->execute();
@@ -37,6 +39,6 @@ final class FindOneImage implements Query\Image\FindOne
 
         $row = $stmt->fetch(\PDO::FETCH_ASSOC);
 
-        return new Query\Image\HashName($row['hash'], $row['name']);
+        return new Query\Image\HashCount($row['hash'], $row['count']);
     }
 }

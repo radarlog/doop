@@ -6,9 +6,10 @@ namespace Radarlog\Doop\Infrastructure\Sql;
 
 use Doctrine\DBAL\Driver\Statement;
 use Doctrine\DBAL\Types\Types;
-use Radarlog\Doop\Domain;
+use Radarlog\Doop\Domain\Image;
+use Radarlog\Doop\Domain\Repository;
 
-final class PersistenceRepository implements Domain\Repository
+final class PersistenceRepository implements Repository
 {
     private Connection $connection;
 
@@ -17,7 +18,7 @@ final class PersistenceRepository implements Domain\Repository
         $this->connection = $connection;
     }
 
-    public function add(Domain\Aggregate $image): void
+    public function add(Image $image): void
     {
         $this->connection->insert(
             $this->connection->imagesTable(),
@@ -31,7 +32,7 @@ final class PersistenceRepository implements Domain\Repository
         );
     }
 
-    public function getById(Domain\Identity $id): Domain\Aggregate
+    public function getById(Image\Identity $id): Image
     {
         $qb = $this->connection->createQueryBuilder();
 
@@ -51,8 +52,17 @@ final class PersistenceRepository implements Domain\Repository
 
         $row = $stmt->fetch(\PDO::FETCH_ASSOC);
 
-        $state = new Domain\Image\State($row);
+        $state = new Image\State($row);
 
-        return Domain\Image::fromState($state);
+        return Image::fromState($state);
+    }
+
+    public function remove(Image\Identity $id): void
+    {
+        $this->connection->delete(
+            $this->connection->imagesTable(),
+            ['uuid' => $id->toString()],
+            ['uuid' => Types::STRING],
+        );
     }
 }

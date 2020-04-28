@@ -6,16 +6,16 @@ namespace Radarlog\Doop\Application\Query\Image;
 
 use Radarlog\Doop\Domain\Image;
 
-final class HashName
+final class HashCount
 {
     private Image\Hash $hash;
 
-    private Image\Name $name;
+    private int $count;
 
-    public function __construct(string $hash, string $name)
+    public function __construct(string $hash, int $count)
     {
         $this->hash = new Image\Hash($hash);
-        $this->name = new Image\Name($name);
+        $this->count = $count;
     }
 
     public function hash(): Image\Hash
@@ -23,8 +23,8 @@ final class HashName
         return $this->hash;
     }
 
-    public function name(): Image\Name
+    public function count(): int
     {
-        return $this->name;
+        return $this->count;
     }
 }

@@ -6,7 +6,9 @@ namespace Radarlog\Doop\Domain;
 
 interface Repository
 {
-    public function add(Aggregate $entity): void;
+    public function add(Image $image): void;
 
-    public function getById(Identity $id): Aggregate;
+    public function getById(Image\Identity $id): Image;
+
+    public function remove(Image\Identity $id): void;
 }

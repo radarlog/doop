@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Application\Query\Image;
 
-interface FindOne
+interface FindHashCount
 {
-    public function hashNameById(string $id): HashName;
+    public function byId(string $id): HashCount;
 }
