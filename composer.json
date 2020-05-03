@@ -20,7 +20,7 @@
         "ext-fileinfo": "*",
         "ext-json": "*",
         "ext-pdo": "*",
-        "async-aws/s3": "^0.4.0",
+        "async-aws/s3": "^1.0",
         "doctrine/dbal": "^2.10",
         "doctrine/migrations": "^2.2",
         "psr/log": "^1.1",
