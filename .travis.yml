@@ -17,7 +17,7 @@ env:
         - S3_ENDPOINT=http://127.0.0.1:9000
         - S3_KEY=minio
         - S3_SECRET=minio330
-        - S3_REGION=test-region
+        - S3_REGION=eu-west-2
         - S3_BUCKET=test-bucket
 
 services:

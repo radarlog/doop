@@ -47,7 +47,7 @@ final class ImagesList extends Command
 
         $this->renderImages($images, new Table($output));
 
-        return 0;
+        return self::SUCCESS;
     }
 
     /**
