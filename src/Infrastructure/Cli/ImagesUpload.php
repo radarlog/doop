@@ -59,7 +59,7 @@ final class ImagesUpload extends Console\Command\Command
             }
         }
 
-        return 0;
+        return self::SUCCESS;
     }
 
     private function uploadFile(string $path): void

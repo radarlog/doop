@@ -1,6 +1,7 @@
 monolog:
     channels:
         - commands
+        - deprecation
     handlers:
         main:
             type: stream

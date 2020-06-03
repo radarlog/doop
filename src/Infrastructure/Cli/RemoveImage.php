@@ -55,6 +55,6 @@ final class RemoveImage extends Console\Command\Command
 
         $output->writeln('Image removed');
 
-        return 0;
+        return self::SUCCESS;
     }
 }

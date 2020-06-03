@@ -11,7 +11,6 @@ require __DIR__ . '/vendor/autoload.php';
 (new class ()
 {
     private const APP_ENV = 'APP_ENV';
-    private const PUT_ENV = true;
 
     private const ENV_PROD = 'prod';
     private const ENV_DEV = 'dev';
@@ -21,7 +20,7 @@ require __DIR__ . '/vendor/autoload.php';
 
     /**
      * Load cached env vars if the .env.local.php file exists
-     * Run "composer dump-env prod" to create it (requires symfony/flex >=1.2)
+     * Run "composer dump-env prod" to create it
      */
     private const CACHED_ENV_FILE = __DIR__ . '/.env.local.php';
 
@@ -75,11 +74,7 @@ require __DIR__ . '/vendor/autoload.php';
 
     private function loadDevEnv(): void
     {
-        if (!class_exists(Dotenv::class)) {
-            throw new RuntimeException('Please run "composer require --dev symfony/dotenv"');
-        }
-
         // load all the .env files
-        (new Dotenv(self::PUT_ENV))->loadEnv(__DIR__ . '/.env', self::APP_ENV);
+        (new Dotenv(self::APP_ENV))->loadEnv(__DIR__ . '/.env');
     }
 });
