@@ -37,7 +37,7 @@
     },
     "require-dev": {
         "phpstan/phpstan": "^0.12.0",
-        "phpunit/phpunit": "^9.1",
+        "phpunit/phpunit": "^9.2",
         "psalm/plugin-phpunit": "^0.10.0",
         "psalm/plugin-symfony": "^1.2",
         "roave/security-advisories": "dev-master",
@@ -45,7 +45,7 @@
         "squizlabs/php_codesniffer": "^3.5",
         "symfony/browser-kit": "^5.1",
         "symfony/dotenv": "^5.1",
-        "thomas-schulz/symfony-meta": "^1.4",
+        "thomas-schulz/symfony-meta": "^1.5",
         "vimeo/psalm": "^3.11"
     },
     "autoload": {
