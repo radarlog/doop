@@ -30,8 +30,6 @@ final class Kernel extends HttpKernel\Kernel
      */
     protected function configureContainer(ContainerConfigurator $container): void
     {
-        $container->parameters()->set('container.dumper.inline_class_loader', true);
-
         $container->import(sprintf('%s/config/{packages}/*.yaml', $this->getProjectDir()));
         $container->import(sprintf('%s/config/{packages}/%s/*.yaml', $this->getProjectDir(), $this->environment));
         $container->import(sprintf('%s/config/{services}.yaml', $this->getProjectDir()));

@@ -23,7 +23,6 @@ class KernelTest extends FunctionalTestCase
         self::$kernel->registerContainerConfiguration($loader);
 
         self::assertInstanceOf(Kernel::class, self::$kernel);
-        self::assertTrue(self::$container->getParameter('container.dumper.inline_class_loader'));
     }
 
     public function testRoutes(): void
