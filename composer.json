@@ -22,7 +22,7 @@
         "ext-pdo": "*",
         "async-aws/s3": "^1.2",
         "doctrine/dbal": "^2.10",
-        "doctrine/migrations": "^2.2",
+        "doctrine/migrations": "^3.0",
         "psr/log": "^1.1",
         "ramsey/uuid": "^4.0",
         "symfony/config": "^5.1",
