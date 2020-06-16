@@ -6,6 +6,10 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
     Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
 }
 
+if (Encore.isDevServer()) {
+    Encore.disableCssExtraction()
+}
+
 Encore
     .configureDevServerOptions((options) => {
         options.compress = true;
