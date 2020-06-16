@@ -28,7 +28,12 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
-    .addEntry('doop', './src/Frontend/js/doop.js')
+    .addEntry('doop', './src/Frontend/ts/doop.ts')
+
+    .enableTypeScriptLoader(function (tsConfig) {
+        tsConfig.transpileOnly = true;
+        tsConfig.configFile = 'tsconfig.json';
+    })
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
