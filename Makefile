@@ -50,6 +50,7 @@ run: up composer migrations ; $(info $(M) Environment has been built succesfully
 static-analyze: ; $(info $(M) Performing static analyze:)
 	docker-compose exec -T php vendor/bin/phpstan analyse
 	docker-compose exec -T php vendor/bin/psalm --taint-analysis
+	docker-compose exec -T php vendor/bin/deptrac --fail-on-uncovered --no-interaction --cache-file=var/cache/deptrac.cache
 
 .PHONY: styles-check
 styles-check: ; $(info $(M) Checking coding style:)
