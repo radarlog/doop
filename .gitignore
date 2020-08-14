@@ -17,3 +17,7 @@
 /.phpcs-cache
 /phpcs.xml
 ###< squizlabs/php_codesniffer ###
+
+###> sensiolabs-de/deptrac-shim ###
+/.deptrac.cache
+###< sensiolabs-de/deptrac-shim ###

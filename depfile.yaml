@@ -1,0 +1,32 @@
+paths:
+    - src/
+exclude_files:
+    - src/Infrastructure/Sql/Migrations/
+layers:
+    -   name: Domain
+        collectors:
+            -   type: className
+                regex: Radarlog\\Doop\\Domain
+            -   type: className
+                regex: Ramsey\\Uuid\\Uuid
+            -   type: className
+                regex: Radarlog\\Doop\\Throwable
+    -   name: Application
+        collectors:
+            -   type: className
+                regex: Radarlog\\Doop\\Application
+            -   type: className
+                regex: Psr\\Log\\LoggerInterface
+    -   name: Infrastructure
+        collectors:
+            -   type: className
+                regex: Radarlog\\Doop\\Infrastructure
+            -   type: className
+                regex: Symfony|AsyncAws|Doctrine
+ruleset:
+    Domain: ~
+    Application:
+        - Domain
+    Infrastructure:
+        - Domain
+        - Application
