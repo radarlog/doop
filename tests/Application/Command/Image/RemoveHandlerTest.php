@@ -35,7 +35,7 @@ class RemoveHandlerTest extends UnitTestCase
         $repository
             ->expects(self::once())
             ->method('remove')
-            ->with(self::callback(static fn(Domain\Image\Identity $identity) => $identity->toString() === self::UUID));
+            ->with(self::callback(static fn(Domain\Image\Uuid $uuid) => (string) $uuid === self::UUID));
 
         $this->handler = new Command\Image\RemoveHandler($this->storage, $repository, $this->query);
     }
@@ -44,7 +44,7 @@ class RemoveHandlerTest extends UnitTestCase
     {
         $this->query
             ->expects(self::once())
-            ->method('countHashesById')
+            ->method('countHashesByUuid')
             ->willReturn(new Query\HashCount(self::HASH, 1));
 
         $this->storage
@@ -61,7 +61,7 @@ class RemoveHandlerTest extends UnitTestCase
     {
         $this->query
             ->expects(self::once())
-            ->method('countHashesById')
+            ->method('countHashesByUuid')
             ->willReturn(new Query\HashCount(self::HASH, 3));
 
         $this->storage

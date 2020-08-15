@@ -17,11 +17,8 @@ final class RemoveHandler implements Command\Handler
 
     private Query $query;
 
-    public function __construct(
-        Domain\Storage $storage,
-        Domain\Repository $repository,
-        Query $query
-    ) {
+    public function __construct(Domain\Storage $storage, Domain\Repository $repository, Query $query)
+    {
         $this->storage = $storage;
         $this->repository = $repository;
         $this->query = $query;
@@ -36,12 +33,12 @@ final class RemoveHandler implements Command\Handler
      */
     public function handle(Command $command): void
     {
-        $id = $command->id();
+        $uuid = $command->uuid();
 
-        $result = $this->query->countHashesById($id);
+        $result = $this->query->countHashesByUuid($uuid);
 
-        $identity = new Image\Identity($id);
-        $this->repository->remove($identity);
+        $uuid = new Image\Uuid($uuid);
+        $this->repository->remove($uuid);
 
         if ($result->count() === 1) {
             $this->storage->delete($result->hash());

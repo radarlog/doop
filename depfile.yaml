@@ -8,8 +8,6 @@ layers:
             -   type: className
                 regex: Radarlog\\Doop\\Domain
             -   type: className
-                regex: Ramsey\\Uuid\\Uuid
-            -   type: className
                 regex: Radarlog\\Doop\\Throwable
     -   name: Application
         collectors:
@@ -22,7 +20,7 @@ layers:
             -   type: className
                 regex: Radarlog\\Doop\\Infrastructure
             -   type: className
-                regex: Symfony|AsyncAws|Doctrine
+                regex: Symfony|AsyncAws|Doctrine|Ramsey
 ruleset:
     Domain: ~
     Application:

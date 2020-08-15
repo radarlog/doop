@@ -34,7 +34,7 @@ final class Image extends AbstractController implements Controller
         $uuid = (string) $request->attributes->get('uuid');
 
         try {
-            $result = $this->query->findOneHashNameById($uuid);
+            $result = $this->query->findOneHashNameByUuid($uuid);
         } catch (Sql\NotFound $e) {
             throw new NotFoundHttpException($e->getMessage(), $e);
         }

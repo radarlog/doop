@@ -63,7 +63,7 @@ class ReadModelTest extends DbTestCase
     {
         $hashCount = new Query\HashCount(self::HASH, 2);
 
-        self::assertEquals($hashCount, $this->query->countHashesById('9f2149bb-b6e5-4ae0-a188-e616cddc8e98'));
+        self::assertEquals($hashCount, $this->query->countHashesByUuid('9f2149bb-b6e5-4ae0-a188-e616cddc8e98'));
     }
 
     public function testHashesNotFound(): void
@@ -71,12 +71,12 @@ class ReadModelTest extends DbTestCase
         $this->expectException(Sql\NotFound::class);
         $this->expectExceptionCode(3001);
 
-        $this->query->countHashesById('384a2c67-4d6d-41a9-9954-b5bf75de708e');
+        $this->query->countHashesByUuid('384a2c67-4d6d-41a9-9954-b5bf75de708e');
     }
 
     public function testNameByHash(): void
     {
-        $result = $this->query->findOneHashNameById('9f2149bb-b6e5-4ae0-a188-e616cddc8e98');
+        $result = $this->query->findOneHashNameByUuid('9f2149bb-b6e5-4ae0-a188-e616cddc8e98');
 
         self::assertSame(self::HASH, (string) $result->hash());
         self::assertSame('name1', (string) $result->name());
@@ -87,6 +87,6 @@ class ReadModelTest extends DbTestCase
         $this->expectException(Sql\NotFound::class);
         $this->expectExceptionCode(3001);
 
-        $this->query->findOneHashNameById('384a2c67-4d6d-41a9-9954-b5bf75de708e');
+        $this->query->findOneHashNameByUuid('384a2c67-4d6d-41a9-9954-b5bf75de708e');
     }
 }
