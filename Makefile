@@ -40,17 +40,17 @@ migrations: ; $(info $(M) Running migrations:)
             sleep 1 ; \
         done
 	echo ""
-	docker-compose exec -T php bin/console migrations:migrate --allow-no-migration  --no-interaction
-	docker-compose exec -T php bin/console --env test migrations:migrate --allow-no-migration --no-interaction
+	docker-compose exec -T php bin/console migrations:migrate --ansi --allow-no-migration --no-interaction
+	docker-compose exec -T php bin/console --env test migrations:migrate --ansi --allow-no-migration --no-interaction
 
 .PHONY: run
 run: up composer migrations ; $(info $(M) Environment has been built succesfully)
 
 .PHONY: static-analyze
 static-analyze: ; $(info $(M) Performing static analyze:)
-	docker-compose exec -T php vendor/bin/phpstan analyse
+	docker-compose exec -T php vendor/bin/phpstan analyse --ansi
 	docker-compose exec -T php vendor/bin/psalm --taint-analysis
-	docker-compose exec -T php vendor/bin/deptrac --fail-on-uncovered --no-interaction --cache-file=var/cache/deptrac.cache
+	docker-compose exec -T php vendor/bin/deptrac --ansi --fail-on-uncovered --no-interaction --cache-file=var/cache/deptrac.cache
 
 .PHONY: styles-check
 styles-check: ; $(info $(M) Checking coding style:)
