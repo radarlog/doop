@@ -24,8 +24,9 @@ class RemoveTest extends ControllerTestCase
 
         $file = new Image\File($content);
 
+        $uuid = new Image\Uuid('572b3706-ffb8-423c-a317-d0ca8016a345');
         $name = new Image\Name('avatar.jpg');
-        $image = new Image($file->hash(), $name);
+        $image = new Image($uuid, $file->hash(), $name);
 
         $this->uuid = $image->uuid();
 

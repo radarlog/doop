@@ -9,6 +9,8 @@ use Radarlog\Doop\Tests\UnitTestCase;
 
 class ImageTest extends UnitTestCase
 {
+    private Image\Uuid $uuid;
+
     private Image\Name $name;
 
     private Image\Hash $hash;
@@ -17,6 +19,7 @@ class ImageTest extends UnitTestCase
     {
         parent::setUp();
 
+        $this->uuid = new Image\Uuid('572b3706-ffb8-423c-a317-d0ca8016a345');
         $this->name = new Image\Name('name');
         $this->hash = new Image\Hash('f32b67c7e26342af42efabc674d441dca0a281c5');
     }
@@ -69,7 +72,7 @@ class ImageTest extends UnitTestCase
 
     public function testGetState(): void
     {
-        $image = new Image($this->hash, $this->name);
+        $image = new Image($this->uuid, $this->hash, $this->name);
 
         $state = $image->getState();
 
@@ -78,8 +81,8 @@ class ImageTest extends UnitTestCase
 
     public function testUuid(): void
     {
-        $image = new Image($this->hash, $this->name);
+        $image = new Image($this->uuid, $this->hash, $this->name);
 
-        self::assertSame(36, strlen((string) $image->uuid()));
+        self::assertSame($this->uuid, $image->uuid());
     }
 }

@@ -21,8 +21,9 @@ class ImageTest extends ControllerTestCase
 
         $file = new Image\File($content);
 
+        $uuid = new Image\Uuid('572b3706-ffb8-423c-a317-d0ca8016a345');
         $name = new Image\Name('avatar.jpg');
-        $image = new Image($file->hash(), $name);
+        $image = new Image($uuid, $file->hash(), $name);
 
         $this->uuid = $image->uuid();
 
@@ -48,7 +49,7 @@ class ImageTest extends ControllerTestCase
 
     public function testNotFound(): void
     {
-        $this->client->request('GET', '/image/572b3706-ffb8-423c-a317-d0ca8016a345');
+        $this->client->request('GET', '/image/d3001bd8-f79f-4d91-802a-bebbd3c9d381');
 
         self::assertResponseStatusCodeSame(404);
     }

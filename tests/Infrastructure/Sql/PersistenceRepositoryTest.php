@@ -24,10 +24,11 @@ class PersistenceRepositoryTest extends DbTestCase
 
     public function testAddNew(): void
     {
+        $uuid = new Image\Uuid('572b3706-ffb8-423c-a317-d0ca8016a345');
         $name = new Image\Name('name');
         $hash = new Image\Hash('f32b67c7e26342af42efabc674d441dca0a281c5');
 
-        $image1 = new Image($hash, $name);
+        $image1 = new Image($uuid, $hash, $name);
         $this->repository->add($image1);
 
         $image2 = $this->repository->getByUuid($image1->uuid());
@@ -47,10 +48,11 @@ class PersistenceRepositoryTest extends DbTestCase
 
     public function testRemove(): void
     {
+        $uuid = new Image\Uuid('572b3706-ffb8-423c-a317-d0ca8016a345');
         $name = new Image\Name('name');
         $hash = new Image\Hash('f32b67c7e26342af42efabc674d441dca0a281c5');
 
-        $image = new Image($hash, $name);
+        $image = new Image($uuid, $hash, $name);
         $this->repository->add($image);
 
         $this->repository->remove($image->uuid());
