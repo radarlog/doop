@@ -17,7 +17,9 @@ class UploadHandlerTest extends UnitTestCase
     public function testHandle(): void
     {
         $storage = $this->createMock(Domain\Storage::class);
-        $repository = $this->createMock(Domain\Repository::class);
+        $repository = $this->createConfiguredMock(Domain\Repository::class, [
+            'newUuid' => new Domain\Image\Uuid('572b3706-ffb8-423c-a317-d0ca8016a345'),
+        ]);
 
         $storage
             ->expects(self::once())

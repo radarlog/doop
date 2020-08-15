@@ -8,6 +8,7 @@ use Doctrine\DBAL\Driver\Statement;
 use Doctrine\DBAL\Types\Types;
 use Radarlog\Doop\Domain\Image;
 use Radarlog\Doop\Domain\Repository;
+use Ramsey\Uuid\Uuid;
 
 final class PersistenceRepository implements Repository
 {
@@ -16,6 +17,13 @@ final class PersistenceRepository implements Repository
     public function __construct(Connection $connection)
     {
         $this->connection = $connection;
+    }
+
+    public function newUuid(): Image\Uuid
+    {
+        $uuid = Uuid::uuid4()->toString();
+
+        return new Image\Uuid($uuid);
     }
 
     public function add(Image $image): void
