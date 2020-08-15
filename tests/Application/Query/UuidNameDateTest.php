@@ -9,27 +9,31 @@ use Radarlog\Doop\Tests\UnitTestCase;
 
 class UuidNameDateTest extends UnitTestCase
 {
+    private const UUID = '572b3706-ffb8-423c-a317-d0ca8016a345';
+    private const NAME = 'name';
+    private const DATE = '2019-03-18 23:22:36';
+
     private UuidNameDate $uuidNameDate;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->uuidNameDate = new UuidNameDate('uuid', 'name', '2018-01-01 23:22:36');
+        $this->uuidNameDate = new UuidNameDate(self::UUID, self::NAME, self::DATE);
     }
 
     public function testUuid(): void
     {
-        self::assertSame('uuid', $this->uuidNameDate->uuid());
+        self::assertSame(self::UUID, $this->uuidNameDate->uuid());
     }
 
     public function testName(): void
     {
-        self::assertSame('name', $this->uuidNameDate->name());
+        self::assertSame(self::NAME, $this->uuidNameDate->name());
     }
 
     public function testUploadedAt(): void
     {
-        self::assertSame('2018-01-01 23:22:36', $this->uuidNameDate->uploadedAt());
+        self::assertSame(self::DATE, $this->uuidNameDate->uploadedAt());
     }
 }

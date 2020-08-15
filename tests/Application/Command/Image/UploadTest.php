@@ -9,23 +9,26 @@ use Radarlog\Doop\Tests\UnitTestCase;
 
 class UploadTest extends UnitTestCase
 {
+    private const NAME = 'name';
+    private const CONTENT = 'content';
+
     private Command\Image\Upload $command;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->command = new Command\Image\Upload('some_name', 'some_content');
+        $this->command = new Command\Image\Upload(self::NAME, self::CONTENT);
     }
 
     public function testName(): void
     {
-        self::assertSame('some_name', $this->command->name());
+        self::assertSame(self::NAME, $this->command->name());
     }
 
     public function testContent(): void
     {
-        self::assertSame('some_content', $this->command->content());
+        self::assertSame(self::CONTENT, $this->command->content());
     }
 
     public function testFqcnHandler(): void
@@ -42,7 +45,7 @@ class UploadTest extends UnitTestCase
         self::assertArrayHasKey('name', $dump);
         self::assertArrayHasKey('content', $dump);
 
-        self::assertSame('some_name', $dump['name']);
-        self::assertSame('some_content', $dump['content']);
+        self::assertSame(self::NAME, $dump['name']);
+        self::assertSame(self::CONTENT, $dump['content']);
     }
 }

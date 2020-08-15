@@ -31,8 +31,8 @@ class NameTest extends UnitTestCase
 
     public function testStringify(): void
     {
-        $name = new Image\Name('some_valid');
+        $name = new Image\Name('name');
 
-        self::assertSame('some_valid', (string) $name);
+        self::assertSame('name', (string) $name);
     }
 }

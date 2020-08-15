@@ -11,6 +11,10 @@ use Radarlog\Doop\Tests\DbTestCase;
 
 class PersistenceRepositoryTest extends DbTestCase
 {
+    private const UUID = '572b3706-ffb8-423c-a317-d0ca8016a345';
+    private const HASH = '2080492d54a6b8579968901f366b13614fe188f2';
+    private const NAME = 'name';
+
     private Repository $repository;
 
     protected function setUp(): void
@@ -24,9 +28,9 @@ class PersistenceRepositoryTest extends DbTestCase
 
     public function testAddNew(): void
     {
-        $uuid = new Image\Uuid('572b3706-ffb8-423c-a317-d0ca8016a345');
-        $name = new Image\Name('name');
-        $hash = new Image\Hash('f32b67c7e26342af42efabc674d441dca0a281c5');
+        $uuid = new Image\Uuid(self::UUID);
+        $name = new Image\Name(self::NAME);
+        $hash = new Image\Hash(self::HASH);
 
         $image1 = new Image($uuid, $hash, $name);
         $this->repository->add($image1);
@@ -38,7 +42,7 @@ class PersistenceRepositoryTest extends DbTestCase
 
     public function testGetByNonExistingUuid(): void
     {
-        $uuid = new Image\Uuid('572b3706-ffb8-423c-a317-d0ca8016a345');
+        $uuid = new Image\Uuid(self::UUID);
 
         $this->expectException(NotFound::class);
         $this->expectExceptionCode(3001);
@@ -48,9 +52,9 @@ class PersistenceRepositoryTest extends DbTestCase
 
     public function testRemove(): void
     {
-        $uuid = new Image\Uuid('572b3706-ffb8-423c-a317-d0ca8016a345');
-        $name = new Image\Name('name');
-        $hash = new Image\Hash('f32b67c7e26342af42efabc674d441dca0a281c5');
+        $uuid = new Image\Uuid(self::UUID);
+        $name = new Image\Name(self::NAME);
+        $hash = new Image\Hash(self::HASH);
 
         $image = new Image($uuid, $hash, $name);
         $this->repository->add($image);

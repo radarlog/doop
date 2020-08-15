@@ -9,6 +9,8 @@ use Radarlog\Doop\Tests\UnitTestCase;
 
 class FileTest extends UnitTestCase
 {
+    private const HASH = '2080492d54a6b8579968901f366b13614fe188f2';
+
     private Image\File $file;
 
     private string $content;
@@ -27,7 +29,7 @@ class FileTest extends UnitTestCase
 
     public function testName(): void
     {
-        self::assertSame('2080492d54a6b8579968901f366b13614fe188f2', (string) $this->file->hash());
+        self::assertSame(self::HASH, (string) $this->file->hash());
     }
 
     public function testContent(): void

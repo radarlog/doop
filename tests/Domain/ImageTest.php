@@ -9,6 +9,11 @@ use Radarlog\Doop\Tests\UnitTestCase;
 
 class ImageTest extends UnitTestCase
 {
+    private const UUID = '572b3706-ffb8-423c-a317-d0ca8016a345';
+    private const HASH = '2080492d54a6b8579968901f366b13614fe188f2';
+    private const NAME = 'name';
+    private const DATE = '2019-03-18 23:22:36';
+
     private Image\Uuid $uuid;
 
     private Image\Name $name;
@@ -19,18 +24,18 @@ class ImageTest extends UnitTestCase
     {
         parent::setUp();
 
-        $this->uuid = new Image\Uuid('572b3706-ffb8-423c-a317-d0ca8016a345');
-        $this->name = new Image\Name('name');
-        $this->hash = new Image\Hash('f32b67c7e26342af42efabc674d441dca0a281c5');
+        $this->uuid = new Image\Uuid(self::UUID);
+        $this->name = new Image\Name(self::NAME);
+        $this->hash = new Image\Hash(self::HASH);
     }
 
     public function testState(): void
     {
         $origin = [
-            'uuid' => '572b3706-ffb8-423c-a317-d0ca8016a345',
-            'hash' => 'f32b67c7e26342af42efabc674d441dca0a281c5',
-            'name' => 'name',
-            'uploaded_at' => '2019-03-18 23:22:36',
+            'uuid' => self::UUID,
+            'hash' => self::HASH,
+            'name' => self::NAME,
+            'uploaded_at' => self::DATE,
         ];
 
         $image = Image::fromState(new Image\State($origin));
@@ -44,23 +49,23 @@ class ImageTest extends UnitTestCase
     public function testFromState(): void
     {
         $state = new Image\State([
-            'uuid' => '572b3706-ffb8-423c-a317-d0ca8016a345',
-            'hash' => 'f32b67c7e26342af42efabc674d441dca0a281c5',
-            'name' => 'name',
-            'uploaded_at' => '2019-03-18 23:22:36',
+            'uuid' => self::UUID,
+            'hash' => self::HASH,
+            'name' => self::NAME,
+            'uploaded_at' => self::DATE,
         ]);
 
         $image = Image::fromState($state);
 
-        self::assertSame('572b3706-ffb8-423c-a317-d0ca8016a345', (string) $image->uuid());
+        self::assertSame(self::UUID, (string) $image->uuid());
     }
 
     public function testFromStateWithWrongUploadedAtFormat(): void
     {
         $state = new Image\State([
-            'uuid' => '572b3706-ffb8-423c-a317-d0ca8016a345',
-            'hash' => 'f32b67c7e26342af42efabc674d441dca0a281c5',
-            'name' => 'name',
+            'uuid' => self::UUID,
+            'hash' => self::HASH,
+            'name' => self::NAME,
             'uploaded_at' => '2019-03-18 23:22',
         ]);
 

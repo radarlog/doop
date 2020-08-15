@@ -13,7 +13,6 @@ use Radarlog\Doop\Tests\UnitTestCase;
 class RemoveHandlerTest extends UnitTestCase
 {
     private const UUID = '572b3706-ffb8-423c-a317-d0ca8016a345';
-
     private const HASH = '2080492d54a6b8579968901f366b13614fe188f2';
 
     /** @var MockObject&Domain\Storage */
