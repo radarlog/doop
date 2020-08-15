@@ -8,6 +8,7 @@ use Doctrine\DBAL\Driver\Statement;
 use Doctrine\DBAL\Types\Types;
 use Radarlog\Doop\Domain\Image;
 use Radarlog\Doop\Domain\Repository;
+use Ramsey\Uuid\Uuid;
 
 final class PersistenceRepository implements Repository
 {
@@ -16,6 +17,13 @@ final class PersistenceRepository implements Repository
     public function __construct(Connection $connection)
     {
         $this->connection = $connection;
+    }
+
+    public function newUuid(): Image\Uuid
+    {
+        $uuid = Uuid::uuid4()->toString();
+
+        return new Image\Uuid($uuid);
     }
 
     public function add(Image $image): void
@@ -32,7 +40,7 @@ final class PersistenceRepository implements Repository
         );
     }
 
-    public function getById(Image\Identity $id): Image
+    public function getByUuid(Image\Uuid $uuid): Image
     {
         $qb = $this->connection->createQueryBuilder();
 
@@ -40,14 +48,14 @@ final class PersistenceRepository implements Repository
             ->select('*')
             ->from($this->connection->imagesTable())
             ->where(
-                $qb->expr()->eq('uuid', $qb->createNamedParameter($id->toString())),
+                $qb->expr()->eq('uuid', $qb->createNamedParameter((string) $uuid)),
             );
 
         /** @var Statement $stmt */
         $stmt = $qb->execute();
 
         if ($stmt->rowCount() === 0) {
-            throw NotFound::uuid($id->toString());
+            throw NotFound::uuid((string) $uuid);
         }
 
         $row = $stmt->fetch(\PDO::FETCH_ASSOC);
@@ -57,11 +65,11 @@ final class PersistenceRepository implements Repository
         return Image::fromState($state);
     }
 
-    public function remove(Image\Identity $id): void
+    public function remove(Image\Uuid $uuid): void
     {
         $this->connection->delete(
             $this->connection->imagesTable(),
-            ['uuid' => $id->toString()],
+            ['uuid' => (string) $uuid],
             ['uuid' => Types::STRING],
         );
     }

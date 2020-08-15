@@ -10,7 +10,9 @@ use Radarlog\Doop\Tests\ControllerTestCase;
 
 class ImageTest extends ControllerTestCase
 {
-    private Domain\Identity $uuid;
+    private const UUID = '572b3706-ffb8-423c-a317-d0ca8016a345';
+
+    private Image\Uuid $uuid;
 
     protected function setUp(): void
     {
@@ -21,10 +23,11 @@ class ImageTest extends ControllerTestCase
 
         $file = new Image\File($content);
 
+        $uuid = new Image\Uuid(self::UUID);
         $name = new Image\Name('avatar.jpg');
-        $image = new Image($file->hash(), $name);
+        $image = new Image($uuid, $file->hash(), $name);
 
-        $this->uuid = $image->id();
+        $this->uuid = $image->uuid();
 
         /** @var Domain\Storage $storage */
         $storage = self::$container->get(Domain\Storage::class);
@@ -37,7 +40,7 @@ class ImageTest extends ControllerTestCase
 
     public function testAction(): void
     {
-        $this->client->request('GET', sprintf('/image/%s', $this->uuid->toString()));
+        $this->client->request('GET', sprintf('/image/%s', (string) $this->uuid));
 
         self::assertResponseIsSuccessful();
 
@@ -48,7 +51,7 @@ class ImageTest extends ControllerTestCase
 
     public function testNotFound(): void
     {
-        $this->client->request('GET', '/image/572b3706-ffb8-423c-a317-d0ca8016a345');
+        $this->client->request('GET', '/image/d3001bd8-f79f-4d91-802a-bebbd3c9d381');
 
         self::assertResponseStatusCodeSame(404);
     }

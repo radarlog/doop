@@ -45,17 +45,18 @@ before_install:
 install:
     - pecl channel-update pecl.php.net
     - yes | pecl install pcov
-    - composer validate --no-interaction --strict
-    - composer install --no-interaction --no-suggest
+    - composer validate --ansi --no-interaction --strict
+    - composer install --ansi --no-interaction --no-suggest
 
 before_script:
     - psql -c "CREATE DATABASE test_db;"
-    - bin/console migrations:migrate --no-interaction
+    - bin/console migrations:migrate --ansi --no-interaction
 
 script:
     - vendor/bin/phpcs -ps
-    - vendor/bin/phpstan analyse --no-progress
-    - vendor/bin/psalm --no-progress
+    - vendor/bin/phpstan analyse --ansi --no-progress
+    - vendor/bin/psalm --no-progress --taint-analysis
+    - vendor/bin/deptrac --ansi --fail-on-uncovered --no-interaction --no-progress
     - vendor/bin/phpunit --coverage-clover var/cache/clover.xml
 
 after_success:

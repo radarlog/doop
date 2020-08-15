@@ -6,9 +6,11 @@ namespace Radarlog\Doop\Domain;
 
 interface Repository
 {
+    public function newUuid(): Image\Uuid;
+
     public function add(Image $image): void;
 
-    public function getById(Image\Identity $id): Image;
+    public function getByUuid(Image\Uuid $uuid): Image;
 
-    public function remove(Image\Identity $id): void;
+    public function remove(Image\Uuid $uuid): void;
 }

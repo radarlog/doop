@@ -113,9 +113,6 @@
     "phpunit/php-timer": {
         "version": "2.1.1"
     },
-    "phpunit/php-token-stream": {
-        "version": "3.0.1"
-    },
     "phpunit/phpunit": {
         "version": "4.7",
         "recipe": {
@@ -167,6 +164,9 @@
     "sebastian/comparator": {
         "version": "3.0.2"
     },
+    "sebastian/complexity": {
+        "version": "2.0.0"
+    },
     "sebastian/diff": {
         "version": "3.0.2"
     },
@@ -178,6 +178,9 @@
     },
     "sebastian/global-state": {
         "version": "3.0.0"
+    },
+    "sebastian/lines-of-code": {
+        "version": "1.0.0"
     },
     "sebastian/object-enumerator": {
         "version": "3.0.3"
@@ -196,6 +199,18 @@
     },
     "sebastian/version": {
         "version": "2.0.1"
+    },
+    "sensiolabs-de/deptrac-shim": {
+        "version": "0.7",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "0.7",
+            "ref": "1f7e6648916732a736466ccf2caa5b4b4e7f4968"
+        },
+        "files": [
+            "depfile.yaml"
+        ]
     },
     "slevomat/coding-standard": {
         "version": "4.8.7"
@@ -312,9 +327,6 @@
     },
     "symfony/http-kernel": {
         "version": "v4.2.4"
-    },
-    "symfony/inflector": {
-        "version": "v4.2.7"
     },
     "symfony/intl": {
         "version": "v4.2.7"

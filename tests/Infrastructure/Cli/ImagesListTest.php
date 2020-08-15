@@ -12,6 +12,11 @@ use Symfony\Component\Console\Tester\CommandTester;
 
 class ImagesListTest extends DbTestCase
 {
+    private const UUID = '572b3706-ffb8-423c-a317-d0ca8016a345';
+    private const HASH = '2080492d54a6b8579968901f366b13614fe188f2';
+    private const NAME = 'name';
+    private const DATE = '2019-03-18 23:22:36';
+
     private Repository $repository;
 
     private CommandTester $commandTester;
@@ -40,10 +45,10 @@ class ImagesListTest extends DbTestCase
     public function testExecuteWithUploadedImages(): void
     {
         $state = new Image\State([
-            'uuid' => '572b3706-ffb8-423c-a317-d0ca8016a345',
-            'hash' => 'f32b67c7e26342af42efabc674d441dca0a281c5',
-            'name' => 'unique_name',
-            'uploaded_at' => '2018-03-18 23:22:36',
+            'uuid' => self::UUID,
+            'hash' => self::HASH,
+            'name' => self::NAME,
+            'uploaded_at' => self::DATE,
         ]);
         $image = Image::fromState($state);
         $this->repository->add($image);
@@ -58,8 +63,8 @@ class ImagesListTest extends DbTestCase
         self::assertStringContainsString('Name', $output);
         self::assertStringContainsString('Uploaded Date', $output);
 
-        self::assertStringContainsString('572b3706-ffb8-423c-a317-d0ca8016a345', $output);
-        self::assertStringContainsString('unique_name', $output);
-        self::assertStringContainsString('2018-03-18 23:22:36', $output);
+        self::assertStringContainsString(self::UUID, $output);
+        self::assertStringContainsString(self::NAME, $output);
+        self::assertStringContainsString(self::DATE, $output);
     }
 }

@@ -13,7 +13,6 @@ use Radarlog\Doop\Tests\UnitTestCase;
 class RemoveHandlerTest extends UnitTestCase
 {
     private const UUID = '572b3706-ffb8-423c-a317-d0ca8016a345';
-
     private const HASH = '2080492d54a6b8579968901f366b13614fe188f2';
 
     /** @var MockObject&Domain\Storage */
@@ -35,7 +34,7 @@ class RemoveHandlerTest extends UnitTestCase
         $repository
             ->expects(self::once())
             ->method('remove')
-            ->with(self::callback(static fn(Domain\Image\Identity $identity) => $identity->toString() === self::UUID));
+            ->with(self::callback(static fn(Domain\Image\Uuid $uuid) => (string) $uuid === self::UUID));
 
         $this->handler = new Command\Image\RemoveHandler($this->storage, $repository, $this->query);
     }
@@ -44,7 +43,7 @@ class RemoveHandlerTest extends UnitTestCase
     {
         $this->query
             ->expects(self::once())
-            ->method('countHashesById')
+            ->method('countHashesByUuid')
             ->willReturn(new Query\HashCount(self::HASH, 1));
 
         $this->storage
@@ -61,7 +60,7 @@ class RemoveHandlerTest extends UnitTestCase
     {
         $this->query
             ->expects(self::once())
-            ->method('countHashesById')
+            ->method('countHashesByUuid')
             ->willReturn(new Query\HashCount(self::HASH, 3));
 
         $this->storage

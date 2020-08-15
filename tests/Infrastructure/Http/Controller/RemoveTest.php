@@ -11,7 +11,9 @@ use Radarlog\Doop\Tests\ControllerTestCase;
 
 class RemoveTest extends ControllerTestCase
 {
-    private Image\Identity $uuid;
+    private const UUID = '572b3706-ffb8-423c-a317-d0ca8016a345';
+
+    private Image\Uuid $uuid;
 
     private Domain\Repository $repository;
 
@@ -24,10 +26,10 @@ class RemoveTest extends ControllerTestCase
 
         $file = new Image\File($content);
 
-        $name = new Image\Name('avatar.jpg');
-        $image = new Image($file->hash(), $name);
+        $this->uuid = new Image\Uuid(self::UUID);
 
-        $this->uuid = $image->id();
+        $name = new Image\Name('avatar.jpg');
+        $image = new Image($this->uuid, $file->hash(), $name);
 
         /** @var Domain\Storage $storage */
         $storage = self::$container->get(Domain\Storage::class);
@@ -42,13 +44,13 @@ class RemoveTest extends ControllerTestCase
 
     public function testAction(): void
     {
-        $this->client->request('GET', sprintf('/remove/%s', $this->uuid->toString()));
+        $this->client->request('GET', sprintf('/remove/%s', self::UUID));
 
         self::assertResponseStatusCodeSame(302);
 
         $this->expectException(Sql\NotFound::class);
         $this->expectExceptionCode(3001);
 
-        $this->repository->getById($this->uuid);
+        $this->repository->getByUuid($this->uuid);
     }
 }

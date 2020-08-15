@@ -9,18 +9,20 @@ use Radarlog\Doop\Tests\UnitTestCase;
 
 class RemoveTest extends UnitTestCase
 {
+    private const UUID = '572b3706-ffb8-423c-a317-d0ca8016a345';
+
     private Command\Image\Remove $command;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->command = new Command\Image\Remove('some_id');
+        $this->command = new Command\Image\Remove(self::UUID);
     }
 
     public function testId(): void
     {
-        self::assertSame('some_id', $this->command->id());
+        self::assertSame(self::UUID, $this->command->uuid());
     }
 
     public function testFqcnHandler(): void
@@ -34,8 +36,8 @@ class RemoveTest extends UnitTestCase
 
         self::assertCount(1, $dump);
 
-        self::assertArrayHasKey('id', $dump);
+        self::assertArrayHasKey('uuid', $dump);
 
-        self::assertSame('some_id', $dump['id']);
+        self::assertSame(self::UUID, $dump['uuid']);
     }
 }

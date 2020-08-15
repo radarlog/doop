@@ -5,29 +5,34 @@ declare(strict_types=1);
 namespace Radarlog\Doop\Tests\Application\Query;
 
 use Radarlog\Doop\Application\Query\HashName;
-use Radarlog\Doop\Domain\Image\Hash;
+use Radarlog\Doop\Domain\Image;
 use Radarlog\Doop\Tests\UnitTestCase;
 
 class HashNameTest extends UnitTestCase
 {
+    private const HASH = '2080492d54a6b8579968901f366b13614fe188f2';
+    private const NAME = 'name';
+
     private HashName $hashName;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->hashName = new HashName('f32b67c7e26342af42efabc674d441dca0a281c5', 'name');
+        $this->hashName = new HashName(self::HASH, self::NAME);
     }
 
     public function testHash(): void
     {
-        $hash = new Hash('f32b67c7e26342af42efabc674d441dca0a281c5');
+        $hash = new Image\Hash(self::HASH);
 
         self::assertEquals($hash, $this->hashName->hash());
     }
 
     public function testName(): void
     {
-        self::assertSame('name', (string) $this->hashName->name());
+        $name = new Image\Name(self::NAME);
+
+        self::assertEquals($name, $this->hashName->name());
     }
 }

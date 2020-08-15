@@ -33,8 +33,9 @@ final class UploadHandler implements Command\Handler
 
         $this->storage->upload($file);
 
+        $uuid = $this->repository->newUuid();
         $name = new Image\Name($command->name());
-        $image = new Image($file->hash(), $name);
+        $image = new Image($uuid, $file->hash(), $name);
 
         $this->repository->add($image);
     }

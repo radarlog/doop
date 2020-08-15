@@ -10,18 +10,20 @@ use Radarlog\Doop\Tests\UnitTestCase;
 
 class HashCountTest extends UnitTestCase
 {
+    private const HASH = '2080492d54a6b8579968901f366b13614fe188f2';
+
     private HashCount $hashCount;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->hashCount = new HashCount('f32b67c7e26342af42efabc674d441dca0a281c5', 2);
+        $this->hashCount = new HashCount(self::HASH, 2);
     }
 
     public function testHash(): void
     {
-        $hash = new Hash('f32b67c7e26342af42efabc674d441dca0a281c5');
+        $hash = new Hash(self::HASH);
 
         self::assertEquals($hash, $this->hashCount->hash());
     }

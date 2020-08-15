@@ -9,6 +9,8 @@ use Radarlog\Doop\Tests\UnitTestCase;
 
 class HashTest extends UnitTestCase
 {
+    private const HASH = 'f32b67c7e26342af42efabc674d441dca0a281c5';
+
     public function invalidHashProvider(): \Generator
     {
         yield [''];
@@ -32,19 +34,19 @@ class HashTest extends UnitTestCase
     {
         $hash = Image\Hash::calculate('value');
 
-        self::assertSame('f32b67c7e26342af42efabc674d441dca0a281c5', (string) $hash);
+        self::assertSame(self::HASH, (string) $hash);
     }
 
     public function testValue(): void
     {
-        $hash = new Image\Hash('f32b67c7e26342af42efabc674d441dca0a281c5');
+        $hash = new Image\Hash(self::HASH);
 
-        self::assertSame('f32b67c7e26342af42efabc674d441dca0a281c5', (string) $hash);
+        self::assertSame(self::HASH, (string) $hash);
     }
 
     public function testLength(): void
     {
-        $hash = new Image\Hash('f32b67c7e26342af42efabc674d441dca0a281c5');
+        $hash = new Image\Hash(self::HASH);
 
         self::assertSame(40, strlen((string) $hash));
     }
@@ -53,6 +55,6 @@ class HashTest extends UnitTestCase
     {
         $hash = new Image\Hash('F32B67C7E26342AF42EFABC674D441DCA0A281C5');
 
-        self::assertSame('f32b67c7e26342af42efabc674d441dca0a281c5', (string) $hash);
+        self::assertSame(self::HASH, (string) $hash);
     }
 }

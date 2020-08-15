@@ -39,13 +39,7 @@ final class ImagesList extends Command
     {
         $images = $this->query->findAllSortedByUploadDate();
 
-        if ($images === []) {
-            $output->writeln('No images uploaded');
-
-            return 0;
-        }
-
-        $this->renderImages($images, new Table($output));
+        $this->renderImages($images, $output);
 
         return self::SUCCESS;
     }
@@ -55,8 +49,16 @@ final class ImagesList extends Command
      *
      * @throws InvalidArgumentException
      */
-    private function renderImages(array $images, Table $table): void
+    private function renderImages(array $images, OutputInterface $output): void
     {
+        if ($images === []) {
+            $output->writeln('No images uploaded');
+
+            return;
+        }
+
+        $table = new Table($output);
+
         foreach ($images as $image) {
             $table->addRow([$image->uuid(), $image->name(), $image->uploadedAt()]);
         }

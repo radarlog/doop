@@ -12,7 +12,18 @@ use Radarlog\Doop\Tests\DbTestCase;
 
 class ReadModelTest extends DbTestCase
 {
-    private const HASH = '2346ad27d7568ba9896f1b7da6b5991251debdf2';
+    private const UUID1 = '9f2149bb-b6e5-4ae0-a188-e616cddc8e98';
+    private const UUID2 = '572b3706-ffb8-423c-a317-d0ca8016a345';
+
+    private const NAME1 = 'name1';
+    private const NAME2 = 'name2';
+
+    private const DATE1 = '2019-03-18 23:22:36';
+    private const DATE2 = '2019-03-18 23:22:37';
+
+    private const HASH = '2080492d54a6b8579968901f366b13614fe188f2';
+
+    private const MISSING_UUID = '384a2c67-4d6d-41a9-9954-b5bf75de708e';
 
     private Query $query;
 
@@ -24,19 +35,19 @@ class ReadModelTest extends DbTestCase
         $repository = self::$container->get(Repository::class);
 
         $state1 = new Image\State([
-            'uuid' => '9f2149bb-b6e5-4ae0-a188-e616cddc8e98',
+            'uuid' => self::UUID1,
             'hash' => self::HASH,
-            'name' => 'name1',
-            'uploaded_at' => '2018-01-01 23:22:36',
+            'name' => self::NAME1,
+            'uploaded_at' => self::DATE1,
         ]);
         $image1 = Image::fromState($state1);
         $repository->add($image1);
 
         $state2 = new Image\State([
-            'uuid' => '572b3706-ffb8-423c-a317-d0ca8016a345',
+            'uuid' => self::UUID2,
             'hash' => self::HASH,
-            'name' => 'name2',
-            'uploaded_at' => '2018-03-18 23:22:36',
+            'name' => self::NAME2,
+            'uploaded_at' => self::DATE2,
         ]);
         $image2 = Image::fromState($state2);
         $repository->add($image2);
@@ -51,8 +62,8 @@ class ReadModelTest extends DbTestCase
         $result = $this->query->findAllSortedByUploadDate();
 
         $expected = [
-            new Query\UuidNameDate('572b3706-ffb8-423c-a317-d0ca8016a345', 'name2', '2018-03-18 23:22:36'),
-            new Query\UuidNameDate('9f2149bb-b6e5-4ae0-a188-e616cddc8e98', 'name1', '2018-01-01 23:22:36'),
+            new Query\UuidNameDate(self::UUID2, self::NAME2, self::DATE2),
+            new Query\UuidNameDate(self::UUID1, self::NAME1, self::DATE1),
         ];
 
         self::assertCount(2, $result);
@@ -63,7 +74,7 @@ class ReadModelTest extends DbTestCase
     {
         $hashCount = new Query\HashCount(self::HASH, 2);
 
-        self::assertEquals($hashCount, $this->query->countHashesById('9f2149bb-b6e5-4ae0-a188-e616cddc8e98'));
+        self::assertEquals($hashCount, $this->query->countHashesByUuid(self::UUID1));
     }
 
     public function testHashesNotFound(): void
@@ -71,15 +82,15 @@ class ReadModelTest extends DbTestCase
         $this->expectException(Sql\NotFound::class);
         $this->expectExceptionCode(3001);
 
-        $this->query->countHashesById('384a2c67-4d6d-41a9-9954-b5bf75de708e');
+        $this->query->countHashesByUuid(self::MISSING_UUID);
     }
 
     public function testNameByHash(): void
     {
-        $result = $this->query->findOneHashNameById('9f2149bb-b6e5-4ae0-a188-e616cddc8e98');
+        $result = $this->query->findOneHashNameByUuid(self::UUID1);
 
         self::assertSame(self::HASH, (string) $result->hash());
-        self::assertSame('name1', (string) $result->name());
+        self::assertSame(self::NAME1, (string) $result->name());
     }
 
     public function testNameByHashNotFound(): void
@@ -87,6 +98,6 @@ class ReadModelTest extends DbTestCase
         $this->expectException(Sql\NotFound::class);
         $this->expectExceptionCode(3001);
 
-        $this->query->findOneHashNameById('384a2c67-4d6d-41a9-9954-b5bf75de708e');
+        $this->query->findOneHashNameByUuid(self::MISSING_UUID);
     }
 }

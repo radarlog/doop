@@ -2,7 +2,7 @@
 
 <!-- https://phpunit.readthedocs.io/en/latest/configuration.html -->
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/9.1/phpunit.xsd"
+         xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/9.3/phpunit.xsd"
          bootstrap="tests/bootstrap.php"
          cacheResultFile="var/cache/phpunit.cache"
          colors="true"
@@ -15,18 +15,17 @@
         </testsuite>
     </testsuites>
 
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
+    <coverage processUncoveredFiles="true">
+        <include>
             <directory suffix=".php">src/</directory>
-            <exclude>
-                <directory suffix=".php">src/Infrastructure/Sql/Migrations/</directory>
-            </exclude>
-        </whitelist>
-    </filter>
-
-    <logging>
-        <log type="coverage-text" target="php://stdout"/>
-    </logging>
+        </include>
+        <exclude>
+            <directory suffix=".php">src/Infrastructure/Sql/Migrations/</directory>
+        </exclude>
+        <report>
+            <text outputFile="php://stdout"/>
+        </report>
+    </coverage>
 
     <php>
         <ini name="error_reporting" value="-1"/>

@@ -20,7 +20,7 @@ final class Format
      */
     public function __construct(string $content)
     {
-        $fileInfo = new \finfo(FILEINFO_MIME_TYPE);
+        $fileInfo = new \finfo(FILEINFO_MIME_TYPE, '');
         $mime = (string) $fileInfo->buffer($content);
 
         if (!in_array($mime, self::SUPPORTED_MIME_TYPES, true)) {

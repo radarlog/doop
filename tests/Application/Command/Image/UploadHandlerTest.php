@@ -10,14 +10,16 @@ use Radarlog\Doop\Tests\UnitTestCase;
 
 class UploadHandlerTest extends UnitTestCase
 {
-    private const NAME = 'some_name';
-
+    private const UUID = '572b3706-ffb8-423c-a317-d0ca8016a345';
     private const HASH = '2080492d54a6b8579968901f366b13614fe188f2';
+    private const NAME = 'name';
 
     public function testHandle(): void
     {
         $storage = $this->createMock(Domain\Storage::class);
-        $repository = $this->createMock(Domain\Repository::class);
+        $repository = $this->createConfiguredMock(Domain\Repository::class, [
+            'newUuid' => new Domain\Image\Uuid(self::UUID),
+        ]);
 
         $storage
             ->expects(self::once())

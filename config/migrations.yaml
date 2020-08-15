@@ -9,16 +9,22 @@ services:
         autoconfigure: true
         public: false
 
-    Doctrine\Migrations\Configuration\Configuration:
+    Doctrine\Migrations\Configuration\Connection\ExistingConnection:
         arguments: ['@Radarlog\Doop\Infrastructure\Sql\Connection']
-        calls:
-            - [setMigrationsNamespace, ['%migrations_namespace%']]
-            - [setMigrationsDirectory, ['%migrations_dir_name%']]
-            - [setCustomTemplate, ['%migrations_template%']]
+
+    Doctrine\Migrations\Configuration\Migration\ConfigurationArray:
+        arguments:
+            -   custom_template: '%migrations_template%'
+                migrations_paths:
+                    '%migrations_namespace%': '%migrations_dir_name%'
+
+    Doctrine\Migrations\DependencyFactory:
+        factory: Doctrine\Migrations\DependencyFactory::fromConnection
+        arguments:
+            - '@Doctrine\Migrations\Configuration\Migration\ConfigurationArray'
+            - '@Doctrine\Migrations\Configuration\Connection\ExistingConnection'
 
     Doctrine\Migrations\Tools\Console\Command\:
         resource: '../vendor/doctrine/migrations/lib/Doctrine/Migrations/Tools/Console/Command'
         exclude:
             - '../vendor/doctrine/migrations/lib/Doctrine/Migrations/Tools/Console/Command/DiffCommand.php'
-        calls:
-            - [setMigrationConfiguration, ['@Doctrine\Migrations\Configuration\Configuration']]

@@ -1,8 +1,8 @@
-FROM php:7.4-fpm-alpine3.11 as development
+FROM php:7.4-fpm-alpine3.12 as development
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /tmp
-COPY --from=composer:latest /usr/bin/composer /usr/bin
+COPY --from=composer:1.10 /usr/bin/composer /usr/bin/
 
 ENV BUILD_DEPS $PHPIZE_DEPS postgresql-dev
 ENV RUNTIME_DEPS postgresql-libs
@@ -29,7 +29,7 @@ RUN set -e \
     #
     # Clean up
     && apk del --purge $BUILD_DEPS \
-    && rm -rf /tmp/* /var/cache/apk/* /var/lib/apt/lists/*
+    && rm -rf /tmp/* /var/cache/apk/*
 
 ENV PHP_DISPLAY_ERRORS 1
 ENV PHP_EXPOSE 1
