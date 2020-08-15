@@ -41,7 +41,7 @@ services:
 
     encore:
         container_name: doop-encore
-        image: node:14.1-alpine
+        image: node:14.5-alpine
         restart: ${DOCKER_RESTART}
         networks:
             - doop
