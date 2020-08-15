@@ -10,7 +10,7 @@ use Radarlog\Doop\Tests\ControllerTestCase;
 
 class ImageTest extends ControllerTestCase
 {
-    private Image\Identity $uuid;
+    private Image\Uuid $uuid;
 
     protected function setUp(): void
     {
@@ -24,7 +24,7 @@ class ImageTest extends ControllerTestCase
         $name = new Image\Name('avatar.jpg');
         $image = new Image($file->hash(), $name);
 
-        $this->uuid = $image->id();
+        $this->uuid = $image->uuid();
 
         /** @var Domain\Storage $storage */
         $storage = self::$container->get(Domain\Storage::class);

@@ -32,7 +32,7 @@ final class PersistenceRepository implements Repository
         );
     }
 
-    public function getById(Image\Identity $id): Image
+    public function getByUuid(Image\Uuid $uuid): Image
     {
         $qb = $this->connection->createQueryBuilder();
 
@@ -40,14 +40,14 @@ final class PersistenceRepository implements Repository
             ->select('*')
             ->from($this->connection->imagesTable())
             ->where(
-                $qb->expr()->eq('uuid', $qb->createNamedParameter((string) $id)),
+                $qb->expr()->eq('uuid', $qb->createNamedParameter((string) $uuid)),
             );
 
         /** @var Statement $stmt */
         $stmt = $qb->execute();
 
         if ($stmt->rowCount() === 0) {
-            throw NotFound::uuid((string) $id);
+            throw NotFound::uuid((string) $uuid);
         }
 
         $row = $stmt->fetch(\PDO::FETCH_ASSOC);
@@ -57,11 +57,11 @@ final class PersistenceRepository implements Repository
         return Image::fromState($state);
     }
 
-    public function remove(Image\Identity $id): void
+    public function remove(Image\Uuid $uuid): void
     {
         $this->connection->delete(
             $this->connection->imagesTable(),
-            ['uuid' => (string) $id],
+            ['uuid' => (string) $uuid],
             ['uuid' => Types::STRING],
         );
     }

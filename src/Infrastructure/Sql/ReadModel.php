@@ -37,7 +37,7 @@ final class ReadModel implements Query
         );
     }
 
-    public function findOneHashNameById(string $id): Query\HashName
+    public function findOneHashNameByUuid(string $uuid): Query\HashName
     {
         $qb = $this->connection->createQueryBuilder();
 
@@ -45,14 +45,14 @@ final class ReadModel implements Query
             ->select(['hash', 'name'])
             ->from($this->connection->imagesTable())
             ->where(
-                $qb->expr()->eq('uuid', $qb->createNamedParameter($id)),
+                $qb->expr()->eq('uuid', $qb->createNamedParameter($uuid)),
             );
 
         /** @var Statement $stmt */
         $stmt = $qb->execute();
 
         if ($stmt->rowCount() === 0) {
-            throw Sql\NotFound::uuid($id);
+            throw Sql\NotFound::uuid($uuid);
         }
 
         $row = $stmt->fetch(\PDO::FETCH_ASSOC);
@@ -60,7 +60,7 @@ final class ReadModel implements Query
         return new Query\HashName($row['hash'], $row['name']);
     }
 
-    public function countHashesById(string $id): Query\HashCount
+    public function countHashesByUuid(string $uuid): Query\HashCount
     {
         $qb = $this->connection->createQueryBuilder();
 
@@ -69,7 +69,7 @@ final class ReadModel implements Query
             ->from($this->connection->imagesTable(), 'i1')
             ->innerJoin('i1', $this->connection->imagesTable(), 'i2', 'i1.hash = i2.hash')
             ->where(
-                $qb->expr()->eq('i1.uuid', $qb->createNamedParameter($id)),
+                $qb->expr()->eq('i1.uuid', $qb->createNamedParameter($uuid)),
             )
             ->groupBy('i1.hash');
 
@@ -77,7 +77,7 @@ final class ReadModel implements Query
         $stmt = $qb->execute();
 
         if ($stmt->rowCount() === 0) {
-            throw Sql\NotFound::uuid($id);
+            throw Sql\NotFound::uuid($uuid);
         }
 
         $row = $stmt->fetch(\PDO::FETCH_ASSOC);

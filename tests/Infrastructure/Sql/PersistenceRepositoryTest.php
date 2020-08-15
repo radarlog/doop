@@ -30,19 +30,19 @@ class PersistenceRepositoryTest extends DbTestCase
         $image1 = new Image($hash, $name);
         $this->repository->add($image1);
 
-        $image2 = $this->repository->getById($image1->id());
+        $image2 = $this->repository->getByUuid($image1->uuid());
 
-        self::assertEquals($image1->id(), $image2->id());
+        self::assertEquals($image1->uuid(), $image2->uuid());
     }
 
-    public function testGetByNonExistingId(): void
+    public function testGetByNonExistingUuid(): void
     {
-        $identity = new Image\Identity('572b3706-ffb8-423c-a317-d0ca8016a345');
+        $uuid = new Image\Uuid('572b3706-ffb8-423c-a317-d0ca8016a345');
 
         $this->expectException(NotFound::class);
         $this->expectExceptionCode(3001);
 
-        $this->repository->getById($identity);
+        $this->repository->getByUuid($uuid);
     }
 
     public function testRemove(): void
@@ -53,11 +53,11 @@ class PersistenceRepositoryTest extends DbTestCase
         $image = new Image($hash, $name);
         $this->repository->add($image);
 
-        $this->repository->remove($image->id());
+        $this->repository->remove($image->uuid());
 
         $this->expectException(NotFound::class);
         $this->expectExceptionCode(3001);
 
-        $this->repository->getById($image->id());
+        $this->repository->getByUuid($image->uuid());
     }
 }
