@@ -40,14 +40,14 @@ final class PersistenceRepository implements Repository
             ->select('*')
             ->from($this->connection->imagesTable())
             ->where(
-                $qb->expr()->eq('uuid', $qb->createNamedParameter($id->toString())),
+                $qb->expr()->eq('uuid', $qb->createNamedParameter((string) $id)),
             );
 
         /** @var Statement $stmt */
         $stmt = $qb->execute();
 
         if ($stmt->rowCount() === 0) {
-            throw NotFound::uuid($id->toString());
+            throw NotFound::uuid((string) $id);
         }
 
         $row = $stmt->fetch(\PDO::FETCH_ASSOC);
@@ -61,7 +61,7 @@ final class PersistenceRepository implements Repository
     {
         $this->connection->delete(
             $this->connection->imagesTable(),
-            ['uuid' => $id->toString()],
+            ['uuid' => (string) $id],
             ['uuid' => Types::STRING],
         );
     }

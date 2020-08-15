@@ -35,7 +35,7 @@ class RemoveHandlerTest extends UnitTestCase
         $repository
             ->expects(self::once())
             ->method('remove')
-            ->with(self::callback(static fn(Domain\Image\Identity $identity) => $identity->toString() === self::UUID));
+            ->with(self::callback(static fn(Domain\Image\Identity $identity) => (string) $identity === self::UUID));
 
         $this->handler = new Command\Image\RemoveHandler($this->storage, $repository, $this->query);
     }

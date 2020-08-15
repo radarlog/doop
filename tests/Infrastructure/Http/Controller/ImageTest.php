@@ -37,7 +37,7 @@ class ImageTest extends ControllerTestCase
 
     public function testAction(): void
     {
-        $this->client->request('GET', sprintf('/image/%s', $this->uuid->toString()));
+        $this->client->request('GET', sprintf('/image/%s', (string) $this->uuid));
 
         self::assertResponseIsSuccessful();
 

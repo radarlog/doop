@@ -49,7 +49,7 @@ class ImageTest extends UnitTestCase
 
         $image = Image::fromState($state);
 
-        self::assertSame('572b3706-ffb8-423c-a317-d0ca8016a345', $image->id()->toString());
+        self::assertSame('572b3706-ffb8-423c-a317-d0ca8016a345', (string) $image->id());
     }
 
     public function testFromStateWithWrongUploadedAtFormat(): void
@@ -80,6 +80,6 @@ class ImageTest extends UnitTestCase
     {
         $image = new Image($this->hash, $this->name);
 
-        self::assertSame(36, strlen($image->id()->toString()));
+        self::assertSame(36, strlen((string) $image->id()));
     }
 }

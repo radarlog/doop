@@ -6,5 +6,5 @@ namespace Radarlog\Doop\Domain;
 
 interface Identity
 {
-    public function toString(): string;
+    public function __toString(): string;
 }

@@ -42,7 +42,7 @@ class RemoveTest extends ControllerTestCase
 
     public function testAction(): void
     {
-        $this->client->request('GET', sprintf('/remove/%s', $this->uuid->toString()));
+        $this->client->request('GET', sprintf('/remove/%s', (string) $this->uuid));
 
         self::assertResponseStatusCodeSame(302);
 

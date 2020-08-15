@@ -30,7 +30,7 @@ final class Identity implements Domain\Identity
         return new self($uuid);
     }
 
-    public function toString(): string
+    public function __toString(): string
     {
         return $this->uuid;
     }

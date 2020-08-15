@@ -21,7 +21,7 @@ class IdentityTest extends UnitTestCase
     {
         $identity = Image\Identity::new();
 
-        self::assertSame(36, strlen($identity->toString()));
+        self::assertSame(36, strlen((string) $identity));
     }
 
     public function testToString(): void
@@ -30,6 +30,6 @@ class IdentityTest extends UnitTestCase
 
         $identity = new Image\Identity($uuid);
 
-        self::assertSame($uuid, $identity->toString());
+        self::assertSame($uuid, (string) $identity);
     }
 }
