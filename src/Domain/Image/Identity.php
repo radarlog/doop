@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Domain\Image;
 
-use Radarlog\Doop\Domain;
 use Ramsey\Uuid\Uuid;
 
-final class Identity implements Domain\Identity
+final class Identity
 {
     private string $uuid;
 

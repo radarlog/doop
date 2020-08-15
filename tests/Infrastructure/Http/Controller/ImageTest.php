@@ -10,7 +10,7 @@ use Radarlog\Doop\Tests\ControllerTestCase;
 
 class ImageTest extends ControllerTestCase
 {
-    private Domain\Identity $uuid;
+    private Image\Identity $uuid;
 
     protected function setUp(): void
     {
