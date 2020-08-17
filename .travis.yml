@@ -1,6 +1,6 @@
 dist: focal
 sudo: false
-language: php
+language: node_js
 
 php:
     - '7.4'
