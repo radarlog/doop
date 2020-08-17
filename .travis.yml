@@ -50,10 +50,12 @@ install:
     - yes | pecl install pcov
     - composer validate --ansi --no-interaction --strict
     - composer install --ansi --no-interaction --no-suggest
+    - yarn install --frozen-lockfile --non-interactive --no-progress
 
 before_script:
     - psql -c "CREATE DATABASE test_db;"
     - bin/console migrations:migrate --ansi --no-interaction
+    - yarn dev
 
 script:
     - yarn lint
