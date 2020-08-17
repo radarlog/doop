@@ -27,9 +27,13 @@ down: ; $(info $(M) Shutting down containers:)
 	docker-compose down
 
 .PHONY: composer
-composer: ; $(info $(M) Installing dependencies:)
+composer: ; $(info $(M) Installing backend dependencies:)
 	docker-compose exec -T php composer validate --ansi --no-interaction --strict
 	docker-compose exec -T php composer install --ansi --no-interaction
+
+.PHONY: yarn
+yarn: ; $(info $(M) Installing frontend dependencies:)
+	docker-compose run -T --rm encore yarn install --frozen-lockfile --non-interactive
 
 .PHONY: migrations
 migrations: ; $(info $(M) Running migrations:)
@@ -44,7 +48,7 @@ migrations: ; $(info $(M) Running migrations:)
 	docker-compose exec -T php bin/console --env test migrations:migrate --ansi --allow-no-migration --no-interaction
 
 .PHONY: run
-run: up composer migrations ; $(info $(M) Environment has been built succesfully)
+run: yarn up composer migrations ; $(info $(M) Environment has been built succesfully)
 
 .PHONY: static-analyze
 static-analyze: ; $(info $(M) Performing static analyze:)
