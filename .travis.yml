@@ -1,4 +1,4 @@
-dist: xenial
+dist: focal
 sudo: false
 language: php
 
@@ -50,7 +50,7 @@ install:
     - yes | pecl install pcov
     - composer validate --ansi --no-interaction --strict
     - composer install --ansi --no-interaction --no-suggest
-    - yarn install --frozen-lockfile --non-interactive --no-progress --ignore-engines
+    - yarn install --frozen-lockfile --non-interactive --no-progress
 
 before_script:
     - psql -c "CREATE DATABASE test_db;"
