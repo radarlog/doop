@@ -47,8 +47,8 @@ before_install:
         "
     - phpenv config-rm xdebug.ini
     - nvm install 14
-    - psql -c "CREATE DATABASE test_db;" -U postgres
-    - psql -c "ALTER USER postgres PASSWORD 'postgres';" -U postgres
+    - psql -c "CREATE DATABASE test_db;"
+    - psql -c "ALTER USER postgres PASSWORD 'postgres';"
 
 install:
     - pecl channel-update pecl.php.net
