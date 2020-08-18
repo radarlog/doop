@@ -1,19 +1,24 @@
-dist: xenial
+dist: focal
 sudo: false
 language: php
 
 php:
     - '7.4'
+node_js:
+    - 14
 
 cache:
+    yarn: true
     directories:
         - $HOME/.composer/cache
+        - $HOME/.yarn-cache
+        - node_modules
 
 env:
     global:
         - APP_ENV=test
-        - SQL_MASTER=pgsql://postgres:@127.0.0.1:5432/test_db
-        - SQL_SLAVES=pgsql://postgres:@127.0.0.1:5432/test_db
+        - SQL_MASTER=pgsql://postgres:postgres@127.0.0.1:5432/test_db
+        - SQL_SLAVES=pgsql://postgres:postgres@127.0.0.1:5432/test_db
         - S3_ENDPOINT=http://127.0.0.1:9000
         - S3_KEY=minio
         - S3_SECRET=minio330
@@ -41,18 +46,23 @@ before_install:
         && mc policy set download doop/$S3_BUCKET
         "
     - phpenv config-rm xdebug.ini
+    - nvm install 14
+    - psql -c "CREATE DATABASE test_db;"
+    - psql -c "ALTER USER postgres PASSWORD 'postgres';"
 
 install:
     - pecl channel-update pecl.php.net
     - yes | pecl install pcov
     - composer validate --ansi --no-interaction --strict
     - composer install --ansi --no-interaction --no-suggest
+    - yarn install --frozen-lockfile --non-interactive --no-progress
 
 before_script:
-    - psql -c "CREATE DATABASE test_db;"
     - bin/console migrations:migrate --ansi --no-interaction
+    - yarn dev
 
 script:
+    - yarn lint
     - vendor/bin/phpcs -ps
     - vendor/bin/phpstan analyse --ansi --no-progress
     - vendor/bin/psalm --no-progress --taint-analysis

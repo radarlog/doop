@@ -10,6 +10,7 @@ use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
+use Symfony\WebpackEncoreBundle\WebpackEncoreBundle;
 
 final class Kernel extends HttpKernel\Kernel
 {
@@ -23,6 +24,7 @@ final class Kernel extends HttpKernel\Kernel
         yield new FrameworkBundle\FrameworkBundle();
         yield new MonologBundle();
         yield new TwigBundle();
+        yield new WebpackEncoreBundle();
     }
 
     /**

@@ -21,3 +21,8 @@
 ###> sensiolabs-de/deptrac-shim ###
 /.deptrac.cache
 ###< sensiolabs-de/deptrac-shim ###
+
+###> symfony/webpack-encore-bundle ###
+/node_modules/
+/public/build/
+###< symfony/webpack-encore-bundle ###

@@ -1,7 +1,7 @@
 {
     "namespaces": [
         {
-            "path": "src/Infrastructure/Http/views"
+            "path": "src/Frontend/html"
         }
     ]
 }
