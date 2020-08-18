@@ -21,6 +21,7 @@ public/              http document root
 src/                 source files
   Application/       application layer (use cases)
   Domain/            domain layer (core logic)
+  Frontend/          frontend application (css, html, typescript)
   Infrastructure/    infrastructure layer (db, cli, http)
 tests/               unit and functional tests
   Application/       use cases unit tests
