@@ -11,7 +11,7 @@ use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-final class ImagesList extends Command
+final class ImagesList extends Command implements Executable
 {
     /**
      * @var string
