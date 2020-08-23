@@ -28,6 +28,8 @@ final class LoggerBus implements Bus
                 get_class($command) => $command->serialize(),
                 'exception' => $e,
             ]);
+
+            throw $e;
         }
     }
 }

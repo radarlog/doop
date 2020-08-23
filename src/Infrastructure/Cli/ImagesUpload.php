@@ -10,7 +10,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-final class ImagesUpload extends Console\Command\Command
+final class ImagesUpload extends Console\Command\Command implements Executable
 {
     /**
      * @var string

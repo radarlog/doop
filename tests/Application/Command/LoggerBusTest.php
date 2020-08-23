@@ -38,6 +38,8 @@ class LoggerBusTest extends UnitTestCase
 
         $loggerBus = new Command\LoggerBus($logger, $innerBus);
 
+        $this->expectException(get_class($exception));
+
         $loggerBus->execute($command);
 
         self::assertTrue($logger->hasErrorRecords());
