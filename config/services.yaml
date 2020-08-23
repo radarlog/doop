@@ -15,6 +15,9 @@ services:
     _instanceof:
         Radarlog\Doop\Application\Command\Handler:
             tags: ['command.handler']
+        Radarlog\Doop\Infrastructure\Http\Controller:
+            bind:
+                Radarlog\Doop\Application\Command\Bus: '@Radarlog\Doop\Infrastructure\Http\ThrowableHandlerBus'
 
     Radarlog\Doop\:
         resource: '../src'
@@ -29,6 +32,8 @@ services:
         decorates: Radarlog\Doop\Application\Command\SimpleBus
         arguments: ['@monolog.logger.commands']
     Radarlog\Doop\Application\Command\Bus: '@Radarlog\Doop\Application\Command\LoggerBus'
+    Radarlog\Doop\Infrastructure\Http\ThrowableHandlerBus:
+        decorates: Radarlog\Doop\Application\Command\LoggerBus
 
     # S3
     Radarlog\Doop\Infrastructure\S3\Connection:
