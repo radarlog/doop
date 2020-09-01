@@ -20,6 +20,9 @@
     "composer/xdebug-handler": {
         "version": "1.4.0"
     },
+    "dealerdirect/phpcodesniffer-composer-installer": {
+        "version": "v0.7.0"
+    },
     "doctrine/cache": {
         "version": "v1.8.0"
     },
@@ -154,6 +157,9 @@
     },
     "roave/security-advisories": {
         "version": "dev-master"
+    },
+    "sebastian/cli-parser": {
+        "version": "1.0.0"
     },
     "sebastian/code-unit": {
         "version": "1.0.0"
