@@ -34,10 +34,7 @@ Encore
      */
     .addEntry('doop', './src/Frontend/ts/doop.ts')
 
-    .enableTypeScriptLoader(function (tsConfig) {
-        tsConfig.transpileOnly = true;
-        tsConfig.configFile = 'tsconfig.json';
-    })
+    .enableTypeScriptLoader()
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
