@@ -8,8 +8,8 @@
     },
     "scripts": {
         "dev-server": "nodemon --exec 'encore dev-server --keep-public-path --config config/encore.js'",
-        "dev": "nodemon --exec ' encore dev --config config/encore.js'",
-        "watch": "nodemon --exec ' encore dev --watch --config config/encore.js'",
+        "dev": "encore dev --config config/encore.js",
+        "watch": "encore dev --watch --config config/encore.js",
         "build": "encore production --progress --config config/encore.js",
         "lint": "eslint src/Frontend/ts/"
     },
