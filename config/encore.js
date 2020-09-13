@@ -89,9 +89,11 @@ Encore
     })
 
     .enablePostCssLoader((options) => {
-        options.plugins = [
-            require('cssnano')(),
-        ];
+        options.postcssOptions = {
+            plugins: [
+                require('cssnano')(),
+            ]
+        }
     })
 ;
 
