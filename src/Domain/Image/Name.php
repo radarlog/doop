@@ -15,8 +15,10 @@ final class Name
     {
         $length = strlen(trim($name)); // trimmed
 
-        if ($length < self::LENGTH_MIN || $length > self::LENGTH_MAX) {
-            throw InvalidArgument::name($name);
+        switch (true) {
+            case $length < self::LENGTH_MIN:
+            case $length > self::LENGTH_MAX:
+                throw InvalidArgument::name($name);
         }
 
         $this->name = $name;

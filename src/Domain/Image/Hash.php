@@ -14,8 +14,10 @@ final class Hash
     {
         $length = strlen($hash);
 
-        if ($length !== self::SHA1_LENGTH || ctype_xdigit($hash) === false) {
-            throw InvalidArgument::hash($hash);
+        switch (true) {
+            case $length !== self::SHA1_LENGTH:
+            case ctype_xdigit($hash) === false:
+                throw InvalidArgument::hash($hash);
         }
 
         $this->hash = strtolower($hash);
