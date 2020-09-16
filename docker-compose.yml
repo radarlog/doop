@@ -23,7 +23,6 @@ services:
         depends_on:
             - encore
             - minio
-            - minio-create-bucket
             - postgres
         container_name: doop-php
         build:
@@ -83,20 +82,5 @@ services:
             MINIO_ACCESS_KEY: ${S3_KEY}
             MINIO_SECRET_KEY: ${S3_SECRET}
             MINIO_REGION: ${S3_REGION}
-        command: server /data
-
-    minio-create-bucket:
-        depends_on:
-            - minio
-        container_name: doop-minio-mc
-        image: minio/mc:latest
-        restart: ${DOCKER_RESTART}
-        networks:
-            - doop
-        entrypoint:
-            - sh
-            - -c
-            - |-
-                mc config host add doop ${S3_ENDPOINT} ${S3_KEY} ${S3_SECRET}
-                mc mb --region ${S3_REGION} --ignore-existing doop/${S3_BUCKET}
-                mc policy set download doop/${S3_BUCKET}
+        entrypoint: sh
+        command: -c 'mkdir -p /data/$S3_BUCKET && minio server /data'

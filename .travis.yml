@@ -35,15 +35,11 @@ before_install:
         -e MINIO_ACCESS_KEY=$S3_KEY
         -e MINIO_SECRET_KEY=$S3_SECRET
         -e MINIO_REGION=$S3_REGION
-        minio/minio server /data
-    - docker run --rm
-        --network host
         --entrypoint sh
-        minio/mc
+        minio/minio
         -c "
-        mc config host add doop $S3_ENDPOINT $S3_KEY $S3_SECRET
-        && mc mb --region $S3_REGION --ignore-existing doop/$S3_BUCKET
-        && mc policy set download doop/$S3_BUCKET
+        mkdir -p /data/$S3_BUCKET
+        && minio server /data
         "
     - phpenv config-rm xdebug.ini
     - nvm install 14
