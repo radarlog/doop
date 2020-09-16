@@ -11,8 +11,8 @@ class ConnectionFactoryTest extends UnitTestCase
 {
     public function invalidParamsProvider(): \Generator
     {
-        yield [[['master' => 'some_dsn']]];
-        yield [[['slaves' => 'some_dsn']]];
+        yield [[['primary' => 'some_dsn']]];
+        yield [[['replica' => 'some_dsn']]];
     }
 
     /**
@@ -26,7 +26,7 @@ class ConnectionFactoryTest extends UnitTestCase
         Sql\ConnectionFactory::create($params);
     }
 
-    public function slaveDelimitersProvider(): \Generator
+    public function replicaDelimitersProvider(): \Generator
     {
         yield ["\n"];
         yield [','];
@@ -34,17 +34,17 @@ class ConnectionFactoryTest extends UnitTestCase
     }
 
     /**
-     * @dataProvider slaveDelimitersProvider
+     * @dataProvider replicaDelimitersProvider
      */
-    public function testCreateTwoSlaves(string $delimiter): void
+    public function testCreateTwoReplicas(string $delimiter): void
     {
         $params = [
-            'master' => 'pgsql://user:user@host:3306/db',
-            'slaves' => sprintf('pgsql://user:user@host:3306/db1%spgsql://user:user@host:3306/db2', $delimiter),
+            'primary' => 'pgsql://user:user@host:3306/db',
+            'replica' => sprintf('pgsql://user:user@host:3306/db1%spgsql://user:user@host:3306/db2', $delimiter),
         ];
 
         $connection = Sql\ConnectionFactory::create($params);
 
-        self::assertCount(2, $connection->getParams()['slaves']);
+        self::assertCount(2, $connection->getParams()['replica']);
     }
 }

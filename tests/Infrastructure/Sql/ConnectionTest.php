@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Tests\Infrastructure\Sql;
 
-use Doctrine\DBAL\Connections\MasterSlaveConnection;
+use Doctrine\DBAL\Connections\PrimaryReadReplicaConnection;
 use Radarlog\Doop\Infrastructure\Sql\Connection;
 use Radarlog\Doop\Tests\FunctionalTestCase;
 
@@ -24,9 +24,9 @@ class ConnectionTest extends FunctionalTestCase
     /**
      * @psalm-suppress RedundantCondition
      */
-    public function testIsMasterSlave(): void
+    public function testIsMasterReplica(): void
     {
-        self::assertInstanceOf(MasterSlaveConnection::class, $this->connection);
+        self::assertInstanceOf(PrimaryReadReplicaConnection::class, $this->connection);
     }
 
     public function testImportResultsTable(): void

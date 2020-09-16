@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Infrastructure\Sql;
 
-use Doctrine\DBAL\Connections\MasterSlaveConnection;
+use Doctrine\DBAL\Connections\PrimaryReadReplicaConnection;
 
-final class Connection extends MasterSlaveConnection
+final class Connection extends PrimaryReadReplicaConnection
 {
     private const IMAGES_TABLE = 'images';
 

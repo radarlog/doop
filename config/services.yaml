@@ -52,5 +52,5 @@ services:
     Radarlog\Doop\Infrastructure\Sql\Connection:
         factory: Radarlog\Doop\Infrastructure\Sql\ConnectionFactory::create
         arguments:
-            -   master: '%env(string:SQL_MASTER)%'
-                slaves: '%env(string:SQL_SLAVES)%'
+            -   primary: '%env(string:SQL_PRIMARY)%'
+                replica: '%env(string:SQL_REPLICA)%'

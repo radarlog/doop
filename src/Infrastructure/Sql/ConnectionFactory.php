@@ -18,17 +18,17 @@ final class ConnectionFactory
      */
     private function __construct(array $params)
     {
-        if (!isset($params['slaves'], $params['master'])) {
+        if (!isset($params['replica'], $params['primary'])) {
             throw InvalidArgument::configuration();
         }
 
-        $masterConnection = $this->dbalConnection($params['master']);
+        $masterConnection = $this->dbalConnection($params['primary']);
 
         $driver = $masterConnection->getDriver();
 
         $params = [
-            'master' => $masterConnection->getParams(),
-            'slaves' => $this->parseSlaves($params['slaves']),
+            'primary' => $masterConnection->getParams(),
+            'replica' => $this->parseReplicas($params['replica']),
             'driver' => $driver,
             'driverOptions' => [
                 \PDO::ATTR_EMULATE_PREPARES => false,
@@ -55,15 +55,15 @@ final class ConnectionFactory
     /**
      * @return string[][]
      */
-    private function parseSlaves(string $slaves): array
+    private function parseReplicas(string $replicas): array
     {
-        $slaves = (array) preg_split('/[\n|,]/', $slaves);
-        $slaves = array_filter($slaves);
-        $slaves = array_unique($slaves);
+        $replicas = (array) preg_split('/[\n|,]/', $replicas);
+        $replicas = array_filter($replicas);
+        $replicas = array_unique($replicas);
 
         $parsed = [];
 
-        while ($dsn = array_shift($slaves)) {
+        while ($dsn = array_shift($replicas)) {
             $parsed[] = $this->dbalConnection($dsn)->getParams();
         }
 

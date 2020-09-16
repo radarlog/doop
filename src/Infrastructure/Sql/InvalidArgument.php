@@ -16,6 +16,6 @@ class InvalidArgument extends \InvalidArgumentException implements Throwable
 
     public static function configuration(): self
     {
-        return new self('Master or slaves configuration is missing', self::CODE_SQL_SERVERS);
+        return new self('Primary or replica configuration is missing', self::CODE_SQL_SERVERS);
     }
 }
