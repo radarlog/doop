@@ -7,7 +7,7 @@ COPY --from=composer:1.10 /usr/bin/composer /usr/bin/
 ENV BUILD_DEPS $PHPIZE_DEPS postgresql-dev
 ENV RUNTIME_DEPS postgresql-libs
 
-ENV XDEBUG_VERSION 2.9.6
+ENV XDEBUG_VERSION 2.9.7
 
 RUN set -e \
     && cd /tmp \
