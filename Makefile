@@ -58,7 +58,7 @@ static-analyze: ; $(info $(M) Performing static analyze:)
 
 .PHONY: styles-check
 styles-check: ; $(info $(M) Checking coding style:)
-	docker-compose exec -T php vendor/bin/phpcs -ps
+	docker-compose exec -T php vendor/bin/phpcs
 	docker-compose exec -T encore yarn lint
 
 .PHONY: tests

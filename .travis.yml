@@ -59,7 +59,7 @@ before_script:
 
 script:
     - yarn lint
-    - vendor/bin/phpcs -ps
+    - vendor/bin/phpcs
     - vendor/bin/phpstan analyse --ansi --no-progress
     - vendor/bin/psalm --no-progress --taint-analysis
     - vendor/bin/deptrac --ansi --fail-on-uncovered --no-interaction --no-progress
