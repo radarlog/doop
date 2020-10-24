@@ -18,26 +18,4 @@
             <directory name="vendor"/>
         </ignoreFiles>
     </projectFiles>
-
-    <issueHandlers>
-        <!-- https://github.com/sebastianbergmann/phpunit/issues/3742 -->
-        <InternalMethod>
-            <errorLevel type="suppress">
-                <referencedMethod name="PHPUnit\Framework\MockObject\Builder\InvocationMocker::method"/>
-                <referencedMethod name="PHPUnit\Framework\MockObject\Builder\InvocationMocker::willThrowException"/>
-                <referencedMethod name="PHPUnit\Framework\MockObject\Builder\InvocationMocker::willReturn"/>
-                <referencedMethod name="PHPUnit\Framework\MockObject\Builder\InvocationMocker::with"/>
-            </errorLevel>
-        </InternalMethod>
-        <!-- https://github.com/vimeo/psalm/issues/1594 -->
-        <PropertyNotSetInConstructor>
-            <errorLevel type="suppress">
-                <referencedProperty name="Symfony\Bundle\FrameworkBundle\Controller\AbstractController::$container"/>
-            </errorLevel>
-        </PropertyNotSetInConstructor>
-    </issueHandlers>
-    <plugins>
-        <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
-        <pluginClass class="Psalm\SymfonyPsalmPlugin\Plugin"/>
-    </plugins>
 </psalm>
