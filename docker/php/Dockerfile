@@ -2,7 +2,7 @@ FROM php:7.4-fpm-alpine3.12 as development
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /tmp
-COPY --from=composer:1.10 /usr/bin/composer /usr/bin/
+COPY --from=composer:2.0 /usr/bin/composer /usr/bin/
 
 ENV BUILD_DEPS $PHPIZE_DEPS postgresql-dev
 ENV RUNTIME_DEPS postgresql-libs

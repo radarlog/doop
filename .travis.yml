@@ -45,6 +45,7 @@ before_install:
     - nvm install 14
     - psql -c "CREATE DATABASE test_db;"
     - psql -c "ALTER USER postgres PASSWORD 'postgres';"
+    - composer self-update
 
 install:
     - pecl channel-update pecl.php.net
