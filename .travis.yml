@@ -10,9 +10,6 @@ services:
     - docker
     - postgresql
 
-addons:
-    postgresql: "10"
-
 cache:
     yarn: true
     directories:
