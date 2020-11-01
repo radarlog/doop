@@ -1,5 +1,4 @@
 dist: focal
-sudo: false
 language: php
 
 php:
