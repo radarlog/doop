@@ -19,9 +19,10 @@ cache:
 
 env:
     global:
+        - PGPORT=5433
         - APP_ENV=test
-        - SQL_PRIMARY=pgsql://postgres:postgres@127.0.0.1:5432/test_db
-        - SQL_REPLICA=pgsql://postgres:postgres@127.0.0.1:5432/test_db
+        - SQL_PRIMARY=pgsql://postgres:postgres@127.0.0.1:5433/test_db
+        - SQL_REPLICA=pgsql://postgres:postgres@127.0.0.1:5433/test_db
         - S3_ENDPOINT=http://127.0.0.1:9000
         - S3_KEY=minio
         - S3_SECRET=minio330
