@@ -5,21 +5,21 @@ exclude_files:
 layers:
     -   name: Domain
         collectors:
-            -   type: className
+            -   type: SensioLabs\Deptrac\Collector\ClassNameCollector
                 regex: Radarlog\\Doop\\Domain
-            -   type: className
+            -   type: SensioLabs\Deptrac\Collector\ClassNameCollector
                 regex: Radarlog\\Doop\\Throwable
     -   name: Application
         collectors:
-            -   type: className
+            -   type: SensioLabs\Deptrac\Collector\ClassNameCollector
                 regex: Radarlog\\Doop\\Application
-            -   type: className
+            -   type: SensioLabs\Deptrac\Collector\ClassNameCollector
                 regex: Psr\\Log\\LoggerInterface
     -   name: Infrastructure
         collectors:
-            -   type: className
+            -   type: SensioLabs\Deptrac\Collector\ClassNameCollector
                 regex: Radarlog\\Doop\\Infrastructure
-            -   type: className
+            -   type: SensioLabs\Deptrac\Collector\ClassNameCollector
                 regex: Symfony|AsyncAws|Doctrine|Ramsey
 ruleset:
     Domain: ~
