@@ -35,8 +35,7 @@ services:
         volumes:
             - .:/app:rw
         environment:
-            XDEBUG_CONFIG: "remote_host=172.18.0.1 remote_port=9009"
-            PHP_IDE_CONFIG: serverName=doop
+            XDEBUG_CONFIG: "client_host=172.18.0.1"
             PHP_MEMORY_LIMIT: 512M
 
     encore:
