@@ -1,15 +1,18 @@
 {
     "compilerOptions": {
         "allowJs": false,
+        "baseUrl": "src/",
         "esModuleInterop": true,
         "noImplicitAny": true,
+        "paths": {
+            "~doop/*": [
+                "Frontend/*"
+            ]
+        },
         "preserveConstEnums": true,
         "removeComments": true,
         "resolveJsonModule": true,
         "sourceMap": true,
         "strict": true
-    },
-    "include": [
-        "src/Frontend/ts/"
-    ]
+    }
 }
