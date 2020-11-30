@@ -25,7 +25,7 @@ final class LoggerBus implements Bus
             $this->innerBus->execute($command);
         } catch (\Throwable $e) {
             $this->logger->error($e->getMessage(), [
-                get_class($command) => $command->serialize(),
+                $command::class => $command->serialize(),
                 'exception' => $e,
             ]);
 

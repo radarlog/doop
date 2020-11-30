@@ -23,7 +23,7 @@ final class SimpleBus implements Bus
 
     private function add(Handler $handler): void
     {
-        $this->handlers[get_class($handler)] = $handler;
+        $this->handlers[$handler::class] = $handler;
     }
 
     /**
