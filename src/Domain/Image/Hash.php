@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Domain\Image;
 
-final class Hash
+final class Hash implements \Stringable
 {
     private const SHA1_LENGTH = 40;
 
