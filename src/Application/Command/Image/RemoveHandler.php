@@ -25,13 +25,9 @@ final class RemoveHandler implements Command\Handler
     }
 
     /**
-     * @param Command&Remove $command
-     *
      * @throws Image\InvalidArgument
-     *
-     * @psalm-suppress MoreSpecificImplementedParamType
      */
-    public function handle(Command $command): void
+    public function handle(Command|Remove $command): void
     {
         $uuid = $command->uuid();
 
