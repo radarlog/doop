@@ -23,7 +23,7 @@ final class UploadHandler implements Command\Handler
     /**
      * @throws Image\InvalidArgument
      */
-    public function handle(Command|Upload $command): void
+    public function handle(Command | Upload $command): void
     {
         $file = new Image\File($command->content());
 
