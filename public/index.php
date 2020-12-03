@@ -13,10 +13,7 @@ $trustedProxies = $_ENV['TRUSTED_PROXIES'] ?? false;
 $trustedHosts = $_ENV['TRUSTED_HOSTS'] ?? false;
 
 if ($trustedProxies) {
-    Request::setTrustedProxies(
-        explode(',', $trustedProxies),
-        Request::HEADER_X_FORWARDED_ALL ^ Request::HEADER_X_FORWARDED_HOST,
-    );
+    Request::setTrustedProxies(explode(',', $trustedProxies), Request::HEADER_X_FORWARDED_HOST);
 }
 
 if ($trustedHosts) {
