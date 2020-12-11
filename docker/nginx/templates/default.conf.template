@@ -1,17 +1,17 @@
 upstream php-upstream {
-    server php:9000;
+    server ${UPSTREAM_FPM_SERVER};
 }
 
 upstream encore-upstream {
-    server encore:8765;
+    server ${UPSTREAM_ENCORE_SERVER};
 }
 
 server {
-    listen 8080;
+    listen ${LISTEN_PORT};
     server_name localhost;
     server_tokens off;
 
-    root /app/public;
+    root ${DOCUMENT_ROOT};
     index index.php;
 
     #access_log  /var/log/nginx/host.access.log  main;
@@ -24,7 +24,7 @@ server {
         fastcgi_pass php-upstream;
         include fastcgi_params;
         fastcgi_param HTTP_X_REQUEST_ID $request_id;
-        fastcgi_param SCRIPT_FILENAME /app/public/index.php;
+        fastcgi_param SCRIPT_FILENAME ${DOCUMENT_ROOT}/index.php;
         fastcgi_read_timeout 300;
         #fastcgi_intercept_errors on;
     }
