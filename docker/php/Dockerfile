@@ -1,20 +1,17 @@
-FROM php:7.4-fpm-alpine3.12 as development
+ARG PHP_FPM_IMAGE=php:7.4-fpm-alpine3.12
+ARG COMPOSER_IMAGE=composer:2.0
 
-ENV COMPOSER_ALLOW_SUPERUSER 1
-ENV COMPOSER_HOME /tmp
-COPY --from=composer:2.0 /usr/bin/composer /usr/bin/
+FROM $PHP_FPM_IMAGE AS builder
 
-ENV BUILD_DEPS $PHPIZE_DEPS postgresql-dev
-ENV RUNTIME_DEPS postgresql-libs
+ENV BUILD_DEPS="postgresql-dev"
 
-ENV PCOV_VERSION 1.0.6
-ENV XDEBUG_VERSION 3.0.2
+ARG PCOV_VERSION=1.0.6
+ARG XDEBUG_VERSION=3.0.2
 
 RUN set -e \
-    && cd /tmp \
     #
     # Install dependencies
-    && apk --no-cache add --update $BUILD_DEPS $RUNTIME_DEPS \
+    && apk --no-cache add --update $PHPIZE_DEPS $BUILD_DEPS \
     #
     # Add PCOV and Xdebug extensions
     && pecl bundle -d /usr/src/php/ext pcov-$PCOV_VERSION \
@@ -23,41 +20,67 @@ RUN set -e \
     # Configure and install extensions
     && export CFLAGS="$PHP_CFLAGS" CPPFLAGS="$PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS" \
     && docker-php-ext-install -j$(nproc) \
-        fileinfo \
         opcache \
         pcov \
         pdo_pgsql \
-        xdebug \
+        xdebug
+
+
+# base image
+FROM $PHP_FPM_IMAGE AS base
+
+ENV RUNTIME_DEPS="postgresql-libs"
+
+RUN set -e \
+    && cd /tmp \
     #
-    # Clean up
-    && apk del --purge $BUILD_DEPS \
-    && rm -rf /tmp/* /var/cache/apk/* /usr/src/*
+    # Install dependencies
+    && apk --no-cache add --update $RUNTIME_DEPS \
+    && rm -rf /tmp/* /var/cache/apk/*
 
-ENV PHP_DISPLAY_ERRORS 1
-ENV PHP_EXPOSE 1
+ARG MYUSER=app
+ARG MYGROUP=app
+ARG MYUID=1000
+ARG MYGID=1001
 
-ENV PHP_LOG_ERRORS 1
-ENV PHP_POST_MAX_SIZE 1G
-ENV PHP_UPLOAD_MAX_FILESIZE 1G
-ENV PHP_MAX_EXECUTION_TIME 300
-ENV PHP_MEMORY_LIMIT 128M
+RUN set -e \
+    #
+    # Add runtime user
+    && addgroup -g $MYGID $MYGROUP  \
+    && adduser -u $MYUID -S -D -G $MYGROUP $MYUSER
 
-ENV PHP_OPCACHE_ENABLE 1
-ENV PHP_OPCACHE_ENABLE_CLI 1
-ENV PHP_OPCACHE_FAST_SHUTDOWN 1
-ENV PHP_OPCACHE_INTERNED_STRINGS_BUFFER 8
-ENV PHP_OPCACHE_MEMORY_CONSUMPTION 128
-ENV PHP_OPCACHE_MAX_ACCELERATED_FILES 5000
-ENV PHP_OPCACHE_REVALIDATE_FREQ 2
-ENV PHP_OPCACHE_SAVE_COMMENTS 1
+ENV APP_DIR=/app
+WORKDIR $APP_DIR/
+RUN chown $MYUSER:$MYGROUP $APP_DIR/
+USER $MYUSER
 
-ENV XDEBUG_MODE debug
+ENV PHP_DISPLAY_ERRORS=0
+ENV PHP_EXPOSE=0
+ENV PHP_MEMORY_LIMIT=128M
+ENV PHP_POST_MAX_SIZE=1M
+ENV PHP_UPLOAD_MAX_FILESIZE=1M
+ENV PHP_MAX_EXECUTION_TIME=300
+
+ENV XDEBUG_MODE=off
+
+ENV PHP_LIB_DIR=/usr/local/lib/php
 
 COPY php.ini $PHP_INI_DIR/
-
-ENV WORK_DIR /app
-WORKDIR $WORK_DIR
+COPY --from=builder $PHP_LIB_DIR/extensions/ $PHP_LIB_DIR/extensions/
+COPY --from=builder $PHP_INI_DIR/conf.d/ $PHP_INI_DIR/conf.d/
 
 EXPOSE 9000
-
 CMD ["php-fpm", "--nodaemonize"]
+
+
+# development dependencies
+FROM $COMPOSER_IMAGE AS composer
+
+
+# development/test/ci image
+FROM base AS development
+
+COPY --from=composer /usr/bin/composer /usr/local/bin/
+
+ENV PHP_DISPLAY_ERRORS=1
+ENV PHP_EXPOSE=1
