@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Radarlog\Doop\Infrastructure\Kernel;
 use Symfony\Component\HttpFoundation\Request;
 
-require __DIR__ . '/../bootstrap.php';
+[$appEnv, $appDebug] = require_once __DIR__ . '/../bootstrap.php';
 
 // phpcs:disable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable
 
@@ -20,8 +20,10 @@ if ($trustedHosts) {
     Request::setTrustedHosts([$trustedHosts]);
 }
 
-$kernel = new Kernel($_ENV['APP_ENV'], (bool) $_ENV['APP_DEBUG']);
+$kernel = new Kernel($appEnv, $appDebug);
+
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();
+
 $kernel->terminate($request, $response);
