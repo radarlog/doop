@@ -72,8 +72,6 @@ final class ConnectionFactory
 
     private function dbalConnection(string $dsn): DBAL\Connection
     {
-        // https://github.com/doctrine/dbal/commit/487b00fbcb2a607bd12bb78fbc27739216ec4626
-        // @phpstan-ignore-next-line
         return DBAL\DriverManager::getConnection(['url' => $dsn]);
     }
 }
