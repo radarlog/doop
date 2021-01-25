@@ -46,7 +46,7 @@ migrations: ; $(info $(M) Running migrations:)
         done
 	echo ""
 	docker-compose exec -T php bin/console migrations:migrate --ansi --allow-no-migration --no-interaction
-	docker-compose exec -T php bin/console --env test migrations:migrate --ansi --allow-no-migration --no-interaction
+	docker-compose exec -T -e APP_ENV=test php bin/console migrations:migrate --ansi --allow-no-migration --no-interaction
 
 .PHONY: run
 run: yarn up composer migrations ; $(info $(M) Environment has been built succesfully)
