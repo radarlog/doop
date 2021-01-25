@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Domain\Image;
 
-final class Name
+final class Name implements \Stringable
 {
     private const LENGTH_MIN = 3;
     private const LENGTH_MAX = 255;

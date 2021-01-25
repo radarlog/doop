@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Domain\Image;
 
-final class Uuid
+final class Uuid implements \Stringable
 {
     private string $uuid;
 
