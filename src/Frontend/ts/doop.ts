@@ -1,6 +1,6 @@
 import bsCustomFileInput from 'bs-custom-file-input';
 import $ from 'jquery';
-import '../css/doop.scss';
+import '~doop/css/doop.scss';
 
 $(function () {
     bsCustomFileInput.init();

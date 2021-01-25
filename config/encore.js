@@ -1,4 +1,5 @@
 const Encore = require('@symfony/webpack-encore');
+const path = require('path');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -6,15 +7,13 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
     Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
 }
 
-if (Encore.isDevServer()) {
-    Encore.disableCssExtraction()
-}
-
 Encore
     .configureDevServerOptions((options) => {
         options.compress = true;
         options.hot = true;
     })
+
+    .disableCssExtraction(Encore.isDevServer())
 
     // directory where compiled assets will be stored
     .setOutputPath('public/build/')
@@ -33,6 +32,10 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('doop', './src/Frontend/ts/doop.ts')
+
+    .addAliases({
+        '~doop': path.resolve(__dirname, '../src/Frontend/')
+    })
 
     .enableTypeScriptLoader()
 

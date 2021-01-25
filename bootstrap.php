@@ -5,11 +5,10 @@ declare(strict_types=1);
 use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Component\ErrorHandler\Debug;
 
-require __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 // phpcs:disable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable
-(new class ()
-{
+return (new class () {
     private const APP_ENV = 'APP_ENV';
 
     private const ENV_PROD = 'prod';
@@ -23,6 +22,10 @@ require __DIR__ . '/vendor/autoload.php';
      * Run "composer dump-env prod" to create it
      */
     private const CACHED_ENV_FILE = __DIR__ . '/.env.local.php';
+
+    private string $appEnv;
+
+    private bool $appDebug;
 
     public function __construct()
     {
@@ -44,9 +47,7 @@ require __DIR__ . '/vendor/autoload.php';
             Debug::enable();
         }
 
-        // store calculated values
-        $_ENV[self::APP_ENV] = $appEnv;
-        $_ENV[self::APP_DEBUG] = $appDebug;
+        $this->persistCalculatedValues($appEnv, $appDebug);
     }
 
     private function loadCachedEnv(): void
@@ -55,7 +56,7 @@ require __DIR__ . '/vendor/autoload.php';
             return;
         }
 
-        $cachedEnv = require self::CACHED_ENV_FILE;
+        $cachedEnv = require_once self::CACHED_ENV_FILE;
 
         if (is_array($cachedEnv)) {
             $_ENV += $cachedEnv;
@@ -77,4 +78,18 @@ require __DIR__ . '/vendor/autoload.php';
         // load all the .env files
         (new Dotenv(self::APP_ENV))->loadEnv(__DIR__ . '/.env');
     }
-});
+
+    private function persistCalculatedValues(string $appEnv, bool $appDebug): void
+    {
+        $_ENV[self::APP_ENV] = $appEnv;
+        $_ENV[self::APP_DEBUG] = $appDebug;
+
+        $this->appEnv = $appEnv;
+        $this->appDebug = $appDebug;
+    }
+
+    public function __invoke(): array
+    {
+        return [$this->appEnv, $this->appDebug];
+    }
+})();

@@ -23,7 +23,7 @@ services:
                 Radarlog\Doop\Application\Command\Bus: '@Radarlog\Doop\Application\Command\LoggerBus'
 
     Radarlog\Doop\:
-        resource: '../src'
+        resource: '../src/'
         exclude:
             - '../src/Infrastructure/Kernel.php'
             - '../src/Infrastructure/Sql/Migrations'

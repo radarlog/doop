@@ -3,27 +3,13 @@
 declare(strict_types=1);
 
 use Radarlog\Doop\Infrastructure\Kernel;
-use Symfony\Bundle\FrameworkBundle\Console\Application;
-use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Bundle\FrameworkBundle\Console;
 
 set_time_limit(0);
 
-require __DIR__ . '/../vendor/autoload.php';
+[$appEnv, $appDebug] = require_once __DIR__ . '/../bootstrap.php';
 
-$input = new ArgvInput();
+$kernel = new Kernel($appEnv, $appDebug);
 
-$_ENV['APP_ENV'] = $input->getParameterOption(['--env', '-e'], null, true);
-
-if (null !== $_ENV['APP_ENV']) {
-    putenv('APP_ENV=' . $_ENV['APP_ENV']);
-}
-
-if ($input->hasParameterOption('--no-debug', true)) {
-    putenv('APP_DEBUG=' . $_ENV['APP_DEBUG'] = '0');
-}
-
-require __DIR__ . '/../bootstrap.php';
-
-$kernel = new Kernel($_ENV['APP_ENV'], (bool) $_ENV['APP_DEBUG']);
-$application = new Application($kernel);
-$application->run($input);
+$application = new Console\Application($kernel);
+$application->run();
