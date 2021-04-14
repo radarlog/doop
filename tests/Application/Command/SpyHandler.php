@@ -8,7 +8,7 @@ use Radarlog\Doop\Application\Command;
 
 final class SpyHandler implements Command\Handler
 {
-    public ?Command $command;
+    private ?Command $command;
 
     public function __construct()
     {
@@ -18,5 +18,10 @@ final class SpyHandler implements Command\Handler
     public function handle(Command $command): void
     {
         $this->command = $command;
+    }
+
+    public function command(): ?Command
+    {
+        return $this->command;
     }
 }

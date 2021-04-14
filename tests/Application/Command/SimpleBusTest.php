@@ -31,11 +31,11 @@ class SimpleBusTest extends UnitTestCase
 
         /** @var Command $command */
         $command = $this->createConfiguredMock(Command::class, [
-            'fqcnHandler' => get_class($handler),
+            'fqcnHandler' => $handler::class,
         ]);
 
         $bus->execute($command);
 
-        self::assertSame($command, $handler->command);
+        self::assertSame($command, $handler->command());
     }
 }

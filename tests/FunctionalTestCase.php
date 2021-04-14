@@ -8,6 +8,7 @@ use Radarlog\Doop\Infrastructure\Kernel;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\HttpKernel\KernelInterface;
 
+// phpcs:disable SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
 class FunctionalTestCase extends KernelTestCase
 {
     use Fixtures;

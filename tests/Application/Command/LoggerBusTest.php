@@ -38,7 +38,7 @@ class LoggerBusTest extends UnitTestCase
 
         $loggerBus = new Command\LoggerBus($logger, $innerBus);
 
-        $this->expectException(get_class($exception));
+        $this->expectException($exception::class);
 
         $loggerBus->execute($command);
 

@@ -68,9 +68,6 @@ Encore
     // enables Sass/SCSS support
     .enableSassLoader()
 
-    // uncomment if you use TypeScript
-    //.enableTypeScriptLoader()
-
     // uncomment to get integrity="..." attributes on your script & link tags
     // requires WebpackEncoreBundle 1.4 or higher
     .enableIntegrityHashes(Encore.isProduction())
@@ -83,8 +80,8 @@ Encore
     //.addEntry('admin', './assets/js/admin.js')
 
     .configureFilenames({
-        css: 'css/[name]-[hash:12].css',
-        js: 'js/[name]-[hash:12].js',
+        css: 'css/[name]-[fullhash:12].css',
+        js: 'js/[name]-[fullhash:12].js',
     })
 
     .configureWatchOptions((watchOptions) => {
