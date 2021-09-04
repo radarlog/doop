@@ -10,68 +10,39 @@ final class ConnectionFactory
 {
     private Connection $connection;
 
-    /**
-     * @param string[] $params
-     *
-     * @throws InvalidArgument
-     * @throws \InvalidArgumentException
-     */
-    private function __construct(array $params)
+    private function __construct(string $primaryDsn, string $replicaDsn)
     {
-        if (!isset($params['replica'], $params['primary'])) {
-            throw InvalidArgument::configuration();
-        }
-
-        $masterConnection = $this->dbalConnection($params['primary']);
-
-        $driver = $masterConnection->getDriver();
-
-        $params = [
-            'primary' => $masterConnection->getParams(),
-            'replica' => $this->parseReplicas($params['replica']),
-            'driver' => $driver,
+        /** @var Connection $connection */
+        $connection = DBAL\DriverManager::getConnection([
+            'wrapperClass' => Connection::class,
+            'driverClass' => DBAL\Driver\PDO\PgSQL\Driver::class,
             'driverOptions' => [
                 \PDO::ATTR_EMULATE_PREPARES => false,
                 \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
             ],
-        ];
+            'primary' => ['url' => $primaryDsn],
+            'replica' => $this->parseReplicas($replicaDsn),
+        ]);
 
-        $this->connection = new Connection($params, $driver);
+        $this->connection = $connection;
     }
 
-    /**
-     * @param string[] $params
-     *
-     * @throws InvalidArgument
-     * @throws \InvalidArgumentException
-     */
-    public static function create(array $params): Connection
+    public static function create(string $primaryDsn, string $replicaDsn): Connection
     {
-        $factory = new self($params);
+        $factory = new self($primaryDsn, $replicaDsn);
 
         return $factory->connection;
     }
 
-    /**
-     * @return string[][]
-     */
-    private function parseReplicas(string $replicas): array
+    private function parseReplicas(string $replicasDsn): array
     {
-        $replicas = (array) preg_split('/[\n|,]/', $replicas);
+        $replicas = (array) preg_split('/[\n|,]/', $replicasDsn);
         $replicas = array_filter($replicas);
         $replicas = array_unique($replicas);
 
-        $parsed = [];
-
-        while ($dsn = array_shift($replicas)) {
-            $parsed[] = $this->dbalConnection($dsn)->getParams();
-        }
-
-        return $parsed;
-    }
-
-    private function dbalConnection(string $dsn): DBAL\Connection
-    {
-        return DBAL\DriverManager::getConnection(['url' => $dsn]);
+        return array_map(
+            static fn(string $replicaDsn) => ['url' => $replicaDsn],
+            $replicas,
+        );
     }
 }

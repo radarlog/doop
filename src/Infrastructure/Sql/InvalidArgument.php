@@ -13,9 +13,4 @@ class InvalidArgument extends \InvalidArgumentException implements Throwable
     {
         parent::__construct($message, $code, $previous);
     }
-
-    public static function configuration(): self
-    {
-        return new self('Primary or replica configuration is missing', self::CODE_SQL_SERVERS);
-    }
 }

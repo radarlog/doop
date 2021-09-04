@@ -9,23 +9,6 @@ use Radarlog\Doop\Tests\UnitTestCase;
 
 class ConnectionFactoryTest extends UnitTestCase
 {
-    public function invalidParamsProvider(): \Generator
-    {
-        yield [[['primary' => 'some_dsn']]];
-        yield [[['replica' => 'some_dsn']]];
-    }
-
-    /**
-     * @dataProvider invalidParamsProvider
-     */
-    public function testCreateFromInvalidParamsThrowsException(array $params): void
-    {
-        $this->expectException(Sql\InvalidArgument::class);
-        $this->expectExceptionCode(3000);
-
-        Sql\ConnectionFactory::create($params);
-    }
-
     public function replicaDelimitersProvider(): \Generator
     {
         yield ["\n"];
@@ -38,13 +21,14 @@ class ConnectionFactoryTest extends UnitTestCase
      */
     public function testCreateTwoReplicas(string $delimiter): void
     {
-        $params = [
-            'primary' => 'pgsql://user:user@host:3306/db',
-            'replica' => sprintf('pgsql://user:user@host:3306/db1%spgsql://user:user@host:3306/db2', $delimiter),
-        ];
+        $primaryDsn = 'pgsql://user:user@host:3306/db';
+        $replicaDsn = sprintf('pgsql://user:user@host:3306/db1%spgsql://user:user@host:3306/db2', $delimiter);
 
-        $connection = Sql\ConnectionFactory::create($params);
+        $connection = Sql\ConnectionFactory::create($primaryDsn, $replicaDsn);
 
-        self::assertCount(2, $connection->getParams()['replica']);
+        /** @var array{replica: string[]} $params */
+        $params = $connection->getParams();
+
+        self::assertCount(2, $params['replica']);
     }
 }

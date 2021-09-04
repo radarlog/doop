@@ -52,5 +52,5 @@ services:
     Radarlog\Doop\Infrastructure\Sql\Connection:
         factory: Radarlog\Doop\Infrastructure\Sql\ConnectionFactory::create
         arguments:
-            -   primary: '%env(string:SQL_PRIMARY)%'
-                replica: '%env(string:SQL_REPLICA)%'
+            $primaryDsn: '%env(string:SQL_PRIMARY_DSN)%'
+            $replicaDsn: '%env(string:SQL_REPLICA_DSN)%'

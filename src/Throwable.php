@@ -21,7 +21,6 @@ interface Throwable extends \Throwable
     public const CODE_HANDLER        = 2000;
 
     // INFRASTRUCTURE LAYER
-    public const CODE_SQL_SERVERS    = 3000;
     public const CODE_SQL_NOT_FOUND  = 3001;
     public const CODE_CLI_FILE_READ  = 3100;
     public const CODE_S3_ENDPOINT    = 3200;
