@@ -7,9 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Console;
 
 set_time_limit(0);
 
-[$appEnv, $appDebug] = require_once __DIR__ . '/../bootstrap.php';
+['app_env' => $appEnv, 'is_debug' => $isDebug] = require dirname(__DIR__) . '/bootstrap.php';
 
-$kernel = new Kernel($appEnv, $appDebug);
+$kernel = new Kernel($appEnv, $isDebug);
 
 $application = new Console\Application($kernel);
 $application->run();

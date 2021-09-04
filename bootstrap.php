@@ -5,33 +5,23 @@ declare(strict_types=1);
 use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Component\ErrorHandler\Debug;
 
-require_once __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
-// phpcs:disable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable
 return (new class () {
     private const APP_ENV = 'APP_ENV';
+    private const APP_DEBUG = 'APP_DEBUG';
 
     private const ENV_PROD = 'prod';
     private const ENV_DEV = 'dev';
     private const ENV_TEST = 'test';
 
-    private const APP_DEBUG = 'APP_DEBUG';
-
-    /**
-     * Load cached env vars if the .env.local.php file exists
-     * Run "composer dump-env prod" to create it
-     */
-    private const CACHED_ENV_FILE = __DIR__ . '/.env.local.php';
-
-    private string $appEnv;
-
-    private bool $appDebug;
+    private string $appEnv = self::ENV_DEV;
+    private bool $isDebug = false;
 
     public function __construct()
     {
-        $this->loadCachedEnv();
-
-        $appEnv = $_ENV[self::APP_ENV] ?? self::ENV_DEV;
+        // phpcs:ignore SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable
+        $appEnv = $_ENV[self::APP_ENV] ?? $this->appEnv;
 
         switch (true) {
             case !$this->isAllowedEnv($appEnv):
@@ -40,27 +30,17 @@ return (new class () {
                 $this->loadDevEnv();
         }
 
-        $appDebug = $_ENV[self::APP_DEBUG] ?? $appEnv !== self::ENV_PROD;
+        // phpcs:ignore SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable
+        $isDebug = $_ENV[self::APP_DEBUG] ?? $this->isDevEnv($appEnv);
+        $isDebug = filter_var($isDebug, FILTER_VALIDATE_BOOLEAN);
 
-        if (filter_var($appDebug, FILTER_VALIDATE_BOOLEAN)) {
+        if ($isDebug) {
             umask(0000);
             Debug::enable();
         }
 
-        $this->persistCalculatedValues($appEnv, $appDebug);
-    }
-
-    private function loadCachedEnv(): void
-    {
-        if (!file_exists(self::CACHED_ENV_FILE)) {
-            return;
-        }
-
-        $cachedEnv = require_once self::CACHED_ENV_FILE;
-
-        if (is_array($cachedEnv)) {
-            $_ENV += $cachedEnv;
-        }
+        $this->appEnv = $appEnv;
+        $this->isDebug = $isDebug;
     }
 
     private function isAllowedEnv(string $appEnv): bool
@@ -79,17 +59,14 @@ return (new class () {
         (new Dotenv(self::APP_ENV))->loadEnv(__DIR__ . '/.env');
     }
 
-    private function persistCalculatedValues(string $appEnv, bool $appDebug): void
-    {
-        $_ENV[self::APP_ENV] = $appEnv;
-        $_ENV[self::APP_DEBUG] = $appDebug;
-
-        $this->appEnv = $appEnv;
-        $this->appDebug = $appDebug;
-    }
-
+    /**
+     * @return array{app_env: string, is_debug: bool}
+     */
     public function __invoke(): array
     {
-        return [$this->appEnv, $this->appDebug];
+        return [
+            'app_env' => $this->appEnv,
+            'is_debug' => $this->isDebug,
+        ];
     }
 })();

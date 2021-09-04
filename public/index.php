@@ -5,10 +5,9 @@ declare(strict_types=1);
 use Radarlog\Doop\Infrastructure\Kernel;
 use Symfony\Component\HttpFoundation\Request;
 
-[$appEnv, $appDebug] = require_once __DIR__ . '/../bootstrap.php';
+['app_env' => $appEnv, 'is_debug' => $isDebug] = require dirname(__DIR__) . '/bootstrap.php';
 
-$kernel = new Kernel($appEnv, $appDebug);
-
+$kernel = new Kernel($appEnv, $isDebug);
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();
