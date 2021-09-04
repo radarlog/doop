@@ -30,6 +30,7 @@ down: ; $(info $(M) Shutting down containers:)
 composer: ; $(info $(M) Installing backend dependencies:)
 	docker-compose exec -T php composer validate --ansi --no-interaction --strict
 	docker-compose exec -T php composer check-platform-reqs --ansi --no-dev --no-interaction
+	docker-compose exec -T php composer normalize --ansi --dry-run --no-interaction
 	docker-compose exec -T php composer install --ansi --no-interaction
 
 .PHONY: yarn

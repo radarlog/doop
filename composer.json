@@ -1,5 +1,6 @@
 {
     "name": "radarlog/doop",
+    "type": "project",
     "description": "Simple File Uploader / AWS S3 Uploader",
     "keywords": [
         "AWS",
@@ -8,13 +9,7 @@
         "Hexagonal Architecture",
         "CQRS"
     ],
-    "type": "project",
     "license": "MIT",
-    "config": {
-        "optimize-autoloader": true,
-        "sort-packages": true
-    },
-    "prefer-stable": true,
     "require": {
         "php": "~8.0",
         "ext-fileinfo": "*",
@@ -41,16 +36,21 @@
         "symfony/dependency-injection": "5.3.7"
     },
     "require-dev": {
+        "ergebnis/composer-normalize": "^2.15",
         "phpstan/phpstan": "^0.12.98",
         "phpunit/phpunit": "^9.5",
-        "roave/security-advisories": "dev-latest",
         "qossmic/deptrac-shim": "^0.15.2",
+        "roave/security-advisories": "dev-latest",
         "slevomat/coding-standard": "^7.0",
         "squizlabs/php_codesniffer": "^3.6",
         "symfony/browser-kit": "^5.3",
         "symfony/dotenv": "^5.3",
         "thomas-schulz/symfony-meta": "^1.5",
         "vimeo/psalm": "^4.9"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
     },
     "autoload": {
         "psr-4": {
@@ -62,16 +62,17 @@
             "Radarlog\\Doop\\Tests\\": "tests"
         }
     },
+    "prefer-stable": true,
     "scripts": {
-        "auto-scripts": {
-            "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
-        },
         "post-install-cmd": [
             "@auto-scripts"
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+        }
     }
 }

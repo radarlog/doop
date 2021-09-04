@@ -54,6 +54,7 @@ install:
     - yes | pecl install pcov
     - composer validate --ansi --no-interaction --strict
     - composer install --ansi --no-interaction --no-suggest
+    - composer normalize --ansi --dry-run --no-interaction
     - yarn install --frozen-lockfile --non-interactive --no-progress
 
 before_script:
