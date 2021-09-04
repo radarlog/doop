@@ -32,7 +32,7 @@ class ReadModelTest extends DbTestCase
         parent::setUp();
 
         /** @var Repository $repository */
-        $repository = self::$container->get(Repository::class);
+        $repository = self::getContainer()->get(Repository::class);
 
         $state1 = new Image\State([
             'uuid' => self::UUID1,
@@ -53,7 +53,7 @@ class ReadModelTest extends DbTestCase
         $repository->add($image2);
 
         /** @var Query $query */
-        $query = self::$container->get(Query::class);
+        $query = self::getContainer()->get(Query::class);
         $this->query = $query;
     }
 

@@ -18,7 +18,7 @@ class ControllerTestCase extends DbTestCase
         parent::setUp();
 
         /** @var KernelBrowser $client */
-        $client = self::$container->get('test.client');
+        $client = self::getContainer()->get('test.client');
         $client->disableReboot();
 
         /** @var KernelBrowser $client */

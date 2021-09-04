@@ -15,7 +15,7 @@ class DbTestCase extends FunctionalTestCase
         parent::setUp();
 
         /** @var Connection $connection */
-        $connection = self::$container->get(Connection::class);
+        $connection = self::getContainer()->get(Connection::class);
 
         $connection->beginTransaction();
 
