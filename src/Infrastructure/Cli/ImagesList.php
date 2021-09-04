@@ -14,7 +14,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 final class ImagesList extends Command implements Executable
 {
     /**
-     * @var string
+     * @var string|null
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */

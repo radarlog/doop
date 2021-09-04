@@ -17,6 +17,8 @@ class ConnectionFactoryTest extends UnitTestCase
     }
 
     /**
+     * @psalm-suppress InternalMethod
+     *
      * @dataProvider replicaDelimitersProvider
      */
     public function testCreateTwoReplicas(string $delimiter): void

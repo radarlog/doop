@@ -21,6 +21,7 @@ RUN set -e \
     && export CFLAGS="$PHP_CFLAGS" CPPFLAGS="$PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS" \
     && docker-php-ext-install -j$(nproc) \
         opcache \
+        pcntl \
         pcov \
         pdo_pgsql \
         xdebug

@@ -13,7 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 final class ImagesUpload extends Console\Command\Command implements Executable
 {
     /**
-     * @var string
+     * @var string|null
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
@@ -41,7 +41,7 @@ final class ImagesUpload extends Console\Command\Command implements Executable
     // phpcs:disable SlevomatCodingStandard.Functions.UnusedParameter
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
-        $paths = (array) $input->getArgument('path');
+        $paths = $input->getArgument('path');
 
         $this->paths = array_unique($paths);
     }

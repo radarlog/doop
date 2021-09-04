@@ -1,8 +1,19 @@
 <?xml version="1.0"?>
 <psalm
+    addParamDefaultToDocblockType="true"
+    allowNamedArgumentCalls="false"
+    allowPhpStormGenerics="true"
     cacheDirectory="var/cache/psalm/"
+    errorLevel="1"
+    findUnusedPsalmSuppress="true"
+    forbidEcho="true"
+    ignoreInternalFunctionFalseReturn="false"
+    ignoreInternalFunctionNullReturn="false"
     reportMixedIssues="false"
     strictBinaryOperands="true"
+    useDocblockPropertyTypes="true"
+    usePhpDocMethodsWithoutMagicCall="true"
+    usePhpDocPropertiesWithoutMagicCall="true"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
@@ -17,4 +28,8 @@
             <directory name="vendor"/>
         </ignoreFiles>
     </projectFiles>
+    <plugins>
+        <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
+        <pluginClass class="Psalm\SymfonyPsalmPlugin\Plugin"/>
+    </plugins>
 </psalm>

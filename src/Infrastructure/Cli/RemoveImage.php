@@ -13,7 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 final class RemoveImage extends Console\Command\Command implements Executable
 {
     /**
-     * @var string
+     * @var string|null
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
      */
@@ -40,7 +40,6 @@ final class RemoveImage extends Console\Command\Command implements Executable
     // phpcs:disable SlevomatCodingStandard.Functions.UnusedParameter
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
-        /** @var string $uuid */
         $uuid = $input->getArgument('uuid');
 
         $this->uuid = $uuid;

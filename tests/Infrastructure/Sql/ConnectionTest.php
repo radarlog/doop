@@ -21,9 +21,6 @@ class ConnectionTest extends FunctionalTestCase
         $this->connection = $connection;
     }
 
-    /**
-     * @psalm-suppress RedundantCondition
-     */
     public function testIsMasterReplica(): void
     {
         self::assertInstanceOf(PrimaryReadReplicaConnection::class, $this->connection);

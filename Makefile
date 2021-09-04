@@ -55,7 +55,7 @@ run: yarn up composer migrations ; $(info $(M) Environment has been built succes
 .PHONY: static-analyze
 static-analyze: ; $(info $(M) Performing static analyze:)
 	docker-compose exec -T php vendor/bin/phpstan analyse --ansi
-	docker-compose exec -T php vendor/bin/psalm --taint-analysis
+	docker-compose exec -T php vendor/bin/psalm --threads=8
 	docker-compose exec -T php vendor/bin/deptrac --ansi --fail-on-uncovered --no-interaction --cache-file=var/cache/deptrac.cache
 
 .PHONY: styles-check

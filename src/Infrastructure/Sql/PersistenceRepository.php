@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Infrastructure\Sql;
 
-use Doctrine\DBAL\Driver\Statement;
+use Doctrine\DBAL\ForwardCompatibility\Result;
 use Doctrine\DBAL\Types\Types;
 use Radarlog\Doop\Domain\Image;
 use Radarlog\Doop\Domain\Repository;
@@ -51,14 +51,15 @@ final class PersistenceRepository implements Repository
                 $qb->expr()->eq('uuid', $qb->createNamedParameter((string) $uuid)),
             );
 
-        /** @var Statement $stmt */
+        /** @var Result $stmt */
         $stmt = $qb->execute();
 
         if ($stmt->rowCount() === 0) {
             throw NotFound::uuid((string) $uuid);
         }
 
-        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+        /** @var array{uuid: string, hash: string, name: string, uploaded_at: string} $row */
+        $row = $stmt->fetchAssociative();
 
         $state = new Image\State($row);
 

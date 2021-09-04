@@ -34,6 +34,9 @@ final class ConnectionFactory
         return $factory->connection;
     }
 
+    /**
+     * @return array<int, array{url: string}>
+     */
     private function parseReplicas(string $replicasDsn): array
     {
         $replicas = (array) preg_split('/[\n|,]/', $replicasDsn);

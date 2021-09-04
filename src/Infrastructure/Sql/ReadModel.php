@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Infrastructure\Sql;
 
-use Doctrine\DBAL\Driver\Statement;
+use Doctrine\DBAL\ForwardCompatibility\Result;
 use Radarlog\Doop\Application\Query;
 use Radarlog\Doop\Infrastructure\Sql;
 
@@ -26,14 +26,16 @@ final class ReadModel implements Query
             ->from($this->connection->imagesTable())
             ->orderBy('uploaded_at', 'DESC');
 
-        return $this->connection->project(
-            $qb->getSQL(),
-            $qb->getParameters(),
+        /** @var Result $stmt */
+        $stmt = $qb->execute();
+
+        return array_map(
             static fn(array $row) => new Query\UuidNameDate(
                 $row['uuid'],
                 $row['name'],
                 $row['uploaded_at'],
             ),
+            $stmt->fetchAllAssociative(),
         );
     }
 
@@ -48,14 +50,15 @@ final class ReadModel implements Query
                 $qb->expr()->eq('uuid', $qb->createNamedParameter($uuid)),
             );
 
-        /** @var Statement $stmt */
+        /** @var Result $stmt */
         $stmt = $qb->execute();
 
         if ($stmt->rowCount() === 0) {
             throw Sql\NotFound::uuid($uuid);
         }
 
-        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+        /** @var array{hash: string, name: string} $row */
+        $row = $stmt->fetchAssociative();
 
         return new Query\HashName($row['hash'], $row['name']);
     }
@@ -73,14 +76,15 @@ final class ReadModel implements Query
             )
             ->groupBy('i1.hash');
 
-        /** @var Statement $stmt */
+        /** @var Result $stmt */
         $stmt = $qb->execute();
 
         if ($stmt->rowCount() === 0) {
             throw Sql\NotFound::uuid($uuid);
         }
 
-        $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+        /** @var array{hash: string, count: int} $row */
+        $row = $stmt->fetchAssociative();
 
         return new Query\HashCount($row['hash'], $row['count']);
     }
