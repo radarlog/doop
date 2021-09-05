@@ -15,7 +15,7 @@
         "ext-fileinfo": "*",
         "ext-json": "*",
         "ext-pdo": "*",
-        "composer-runtime-api": "^2",
+        "composer-runtime-api": "^2.1",
         "async-aws/s3": "^1.9",
         "doctrine/dbal": "^2.13",
         "doctrine/migrations": "^3.2",

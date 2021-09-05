@@ -9,7 +9,7 @@ services:
         depends_on:
             - php
         container_name: doop-nginx
-        image: nginx:1.19-alpine
+        image: nginx:1.21-alpine
         restart: ${DOCKER_RESTART}
         networks:
             - doop
@@ -46,7 +46,7 @@ services:
 
     encore:
         container_name: doop-encore
-        image: node:15.14-alpine
+        image: node:16.8-alpine3.14
         restart: ${DOCKER_RESTART}
         networks:
             - doop
@@ -61,7 +61,7 @@ services:
 
     postgres:
         container_name: doop-postgres
-        image: postgres:13.2-alpine
+        image: postgres:13.4-alpine3.14
         restart: ${DOCKER_RESTART}
         networks:
             - doop
