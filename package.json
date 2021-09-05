@@ -3,7 +3,7 @@
     "license": "MIT",
     "private": true,
     "engines": {
-        "node": ">= 15.5",
+        "node": ">= 16.8",
         "yarn": ">= 1.22"
     },
     "scripts": {
@@ -19,24 +19,24 @@
         "jquery": "^3.6"
     },
     "devDependencies": {
-        "@symfony/webpack-encore": "^1.4",
+        "@symfony/webpack-encore": "^1.6",
         "@types/jquery": "^3.5",
-        "@typescript-eslint/eslint-plugin": "^4.26",
-        "@typescript-eslint/parser": "^4.26",
-        "core-js": "^3.13",
+        "@typescript-eslint/eslint-plugin": "^4.30",
+        "@typescript-eslint/parser": "^4.30",
+        "core-js": "^3.17",
         "cssnano": "^5.0",
-        "eslint": "^7.27",
+        "eslint": "^7.32",
         "eslint-config-prettier": "^8.3",
-        "eslint-plugin-prettier": "^3.4",
+        "eslint-plugin-prettier": "^4.0",
         "nodemon": "^2.0",
         "popper.js": "^1.16",
         "postcss": "^8.3",
-        "postcss-loader": "^5.3",
+        "postcss-loader": "^6.1",
         "prettier": "^2.3",
-        "sass": "^1.34",
-        "sass-loader": "^12.0",
+        "sass": "^1.39",
+        "sass-loader": "^12.1",
         "ts-loader": "^9.2",
-        "typescript": "^4.3"
+        "typescript": "^4.4"
     },
     "nodemonConfig": {
         "watch": [
