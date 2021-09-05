@@ -1,19 +1,19 @@
 {% for image in images %}
-    <div class="col-4 mb-4">
-        <button type="button" class="close" aria-label="Close">
-            <a href="{{ path('remove', {'uuid': image.uuid}) }}" class="badge badge-danger">×</a>
-        </button>
-        <a href="{{ path('image', {'uuid': image.uuid}) }}" class="thumbnail">
+    <div class="col-md-4 bg-white pt-3">
+        <a role="button" href="{{ path('remove', {'uuid': image.uuid}) }}" class="btn btn-primary bg-danger float-end">
+            ×
+        </a>
+        <a href="{{ path('image', {'uuid': image.uuid}) }}">
             <img
                 alt="{{ image.name }}"
-                class="img-fluid img-thumbnail"
+                class="img-fluid img-thumbnail rounded"
                 width="640"
                 height="480"
                 src="{{ path('image', {'uuid': image.uuid}) }}"
             />
-            <div class="caption">
+            <small class="caption text-nowrap">
                 {{ image.name }} ({{ image.uploadedAt }})
-            </div>
+            </small>
         </a>
     </div>
 {% endfor %}
