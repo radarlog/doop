@@ -3,6 +3,8 @@ upstream php-upstream {
 }
 
 upstream encore-upstream {
+    ip_hash; # enable sticky session based on IP
+
     server ${UPSTREAM_ENCORE_SERVER};
 }
 
@@ -33,8 +35,8 @@ server {
         try_files $uri @encore;
     }
 
-    location /sockjs-node {
-        try_files $uri @encore;
+    location /ws {
+        try_files /nonexistent @encore;
     }
 
     location @encore {

@@ -11,6 +11,9 @@ Encore
     .configureDevServerOptions((options) => {
         options.compress = true;
         options.hot = true;
+        options.client = {
+            webSocketURL: 'ws://localhost/ws',
+        }
     })
 
     .disableCssExtraction(Encore.isDevServer())
