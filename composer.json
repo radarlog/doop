@@ -17,14 +17,14 @@
         "ext-pdo": "*",
         "composer-runtime-api": "^2.1",
         "async-aws/s3": "^1.9",
-        "doctrine/dbal": "^2.13",
-        "doctrine/migrations": "^3.2",
+        "doctrine/dbal": "^3.1",
+        "doctrine/migrations": "^3.3",
         "psr/log": "^1.1",
         "ramsey/uuid": "^4.2",
         "symfony/config": "^5.3",
         "symfony/console": "^5.3",
         "symfony/dependency-injection": "^5.3",
-        "symfony/flex": "^1.15",
+        "symfony/flex": "^1.17",
         "symfony/form": "^5.3",
         "symfony/framework-bundle": "^5.3",
         "symfony/monolog-bundle": "^v3.7",
@@ -32,12 +32,9 @@
         "symfony/webpack-encore-bundle": "^1.12",
         "symfony/yaml": "^5.3"
     },
-    "conflict": {
-        "symfony/dependency-injection": "5.3.7"
-    },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.15",
-        "phpstan/phpstan": "^0.12.98",
+        "phpstan/phpstan": "^0.12.99",
         "phpunit/phpunit": "^9.5",
         "psalm/plugin-phpunit": "^0.16.1",
         "psalm/plugin-symfony": "^3.0",
@@ -48,7 +45,7 @@
         "symfony/browser-kit": "^5.3",
         "symfony/dotenv": "^5.3",
         "thomas-schulz/symfony-meta": "^1.5",
-        "vimeo/psalm": "^4.10"
+        "vimeo/psalm": "^4.11"
     },
     "config": {
         "optimize-autoloader": true,

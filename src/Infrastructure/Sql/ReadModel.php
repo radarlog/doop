@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Infrastructure\Sql;
 
-use Doctrine\DBAL\ForwardCompatibility\Result;
 use Radarlog\Doop\Application\Query;
 use Radarlog\Doop\Infrastructure\Sql;
 
@@ -26,8 +25,7 @@ final class ReadModel implements Query
             ->from($this->connection->imagesTable())
             ->orderBy('uploaded_at', 'DESC');
 
-        /** @var Result $stmt */
-        $stmt = $qb->execute();
+        $stmt = $qb->executeQuery();
 
         return array_map(
             static fn(array $row) => new Query\UuidNameDate(
@@ -50,8 +48,7 @@ final class ReadModel implements Query
                 $qb->expr()->eq('uuid', $qb->createNamedParameter($uuid)),
             );
 
-        /** @var Result $stmt */
-        $stmt = $qb->execute();
+        $stmt = $qb->executeQuery();
 
         if ($stmt->rowCount() === 0) {
             throw Sql\NotFound::uuid($uuid);
@@ -76,8 +73,7 @@ final class ReadModel implements Query
             )
             ->groupBy('i1.hash');
 
-        /** @var Result $stmt */
-        $stmt = $qb->execute();
+        $stmt = $qb->executeQuery();
 
         if ($stmt->rowCount() === 0) {
             throw Sql\NotFound::uuid($uuid);

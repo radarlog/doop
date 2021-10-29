@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Infrastructure\Sql;
 
-use Doctrine\DBAL\ForwardCompatibility\Result;
 use Doctrine\DBAL\Types\Types;
 use Radarlog\Doop\Domain\Image;
 use Radarlog\Doop\Domain\Repository;
@@ -51,8 +50,7 @@ final class PersistenceRepository implements Repository
                 $qb->expr()->eq('uuid', $qb->createNamedParameter((string) $uuid)),
             );
 
-        /** @var Result $stmt */
-        $stmt = $qb->execute();
+        $stmt = $qb->executeQuery();
 
         if ($stmt->rowCount() === 0) {
             throw NotFound::uuid((string) $uuid);
