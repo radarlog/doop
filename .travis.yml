@@ -4,7 +4,7 @@ language: php
 php:
     - '8.0'
 node_js:
-    - 15
+    - 16
 
 services:
     - postgresql
@@ -44,7 +44,7 @@ before_install:
         && minio server /data
         "
     - phpenv config-rm xdebug.ini
-    - nvm install 15
+    - nvm install 16
     - psql -c "CREATE DATABASE test_db;" -U postgres
     - psql -c "ALTER USER postgres PASSWORD 'postgres';" -U postgres
     - composer self-update --2
