@@ -35,6 +35,9 @@ ENV RUNTIME_DEPS="postgresql-libs"
 RUN set -e \
     && cd /tmp \
     #
+    # Apply security updates and bugfixes \
+    && apk --update-cache upgrade \
+    #
     # Install dependencies
     && apk --no-cache add --update $RUNTIME_DEPS \
     && rm -rf /tmp/* /var/cache/apk/*
