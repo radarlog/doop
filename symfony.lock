@@ -255,7 +255,7 @@
         "version": "v5.0.5"
     },
     "symfony/browser-kit": {
-        "version": "v4.2.4"
+        "version": "v6.0.0"
     },
     "symfony/cache": {
         "version": "v4.2.4"
@@ -286,7 +286,7 @@
         "version": "v2.1.2"
     },
     "symfony/dom-crawler": {
-        "version": "v4.2.4"
+        "version": "v6.0.0"
     },
     "symfony/dotenv": {
         "version": "v4.2.4"
@@ -389,9 +389,6 @@
     },
     "symfony/polyfill-mbstring": {
         "version": "v1.10.0"
-    },
-    "symfony/polyfill-php73": {
-        "version": "v1.11.0"
     },
     "symfony/polyfill-php80": {
         "version": "v1.17.0"

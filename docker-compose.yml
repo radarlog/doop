@@ -46,7 +46,7 @@ services:
 
     encore:
         container_name: doop-encore
-        image: node:16.8-alpine3.14
+        image: node:17.2-alpine3.14
         restart: ${DOCKER_RESTART}
         networks:
             - doop
@@ -61,7 +61,7 @@ services:
 
     postgres:
         container_name: doop-postgres
-        image: postgres:13.4-alpine3.14
+        image: postgres:14.1-alpine3.15
         restart: ${DOCKER_RESTART}
         networks:
             - doop
