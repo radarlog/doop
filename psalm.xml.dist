@@ -2,7 +2,6 @@
 <psalm
     addParamDefaultToDocblockType="true"
     allowNamedArgumentCalls="false"
-    allowPhpStormGenerics="true"
     cacheDirectory="var/cache/psalm/"
     errorLevel="1"
     findUnusedPsalmSuppress="true"

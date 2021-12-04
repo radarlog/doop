@@ -30,12 +30,16 @@ services:
 
     # Command Bus
     Radarlog\Doop\Application\Command\SimpleBus:
-        arguments: [!tagged command.handler]
+        arguments: [ !tagged command.handler ]
     Radarlog\Doop\Application\Command\LoggerBus:
         decorates: Radarlog\Doop\Application\Command\SimpleBus
-        arguments: ['@monolog.logger.commands']
+        arguments: [ '@monolog.logger.commands' ]
     Radarlog\Doop\Infrastructure\Http\ThrowableHandlerBus:
         decorates: Radarlog\Doop\Application\Command\LoggerBus
+
+    Symfony\Component\HttpFoundation\Session\Flash\FlashBag: ~
+    Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface:
+        alias: Symfony\Component\HttpFoundation\Session\Flash\FlashBag
 
     # S3
     Radarlog\Doop\Infrastructure\S3\Connection:
