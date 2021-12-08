@@ -35,10 +35,10 @@ jobs:
 
             -   name: Install composer dependencies
                 run: |
-                    docker-compose exec php composer validate --ansi --no-interaction --strict
-                    docker-compose exec php composer check-platform-reqs --ansi --no-dev --no-interaction
-                    docker-compose exec php composer install --ansi --no-interaction
-                    docker-compose exec php composer normalize --ansi --dry-run --no-interaction
+                    docker-compose exec -T php composer validate --ansi --no-interaction --strict
+                    docker-compose exec -T php composer check-platform-reqs --ansi --no-dev --no-interaction
+                    docker-compose exec -T php composer install --ansi --no-interaction
+                    docker-compose exec -T php composer normalize --ansi --dry-run --no-interaction
 
             -   name: Setup PHP
                 uses: shivammathur/setup-php@v2
