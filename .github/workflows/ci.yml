@@ -19,7 +19,6 @@ jobs:
                 os:
                     - macos-latest
                     - ubuntu-latest
-                    - windows-latest
                 php:
                     - 8.0
                 experimental: [ false ]
