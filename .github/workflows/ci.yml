@@ -36,7 +36,10 @@ jobs:
                     coverage: pcov
 
             -   name: Install composer dependencies
-                run: composer install --ansi --no-interaction
+                run: |
+                    composer validate --ansi --no-interaction --strict
+                    composer install --ansi --no-interaction
+                    composer normalize --ansi --dry-run --no-interaction
 
             -   name: Check Coding standards
                 run: vendor/bin/phpcs
