@@ -1,7 +1,8 @@
 {
     "name": "radarlog/doop",
-    "type": "project",
     "description": "Simple File Uploader / AWS S3 Uploader",
+    "license": "MIT",
+    "type": "project",
     "keywords": [
         "AWS",
         "S3 Uploader",
@@ -9,9 +10,8 @@
         "Hexagonal Architecture",
         "CQRS"
     ],
-    "license": "MIT",
     "require": {
-        "php": "~8.0",
+        "php": "~8.1",
         "ext-fileinfo": "*",
         "ext-json": "*",
         "ext-pdo": "*",
@@ -33,7 +33,7 @@
         "symfony/yaml": "^6.0"
     },
     "require-dev": {
-        "ergebnis/composer-normalize": "^2.16",
+        "ergebnis/composer-normalize": "^2.18",
         "phpstan/phpstan": "^1.2",
         "phpunit/phpunit": "^9.5",
         "psalm/plugin-phpunit": "^0.16.1",
@@ -45,12 +45,9 @@
         "symfony/browser-kit": "^6.0",
         "symfony/dotenv": "^6.0",
         "thomas-schulz/symfony-meta": "^1.5",
-        "vimeo/psalm": "^4.14"
+        "vimeo/psalm": "^4.15"
     },
-    "config": {
-        "optimize-autoloader": true,
-        "sort-packages": true
-    },
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Radarlog\\Doop\\": "src"
@@ -61,7 +58,10 @@
             "Radarlog\\Doop\\Tests\\": "tests"
         }
     },
-    "prefer-stable": true,
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
     "scripts": {
         "post-install-cmd": [
             "@auto-scripts"
