@@ -5,7 +5,6 @@
     cacheDirectory="var/cache/psalm/"
     errorLevel="1"
     findUnusedPsalmSuppress="true"
-    forbidEcho="true"
     ignoreInternalFunctionFalseReturn="false"
     ignoreInternalFunctionNullReturn="false"
     reportMixedIssues="false"
