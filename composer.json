@@ -45,7 +45,7 @@
         "symfony/browser-kit": "^6.0",
         "symfony/dotenv": "^6.0",
         "thomas-schulz/symfony-meta": "^1.5",
-        "vimeo/psalm": "^4.20"
+        "vimeo/psalm": "^4.21"
     },
     "prefer-stable": true,
     "autoload": {

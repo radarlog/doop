@@ -24,7 +24,7 @@
         "core-js": "^3.21",
         "cssnano": "^5.0",
         "eslint": "^8.9",
-        "eslint-config-prettier": "^8.3",
+        "eslint-config-prettier": "^8.4",
         "eslint-plugin-prettier": "^4.0",
         "nodemon": "^2.0",
         "postcss": "^8.4",
