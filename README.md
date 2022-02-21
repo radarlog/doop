@@ -8,7 +8,7 @@ It strictly follows SOLID principles and is 100% covered by tests. Development e
 
 ### Requirements
 * PHP >= 8.1
-* PostgreSQL >= 14.0
+* PostgreSQL >= 14.2
 * S3-compatible storage (AWS, MinIO)
 * Node.js >= 17.2
 * Yarn >= 1.22
