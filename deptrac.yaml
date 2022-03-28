@@ -1,0 +1,31 @@
+parameters:
+    paths:
+        - src/
+    exclude_files:
+        - src/Infrastructure/Sql/Migrations/
+    layers:
+        -   name: Domain
+            collectors:
+                -   type: Qossmic\Deptrac\Collector\ClassNameCollector
+                    regex: Radarlog\\Doop\\Domain
+                -   type: Qossmic\Deptrac\Collector\ClassNameCollector
+                    regex: Radarlog\\Doop\\Throwable
+        -   name: Application
+            collectors:
+                -   type: Qossmic\Deptrac\Collector\ClassNameCollector
+                    regex: Radarlog\\Doop\\Application
+                -   type: Qossmic\Deptrac\Collector\ClassNameCollector
+                    regex: Psr\\Log\\LoggerInterface
+        -   name: Infrastructure
+            collectors:
+                -   type: Qossmic\Deptrac\Collector\ClassNameCollector
+                    regex: Radarlog\\Doop\\Infrastructure
+                -   type: Qossmic\Deptrac\Collector\ClassNameCollector
+                    regex: Symfony|AsyncAws|Doctrine|Ramsey
+    ruleset:
+        Domain: ~
+        Application:
+            - Domain
+        Infrastructure:
+            - Domain
+            - Application
