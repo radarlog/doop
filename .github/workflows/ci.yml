@@ -47,6 +47,7 @@ jobs:
 
             -   name: Install frontend dependencies
                 run: |
+                    docker-compose logs encore
                     mkdir -p public/build/
                     docker-compose run -T --rm --user $MYUID:$MYGID encore yarn install --frozen-lockfile --non-interactive
 
