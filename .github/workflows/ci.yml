@@ -41,7 +41,6 @@ jobs:
             -   name: Check running containers
                 run: docker-compose ps
 
-
             -   name: Install composer dependencies
                 run: |
                     docker-compose exec -T php composer validate --ansi --no-interaction --strict
@@ -73,6 +72,6 @@ jobs:
                     COVERALLS_VERSION: v2.5.2
                 run: |
                     wget https://github.com/php-coveralls/php-coveralls/releases/download/$COVERALLS_VERSION/php-coveralls.phar
-                    ls -ll
+                    chmod +x php-coveralls.phar
                     docker-compose exec -T php /app/php-coveralls.phar -e test -x var/cache/clover.xml -o var/cache/coveralls.json
 
