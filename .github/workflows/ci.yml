@@ -60,5 +60,6 @@ jobs:
                 env:
                     APP_ENV: test
                 run: |
-                    docker-compose exec -T php bin/console migrations:migrate --ansi --allow-no-migration --no-interaction
+                    env
+                    docker-compose exec -T -e APP_ENV=test php bin/console migrations:migrate --ansi --allow-no-migration --no-interaction
                     docker-compose exec -T php vendor/bin/phpunit --coverage-clover var/cache/clover.xml
