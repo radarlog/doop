@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9c3e0c61b9a1c20598137ec49d64e92b",
+    "content-hash": "5c6a085d937b3e57e91f0bc4559c7e2e",
     "packages": [
         {
             "name": "async-aws/core",
@@ -8953,50 +8953,6 @@
                 }
             ],
             "time": "2021-07-28T10:34:58+00:00"
-        },
-        {
-            "name": "thomas-schulz/symfony-meta",
-            "version": "v1.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/King2500/symfony-phpstorm-meta.git",
-                "reference": "f64e1dca313ef2d2fbd8122603652a57c2ba603d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/King2500/symfony-phpstorm-meta/zipball/f64e1dca313ef2d2fbd8122603652a57c2ba603d",
-                "reference": "f64e1dca313ef2d2fbd8122603652a57c2ba603d",
-                "shasum": ""
-            },
-            "require-dev": {
-                "guzzlehttp/guzzle": "~6.0",
-                "monolog/monolog": "^1.24",
-                "symfony/symfony": "~5.0"
-            },
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Thomas Schulz",
-                    "email": "mail@king2500.net"
-                }
-            ],
-            "description": "PhpStorm meta data for expected arguments completion in symfony projects.",
-            "keywords": [
-                "autocomplete",
-                "code",
-                "metadata",
-                "phpstorm",
-                "symfony"
-            ],
-            "support": {
-                "issues": "https://github.com/King2500/symfony-phpstorm-meta/issues",
-                "source": "https://github.com/King2500/symfony-phpstorm-meta/tree/v1.5.0"
-            },
-            "time": "2020-06-03T21:12:24+00:00"
         },
         {
             "name": "vimeo/psalm",
