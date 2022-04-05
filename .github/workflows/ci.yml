@@ -37,9 +37,7 @@ jobs:
                 run: |
                     docker-compose build --build-arg MYUID=$MYUID --build-arg MYGID=$MYGID php
                     docker-compose up -d
-
-            -   name: Check running containers
-                run: docker-compose ps
+                    docker-compose ps
 
             -   name: Install composer dependencies
                 run: |
