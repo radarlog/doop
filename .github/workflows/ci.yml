@@ -32,6 +32,8 @@ jobs:
 
             -   name: Install frontend dependencies
                 run: |
+                    docker-compose logs encore
+                    mkdir -p public/build/
                     docker-compose run -T --rm --user $MYUID:$MYGID encore yarn install --frozen-lockfile --non-interactive
 
             -   name: Build docker-compose stack
@@ -40,7 +42,9 @@ jobs:
                     docker-compose up -d
 
             -   name: Check running containers
-                run: docker-compose ps
+                run: |
+                    docker-compose ps
+                    docker-compose logs encore
 
             -   name: Install composer dependencies
                 run: |
