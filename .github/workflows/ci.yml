@@ -44,6 +44,9 @@ jobs:
                     docker-compose exec -T php composer install --ansi --no-interaction
                     docker-compose exec -T php composer normalize --ansi --dry-run --no-interaction
 
+            -   name: Run migrations
+                run: docker-compose exec -T -e APP_ENV=test php bin/console migrations:migrate --ansi --allow-no-migration --no-interaction
+
             -   name: Check Coding standards
                 run: docker-compose exec -T php vendor/bin/phpcs
 
@@ -57,9 +60,4 @@ jobs:
                 run: docker-compose exec -T php vendor/bin/deptrac --ansi --fail-on-uncovered --no-interaction
 
             -   name: Run PHPUnit
-                env:
-                    APP_ENV: test
-                run: |
-                    env
-                    docker-compose exec -T -e APP_ENV=test php bin/console migrations:migrate --ansi --allow-no-migration --no-interaction
-                    docker-compose exec -T php vendor/bin/phpunit --coverage-clover var/cache/clover.xml
+                run: docker-compose exec -T php vendor/bin/phpunit --coverage-clover var/cache/clover.xml
