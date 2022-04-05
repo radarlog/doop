@@ -44,7 +44,7 @@ jobs:
             -   name: Check running containers
                 run: |
                     docker-compose ps
-                    docker-compose logs encore
+
 
             -   name: Install composer dependencies
                 run: |
@@ -69,4 +69,6 @@ jobs:
                 run: docker-compose exec -T php vendor/bin/deptrac --ansi --fail-on-uncovered --no-interaction
 
             -   name: Run PHPUnit
-                run: docker-compose exec -T php vendor/bin/phpunit --coverage-clover var/cache/clover.xml
+                run: |
+                    docker-compose logs encore
+                    docker-compose exec -T php vendor/bin/phpunit --coverage-clover var/cache/clover.xml
