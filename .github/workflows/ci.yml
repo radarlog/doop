@@ -55,3 +55,10 @@ jobs:
 
             -   name: Run Deptrac
                 run: docker-compose exec -T php vendor/bin/deptrac --ansi --fail-on-uncovered --no-interaction
+
+            -   name: Run PHPUnit
+                env:
+                    APP_ENV: test
+                run: |
+                    docker-compose exec -T php bin/console migrations:migrate --ansi --allow-no-migration --no-interaction
+                    docker-compose exec -T php vendor/bin/phpunit --coverage-clover var/cache/clover.xml
