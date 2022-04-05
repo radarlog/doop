@@ -67,11 +67,8 @@ jobs:
                 run: docker-compose exec -T php vendor/bin/phpunit --coverage-clover var/cache/clover.xml
 
             -   name: Upload coverage results to Coveralls
-                env:
-                    COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                    COVERALLS_VERSION: v2.5.2
-                run: |
-                    wget https://github.com/php-coveralls/php-coveralls/releases/download/$COVERALLS_VERSION/php-coveralls.phar
-                    chmod +x php-coveralls.phar
-                    docker-compose exec -T php /app/php-coveralls.phar -e test -x var/cache/clover.xml -o var/cache/coveralls.json
+                uses: coverallsapp/github-action@master
+                with:
+                    github-token: ${{ secrets.github_token }}
+                    parallel-finished: true
 
