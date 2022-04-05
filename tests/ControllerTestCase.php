@@ -7,7 +7,7 @@ namespace Radarlog\Doop\Tests;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\BrowserKitAssertionsTrait;
 
-class ControllerTestCase extends DbTestCase
+abstract class ControllerTestCase extends DbTestCase
 {
     use BrowserKitAssertionsTrait;
 

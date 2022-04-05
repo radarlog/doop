@@ -7,7 +7,7 @@ namespace Radarlog\Doop\Tests\Application\Command\Image;
 use Radarlog\Doop\Application\Command;
 use Radarlog\Doop\Tests\UnitTestCase;
 
-class UploadTest extends UnitTestCase
+final class UploadTest extends UnitTestCase
 {
     private const NAME = 'name';
     private const CONTENT = 'content';

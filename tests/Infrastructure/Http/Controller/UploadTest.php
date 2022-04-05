@@ -7,7 +7,7 @@ namespace Radarlog\Doop\Tests\Infrastructure\Http\Controller;
 use Radarlog\Doop\Tests\ControllerTestCase;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class UploadTest extends ControllerTestCase
+final class UploadTest extends ControllerTestCase
 {
     public function testAction(): void
     {

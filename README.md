@@ -7,12 +7,12 @@ Doop is a PHP application implementing Hexagonal Architecture for uploading imag
 It strictly follows SOLID principles and is 100% covered by tests. Development environment is fully dockerized and automated with a makefile. 
 
 ### Requirements
-* PHP >= 8.0
-* PostgreSQL >= 13.0
+* PHP >= 8.1
+* PostgreSQL >= 14.2
 * S3-compatible storage (AWS, MinIO)
-* Node.js >= 15.5
+* Node.js >= 17.2
 * Yarn >= 1.22
-* Typescript >= 4.2
+* Typescript >= 4.5
 
 ### Directory Structure
 

@@ -7,7 +7,7 @@ namespace Radarlog\Doop\Tests\Infrastructure\Http\Form;
 use Radarlog\Doop\Infrastructure\Http\Form\UploadType;
 use Symfony\Component\Form;
 
-class UploadTypeTest extends Form\Test\TypeTestCase
+final class UploadTypeTest extends Form\Test\TypeTestCase
 {
     private Form\FormInterface $form;
 

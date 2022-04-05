@@ -7,7 +7,7 @@ namespace Radarlog\Doop\Tests\Application\Command;
 use Radarlog\Doop\Application\Command;
 use Radarlog\Doop\Tests\UnitTestCase;
 
-class SimpleBusTest extends UnitTestCase
+final class SimpleBusTest extends UnitTestCase
 {
     public function testNoHandler(): void
     {

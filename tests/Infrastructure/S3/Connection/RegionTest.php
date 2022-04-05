@@ -7,7 +7,7 @@ namespace Radarlog\Doop\Tests\Infrastructure\S3\Connection;
 use Radarlog\Doop\Infrastructure\S3\Connection\Region;
 use Radarlog\Doop\Tests\UnitTestCase;
 
-class RegionTest extends UnitTestCase
+final class RegionTest extends UnitTestCase
 {
     public function testName(): void
     {

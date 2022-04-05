@@ -10,7 +10,7 @@ use Radarlog\Doop\Infrastructure\Http\ThrowableHandlerBus;
 use Radarlog\Doop\Tests\Application\Command\DummyCommand;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 
-class ThrowableHandlerBusTest extends TestCase
+final class ThrowableHandlerBusTest extends TestCase
 {
     private const ERROR_MESSAGE_TYPE = 'error';
 

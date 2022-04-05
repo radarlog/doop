@@ -7,7 +7,7 @@ namespace Radarlog\Doop\Tests\Infrastructure\S3\Connection;
 use Radarlog\Doop\Infrastructure\S3\Connection\Key;
 use Radarlog\Doop\Tests\UnitTestCase;
 
-class KeyTest extends UnitTestCase
+final class KeyTest extends UnitTestCase
 {
     public function validKeysProvider(): iterable
     {

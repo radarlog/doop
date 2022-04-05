@@ -7,7 +7,7 @@ namespace Radarlog\Doop\Tests\Domain\Image;
 use Radarlog\Doop\Domain\Image;
 use Radarlog\Doop\Tests\UnitTestCase;
 
-class NameTest extends UnitTestCase
+final class NameTest extends UnitTestCase
 {
     public function invalidLengthProvider(): \Generator
     {

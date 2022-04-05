@@ -7,7 +7,7 @@ namespace Radarlog\Doop\Tests\Domain\Image;
 use Radarlog\Doop\Domain\Image;
 use Radarlog\Doop\Tests\UnitTestCase;
 
-class StateTest extends UnitTestCase
+final class StateTest extends UnitTestCase
 {
     public function invalidKeysProvider(): \Generator
     {

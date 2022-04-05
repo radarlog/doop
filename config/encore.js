@@ -9,6 +9,7 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 
 Encore
     .configureDevServerOptions((options) => {
+        options.allowedHosts = 'all';
         options.compress = true;
         options.hot = true;
         options.client = {
