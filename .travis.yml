@@ -65,7 +65,7 @@ script:
     - yarn lint
     - vendor/bin/phpcs
     - vendor/bin/phpstan analyse --ansi --no-progress
-    - vendor/bin/psalm --no-progress --taint-analysis
+    - vendor/bin/psalm --no-progress
     - vendor/bin/deptrac --ansi --fail-on-uncovered --no-interaction --no-progress
     - vendor/bin/phpunit --coverage-clover var/cache/clover.xml
 

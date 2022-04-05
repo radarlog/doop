@@ -44,28 +44,14 @@ jobs:
                     docker-compose exec -T php composer install --ansi --no-interaction
                     docker-compose exec -T php composer normalize --ansi --dry-run --no-interaction
 
-            -   name: Setup PHP
-                uses: shivammathur/setup-php@v2
-                env:
-                    COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                with:
-                    php-version: ${{ matrix.php }}
-                    coverage: pcov
-
-            -   name: Install composer dependencies
-                run: |
-                    composer validate --ansi --no-interaction --strict
-                    composer install --ansi --no-interaction
-                    composer normalize --ansi --dry-run --no-interaction
-
             -   name: Check Coding standards
-                run: vendor/bin/phpcs
+                run: docker-compose exec -T php vendor/bin/phpcs
 
             -   name: Run PHPStan
-                run: vendor/bin/phpstan analyse --ansi
+                run: docker-compose exec -T php vendor/bin/phpstan analyse --ansi
 
             -   name: Run Psalm
-                run: vendor/bin/psalm --taint-analysis --output-format=github
+                run: docker-compose exec -T php vendor/bin/psalm --output-format=github
 
             -   name: Run Deptrac
-                run: vendor/bin/deptrac --ansi --fail-on-uncovered --no-interaction
+                run: docker-compose exec -T php vendor/bin/deptrac --ansi --fail-on-uncovered --no-interaction
