@@ -44,6 +44,9 @@ jobs:
                     docker-compose exec -T php composer install --ansi --no-interaction
                     docker-compose exec -T php composer normalize --ansi --dry-run --no-interaction
 
+            -   name: Install frontend dependencies
+                run: docker-compose run -T --rm encore yarn install --frozen-lockfile --non-interactive
+
             -   name: Run migrations
                 run: docker-compose exec -T -e APP_ENV=test php bin/console migrations:migrate --ansi --allow-no-migration --no-interaction
 
