@@ -8,10 +8,6 @@ on:
         paths-ignore:
             - '**.md'
 
-env:
-    MYUID: 1001
-    MYGID: 121
-
 jobs:
     tests:
         name: PHP ${{ matrix.php }} tests on ${{ matrix.os }}
@@ -25,6 +21,10 @@ jobs:
                 php:
                     - 8.1
                 experimental: [ false ]
+
+        env:
+            MYUID: 1001
+            MYGID: 121
 
         steps:
             -   name: Checkout
@@ -50,6 +50,8 @@ jobs:
                     docker-compose exec -T php composer normalize --ansi --dry-run --no-interaction
 
             -   name: Run migrations
+                env:
+                    APP_ENV: test
                 run: docker-compose exec -T php bin/console migrations:migrate --ansi --allow-no-migration --no-interaction
 
             -   name: Check Coding standards
