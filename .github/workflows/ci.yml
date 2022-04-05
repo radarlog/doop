@@ -73,5 +73,6 @@ jobs:
                     COVERALLS_VERSION: v2.5.2
                 run: |
                     wget https://github.com/php-coveralls/php-coveralls/releases/download/$COVERALLS_VERSION/php-coveralls.phar
-                    docker-compose exec -T php php-coveralls.phar -e test -x var/cache/clover.xml -o var/cache/coveralls.json
+                    ls -ll
+                    docker-compose exec -T php /app/php-coveralls.phar -e test -x var/cache/clover.xml -o var/cache/coveralls.json
 
