@@ -51,8 +51,10 @@ jobs:
             -   name: Run migrations
                 run: docker-compose exec -T -e APP_ENV=test php bin/console migrations:migrate --ansi --allow-no-migration --no-interaction
 
-            -   name: Check Coding standards
-                run: docker-compose exec -T php vendor/bin/phpcs
+            -   name: Check Coding Standards
+                run: |
+                    docker-compose exec -T php vendor/bin/phpcs
+                    docker-compose exec -T encore yarn lint
 
             -   name: Run PHPStan
                 run: docker-compose exec -T php vendor/bin/phpstan analyse --ansi
