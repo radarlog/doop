@@ -19,7 +19,7 @@ jobs:
                 os:
                     - ubuntu-20.04
                 php:
-                    - 8.0
+                    - 8.1
                 experimental: [ false ]
 
         steps:
