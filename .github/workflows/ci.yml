@@ -66,8 +66,8 @@ jobs:
             -   name: Run PHPUnit
                 run: docker-compose exec -T php vendor/bin/phpunit --coverage-clover var/cache/clover.xml
 
-            -   name: Upload coverage results to Coveralls
-                uses: coverallsapp/github-action@master
+            -   name: Upload coverage to Codecov
+                uses: codecov/codecov-action@v2
                 with:
-                    github-token: ${{ secrets.github_token }}
-                    path-to-lcov: var/cache/clover.xml
+                    files: var/cache/clover.xml
+                    verbose: true
