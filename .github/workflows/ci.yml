@@ -50,9 +50,7 @@ jobs:
                     docker-compose exec -T php composer normalize --ansi --dry-run --no-interaction
 
             -   name: Run migrations
-                env:
-                    APP_ENV: test
-                run: docker-compose exec -T php bin/console migrations:migrate --ansi --allow-no-migration --no-interaction
+                run: docker-compose exec -T -e APP_ENV=test php bin/console migrations:migrate --ansi --allow-no-migration --no-interaction
 
             -   name: Check Coding standards
                 run: docker-compose exec -T php vendor/bin/phpcs
