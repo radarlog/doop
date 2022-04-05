@@ -8,7 +8,7 @@ use AsyncAws\Core\Configuration;
 use Radarlog\Doop\Infrastructure\S3\Connection;
 use Radarlog\Doop\Tests\UnitTestCase;
 
-class ConnectionTest extends UnitTestCase
+final class ConnectionTest extends UnitTestCase
 {
     private const ENDPOINT = 'http://host:42';
     private const KEY = 'key';

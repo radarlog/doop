@@ -8,7 +8,7 @@ use Radarlog\Doop\Application\Query\HashCount;
 use Radarlog\Doop\Domain\Image\Hash;
 use Radarlog\Doop\Tests\UnitTestCase;
 
-class HashCountTest extends UnitTestCase
+final class HashCountTest extends UnitTestCase
 {
     private const HASH = '2080492d54a6b8579968901f366b13614fe188f2';
 

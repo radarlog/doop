@@ -10,7 +10,7 @@ use Radarlog\Doop\Tests\DbTestCase;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
 
-class RemoveImageTest extends DbTestCase
+final class RemoveImageTest extends DbTestCase
 {
     private const UUID = '572b3706-ffb8-423c-a317-d0ca8016a345';
     private const HASH = '2080492d54a6b8579968901f366b13614fe188f2';

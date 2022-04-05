@@ -9,7 +9,7 @@ use Radarlog\Doop\Tests\FunctionalTestCase;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-class KernelTest extends FunctionalTestCase
+final class KernelTest extends FunctionalTestCase
 {
     public function testRegisterBundles(): void
     {

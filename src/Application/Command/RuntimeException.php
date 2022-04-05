@@ -6,10 +6,10 @@ namespace Radarlog\Doop\Application\Command;
 
 use Radarlog\Doop\Application\Throwable;
 
-class RuntimeException extends \RuntimeException implements Throwable
+final class RuntimeException extends \RuntimeException implements Throwable
 {
     // phpcs:disable Generic.CodeAnalysis.UselessOverridingMethod.Found
-    final private function __construct(string $message, int $code, ?\Throwable $previous = null)
+    private function __construct(string $message, int $code, ?\Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
     }

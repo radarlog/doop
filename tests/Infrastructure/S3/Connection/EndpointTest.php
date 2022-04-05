@@ -8,7 +8,7 @@ use Radarlog\Doop\Infrastructure\S3\Connection\Endpoint;
 use Radarlog\Doop\Infrastructure\S3\InvalidArgument;
 use Radarlog\Doop\Tests\UnitTestCase;
 
-class EndpointTest extends UnitTestCase
+final class EndpointTest extends UnitTestCase
 {
     public function urlsProvider(): iterable
     {

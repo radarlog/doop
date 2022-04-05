@@ -8,7 +8,7 @@ use Psr\Log\Test\TestLogger;
 use Radarlog\Doop\Application\Command;
 use Radarlog\Doop\Tests\UnitTestCase;
 
-class LoggerBusTest extends UnitTestCase
+final class LoggerBusTest extends UnitTestCase
 {
     public function testExecute(): void
     {

@@ -6,7 +6,7 @@ namespace Radarlog\Doop\Tests;
 
 use Radarlog\Doop\Infrastructure\Sql\Connection;
 
-class DbTestCase extends FunctionalTestCase
+abstract class DbTestCase extends FunctionalTestCase
 {
     private Connection $connection;
 

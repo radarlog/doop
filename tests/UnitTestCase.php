@@ -6,7 +6,7 @@ namespace Radarlog\Doop\Tests;
 
 use PHPUnit\Framework\TestCase;
 
-class UnitTestCase extends TestCase
+abstract class UnitTestCase extends TestCase
 {
     use Fixtures;
 }

@@ -7,7 +7,7 @@ namespace Radarlog\Doop\Tests\Domain\Image;
 use Radarlog\Doop\Domain\Image;
 use Radarlog\Doop\Tests\UnitTestCase;
 
-class UuidTest extends UnitTestCase
+final class UuidTest extends UnitTestCase
 {
     private const UUID = '572b3706-ffb8-423c-a317-d0ca8016a345';
 

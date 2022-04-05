@@ -6,7 +6,7 @@ namespace Radarlog\Doop\Tests\Infrastructure\Http\Controller;
 
 use Radarlog\Doop\Tests\ControllerTestCase;
 
-class IndexTest extends ControllerTestCase
+final class IndexTest extends ControllerTestCase
 {
     public function testAction(): void
     {

@@ -8,7 +8,7 @@ use Radarlog\Doop\Domain;
 use Radarlog\Doop\Domain\Image;
 use Radarlog\Doop\Tests\ControllerTestCase;
 
-class ImageTest extends ControllerTestCase
+final class ImageTest extends ControllerTestCase
 {
     private const UUID = '572b3706-ffb8-423c-a317-d0ca8016a345';
 

@@ -8,7 +8,7 @@ use Doctrine\DBAL\Connections\PrimaryReadReplicaConnection;
 use Radarlog\Doop\Infrastructure\Sql\Connection;
 use Radarlog\Doop\Tests\FunctionalTestCase;
 
-class ConnectionTest extends FunctionalTestCase
+final class ConnectionTest extends FunctionalTestCase
 {
     private Connection $connection;
 

@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Exception\RuntimeException;
 use Symfony\Component\Console\Tester\CommandTester;
 
-class ImagesUploadTest extends DbTestCase
+final class ImagesUploadTest extends DbTestCase
 {
     private CommandTester $commandTester;
 

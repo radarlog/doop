@@ -10,7 +10,7 @@ use Radarlog\Doop\Domain\Repository;
 use Radarlog\Doop\Infrastructure\Sql;
 use Radarlog\Doop\Tests\DbTestCase;
 
-class ReadModelTest extends DbTestCase
+final class ReadModelTest extends DbTestCase
 {
     private const UUID1 = '9f2149bb-b6e5-4ae0-a188-e616cddc8e98';
     private const UUID2 = '572b3706-ffb8-423c-a317-d0ca8016a345';

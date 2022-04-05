@@ -7,7 +7,7 @@ namespace Radarlog\Doop\Tests\Infrastructure\Sql;
 use Radarlog\Doop\Infrastructure\Sql;
 use Radarlog\Doop\Tests\UnitTestCase;
 
-class ConnectionFactoryTest extends UnitTestCase
+final class ConnectionFactoryTest extends UnitTestCase
 {
     public function replicaDelimitersProvider(): \Generator
     {

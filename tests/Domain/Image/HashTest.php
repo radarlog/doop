@@ -7,7 +7,7 @@ namespace Radarlog\Doop\Tests\Domain\Image;
 use Radarlog\Doop\Domain\Image;
 use Radarlog\Doop\Tests\UnitTestCase;
 
-class HashTest extends UnitTestCase
+final class HashTest extends UnitTestCase
 {
     private const HASH = 'f32b67c7e26342af42efabc674d441dca0a281c5';
 

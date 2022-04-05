@@ -7,7 +7,7 @@ namespace Radarlog\Doop\Tests\Domain\Image;
 use Radarlog\Doop\Domain\Image;
 use Radarlog\Doop\Tests\UnitTestCase;
 
-class FormatTest extends UnitTestCase
+final class FormatTest extends UnitTestCase
 {
     public function testUnsupportedFormat(): void
     {

@@ -6,8 +6,7 @@ namespace Radarlog\Doop\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-// phpcs:disable SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
-class FunctionalTestCase extends KernelTestCase
+abstract class FunctionalTestCase extends KernelTestCase
 {
     use Fixtures;
 

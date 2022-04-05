@@ -9,7 +9,7 @@ use Radarlog\Doop\Domain\Image;
 use Radarlog\Doop\Infrastructure\Sql;
 use Radarlog\Doop\Tests\ControllerTestCase;
 
-class RemoveTest extends ControllerTestCase
+final class RemoveTest extends ControllerTestCase
 {
     private const UUID = '572b3706-ffb8-423c-a317-d0ca8016a345';
 

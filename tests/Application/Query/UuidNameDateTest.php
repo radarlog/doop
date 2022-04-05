@@ -7,7 +7,7 @@ namespace Radarlog\Doop\Tests\Application\Query;
 use Radarlog\Doop\Application\Query\UuidNameDate;
 use Radarlog\Doop\Tests\UnitTestCase;
 
-class UuidNameDateTest extends UnitTestCase
+final class UuidNameDateTest extends UnitTestCase
 {
     private const UUID = '572b3706-ffb8-423c-a317-d0ca8016a345';
     private const NAME = 'name';
