@@ -31,8 +31,7 @@ jobs:
                 uses: actions/checkout@v2
 
             -   name: Install frontend dependencies
-                run: |
-                    docker-compose run -T --rm encore yarn install --frozen-lockfile --non-interactive
+                run: docker-compose run -T --rm encore yarn install --frozen-lockfile --non-interactive
 
             -   name: Build docker-compose stack
                 run: |
@@ -40,8 +39,7 @@ jobs:
                     docker-compose up -d
 
             -   name: Check running containers
-                run: |
-                    docker-compose ps
+                run: docker-compose ps
 
 
             -   name: Install composer dependencies
@@ -67,6 +65,4 @@ jobs:
                 run: docker-compose exec -T php vendor/bin/deptrac --ansi --fail-on-uncovered --no-interaction
 
             -   name: Run PHPUnit
-                run: |
-                    docker-compose logs encore
-                    docker-compose exec -T php vendor/bin/phpunit --coverage-clover var/cache/clover.xml
+                run: docker-compose exec -T php vendor/bin/phpunit --coverage-clover var/cache/clover.xml
