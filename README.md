@@ -1,7 +1,7 @@
 # Doop
 
 [![Build Status](https://travis-ci.org/radarlog/doop.svg?branch=master)](https://travis-ci.org/radarlog/doop)
-[![Coverage Status](https://coveralls.io/repos/github/radarlog/doop/badge.svg?branch=master)](https://coveralls.io/github/radarlog/doop?branch=master)
+[![codecov](https://codecov.io/gh/radarlog/doop/branch/master/graph/badge.svg?token=TeMKOqyDol)](https://codecov.io/gh/radarlog/doop)
 
 Doop is a PHP application implementing Hexagonal Architecture for uploading images to an S3-compatible object storage and using PostgreSQL for data deduplication.
 It strictly follows SOLID principles and is 100% covered by tests. Development environment is fully dockerized and automated with a makefile. 
