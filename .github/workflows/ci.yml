@@ -26,6 +26,7 @@ jobs:
         env:
             MYUID: 1001
             MYGID: 121
+            COMPOSER_CACHE_DIR: /app/.composer/
 
         steps:
             -   name: Checkout
@@ -43,22 +44,21 @@ jobs:
                     docker-compose up -d
                     docker-compose ps
 
-            -   name: Get Composer Cache Directory
-                id: composer-cache
-                run: echo "::set-output name=dir::$(docker-compose exec -T php composer config cache-files-dir)"
             -   uses: actions/cache@v3
                 with:
-                    path: ${{ steps.composer-cache.outputs.dir }}
+                    path: $COMPOSER_CACHE_DIR
                     key: ${{ matrix.os }}-${{ matrix.php }}-composer-${{ hashFiles('**/composer.lock') }}
                     restore-keys: ${{ matrix.os }}-${{ matrix.php }}-composer-
 
             -   name: Install composer dependencies
                 run: |
-                    echo ${{ steps.composer-cache.outputs.dir }}
+                    echo $COMPOSER_CACHE_DIR
+                    ls -ll
                     docker-compose exec -T php composer validate --ansi --no-interaction --strict
                     docker-compose exec -T php composer check-platform-reqs --ansi --no-dev --no-interaction
                     docker-compose exec -T php composer install --ansi --no-interaction
                     docker-compose exec -T php composer normalize --ansi --dry-run --no-interaction
+                    ls -ll
 
             -   name: Run migrations
                 run: docker-compose exec -T -e APP_ENV=test php bin/console migrations:migrate --ansi --allow-no-migration --no-interaction
