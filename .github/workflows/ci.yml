@@ -26,7 +26,7 @@ jobs:
         env:
             MYUID: 1001
             MYGID: 121
-            COMPOSER_CACHE_DIR: /app/.composer/
+            COMPOSER_CACHE_DIR: .composer/
 
         steps:
             -   name: Checkout
@@ -52,12 +52,11 @@ jobs:
 
             -   name: Install composer dependencies
                 run: |
-                    echo $COMPOSER_CACHE_DIR
                     ls -lla
-                    docker-compose exec -T php composer validate --ansi --no-interaction --strict
-                    docker-compose exec -T php composer check-platform-reqs --ansi --no-dev --no-interaction
-                    docker-compose exec -T php composer install --ansi --no-interaction
-                    docker-compose exec -T php composer normalize --ansi --dry-run --no-interaction
+                    docker-compose exec -T php -e COMPOSER_CACHE_DIR=$COMPOSER_CACHE_DIR composer validate --ansi --no-interaction --strict
+                    docker-compose exec -T php -e COMPOSER_CACHE_DIR=$COMPOSER_CACHE_DIR composer check-platform-reqs --ansi --no-dev --no-interaction
+                    docker-compose exec -T php -e COMPOSER_CACHE_DIR=$COMPOSER_CACHE_DIR composer install --ansi --no-interaction
+                    docker-compose exec -T php -e COMPOSER_CACHE_DIR=$COMPOSER_CACHE_DIR composer normalize --ansi --dry-run --no-interaction
                     ls -lla
 
             -   name: Run migrations
