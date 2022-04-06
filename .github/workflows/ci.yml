@@ -45,17 +45,16 @@ jobs:
 
             -   name: Get Composer Cache Directory
                 id: composer-cache
-                run: |
-                    echo "::set-output name=dir::$(docker-compose exec -T php composer config cache-files-dir)"
+                run: echo "::set-output name=dir::$(docker-compose exec -T php composer config cache-files-dir)"
             -   uses: actions/cache@v3
                 with:
                     path: ${{ steps.composer-cache.outputs.dir }}
                     key: ${{ matrix.os }}-${{ matrix.php }}-composer-${{ hashFiles('**/composer.lock') }}
-                    restore-keys: |
-                        ${{ matrix.os }}-${{ matrix.php }}-composer-
+                    restore-keys: ${{ matrix.os }}-${{ matrix.php }}-composer-
 
             -   name: Install composer dependencies
                 run: |
+                    echo ${{ steps.composer-cache.outputs.dir }}
                     docker-compose exec -T php composer validate --ansi --no-interaction --strict
                     docker-compose exec -T php composer check-platform-reqs --ansi --no-dev --no-interaction
                     docker-compose exec -T php composer install --ansi --no-interaction
