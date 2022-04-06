@@ -45,10 +45,12 @@ jobs:
                     docker-compose ps
 
             -   uses: actions/cache@v3
+                env:
+                    CACHE_KEY_PREFIX: ${{ matrix.os }}-${{ matrix.php }}-composer-v1
                 with:
                     path: $COMPOSER_CACHE_DIR
-                    key: ${{ matrix.os }}-${{ matrix.php }}-composer-v1-${{ hashFiles('**/composer.lock') }}
-                    restore-keys: ${{ matrix.os }}-${{ matrix.php }}-composer-v1
+                    key: $CACHE_KEY_PREFIX-${{ hashFiles('**/composer.lock') }}
+                    restore-keys: $CACHE_KEY_PREFIX
 
             -   name: Install composer dependencies
                 run: |
