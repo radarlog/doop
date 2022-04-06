@@ -49,8 +49,8 @@ jobs:
                     CACHE_KEY_PREFIX: ${{ matrix.os }}-${{ matrix.php }}-composer-v1
                 with:
                     path: $COMPOSER_CACHE_DIR
-                    key: ${{ env.$CACHE_KEY_PREFIX }}-${{ hashFiles('**/composer.lock') }}
-                    restore-keys: ${{ env.$CACHE_KEY_PREFIX }}
+                    key: ${{ env.CACHE_KEY_PREFIX }}-${{ hashFiles('**/composer.lock') }}
+                    restore-keys: ${{ env.CACHE_KEY_PREFIX }}
 
             -   name: Install composer dependencies
                 run: |
