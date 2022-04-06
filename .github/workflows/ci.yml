@@ -53,12 +53,12 @@ jobs:
             -   name: Install composer dependencies
                 run: |
                     echo $COMPOSER_CACHE_DIR
-                    ls -ll
+                    ls -lla
                     docker-compose exec -T php composer validate --ansi --no-interaction --strict
                     docker-compose exec -T php composer check-platform-reqs --ansi --no-dev --no-interaction
                     docker-compose exec -T php composer install --ansi --no-interaction
                     docker-compose exec -T php composer normalize --ansi --dry-run --no-interaction
-                    ls -ll
+                    ls -lla
 
             -   name: Run migrations
                 run: docker-compose exec -T -e APP_ENV=test php bin/console migrations:migrate --ansi --allow-no-migration --no-interaction
