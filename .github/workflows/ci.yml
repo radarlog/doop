@@ -1,0 +1,97 @@
+name: CI
+
+on:
+    pull_request:
+        paths-ignore:
+            - '**.md'
+    push:
+        paths-ignore:
+            - '**.md'
+
+jobs:
+    tests:
+        name: PHP ${{ matrix.php }} tests on ${{ matrix.os }}
+        runs-on: ${{ matrix.os }}
+        continue-on-error: ${{ matrix.experimental }}
+        strategy:
+            fail-fast: false
+            matrix:
+                os:
+                    - ubuntu-18.04
+                    - ubuntu-20.04
+                php:
+                    - 8.1
+                experimental: [ false ]
+
+        env:
+            MYUID: 1001
+            MYGID: 121
+            COMPOSER_CACHE_DIR: .composer/
+            YARN_CACHE_DIR: .yarn/
+
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v2
+
+            -   uses: satackey/action-docker-layer-caching@v0.0.11
+                continue-on-error: true
+
+            -   name: Yarn Cache
+                uses: actions/cache@v3
+                env:
+                    CACHE_KEY_PREFIX: ${{ matrix.os }}-${{ matrix.php }}-yarn-v2
+                with:
+                    path: ${{ env.YARN_CACHE_DIR }}
+                    key: ${{ env.CACHE_KEY_PREFIX }}-${{ hashFiles('**/yarn.lock') }}
+                    restore-keys: ${{ env.CACHE_KEY_PREFIX }}
+
+            -   name: Install frontend dependencies
+                run: docker-compose run -T --rm -e YARN_CACHE_FOLDER=$YARN_CACHE_DIR encore yarn install --frozen-lockfile --non-interactive
+
+            -   name: Build docker-compose stack
+                run: |
+                    docker-compose build --build-arg MYUID=$MYUID --build-arg MYGID=$MYGID php
+                    docker-compose up -d
+                    docker-compose ps
+
+            -   name: Composer Cache
+                uses: actions/cache@v3
+                env:
+                    CACHE_KEY_PREFIX: ${{ matrix.os }}-${{ matrix.php }}-composer-v2
+                with:
+                    path: ${{ env.COMPOSER_CACHE_DIR }}
+                    key: ${{ env.CACHE_KEY_PREFIX }}-${{ hashFiles('**/composer.lock') }}
+                    restore-keys: ${{ env.CACHE_KEY_PREFIX }}
+
+            -   name: Install composer dependencies
+                run: |
+                    docker-compose exec -T -e COMPOSER_CACHE_DIR=$COMPOSER_CACHE_DIR php composer validate --ansi --no-interaction --strict
+                    docker-compose exec -T -e COMPOSER_CACHE_DIR=$COMPOSER_CACHE_DIR php composer check-platform-reqs --ansi --no-dev --no-interaction
+                    docker-compose exec -T -e COMPOSER_CACHE_DIR=$COMPOSER_CACHE_DIR php composer install --ansi --no-interaction
+                    docker-compose exec -T -e COMPOSER_CACHE_DIR=$COMPOSER_CACHE_DIR php composer normalize --ansi --dry-run --no-interaction
+
+            -   name: Run migrations
+                run: docker-compose exec -T -e APP_ENV=test php bin/console migrations:migrate --ansi --allow-no-migration --no-interaction
+
+            -   name: Check Coding Standards
+                run: |
+                    docker-compose exec -T php vendor/bin/phpcs
+                    docker-compose exec -T encore yarn lint
+
+            -   name: Run PHPStan
+                run: docker-compose exec -T php vendor/bin/phpstan analyse --ansi
+
+            -   name: Run Psalm
+                run: docker-compose exec -T php vendor/bin/psalm --output-format=github
+
+            -   name: Run Deptrac
+                run: docker-compose exec -T php vendor/bin/deptrac --ansi --fail-on-uncovered --no-interaction
+
+            -   name: Run PHPUnit
+                run: docker-compose exec -T php vendor/bin/phpunit --coverage-clover var/cache/clover.xml
+
+            -   name: Upload coverage to Codecov
+                uses: codecov/codecov-action@v3
+                with:
+                    files: var/cache/clover.xml
+                    verbose: true

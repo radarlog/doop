@@ -50,7 +50,7 @@ services:
         restart: ${DOCKER_RESTART}
         networks:
             - doop
-        user: 1000:1000
+        user: ${MYUID}:${MYGID}
         volumes:
             - .:/app:rw
         working_dir: /app
