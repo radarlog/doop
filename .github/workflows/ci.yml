@@ -46,7 +46,12 @@ jobs:
                     restore-keys: ${{ env.CACHE_KEY_PREFIX }}
 
             -   name: Install frontend dependencies
-                run: docker-compose run -T --rm -e YARN_CACHE_FOLDER=$YARN_CACHE_DIR encore yarn install --frozen-lockfile --non-interactive
+                run: |
+                    docker-compose run -T --rm encore yarn cache list
+                    docker-compose run -T --rm -e YARN_CACHE_FOLDER=$YARN_CACHE_DIR encore yarn cache list
+                    docker-compose run -T --rm -e YARN_CACHE_FOLDER=$YARN_CACHE_DIR encore yarn install --frozen-lockfile --non-interactive
+                    docker-compose run -T --rm encore yarn cache list
+                    docker-compose run -T --rm -e YARN_CACHE_FOLDER=$YARN_CACHE_DIR encore yarn cache list
 
             -   name: Build docker-compose stack
                 run: |
