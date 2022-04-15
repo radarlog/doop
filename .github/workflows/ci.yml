@@ -33,9 +33,6 @@ jobs:
             -   name: Checkout
                 uses: actions/checkout@v2
 
-            -   name: Make
-                run: make tests
-
             -   uses: satackey/action-docker-layer-caching@v0.0.11
                 continue-on-error: true
 
