@@ -22,9 +22,6 @@
         <exclude>
             <directory suffix=".php">src/Infrastructure/Sql/Migrations/</directory>
         </exclude>
-        <report>
-            <text outputFile="php://stdout"/>
-        </report>
     </coverage>
 
     <php>

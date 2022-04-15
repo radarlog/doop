@@ -65,4 +65,4 @@ styles-check: ; $(info $(M) Checking coding style:)
 
 .PHONY: tests
 tests: run styles-check static-analyze ; $(info $(M) Running tests:)
-	docker-compose exec -T php vendor/bin/phpunit
+	docker-compose exec -T php vendor/bin/phpunit --coverage-text
