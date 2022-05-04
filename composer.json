@@ -34,7 +34,7 @@
         "symfony/yaml": "^6.0"
     },
     "require-dev": {
-        "ergebnis/composer-normalize": "^2.25",
+        "ergebnis/composer-normalize": "^2.26",
         "phpstan/phpstan": "^1.5",
         "phpunit/phpunit": "^9.5",
         "psalm/plugin-phpunit": "^0.16.1",
