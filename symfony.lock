@@ -80,6 +80,9 @@
     "localheinz/diff": {
         "version": "1.1.1"
     },
+    "masterminds/html5": {
+        "version": "2.7.5"
+    },
     "monolog/monolog": {
         "version": "1.24.0"
     },
