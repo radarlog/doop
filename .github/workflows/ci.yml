@@ -82,7 +82,7 @@ jobs:
                 run: docker-compose exec -T php vendor/bin/phpstan analyse --ansi
 
             -   name: Run Psalm
-                run: docker-compose exec -T php vendor/bin/psalm --output-format=github
+                run: docker-compose exec -T php vendor/bin/psalm --output-format=github --show-info=true
 
             -   name: Run Deptrac
                 run: docker-compose exec -T php vendor/bin/deptrac --ansi --fail-on-uncovered --no-interaction
