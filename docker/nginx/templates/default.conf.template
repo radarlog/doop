@@ -1,19 +1,19 @@
 upstream php-upstream {
-    server ${UPSTREAM_FPM_SERVER};
+    server $UPSTREAM_FPM_SERVER;
 }
 
 upstream encore-upstream {
     ip_hash; # enable sticky session based on IP
 
-    server ${UPSTREAM_ENCORE_SERVER};
+    server $UPSTREAM_ENCORE_SERVER;
 }
 
 server {
-    listen ${LISTEN_PORT};
+    listen $LISTEN_PORT;
     server_name localhost;
     server_tokens off;
 
-    root ${DOCUMENT_ROOT};
+    root $DOCUMENT_ROOT;
     index index.php;
 
     #access_log  /var/log/nginx/host.access.log  main;
@@ -26,7 +26,7 @@ server {
         fastcgi_pass php-upstream;
         include fastcgi_params;
         fastcgi_param HTTP_X_REQUEST_ID $request_id;
-        fastcgi_param SCRIPT_FILENAME ${DOCUMENT_ROOT}/index.php;
+        fastcgi_param SCRIPT_FILENAME $DOCUMENT_ROOT/index.php;
         fastcgi_read_timeout 300;
         #fastcgi_intercept_errors on;
     }
@@ -55,7 +55,7 @@ server {
     location = /favicon.ico {
         log_not_found off;
         access_log off;
-	}
+    }
 
     location = /robots.txt {
         allow all;

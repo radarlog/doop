@@ -39,7 +39,7 @@ Make sure you have `docker-compose` and `make` installed.
 Clone the latest version and run:
 
 ```bash
-$ make run  
+$ make run
 ```
 then navigate to `http://localhost/` with your favorite browser.
 

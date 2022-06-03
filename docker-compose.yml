@@ -10,7 +10,7 @@ services:
             - php
         container_name: doop-nginx
         image: nginx:1.21-alpine
-        restart: ${DOCKER_RESTART}
+        restart: $DOCKER_RESTART
         networks:
             - doop
         volumes:
@@ -32,7 +32,7 @@ services:
         build:
             context: docker/php
             target: development
-        restart: ${DOCKER_RESTART}
+        restart: $DOCKER_RESTART
         networks:
             - doop
         volumes:
@@ -47,22 +47,22 @@ services:
     encore:
         container_name: doop-encore
         image: node:17.2-alpine3.14
-        restart: ${DOCKER_RESTART}
+        restart: $DOCKER_RESTART
         networks:
             - doop
-        user: ${MYUID}:${MYGID}
+        user: $MYUID:$MYGID
         volumes:
             - .:/app:rw
         working_dir: /app
         environment:
             NPM_CONFIG_LOGLEVEL: info
-            NODE_ENV: ${APP_ENV}
+            NODE_ENV: $APP_ENV
         command: yarn dev-server --host 0.0.0.0 --port 8765
 
     postgres:
         container_name: doop-postgres
         image: postgres:14.2-alpine3.15
-        restart: ${DOCKER_RESTART}
+        restart: $DOCKER_RESTART
         networks:
             - doop
         volumes:
@@ -78,14 +78,14 @@ services:
     minio:
         container_name: doop-minio
         image: minio/minio:latest
-        restart: ${DOCKER_RESTART}
+        restart: $DOCKER_RESTART
         networks:
             - doop
         ports:
             - 9000:9000
         environment:
-            MINIO_ACCESS_KEY: ${S3_KEY}
-            MINIO_SECRET_KEY: ${S3_SECRET}
-            MINIO_REGION: ${S3_REGION}
+            MINIO_ACCESS_KEY: $S3_KEY
+            MINIO_SECRET_KEY: $S3_SECRET
+            MINIO_REGION: $S3_REGION
         entrypoint: sh
         command: -c 'mkdir -p /data/$S3_BUCKET && minio server /data'
