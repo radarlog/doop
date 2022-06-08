@@ -25,7 +25,7 @@
         "symfony/config": "^6.1",
         "symfony/console": "^6.1",
         "symfony/dependency-injection": "^6.1",
-        "symfony/flex": "^2.1",
+        "symfony/flex": "^2.2",
         "symfony/form": "^6.1",
         "symfony/framework-bundle": "^6.1",
         "symfony/monolog-bundle": "^v3.8",
@@ -34,7 +34,7 @@
         "symfony/yaml": "^6.1"
     },
     "require-dev": {
-        "ergebnis/composer-normalize": "^2.27",
+        "ergebnis/composer-normalize": "^2.28",
         "phpstan/phpstan": "^1.7",
         "phpunit/phpunit": "^9.5",
         "psalm/plugin-phpunit": "^0.16.1",
