@@ -1,4 +1,4 @@
-ARG PHP_FPM_IMAGE=php:8.1-fpm-alpine3.15
+ARG PHP_FPM_IMAGE=php:8.1-fpm-alpine3.16
 ARG COMPOSER_IMAGE=composer:2.3
 
 FROM $PHP_FPM_IMAGE AS builder
@@ -6,7 +6,7 @@ FROM $PHP_FPM_IMAGE AS builder
 ENV BUILD_DEPS="postgresql-dev"
 
 ARG PCOV_VERSION=1.0.11
-ARG XDEBUG_VERSION=3.1.4
+ARG XDEBUG_VERSION=3.1.5
 
 RUN set -e \
     #
