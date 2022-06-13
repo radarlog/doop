@@ -42,7 +42,7 @@
         "qossmic/deptrac-shim": "^0.19.3",
         "roave/security-advisories": "dev-latest",
         "slevomat/coding-standard": "^7.2",
-        "squizlabs/php_codesniffer": "^3.6",
+        "squizlabs/php_codesniffer": "^3.7",
         "symfony/browser-kit": "^6.1",
         "symfony/dotenv": "^6.1",
         "vimeo/psalm": "^4.23"

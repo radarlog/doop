@@ -30,9 +30,4 @@
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
         <pluginClass class="Psalm\SymfonyPsalmPlugin\Plugin"/>
     </plugins>
-
-    <!-- https://github.com/symfony/symfony/pull/46496 -->
-    <issueHandlers>
-        <InternalMethod errorLevel="info"/>
-    </issueHandlers>
 </psalm>
