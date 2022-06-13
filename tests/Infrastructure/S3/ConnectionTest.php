@@ -15,7 +15,7 @@ final class ConnectionTest extends UnitTestCase
     private const SECRET = 'secret';
     private const REGION = 'region';
 
-    private Connection $connection;
+    readonly private Connection $connection;
 
     protected function setUp(): void
     {

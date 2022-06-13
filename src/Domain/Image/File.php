@@ -6,11 +6,11 @@ namespace Radarlog\Doop\Domain\Image;
 
 final class File
 {
-    private Hash $hash;
+    readonly private Hash $hash;
 
-    private string $content;
+    readonly private string $content;
 
-    private Format $format;
+    readonly private Format $format;
 
     /**
      * @throws InvalidArgument

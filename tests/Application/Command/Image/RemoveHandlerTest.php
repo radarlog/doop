@@ -16,12 +16,12 @@ final class RemoveHandlerTest extends UnitTestCase
     private const HASH = '2080492d54a6b8579968901f366b13614fe188f2';
 
     /** @var MockObject&Domain\Storage */
-    private Domain\Storage $storage;
+    readonly private Domain\Storage $storage;
 
     /** @var MockObject&Query */
-    private Query $query;
+    readonly private Query $query;
 
-    private Command\Image\RemoveHandler $handler;
+    readonly private Command\Image\RemoveHandler $handler;
 
     protected function setUp(): void
     {

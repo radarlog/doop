@@ -8,7 +8,7 @@ use Doctrine\DBAL;
 
 final class ConnectionFactory
 {
-    private Connection $connection;
+    readonly private Connection $connection;
 
     private function __construct(string $primaryDsn, string $replicaDsn)
     {

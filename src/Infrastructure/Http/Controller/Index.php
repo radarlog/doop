@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation;
 
 final class Index extends AbstractController implements Http\Controller
 {
-    private Query $query;
+    readonly private Query $query;
 
     public function __construct(Query $query)
     {

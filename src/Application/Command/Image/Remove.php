@@ -8,7 +8,7 @@ use Radarlog\Doop\Application\Command;
 
 final class Remove implements Command
 {
-    private string $uuid;
+    readonly private string $uuid;
 
     public function __construct(string $uuid)
     {

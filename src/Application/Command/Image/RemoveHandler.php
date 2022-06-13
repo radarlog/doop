@@ -11,11 +11,11 @@ use Radarlog\Doop\Domain\Image;
 
 final class RemoveHandler implements Command\Handler
 {
-    private Domain\Storage $storage;
+    readonly private Domain\Storage $storage;
 
-    private Domain\Repository $repository;
+    readonly private Domain\Repository $repository;
 
-    private Query $query;
+    readonly private Query $query;
 
     public function __construct(Domain\Storage $storage, Domain\Repository $repository, Query $query)
     {

@@ -15,7 +15,7 @@ final class PersistenceRepositoryTest extends DbTestCase
     private const HASH = '2080492d54a6b8579968901f366b13614fe188f2';
     private const NAME = 'name';
 
-    private Repository $repository;
+    readonly private Repository $repository;
 
     protected function setUp(): void
     {

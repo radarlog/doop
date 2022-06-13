@@ -11,7 +11,7 @@ use Ramsey\Uuid\Uuid;
 
 final class PersistenceRepository implements Repository
 {
-    private Connection $connection;
+    readonly private Connection $connection;
 
     public function __construct(Connection $connection)
     {

@@ -12,7 +12,7 @@ final class ImageTest extends ControllerTestCase
 {
     private const UUID = '572b3706-ffb8-423c-a317-d0ca8016a345';
 
-    private Image\Uuid $uuid;
+    readonly private Image\Uuid $uuid;
 
     protected function setUp(): void
     {

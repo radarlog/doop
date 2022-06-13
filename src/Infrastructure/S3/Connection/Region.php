@@ -9,7 +9,7 @@ namespace Radarlog\Doop\Infrastructure\S3\Connection;
  */
 final class Region
 {
-    private string $region;
+    readonly private string $region;
 
     public function __construct(string $name)
     {

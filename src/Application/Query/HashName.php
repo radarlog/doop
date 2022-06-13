@@ -8,9 +8,9 @@ use Radarlog\Doop\Domain\Image;
 
 final class HashName
 {
-    private Image\Hash $hash;
+    readonly private Image\Hash $hash;
 
-    private Image\Name $name;
+    readonly private Image\Name $name;
 
     public function __construct(string $hash, string $name)
     {

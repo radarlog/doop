@@ -6,11 +6,11 @@ namespace Radarlog\Doop\Application\Query;
 
 final class UuidNameDate
 {
-    private string $uuid;
+    readonly private string $uuid;
 
-    private string $name;
+    readonly private string $name;
 
-    private string $uploadedAt;
+    readonly private string $uploadedAt;
 
     public function __construct(string $uuid, string $name, string $uploadedAt)
     {

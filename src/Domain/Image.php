@@ -8,11 +8,11 @@ final class Image
 {
     private const DATETIME_FORMAT = 'Y-m-d H:i:s';
 
-    private Image\Uuid $uuid;
+    readonly private Image\Uuid $uuid;
 
-    private Image\Name $name;
+    readonly private Image\Name $name;
 
-    private Image\Hash $hash;
+    readonly private Image\Hash $hash;
 
     private \DateTimeImmutable $uploadedAt;
 

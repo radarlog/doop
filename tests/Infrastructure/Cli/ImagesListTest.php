@@ -17,9 +17,9 @@ final class ImagesListTest extends DbTestCase
     private const NAME = 'name';
     private const DATE = '2019-03-18 23:22:36';
 
-    private Repository $repository;
+    readonly private Repository $repository;
 
-    private CommandTester $commandTester;
+    readonly private CommandTester $commandTester;
 
     protected function setUp(): void
     {

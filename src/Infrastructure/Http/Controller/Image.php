@@ -15,9 +15,9 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 final class Image extends AbstractController implements Controller
 {
-    private Query $query;
+    readonly private Query $query;
 
-    private Storage $storage;
+    readonly private Storage $storage;
 
     public function __construct(Query $query, Storage $storage)
     {

@@ -11,9 +11,9 @@ final class FileTest extends UnitTestCase
 {
     private const HASH = '2080492d54a6b8579968901f366b13614fe188f2';
 
-    private Image\File $file;
+    readonly private Image\File $file;
 
-    private string $content;
+    readonly private string $content;
 
     protected function setUp(): void
     {

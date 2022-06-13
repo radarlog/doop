@@ -12,7 +12,7 @@ final class HashCountTest extends UnitTestCase
 {
     private const HASH = '2080492d54a6b8579968901f366b13614fe188f2';
 
-    private HashCount $hashCount;
+    readonly private HashCount $hashCount;
 
     protected function setUp(): void
     {

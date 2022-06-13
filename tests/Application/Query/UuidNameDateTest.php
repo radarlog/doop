@@ -13,7 +13,7 @@ final class UuidNameDateTest extends UnitTestCase
     private const NAME = 'name';
     private const DATE = '2019-03-18 23:22:36';
 
-    private UuidNameDate $uuidNameDate;
+    readonly private UuidNameDate $uuidNameDate;
 
     protected function setUp(): void
     {

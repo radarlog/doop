@@ -12,7 +12,7 @@ use Radarlog\Doop\Infrastructure\S3\Connection\Region;
 
 final class Connection
 {
-    private Configuration $configuration;
+    readonly private Configuration $configuration;
 
     public function __construct(Endpoint $endpoint, Key $key, Key $secret, Region $region)
     {
