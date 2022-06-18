@@ -14,14 +14,14 @@ final class Image
 
     readonly private Image\Hash $hash;
 
-    private \DateTimeImmutable $uploadedAt;
+    readonly private \DateTimeImmutable $uploadedAt;
 
-    public function __construct(Image\Uuid $uuid, Image\Hash $hash, Image\Name $name)
+    private function __construct(Image\Uuid $uuid, Image\Hash $hash, Image\Name $name, \DateTimeImmutable $uploadedAt)
     {
         $this->uuid = $uuid;
         $this->hash = $hash;
         $this->name = $name;
-        $this->uploadedAt = new \DateTimeImmutable();
+        $this->uploadedAt = $uploadedAt;
     }
 
     public function uuid(): Image\Uuid
@@ -39,6 +39,13 @@ final class Image
         ]);
     }
 
+    public static function new(Image\Uuid $uuid, Image\Hash $hash, Image\Name $name): self
+    {
+        $uploadedAt = new \DateTimeImmutable();
+
+        return new self($uuid, $hash, $name, $uploadedAt);
+    }
+
     public static function fromState(Image\State $state): self
     {
         $state = $state->asArray();
@@ -46,12 +53,9 @@ final class Image
         $uuid = new Image\Uuid($state['uuid']);
         $hash = new Image\Hash($state['hash']);
         $name = new Image\Name($state['name']);
+        $uploadedAt = self::hydrateDate($state['uploaded_at']);
 
-        $image = new self($uuid, $hash, $name);
-
-        $image->uploadedAt = self::hydrateDate($state['uploaded_at']);
-
-        return $image;
+        return new self($uuid, $hash, $name, $uploadedAt);
     }
 
     private static function hydrateDate(string $uploadedAt): \DateTimeImmutable

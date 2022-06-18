@@ -29,7 +29,7 @@ final class RemoveTest extends ControllerTestCase
         $this->uuid = new Image\Uuid(self::UUID);
 
         $name = new Image\Name('avatar.jpg');
-        $image = new Image($this->uuid, $file->hash(), $name);
+        $image = Image::new($this->uuid, $file->hash(), $name);
 
         /** @var Domain\Storage $storage */
         $storage = self::getContainer()->get(Domain\Storage::class);

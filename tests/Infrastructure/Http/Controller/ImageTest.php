@@ -25,7 +25,7 @@ final class ImageTest extends ControllerTestCase
 
         $uuid = new Image\Uuid(self::UUID);
         $name = new Image\Name('avatar.jpg');
-        $image = new Image($uuid, $file->hash(), $name);
+        $image = Image::new($uuid, $file->hash(), $name);
 
         $this->uuid = $image->uuid();
 
