@@ -6,7 +6,7 @@ namespace Radarlog\Doop\Infrastructure\S3\Connection;
 
 final class Key
 {
-    readonly private string $id;
+    private readonly string $id;
 
     public function __construct(string $id)
     {

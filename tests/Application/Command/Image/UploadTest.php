@@ -12,7 +12,7 @@ final class UploadTest extends UnitTestCase
     private const NAME = 'name';
     private const CONTENT = 'content';
 
-    readonly private Command\Image\Upload $command;
+    private Command\Image\Upload $command;
 
     protected function setUp(): void
     {

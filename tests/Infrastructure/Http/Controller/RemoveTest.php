@@ -13,9 +13,9 @@ final class RemoveTest extends ControllerTestCase
 {
     private const UUID = '572b3706-ffb8-423c-a317-d0ca8016a345';
 
-    readonly private Image\Uuid $uuid;
+    private Image\Uuid $uuid;
 
-    readonly private Domain\Repository $repository;
+    private Domain\Repository $repository;
 
     protected function setUp(): void
     {

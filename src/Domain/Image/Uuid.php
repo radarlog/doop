@@ -6,7 +6,7 @@ namespace Radarlog\Doop\Domain\Image;
 
 final class Uuid implements \Stringable
 {
-    readonly private string $uuid;
+    private readonly string $uuid;
 
     public function __construct(string $uuid)
     {

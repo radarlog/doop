@@ -25,7 +25,7 @@ final class ReadModelTest extends DbTestCase
 
     private const MISSING_UUID = '384a2c67-4d6d-41a9-9954-b5bf75de708e';
 
-    readonly private Query $query;
+    private Query $query;
 
     protected function setUp(): void
     {

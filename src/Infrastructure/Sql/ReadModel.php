@@ -9,7 +9,7 @@ use Radarlog\Doop\Infrastructure\Sql;
 
 final class ReadModel implements Query
 {
-    readonly private Sql\Connection $connection;
+    private readonly Sql\Connection $connection;
 
     public function __construct(Sql\Connection $connection)
     {

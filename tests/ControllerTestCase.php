@@ -11,7 +11,7 @@ abstract class ControllerTestCase extends DbTestCase
 {
     use BrowserKitAssertionsTrait;
 
-    readonly protected KernelBrowser $client;
+    protected KernelBrowser $client;
 
     protected function setUp(): void
     {

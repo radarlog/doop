@@ -10,9 +10,9 @@ use Radarlog\Doop\Domain\Image;
 
 final class UploadHandler implements Command\Handler
 {
-    readonly private Domain\Storage $storage;
+    private readonly Domain\Storage $storage;
 
-    readonly private Domain\Repository $repository;
+    private readonly Domain\Repository $repository;
 
     public function __construct(Domain\Storage $storage, Domain\Repository $repository)
     {

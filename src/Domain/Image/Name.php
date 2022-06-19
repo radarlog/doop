@@ -9,7 +9,7 @@ final class Name implements \Stringable
     private const LENGTH_MIN = 3;
     private const LENGTH_MAX = 255;
 
-    readonly private string $name;
+    private readonly string $name;
 
     public function __construct(string $name)
     {

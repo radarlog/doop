@@ -9,10 +9,10 @@ use Symfony\Component\Form;
 
 final class UploadTypeTest extends Form\Test\TypeTestCase
 {
-    readonly private Form\FormInterface $form;
+    private Form\FormInterface $form;
 
     /** @var Form\FormView[] */
-    readonly private array $children;
+    private array $children;
 
     public function setUp(): void
     {

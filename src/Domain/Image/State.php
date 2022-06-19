@@ -16,7 +16,7 @@ final class State implements Domain\State
     ];
 
     /** @var string[] */
-    readonly private array $state;
+    private readonly array $state;
 
     /**
      * @param string[] $state

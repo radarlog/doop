@@ -13,7 +13,7 @@ final class Format
         'image/svg+xml',
     ];
 
-    readonly private string $mime;
+    private readonly string $mime;
 
     /**
      * @throws InvalidArgument

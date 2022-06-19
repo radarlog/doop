@@ -20,7 +20,7 @@ final class ImagesList extends Command implements Executable
      */
     protected static $defaultName = 'images:list';
 
-    readonly private Query $query;
+    private readonly Query $query;
 
     public function __construct(Query $query)
     {

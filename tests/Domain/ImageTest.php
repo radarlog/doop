@@ -14,11 +14,11 @@ final class ImageTest extends UnitTestCase
     private const NAME = 'name';
     private const DATE = '2019-03-18 23:22:36';
 
-    readonly private Image\Uuid $uuid;
+    private Image\Uuid $uuid;
 
-    readonly private Image\Name $name;
+    private Image\Name $name;
 
-    readonly private Image\Hash $hash;
+    private Image\Hash $hash;
 
     protected function setUp(): void
     {

@@ -8,13 +8,13 @@ final class Image
 {
     private const DATETIME_FORMAT = 'Y-m-d H:i:s';
 
-    readonly private Image\Uuid $uuid;
+    private readonly Image\Uuid $uuid;
 
-    readonly private Image\Name $name;
+    private readonly Image\Name $name;
 
-    readonly private Image\Hash $hash;
+    private readonly Image\Hash $hash;
 
-    readonly private \DateTimeImmutable $uploadedAt;
+    private readonly \DateTimeImmutable $uploadedAt;
 
     private function __construct(Image\Uuid $uuid, Image\Hash $hash, Image\Name $name, \DateTimeImmutable $uploadedAt)
     {

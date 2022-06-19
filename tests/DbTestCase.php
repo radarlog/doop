@@ -8,7 +8,7 @@ use Radarlog\Doop\Infrastructure\Sql\Connection;
 
 abstract class DbTestCase extends FunctionalTestCase
 {
-    readonly private Connection $connection;
+    private Connection $connection;
 
     protected function setUp(): void
     {
