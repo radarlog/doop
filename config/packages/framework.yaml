@@ -29,5 +29,5 @@ framework:
         log: true
 
     router:
-        strict_requirements: ~
+        strict_requirements: '%kernel.debug%'
         utf8: true
