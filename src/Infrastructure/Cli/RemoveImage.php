@@ -19,7 +19,7 @@ final class RemoveImage extends Console\Command\Command implements Executable
      */
     protected static $defaultName = 'images:remove';
 
-    private Command\Bus $bus;
+    private readonly Command\Bus $bus;
 
     private string $uuid = '';
 

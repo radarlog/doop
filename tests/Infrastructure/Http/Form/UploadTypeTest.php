@@ -12,7 +12,7 @@ final class UploadTypeTest extends Form\Test\TypeTestCase
     private Form\FormInterface $form;
 
     /** @var Form\FormView[] */
-    private array $children = [];
+    private array $children;
 
     public function setUp(): void
     {

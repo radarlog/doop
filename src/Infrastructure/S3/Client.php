@@ -9,9 +9,9 @@ use Radarlog\Doop\Domain;
 
 final class Client implements Domain\Storage
 {
-    private S3\S3Client $client;
+    private readonly S3\S3Client $client;
 
-    private string $bucketName;
+    private readonly string $bucketName;
 
     public function __construct(string $bucketName, Connection $connection)
     {

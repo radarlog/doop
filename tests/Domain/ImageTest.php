@@ -77,7 +77,7 @@ final class ImageTest extends UnitTestCase
 
     public function testGetState(): void
     {
-        $image = new Image($this->uuid, $this->hash, $this->name);
+        $image = Image::new($this->uuid, $this->hash, $this->name);
 
         $state = $image->getState();
 
@@ -86,7 +86,7 @@ final class ImageTest extends UnitTestCase
 
     public function testUuid(): void
     {
-        $image = new Image($this->uuid, $this->hash, $this->name);
+        $image = Image::new($this->uuid, $this->hash, $this->name);
 
         self::assertSame($this->uuid, $image->uuid());
     }

@@ -32,7 +32,7 @@ final class PersistenceRepositoryTest extends DbTestCase
         $name = new Image\Name(self::NAME);
         $hash = new Image\Hash(self::HASH);
 
-        $image1 = new Image($uuid, $hash, $name);
+        $image1 = Image::new($uuid, $hash, $name);
         $this->repository->add($image1);
 
         $image2 = $this->repository->getByUuid($image1->uuid());
@@ -56,7 +56,7 @@ final class PersistenceRepositoryTest extends DbTestCase
         $name = new Image\Name(self::NAME);
         $hash = new Image\Hash(self::HASH);
 
-        $image = new Image($uuid, $hash, $name);
+        $image = Image::new($uuid, $hash, $name);
         $this->repository->add($image);
 
         $this->repository->remove($image->uuid());

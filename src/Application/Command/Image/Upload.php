@@ -8,9 +8,9 @@ use Radarlog\Doop\Application\Command;
 
 final class Upload implements Command
 {
-    private string $name;
+    private readonly string $name;
 
-    private string $content;
+    private readonly string $content;
 
     public function __construct(string $name, string $content)
     {

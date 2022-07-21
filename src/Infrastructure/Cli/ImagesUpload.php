@@ -19,7 +19,7 @@ final class ImagesUpload extends Console\Command\Command implements Executable
      */
     protected static $defaultName = 'images:upload';
 
-    private Command\Bus $bus;
+    private readonly Command\Bus $bus;
 
     /** @var string[] */
     private array $paths = [];

@@ -9,9 +9,9 @@ use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 
 final class ThrowableHandlerBus implements Application\Command\Bus
 {
-    private FlashBagInterface $flashBag;
+    private readonly FlashBagInterface $flashBag;
 
-    private Application\Command\Bus $innerBus;
+    private readonly Application\Command\Bus $innerBus;
 
     public function __construct(FlashBagInterface $flashBag, Application\Command\Bus $innerBus)
     {

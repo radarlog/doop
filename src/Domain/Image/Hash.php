@@ -8,7 +8,7 @@ final class Hash implements \Stringable
 {
     private const SHA1_LENGTH = 40;
 
-    private string $hash;
+    private readonly string $hash;
 
     public function __construct(string $hash)
     {

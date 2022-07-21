@@ -8,9 +8,9 @@ use Radarlog\Doop\Domain\Image;
 
 final class HashCount
 {
-    private Image\Hash $hash;
+    private readonly Image\Hash $hash;
 
-    private int $count;
+    private readonly int $count;
 
     public function __construct(string $hash, int $count)
     {
