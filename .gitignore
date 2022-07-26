@@ -1,28 +1,7 @@
-/.idea/
+/node_modules/
 
-###> symfony/framework-bundle ###
-/.env.local
-/.env.local.php
-/.env.*.local
+/public/build/
 /public/bundles/
+
 /var/
 /vendor/
-###< symfony/framework-bundle ###
-
-###> phpunit/phpunit ###
-/phpunit.xml
-###< phpunit/phpunit ###
-
-###> squizlabs/php_codesniffer ###
-/.phpcs-cache
-/phpcs.xml
-###< squizlabs/php_codesniffer ###
-
-###> sensiolabs-de/deptrac-shim ###
-/.deptrac.cache
-###< sensiolabs-de/deptrac-shim ###
-
-###> symfony/webpack-encore-bundle ###
-/node_modules/
-/public/build/
-###< symfony/webpack-encore-bundle ###
