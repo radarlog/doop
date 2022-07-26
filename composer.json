@@ -20,7 +20,7 @@
         "async-aws/s3": "^1.12",
         "doctrine/dbal": "^3.3",
         "doctrine/migrations": "^3.5",
-        "psr/log": "^1.1",
+        "psr/log": "^3.0",
         "ramsey/uuid": "^4.3",
         "symfony/config": "^6.1",
         "symfony/console": "^6.1",
