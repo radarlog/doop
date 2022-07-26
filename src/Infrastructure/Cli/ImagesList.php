@@ -13,12 +13,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class ImagesList extends Command implements Executable
 {
-    /**
-     * @var string|null
-     *
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
-     */
-    protected static $defaultName = 'images:list';
+    private const NAME = 'images:list';
+    private const DESCRIPTION = 'List uploaded images';
 
     private readonly Query $query;
 
@@ -26,12 +22,12 @@ final class ImagesList extends Command implements Executable
     {
         $this->query = $query;
 
-        parent::__construct();
+        parent::__construct(self::NAME);
     }
 
     protected function configure(): void
     {
-        $this->setDescription('List uploaded images');
+        $this->setDescription(self::DESCRIPTION);
     }
 
     // phpcs:disable SlevomatCodingStandard.Functions.UnusedParameter

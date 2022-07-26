@@ -7,7 +7,7 @@ framework:
     secret: '%env(APP_SECRET)%'
     #default_locale: en
     #csrf_protection: true
-    #http_method_override: true
+    http_method_override: false
 
     trusted_proxies: REMOTE_ADDR
     trusted_headers:

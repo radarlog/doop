@@ -12,12 +12,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class RemoveImage extends Console\Command\Command implements Executable
 {
-    /**
-     * @var string|null
-     *
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
-     */
-    protected static $defaultName = 'images:remove';
+    private const NAME = 'images:remove';
+    private const DESCRIPTION = 'Remove image';
 
     private readonly Command\Bus $bus;
 
@@ -27,13 +23,13 @@ final class RemoveImage extends Console\Command\Command implements Executable
     {
         $this->bus = $bus;
 
-        parent::__construct();
+        parent::__construct(self::NAME);
     }
 
     protected function configure(): void
     {
         $this
-            ->setDescription('Remove image')
+            ->setDescription(self::DESCRIPTION)
             ->addArgument('uuid', InputArgument::REQUIRED, 'Image UUID');
     }
 

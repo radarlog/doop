@@ -12,12 +12,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class ImagesUpload extends Console\Command\Command implements Executable
 {
-    /**
-     * @var string|null
-     *
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
-     */
-    protected static $defaultName = 'images:upload';
+    private const NAME = 'images:upload';
+    private const DESCRIPTION = 'Uploaded new images';
 
     private readonly Command\Bus $bus;
 
@@ -28,13 +24,13 @@ final class ImagesUpload extends Console\Command\Command implements Executable
     {
         $this->bus = $bus;
 
-        parent::__construct();
+        parent::__construct(self::NAME);
     }
 
     protected function configure(): void
     {
         $this
-            ->setDescription('Uploaded new images')
+            ->setDescription(self::DESCRIPTION)
             ->addArgument('path', InputArgument::IS_ARRAY | InputArgument::REQUIRED, 'Images path');
     }
 
