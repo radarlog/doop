@@ -17,7 +17,7 @@ final class SimpleBusTest extends UnitTestCase
 
         $command = $this->createMock(Command::class);
 
-        $this->expectException(Command\RuntimeException::class);
+        $this->expectException(Command\NotFound::class);
         $this->expectExceptionCode(2000);
 
         $bus->execute($command);

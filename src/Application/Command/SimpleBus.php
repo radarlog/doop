@@ -27,14 +27,14 @@ final class SimpleBus implements Bus
     }
 
     /**
-     * @throws RuntimeException
+     * @throws NotFound
      */
     private function resolver(Command $command): Handler
     {
         $handlerClass = $command->fqcnHandler();
 
         if (!array_key_exists($handlerClass, $this->handlers)) {
-            throw RuntimeException::handler($handlerClass);
+            throw NotFound::handler($handlerClass);
         }
 
         return $this->handlers[$handlerClass];

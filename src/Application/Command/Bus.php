@@ -13,7 +13,7 @@ interface Bus
      * Execute the command
      *
      * @throws Domain\Throwable
-     * @throws RuntimeException
+     * @throws NotFound
      */
     public function execute(Command $command): void;
 }
