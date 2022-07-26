@@ -14,14 +14,12 @@ parameters:
             collectors:
                 -   type: Qossmic\Deptrac\Collector\ClassNameCollector
                     regex: Radarlog\\Doop\\Application
-                -   type: Qossmic\Deptrac\Collector\ClassNameCollector
-                    regex: Psr\\Log\\LoggerInterface
         -   name: Infrastructure
             collectors:
                 -   type: Qossmic\Deptrac\Collector\ClassNameCollector
                     regex: Radarlog\\Doop\\Infrastructure
                 -   type: Qossmic\Deptrac\Collector\ClassNameCollector
-                    regex: Symfony|AsyncAws|Doctrine|Ramsey
+                    regex: Symfony|AsyncAws|Doctrine|Ramsey|LoggerInterface
     ruleset:
         Domain: ~
         Application:

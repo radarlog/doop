@@ -2,14 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Radarlog\Doop\Tests\Application\Command;
+namespace Radarlog\Doop\Tests\Infrastructure\Logger;
 
 use Monolog;
 use Psr\Log\LoggerInterface;
 use Radarlog\Doop\Application\Command;
+use Radarlog\Doop\Infrastructure\Logger;
+use Radarlog\Doop\Tests\Application\Command\DummyCommand;
+use Radarlog\Doop\Tests\Application\Command\SpyHandler;
 use Radarlog\Doop\Tests\UnitTestCase;
 
-final class LoggerBusTest extends UnitTestCase
+final class BusTest extends UnitTestCase
 {
     private LoggerInterface $logger;
 
@@ -30,7 +33,7 @@ final class LoggerBusTest extends UnitTestCase
     {
         $innerBus = $this->createMock(Command\Bus::class);
 
-        $loggerBus = new Command\LoggerBus($this->logger, $innerBus);
+        $loggerBus = new Logger\Bus($this->logger, $innerBus);
 
         $command = new DummyCommand();
 
@@ -48,7 +51,7 @@ final class LoggerBusTest extends UnitTestCase
 
         $command = new DummyCommand();
 
-        $loggerBus = new Command\LoggerBus($this->logger, $innerBus);
+        $loggerBus = new Logger\Bus($this->logger, $innerBus);
 
         $this->expectException($exception::class);
 

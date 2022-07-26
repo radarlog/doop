@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Radarlog\Doop\Application\Command;
+namespace Radarlog\Doop\Infrastructure\Logger;
 
 use Psr\Log\LoggerInterface;
 use Radarlog\Doop\Application\Command;
 
-final class LoggerBus implements Bus
+final class Bus implements Command\Bus
 {
     private readonly LoggerInterface $logger;
 
-    private readonly Bus $innerBus;
+    private readonly Command\Bus $innerBus;
 
-    public function __construct(LoggerInterface $logger, Bus $innerBus)
+    public function __construct(LoggerInterface $logger, Command\Bus $innerBus)
     {
         $this->logger = $logger;
         $this->innerBus = $innerBus;

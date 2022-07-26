@@ -20,7 +20,7 @@ services:
                 Radarlog\Doop\Application\Command\Bus: '@Radarlog\Doop\Infrastructure\Http\ThrowableHandlerBus'
         Radarlog\Doop\Infrastructure\Cli\Executable:
             bind:
-                Radarlog\Doop\Application\Command\Bus: '@Radarlog\Doop\Application\Command\LoggerBus'
+                Radarlog\Doop\Application\Command\Bus: '@Radarlog\Doop\Infrastructure\Logger\Bus'
 
     Radarlog\Doop\:
         resource: '../src/'
@@ -31,11 +31,11 @@ services:
     # Command Bus
     Radarlog\Doop\Application\Command\SimpleBus:
         arguments: [ !tagged command.handler ]
-    Radarlog\Doop\Application\Command\LoggerBus:
+    Radarlog\Doop\Infrastructure\Logger\Bus:
         decorates: Radarlog\Doop\Application\Command\SimpleBus
         arguments: [ '@monolog.logger.commands' ]
     Radarlog\Doop\Infrastructure\Http\ThrowableHandlerBus:
-        decorates: Radarlog\Doop\Application\Command\LoggerBus
+        decorates: Radarlog\Doop\Infrastructure\Logger\Bus
 
     Symfony\Component\HttpFoundation\Session\Flash\FlashBag: ~
     Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface:
