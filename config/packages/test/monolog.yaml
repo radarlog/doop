@@ -3,4 +3,8 @@ monolog:
         main:
             type: stream
             path: "%kernel.logs_dir%/%kernel.environment%.log"
-            level:  notice
+            level: notice
+        deprecation:
+            type: stream
+            channels: [ deprecation ]
+            path: "%kernel.logs_dir%/%kernel.environment%.deprecations.log"
