@@ -55,7 +55,10 @@ RUN set -e \
 
 ENV APP_DIR=/app
 WORKDIR $APP_DIR/
-RUN chown $MYUSER:$MYGROUP $APP_DIR/
+RUN set -e \
+    chown $MYUSER:$MYGROUP $APP_DIR/ \
+    setfacl -dR -m u:$MYUSER:rwX -m u:root:rwX $APP_DIR/var/ \
+    setfacl -R -m u:$MYUSER:rwX -m u:root:rwX $APP_DIR/var/
 USER $MYUSER
 
 ENV PHP_DISPLAY_ERRORS=0
