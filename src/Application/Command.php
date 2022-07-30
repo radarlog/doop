@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Application;
 
-interface Command
+interface Command extends UseCase
 {
     /**
      * Fully Qualified Class Name of a corresponding command handler

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Application;
 
-interface Query
+interface Query extends UseCase
 {
     /**
      * @return Query\UuidNameDate[]
