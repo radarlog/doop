@@ -35,6 +35,19 @@ final class Connection
         return new self(new Endpoint($endpoint), new Key($key), new Key($secret), new Region($region));
     }
 
+    public static function fromDsn(string $dsn): self
+    {
+        if (filter_var($dsn, FILTER_VALIDATE_URL) === false) {
+            throw InvalidArgument::endpoint($dsn);
+        }
+
+        $key = (string) parse_url($dsn, PHP_URL_USER);
+        $secret = (string) parse_url($dsn, PHP_URL_PASS);
+        $region = (string) parse_url($dsn, PHP_URL_PATH);
+
+        return self::from($dsn, $key, $secret, ltrim($region, '/'));
+    }
+
     public function configuration(): Configuration
     {
         return $this->configuration;

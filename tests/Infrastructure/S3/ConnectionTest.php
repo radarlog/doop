@@ -6,6 +6,7 @@ namespace Radarlog\Doop\Tests\Infrastructure\S3;
 
 use AsyncAws\Core\Configuration;
 use Radarlog\Doop\Infrastructure\S3\Connection;
+use Radarlog\Doop\Infrastructure\S3\InvalidArgument;
 use Radarlog\Doop\Tests\UnitTestCase;
 
 final class ConnectionTest extends UnitTestCase
@@ -14,6 +15,8 @@ final class ConnectionTest extends UnitTestCase
     private const KEY = 'key';
     private const SECRET = 'secret';
     private const REGION = 'region';
+
+    private const DSN = 'http://key:secret@host:42/region';
 
     private Connection $connection;
 
@@ -34,6 +37,21 @@ final class ConnectionTest extends UnitTestCase
         $connection = new Connection($endpoint, $key, $secret, $region);
 
         self::assertEquals($connection, $this->connection);
+    }
+
+    public function testFromDsn(): void
+    {
+        $connection = Connection::fromDsn(self::DSN);
+
+        self::assertEquals($connection, $this->connection);
+    }
+
+    public function testExceptionFromDsn(): void
+    {
+        $this->expectException(InvalidArgument::class);
+        $this->expectExceptionCode(3200);
+
+        Connection::fromDsn('non-url');
     }
 
     public function testRegion(): void
