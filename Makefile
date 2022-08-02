@@ -40,7 +40,7 @@ yarn: ; $(info $(M) Installing frontend dependencies:)
 .PHONY: migrations
 migrations: ; $(info $(M) Running migrations:)
 	echo -n "Waiting for SQL container to be up and running"
-	until docker-compose exec -T postgres pg_isready -h postgres --quiet ; \
+	until docker-compose exec -T postgres pg_isready -U doop --quiet ; \
         do \
             echo -n "." ; \
             sleep 1 ; \
