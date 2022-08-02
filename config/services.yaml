@@ -14,7 +14,7 @@ services:
 
     _instanceof:
         Radarlog\Doop\Application\Command\Handler:
-            tags: ['command.handler']
+            tags: [ 'command.handler' ]
         Radarlog\Doop\Infrastructure\Http\Controller:
             bind:
                 Radarlog\Doop\Application\Command\Bus: '@Radarlog\Doop\Infrastructure\Http\ThrowableHandlerBus'
@@ -46,7 +46,7 @@ services:
         factory: Radarlog\Doop\Infrastructure\S3\Connection::fromDsn
         arguments: [ '%env(string:S3_DSN)%' ]
     Radarlog\Doop\Infrastructure\S3\Client:
-        arguments: ['%env(string:S3_BUCKET)%']
+        arguments: [ '%env(string:S3_BUCKET)%' ]
 
     # SQL
     Radarlog\Doop\Infrastructure\Sql\Connection:
