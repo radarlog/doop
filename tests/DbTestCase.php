@@ -14,12 +14,9 @@ abstract class DbTestCase extends FunctionalTestCase
     {
         parent::setUp();
 
-        /** @var Connection $connection */
-        $connection = self::getContainer()->get(Connection::class);
+        $this->connection = self::getContainer()->get(Connection::class);
 
-        $connection->beginTransaction();
-
-        $this->connection = $connection;
+        $this->connection->beginTransaction();
     }
 
     protected function tearDown(): void

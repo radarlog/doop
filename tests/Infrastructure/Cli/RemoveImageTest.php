@@ -25,9 +25,7 @@ final class RemoveImageTest extends DbTestCase
     {
         parent::setUp();
 
-        /** @var Repository $repository */
-        $repository = self::getContainer()->get(Repository::class);
-        $this->repository = $repository;
+        $this->repository = self::getContainer()->get(Repository::class);
 
         $application = new Application(self::$kernel);
         $command = $application->find('images:remove');

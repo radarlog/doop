@@ -28,7 +28,6 @@ final class ClientTest extends FunctionalTestCase
 
         $file = new Image\File($content);
 
-        /** @var S3\Client $client */
         $client = self::getContainer()->get(S3\Client::class);
 
         $client->upload($file);
@@ -41,7 +40,6 @@ final class ClientTest extends FunctionalTestCase
 
     public function downloadNonExistingHash(): void
     {
-        /** @var S3\Client $client */
         $client = self::getContainer()->get(S3\Client::class);
 
         $this->expectException(S3\NotFound::class);
@@ -57,7 +55,6 @@ final class ClientTest extends FunctionalTestCase
 
         $file = new Image\File($content);
 
-        /** @var S3\Client $client */
         $client = self::getContainer()->get(S3\Client::class);
 
         $client->upload($file);

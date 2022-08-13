@@ -1,3 +1,7 @@
+includes:
+    - vendor/phpstan/phpstan-symfony/extension.neon
+    - vendor/phpstan/phpstan-symfony/rules.neon
+
 parameters:
     tmpDir: var/cache/phpstan
 
@@ -11,3 +15,6 @@ parameters:
         - tests
 
     level: 8
+
+    symfony:
+        containerXmlPath: var/cache/test/Radarlog_Doop_Infrastructure_KernelTestDebugContainer.xml

@@ -31,11 +31,9 @@ final class RemoveTest extends ControllerTestCase
         $name = new Image\Name('avatar.jpg');
         $image = Image::new($this->uuid, $file->hash(), $name);
 
-        /** @var Domain\Storage $storage */
         $storage = self::getContainer()->get(Domain\Storage::class);
         $storage->upload($file);
 
-        /** @var Domain\Repository $repository */
         $repository = self::getContainer()->get(Domain\Repository::class);
         $repository->add($image);
 

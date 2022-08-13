@@ -31,7 +31,6 @@ final class ReadModelTest extends DbTestCase
     {
         parent::setUp();
 
-        /** @var Repository $repository */
         $repository = self::getContainer()->get(Repository::class);
 
         $state1 = new Image\State([
@@ -52,7 +51,6 @@ final class ReadModelTest extends DbTestCase
         $image2 = Image::fromState($state2);
         $repository->add($image2);
 
-        /** @var Query $query */
         $query = self::getContainer()->get(Query::class);
         $this->query = $query;
     }

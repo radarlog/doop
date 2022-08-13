@@ -16,9 +16,7 @@ final class ConnectionTest extends FunctionalTestCase
     {
         parent::setUp();
 
-        /** @var Connection $connection */
-        $connection = self::getContainer()->get(Connection::class);
-        $this->connection = $connection;
+        $this->connection = self::getContainer()->get(Connection::class);
     }
 
     public function testIsMasterReplica(): void

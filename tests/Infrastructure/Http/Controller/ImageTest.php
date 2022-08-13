@@ -29,11 +29,9 @@ final class ImageTest extends ControllerTestCase
 
         $this->uuid = $image->uuid();
 
-        /** @var Domain\Storage $storage */
         $storage = self::getContainer()->get(Domain\Storage::class);
         $storage->upload($file);
 
-        /** @var Domain\Repository $repository */
         $repository = self::getContainer()->get(Domain\Repository::class);
         $repository->add($image);
     }

@@ -36,6 +36,7 @@
     "require-dev": {
         "ergebnis/composer-normalize": "^2.28",
         "phpstan/phpstan": "^1.8",
+        "phpstan/phpstan-symfony": "^1.2",
         "phpunit/phpunit": "^9.5",
         "psalm/plugin-phpunit": "^0.17.0",
         "psalm/plugin-symfony": "^3.1",

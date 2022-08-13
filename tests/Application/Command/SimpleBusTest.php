@@ -29,7 +29,6 @@ final class SimpleBusTest extends UnitTestCase
 
         $bus = new Command\SimpleBus([$handler]);
 
-        /** @var Command $command */
         $command = $this->createConfiguredMock(Command::class, [
             'fqcnHandler' => $handler::class,
         ]);
