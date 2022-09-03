@@ -1,5 +1,5 @@
 ARG PHP_FPM_IMAGE=php:8.1-fpm-alpine3.16
-ARG COMPOSER_IMAGE=composer:2.3
+ARG COMPOSER_IMAGE=composer:2.4
 
 FROM $PHP_FPM_IMAGE AS builder
 

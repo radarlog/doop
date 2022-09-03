@@ -18,22 +18,22 @@
     },
     "devDependencies": {
         "@popperjs/core": "^2.11",
-        "@symfony/webpack-encore": "^3.0",
-        "@typescript-eslint/eslint-plugin": "^5.31",
-        "@typescript-eslint/parser": "^5.31",
-        "core-js": "^3.24",
+        "@symfony/webpack-encore": "^3.1",
+        "@typescript-eslint/eslint-plugin": "^5.36",
+        "@typescript-eslint/parser": "^5.36",
+        "core-js": "^3.25",
         "cssnano": "^5.1",
-        "eslint": "^8.20",
+        "eslint": "^8.23",
         "eslint-config-prettier": "^8.5",
         "eslint-plugin-prettier": "^4.2",
         "nodemon": "^2.0",
         "postcss": "^8.4",
         "postcss-loader": "^7.0",
-        "prettier": "^2.6",
+        "prettier": "^2.7",
         "sass": "^1.54",
         "sass-loader": "^13.0",
         "ts-loader": "^9.3",
-        "typescript": "^4.7"
+        "typescript": "^4.8"
     },
     "nodemonConfig": {
         "watch": [
