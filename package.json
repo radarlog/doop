@@ -17,10 +17,12 @@
         "bootstrap": "^5.2"
     },
     "devDependencies": {
+        "@babel/core": "^7.19",
+        "@babel/preset-env": "^7.19",
         "@popperjs/core": "^2.11",
-        "@symfony/webpack-encore": "^3.1",
-        "@typescript-eslint/eslint-plugin": "^5.36",
-        "@typescript-eslint/parser": "^5.36",
+        "@symfony/webpack-encore": "^4.0",
+        "@typescript-eslint/eslint-plugin": "^5.38",
+        "@typescript-eslint/parser": "^5.38",
         "core-js": "^3.25",
         "cssnano": "^5.1",
         "eslint": "^8.23",
@@ -32,8 +34,10 @@
         "prettier": "^2.7",
         "sass": "^1.54",
         "sass-loader": "^13.0",
-        "ts-loader": "^9.3",
-        "typescript": "^4.8"
+        "ts-loader": "^9.4",
+        "typescript": "^4.8",
+        "webpack": "^5.74",
+        "webpack-cli": "^4.10"
     },
     "nodemonConfig": {
         "watch": [
