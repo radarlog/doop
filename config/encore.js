@@ -13,6 +13,10 @@ Encore
         options.compress = true;
         options.hot = true;
         options.client = {
+            overlay: {
+                errors: true,
+                warnings: false,
+            },
             webSocketURL: 'ws://localhost/ws',
         }
     })
