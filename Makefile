@@ -52,17 +52,26 @@ migrations: ; $(info $(M) Running migrations:)
 .PHONY: run
 run: yarn up composer migrations ; $(info $(M) Environment has been built succesfully)
 
-.PHONY: static-analyze
-static-analyze: ; $(info $(M) Performing static analyze:)
-	docker-compose exec -T -e XDEBUG_MODE=off php vendor/bin/phpstan analyse --ansi
-	docker-compose exec -T -e XDEBUG_MODE=off php vendor/bin/psalm --show-info=true --threads=8
-	docker-compose exec -T -e XDEBUG_MODE=off php vendor/bin/deptrac --ansi --fail-on-uncovered --no-interaction --cache-file=var/cache/deptrac.cache
-
-.PHONY: styles-check
-styles-check: ; $(info $(M) Checking coding style:)
+.PHONY: linters
+linters: ; $(info $(M) Checking coding style:)
 	docker-compose exec -T php vendor/bin/phpcs
 	docker-compose exec -T encore yarn lint
 
-.PHONY: tests
-tests: run styles-check static-analyze ; $(info $(M) Running tests:)
+.PHONY: phpstan
+phpstan: ; $(info $(M) Running PHPStan:)
+	docker-compose exec -T -e XDEBUG_MODE=off php vendor/bin/phpstan analyse --ansi
+
+.PHONY: psalm
+psalm: ; $(info $(M) Running Psalm:)
+	docker-compose exec -T -e XDEBUG_MODE=off php vendor/bin/psalm --show-info=true --threads=8
+
+.PHONY: deptrac
+deptrac: ; $(info $(M) Running Deptrac:)
+	docker-compose exec -T -e XDEBUG_MODE=off php vendor/bin/deptrac --ansi --fail-on-uncovered --no-interaction --cache-file=var/cache/deptrac.cache
+
+.PHONY: phpunit
+phpunit: ; $(info $(M) Running PHPUnit:)
 	docker-compose exec -T php vendor/bin/phpunit --coverage-text
+
+.PHONY: tests
+tests: run linters phpstan psalm deptrac phpunit
