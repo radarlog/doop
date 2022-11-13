@@ -21,7 +21,7 @@ final class ReadModel implements Query
         $qb = $this->connection->createQueryBuilder();
 
         $qb = $qb
-            ->select(['uuid, name, uploaded_at'])
+            ->select('uuid, name, uploaded_at')
             ->from($this->connection->imagesTable())
             ->orderBy('uploaded_at', 'DESC');
 
@@ -42,7 +42,7 @@ final class ReadModel implements Query
         $qb = $this->connection->createQueryBuilder();
 
         $qb = $qb
-            ->select(['hash', 'name'])
+            ->select('hash, name')
             ->from($this->connection->imagesTable())
             ->where(
                 $qb->expr()->eq('uuid', $qb->createNamedParameter($uuid)),
