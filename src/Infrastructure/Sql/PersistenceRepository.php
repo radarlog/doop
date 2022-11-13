@@ -20,7 +20,7 @@ final class PersistenceRepository implements Repository
 
     public function newUuid(): Image\Uuid
     {
-        $uuid = Uuid::uuid4()->toString();
+        $uuid = Uuid::uuid7()->toString();
 
         return new Image\Uuid($uuid);
     }
