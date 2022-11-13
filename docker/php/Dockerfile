@@ -1,30 +1,28 @@
 ARG PHP_FPM_IMAGE=php:8.1-fpm-alpine3.16
 ARG COMPOSER_IMAGE=composer:2.4
+ARG PHP_EXTENSION_INSTALLER=mlocati/php-extension-installer:1.5
 
+# development dependencies
+FROM $PHP_EXTENSION_INSTALLER AS php_extension_installer
+FROM $COMPOSER_IMAGE AS composer
+
+
+# builder image
 FROM $PHP_FPM_IMAGE AS builder
-
-ENV BUILD_DEPS="postgresql-dev"
 
 ARG PCOV_VERSION=1.0.11
 ARG XDEBUG_VERSION=3.1.6
 
+COPY --from=php_extension_installer /usr/bin/install-php-extensions /usr/local/bin/
+
 RUN set -e \
     #
     # Install dependencies
-    && apk --no-cache add --update $PHPIZE_DEPS $BUILD_DEPS \
-    #
-    # Add PCOV and Xdebug extensions
-    && pecl bundle -d /usr/src/php/ext pcov-$PCOV_VERSION \
-    && pecl bundle -d /usr/src/php/ext xdebug-$XDEBUG_VERSION \
-    #
-    # Configure and install extensions
-    && export CFLAGS="$PHP_CFLAGS" CPPFLAGS="$PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS" \
-    && docker-php-ext-install -j$(nproc) \
-        opcache \
-        pcntl \
-        pcov \
-        pdo_pgsql \
-        xdebug
+    && install-php-extensions opcache \
+    && install-php-extensions pcntl \
+    && install-php-extensions pcov-$PCOV_VERSION \
+    && install-php-extensions pdo_pgsql \
+    && install-php-extensions xdebug-$XDEBUG_VERSION
 
 
 # base image
@@ -78,10 +76,6 @@ COPY --from=builder $PHP_INI_DIR/conf.d/ $PHP_INI_DIR/conf.d/
 
 EXPOSE 9000
 CMD ["php-fpm", "--nodaemonize"]
-
-
-# development dependencies
-FROM $COMPOSER_IMAGE AS composer
 
 
 # development/test/ci image
