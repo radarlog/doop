@@ -54,9 +54,9 @@ run: yarn up composer migrations ; $(info $(M) Environment has been built succes
 
 .PHONY: static-analyze
 static-analyze: ; $(info $(M) Performing static analyze:)
-	docker-compose exec -T php vendor/bin/phpstan analyse --ansi
-	docker-compose exec -T php vendor/bin/psalm --show-info=true --threads=8
-	docker-compose exec -T php vendor/bin/deptrac --ansi --fail-on-uncovered --no-interaction --cache-file=var/cache/deptrac.cache
+	docker-compose exec -T -e XDEBUG_MODE=off php vendor/bin/phpstan analyse --ansi
+	docker-compose exec -T -e XDEBUG_MODE=off php vendor/bin/psalm --show-info=true --threads=8
+	docker-compose exec -T -e XDEBUG_MODE=off php vendor/bin/deptrac --ansi --fail-on-uncovered --no-interaction --cache-file=var/cache/deptrac.cache
 
 .PHONY: styles-check
 styles-check: ; $(info $(M) Checking coding style:)
