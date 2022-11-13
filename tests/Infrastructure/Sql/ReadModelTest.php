@@ -7,7 +7,6 @@ namespace Radarlog\Doop\Tests\Infrastructure\Sql;
 use Radarlog\Doop\Application\Query;
 use Radarlog\Doop\Domain\Image;
 use Radarlog\Doop\Domain\Repository;
-use Radarlog\Doop\Infrastructure\Sql;
 use Radarlog\Doop\Tests\DbTestCase;
 
 final class ReadModelTest extends DbTestCase
@@ -77,8 +76,8 @@ final class ReadModelTest extends DbTestCase
 
     public function testHashesNotFound(): void
     {
-        $this->expectException(Sql\NotFound::class);
-        $this->expectExceptionCode(3001);
+        $this->expectException(Image\NotFound::class);
+        $this->expectExceptionCode(1007);
 
         $this->query->countHashesByUuid(self::MISSING_UUID);
     }
@@ -93,8 +92,8 @@ final class ReadModelTest extends DbTestCase
 
     public function testNameByHashNotFound(): void
     {
-        $this->expectException(Sql\NotFound::class);
-        $this->expectExceptionCode(3001);
+        $this->expectException(Image\NotFound::class);
+        $this->expectExceptionCode(1007);
 
         $this->query->findOneHashNameByUuid(self::MISSING_UUID);
     }

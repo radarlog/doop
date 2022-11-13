@@ -16,15 +16,15 @@ interface Throwable extends \Throwable
     public const CODE_HASH           = 1004;
     public const CODE_DATE           = 1005;
     public const CODE_MIME_TYPE      = 1006;
+    public const CODE_UUID_NOT_FOUND = 1007;
+    public const CODE_HASH_NOT_FOUND = 1008;
 
     // APPLICATION LAYER
     public const CODE_HANDLER        = 2000;
 
     // INFRASTRUCTURE LAYER
-    public const CODE_SQL_NOT_FOUND  = 3001;
     public const CODE_CLI_FILE_READ  = 3100;
     public const CODE_S3_ENDPOINT    = 3200;
-    public const CODE_S3_NOT_FOUND   = 3201;
 
     // @formatter:on
 }

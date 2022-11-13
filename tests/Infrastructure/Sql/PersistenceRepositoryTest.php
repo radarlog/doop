@@ -6,7 +6,6 @@ namespace Radarlog\Doop\Tests\Infrastructure\Sql;
 
 use Radarlog\Doop\Domain\Image;
 use Radarlog\Doop\Domain\Repository;
-use Radarlog\Doop\Infrastructure\Sql\NotFound;
 use Radarlog\Doop\Tests\DbTestCase;
 use Ramsey\Uuid\Rfc4122;
 
@@ -50,8 +49,8 @@ final class PersistenceRepositoryTest extends DbTestCase
     {
         $uuid = new Image\Uuid(self::UUID);
 
-        $this->expectException(NotFound::class);
-        $this->expectExceptionCode(3001);
+        $this->expectException(Image\NotFound::class);
+        $this->expectExceptionCode(1007);
 
         $this->repository->getByUuid($uuid);
     }
@@ -67,8 +66,8 @@ final class PersistenceRepositoryTest extends DbTestCase
 
         $this->repository->remove($image->uuid());
 
-        $this->expectException(NotFound::class);
-        $this->expectExceptionCode(3001);
+        $this->expectException(Image\NotFound::class);
+        $this->expectExceptionCode(1007);
 
         $this->repository->getByUuid($image->uuid());
     }

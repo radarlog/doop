@@ -10,6 +10,9 @@ interface Repository
 
     public function add(Image $image): void;
 
+    /**
+     * @throws Image\NotFound
+     */
     public function getByUuid(Image\Uuid $uuid): Image;
 
     public function remove(Image\Uuid $uuid): void;

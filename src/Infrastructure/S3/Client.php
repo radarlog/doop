@@ -38,7 +38,7 @@ final class Client implements Domain\Storage
         ];
 
         if ($this->client->objectNotExists($input)->isSuccess()) {
-            throw NotFound::hash((string) $hash);
+            throw Domain\Image\NotFound::hash((string) $hash);
         }
 
         $object = $this->client->getObject($input);

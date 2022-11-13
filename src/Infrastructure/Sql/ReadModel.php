@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Radarlog\Doop\Infrastructure\Sql;
 
 use Radarlog\Doop\Application\Query;
+use Radarlog\Doop\Domain\Image;
 use Radarlog\Doop\Infrastructure\Sql;
 
 final class ReadModel implements Query
@@ -51,7 +52,7 @@ final class ReadModel implements Query
         $stmt = $qb->executeQuery();
 
         if ($stmt->rowCount() === 0) {
-            throw Sql\NotFound::uuid($uuid);
+            throw Image\NotFound::uuid($uuid);
         }
 
         /** @var array{hash: string, name: string} $row */
@@ -76,7 +77,7 @@ final class ReadModel implements Query
         $stmt = $qb->executeQuery();
 
         if ($stmt->rowCount() === 0) {
-            throw Sql\NotFound::uuid($uuid);
+            throw Image\NotFound::uuid($uuid);
         }
 
         /** @var array{hash: string, count: int} $row */

@@ -6,7 +6,6 @@ namespace Radarlog\Doop\Tests\Infrastructure\Http\Controller;
 
 use Radarlog\Doop\Domain;
 use Radarlog\Doop\Domain\Image;
-use Radarlog\Doop\Infrastructure\Sql;
 use Radarlog\Doop\Tests\ControllerTestCase;
 
 final class RemoveTest extends ControllerTestCase
@@ -46,8 +45,8 @@ final class RemoveTest extends ControllerTestCase
 
         self::assertResponseStatusCodeSame(302);
 
-        $this->expectException(Sql\NotFound::class);
-        $this->expectExceptionCode(3001);
+        $this->expectException(Image\NotFound::class);
+        $this->expectExceptionCode(1007);
 
         $this->repository->getByUuid($this->uuid);
     }

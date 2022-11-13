@@ -53,7 +53,7 @@ final class PersistenceRepository implements Repository
         $stmt = $qb->executeQuery();
 
         if ($stmt->rowCount() === 0) {
-            throw NotFound::uuid((string) $uuid);
+            throw Image\NotFound::uuid((string) $uuid);
         }
 
         /** @var array{uuid: string, hash: string, name: string, uploaded_at: string} $row */

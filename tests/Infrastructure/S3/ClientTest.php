@@ -42,8 +42,8 @@ final class ClientTest extends FunctionalTestCase
     {
         $client = self::getContainer()->get(S3\Client::class);
 
-        $this->expectException(S3\NotFound::class);
-        $this->expectExceptionCode(3201);
+        $this->expectException(Image\NotFound::class);
+        $this->expectExceptionCode(1008);
 
         $client->download($this->hash);
     }
@@ -60,8 +60,8 @@ final class ClientTest extends FunctionalTestCase
         $client->upload($file);
         $client->delete($this->hash);
 
-        $this->expectException(S3\NotFound::class);
-        $this->expectExceptionCode(3201);
+        $this->expectException(Image\NotFound::class);
+        $this->expectExceptionCode(1008);
 
         $client->download($this->hash);
     }
