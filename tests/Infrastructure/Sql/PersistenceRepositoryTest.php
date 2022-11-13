@@ -8,10 +8,11 @@ use Radarlog\Doop\Domain\Image;
 use Radarlog\Doop\Domain\Repository;
 use Radarlog\Doop\Infrastructure\Sql\NotFound;
 use Radarlog\Doop\Tests\DbTestCase;
+use Ramsey\Uuid\Rfc4122;
 
 final class PersistenceRepositoryTest extends DbTestCase
 {
-    private const UUID = '572b3706-ffb8-423c-a317-d0ca8016a345';
+    private const UUID = '572b3706-ffb8-723c-a317-d0ca8016a345';
     private const HASH = '2080492d54a6b8579968901f366b13614fe188f2';
     private const NAME = 'name';
 
@@ -22,6 +23,13 @@ final class PersistenceRepositoryTest extends DbTestCase
         parent::setUp();
 
         $this->repository = self::getContainer()->get(Repository::class);
+    }
+
+    public function testUuidGenerator(): void
+    {
+        $uuid = $this->repository->newUuid();
+
+        self::assertTrue(Rfc4122\UuidV7::isValid((string) $uuid));
     }
 
     public function testAddNew(): void

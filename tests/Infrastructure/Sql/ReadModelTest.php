@@ -12,8 +12,8 @@ use Radarlog\Doop\Tests\DbTestCase;
 
 final class ReadModelTest extends DbTestCase
 {
-    private const UUID1 = '9f2149bb-b6e5-4ae0-a188-e616cddc8e98';
-    private const UUID2 = '572b3706-ffb8-423c-a317-d0ca8016a345';
+    private const UUID1 = '9f2149bb-b6e5-7ae0-a188-e616cddc8e98';
+    private const UUID2 = '572b3706-ffb8-723c-a317-d0ca8016a345';
 
     private const NAME1 = 'name1';
     private const NAME2 = 'name2';

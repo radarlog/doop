@@ -11,7 +11,7 @@ use Radarlog\Doop\Tests\ControllerTestCase;
 
 final class RemoveTest extends ControllerTestCase
 {
-    private const UUID = '572b3706-ffb8-423c-a317-d0ca8016a345';
+    private const UUID = '572b3706-ffb8-723c-a317-d0ca8016a345';
 
     private Image\Uuid $uuid;
 

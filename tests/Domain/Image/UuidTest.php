@@ -9,14 +9,15 @@ use Radarlog\Doop\Tests\UnitTestCase;
 
 final class UuidTest extends UnitTestCase
 {
-    private const UUID = '572b3706-ffb8-423c-a317-d0ca8016a345';
+    private const UUID = '572b3706-ffb8-723c-a317-d0ca8016a345';
 
     public function invalidUuidProvider(): iterable
     {
         yield 'empty' => [''];
         yield 'non uuid' => ['uuid'];
-        yield 'with trailing eol' => ["572b3706-ffb8-423c-a317-d0ca8016a345\n"];
-        yield 'with leading eol' => ["\n572b3706-ffb8-423c-a317-d0ca8016a345"];
+        yield 'uuid4' => ['572b3706-ffb8-423c-a317-d0ca8016a345'];
+        yield 'with trailing eol' => ["572b3706-ffb8-723c-a317-d0ca8016a345\n"];
+        yield 'with leading eol' => ["\n572b3706-ffb8-723c-a317-d0ca8016a345"];
     }
 
     /**

@@ -10,7 +10,7 @@ use Radarlog\Doop\Tests\ControllerTestCase;
 
 final class ImageTest extends ControllerTestCase
 {
-    private const UUID = '572b3706-ffb8-423c-a317-d0ca8016a345';
+    private const UUID = '572b3706-ffb8-723c-a317-d0ca8016a345';
 
     private Image\Uuid $uuid;
 
@@ -49,7 +49,7 @@ final class ImageTest extends ControllerTestCase
 
     public function testNotFound(): void
     {
-        $this->client->request('GET', '/image/d3001bd8-f79f-4d91-802a-bebbd3c9d381');
+        $this->client->request('GET', '/image/d3001bd8-f79f-7d91-802a-bebbd3c9d381');
 
         self::assertResponseStatusCodeSame(404);
     }
