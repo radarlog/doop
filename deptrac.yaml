@@ -21,7 +21,7 @@ deptrac:
                 -   type: classLike
                     value: Radarlog\\Doop\\Infrastructure
                 -   type: classLike
-                    value: Symfony|AsyncAws|Doctrine|Ramsey|LoggerInterface
+                    value: Symfony|AsyncAws|Doctrine|LoggerInterface
 
     ruleset:
         Domain: ~
