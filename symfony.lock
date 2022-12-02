@@ -11,9 +11,6 @@
     "async-aws/s3": {
         "version": "0.3.0"
     },
-    "brick/math": {
-        "version": "0.8.14"
-    },
     "composer/package-versions-deprecated": {
         "version": "1.11.99.5"
     },
@@ -175,12 +172,6 @@
             "version": "0.7",
             "ref": "2d7d934257e33fd83c72f5da5b5b1393efa7e0c6"
         }
-    },
-    "ramsey/collection": {
-        "version": "1.0.1"
-    },
-    "ramsey/uuid": {
-        "version": "3.8.0"
     },
     "roave/security-advisories": {
         "version": "dev-master"
@@ -387,9 +378,6 @@
     "symfony/polyfill-php80": {
         "version": "v1.25.0"
     },
-    "symfony/polyfill-php81": {
-        "version": "v1.23.0"
-    },
     "symfony/property-access": {
         "version": "v4.2.7"
     },
@@ -438,6 +426,18 @@
             "config/packages/twig.yaml",
             "config/routes/dev/twig.yaml",
             "templates/base.html.twig"
+        ]
+    },
+    "symfony/uid": {
+        "version": "6.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "6.2",
+            "ref": "d294ad4add3e15d7eb1bae0221588ca89b38e558"
+        },
+        "files": [
+            "config/packages/uid.yaml"
         ]
     },
     "symfony/var-dumper": {

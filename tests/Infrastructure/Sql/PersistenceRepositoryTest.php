@@ -7,7 +7,7 @@ namespace Radarlog\Doop\Tests\Infrastructure\Sql;
 use Radarlog\Doop\Domain\Image;
 use Radarlog\Doop\Domain\Repository;
 use Radarlog\Doop\Tests\DbTestCase;
-use Ramsey\Uuid\Rfc4122;
+use Symfony\Component\Uid\Uuid;
 
 final class PersistenceRepositoryTest extends DbTestCase
 {
@@ -28,7 +28,7 @@ final class PersistenceRepositoryTest extends DbTestCase
     {
         $uuid = $this->repository->newUuid();
 
-        self::assertTrue(Rfc4122\UuidV7::isValid((string) $uuid));
+        self::assertTrue(Uuid::isValid((string) $uuid));
     }
 
     public function testAddNew(): void

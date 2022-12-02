@@ -7,7 +7,7 @@ namespace Radarlog\Doop\Infrastructure\Sql;
 use Doctrine\DBAL\Types\Types;
 use Radarlog\Doop\Domain\Image;
 use Radarlog\Doop\Domain\Repository;
-use Ramsey\Uuid\Uuid;
+use Symfony\Component\Uid\Uuid;
 
 final class PersistenceRepository implements Repository
 {
@@ -20,7 +20,7 @@ final class PersistenceRepository implements Repository
 
     public function newUuid(): Image\Uuid
     {
-        $uuid = Uuid::uuid7()->toString();
+        $uuid = (string) Uuid::v7();
 
         return new Image\Uuid($uuid);
     }
