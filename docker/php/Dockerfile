@@ -11,7 +11,7 @@ FROM $COMPOSER_IMAGE AS composer
 FROM $PHP_FPM_IMAGE AS builder
 
 ARG PCOV_VERSION=1.0.11
-ARG XDEBUG_VERSION=3.1.6
+ARG XDEBUG_VERSION=3.2.0
 
 COPY --from=php_extension_installer /usr/bin/install-php-extensions /usr/local/bin/
 
