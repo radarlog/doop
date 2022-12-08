@@ -1,4 +1,4 @@
-ARG PHP_FPM_IMAGE=php:8.1-fpm-alpine3.17
+ARG PHP_FPM_IMAGE=php:8.2-fpm-alpine3.17
 ARG COMPOSER_IMAGE=composer:2.4
 ARG PHP_EXTENSION_INSTALLER=mlocati/php-extension-installer:1.5
 
