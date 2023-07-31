@@ -30,10 +30,10 @@ final class StateTest extends UnitTestCase
     public function testAsArray(): void
     {
         $origin = [
-            'uuid' => 'uuid',
             'hash' => 'hash',
             'name' => 'name',
             'uploaded_at' => '2019-03-18 23:22:36',
+            'uuid' => 'uuid',
         ];
 
         $state = new Image\State($origin);

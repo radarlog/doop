@@ -14,7 +14,6 @@ final class ConnectionFactory
     {
         /** @var Connection $connection */
         $connection = DBAL\DriverManager::getConnection([
-            'wrapperClass' => Connection::class,
             'driverClass' => DBAL\Driver\PDO\PgSQL\Driver::class,
             'driverOptions' => [
                 \PDO::ATTR_EMULATE_PREPARES => false,
@@ -22,6 +21,7 @@ final class ConnectionFactory
             ],
             'primary' => ['url' => $primaryDsn],
             'replica' => $this->parseReplicas($replicaDsn),
+            'wrapperClass' => Connection::class,
         ]);
 
         $this->connection = $connection;

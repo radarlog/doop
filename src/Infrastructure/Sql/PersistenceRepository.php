@@ -31,10 +31,10 @@ final class PersistenceRepository implements Repository
             $this->connection->imagesTable(),
             $image->getState()->asArray(),
             [
-                'uuid' => Types::STRING,
                 'hash' => Types::STRING,
                 'name' => Types::STRING,
                 'uploaded_at' => Types::STRING,
+                'uuid' => Types::STRING,
             ],
         );
     }

@@ -32,10 +32,10 @@ final class ImageTest extends UnitTestCase
     public function testState(): void
     {
         $origin = [
-            'uuid' => self::UUID,
             'hash' => self::HASH,
             'name' => self::NAME,
             'uploaded_at' => self::DATE,
+            'uuid' => self::UUID,
         ];
 
         $image = Image::fromState(new Image\State($origin));
@@ -49,10 +49,10 @@ final class ImageTest extends UnitTestCase
     public function testFromState(): void
     {
         $state = new Image\State([
-            'uuid' => self::UUID,
             'hash' => self::HASH,
             'name' => self::NAME,
             'uploaded_at' => self::DATE,
+            'uuid' => self::UUID,
         ]);
 
         $image = Image::fromState($state);
@@ -63,10 +63,10 @@ final class ImageTest extends UnitTestCase
     public function testFromStateWithWrongUploadedAtFormat(): void
     {
         $state = new Image\State([
-            'uuid' => self::UUID,
             'hash' => self::HASH,
             'name' => self::NAME,
             'uploaded_at' => '2019-03-18 23:22',
+            'uuid' => self::UUID,
         ]);
 
         $this->expectException(Image\InvalidArgument::class);

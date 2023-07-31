@@ -24,8 +24,8 @@ final class Index extends AbstractController implements Http\Controller
         $form = $this->createForm(Http\Form\UploadType::class);
 
         return $this->render('base.html.twig', [
-            'images' => $this->query->findAllSortedByUploadDate(),
             'form' => $form->createView(),
+            'images' => $this->query->findAllSortedByUploadDate(),
         ]);
     }
 }

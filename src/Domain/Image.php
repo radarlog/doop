@@ -32,10 +32,10 @@ final class Image
     public function getState(): Image\State
     {
         return new Image\State([
-            'uuid' => (string) $this->uuid,
             'hash' => (string) $this->hash,
             'name' => (string) $this->name,
             'uploaded_at' => $this->uploadedAt->format(self::DATETIME_FORMAT),
+            'uuid' => (string) $this->uuid,
         ]);
     }
 

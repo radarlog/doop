@@ -59,11 +59,11 @@ final class BusTest extends UnitTestCase
 
         self::assertTrue($this->testHandler->hasErrorRecords());
         self::assertTrue($this->testHandler->hasError([
-            'message' => $exception->getMessage(),
             'context' => [
-                DummyCommand::class => $command->serialize(),
                 'exception' => $exception,
+                DummyCommand::class => $command->serialize(),
             ],
+            'message' => $exception->getMessage(),
         ]));
     }
 }

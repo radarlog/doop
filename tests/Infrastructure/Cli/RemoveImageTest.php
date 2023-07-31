@@ -36,10 +36,10 @@ final class RemoveImageTest extends DbTestCase
     public function testExecute(): void
     {
         $state = new Image\State([
-            'uuid' => self::UUID,
             'hash' => self::HASH,
             'name' => self::NAME,
             'uploaded_at' => self::DATE,
+            'uuid' => self::UUID,
         ]);
         $image = Image::fromState($state);
         $this->repository->add($image);

@@ -33,19 +33,19 @@ final class ReadModelTest extends DbTestCase
         $repository = self::getContainer()->get(Repository::class);
 
         $state1 = new Image\State([
-            'uuid' => self::UUID1,
             'hash' => self::HASH,
             'name' => self::NAME1,
             'uploaded_at' => self::DATE1,
+            'uuid' => self::UUID1,
         ]);
         $image1 = Image::fromState($state1);
         $repository->add($image1);
 
         $state2 = new Image\State([
-            'uuid' => self::UUID2,
             'hash' => self::HASH,
             'name' => self::NAME2,
             'uploaded_at' => self::DATE2,
+            'uuid' => self::UUID2,
         ]);
         $image2 = Image::fromState($state2);
         $repository->add($image2);

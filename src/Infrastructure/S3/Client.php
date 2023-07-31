@@ -22,11 +22,11 @@ final class Client implements Domain\Storage
     public function upload(Domain\Image\File $file): void
     {
         $this->client->putObject([
-            'Bucket' => $this->bucketName,
-            'Key' => (string) $file->hash(),
-            'Body' => $file->content(),
-            'ContentType' => $file->format()->mime(),
             'ACL' => S3\Enum\ObjectCannedACL::PRIVATE,
+            'Body' => $file->content(),
+            'Bucket' => $this->bucketName,
+            'ContentType' => $file->format()->mime(),
+            'Key' => (string) $file->hash(),
         ]);
     }
 
