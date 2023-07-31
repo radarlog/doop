@@ -12,6 +12,9 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * @template-extends AbstractType<UploadType>
+ */
 final class UploadType extends AbstractType
 {
     // phpcs:disable SlevomatCodingStandard.Functions.UnusedParameter

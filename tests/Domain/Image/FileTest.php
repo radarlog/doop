@@ -19,7 +19,7 @@ final class FileTest extends UnitTestCase
     {
         parent::setUp();
 
-        $fixture = $this->fixturePath('Images/avatar.jpg');
+        $fixture = self::fixturePath('Images/avatar.jpg');
         $content = (string) file_get_contents($fixture);
 
         $this->file = new Image\File($content);

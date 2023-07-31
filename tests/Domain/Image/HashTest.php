@@ -11,7 +11,7 @@ final class HashTest extends UnitTestCase
 {
     private const HASH = 'f32b67c7e26342af42efabc674d441dca0a281c5';
 
-    public function invalidHashProvider(): \Generator
+    public static function invalidHashProvider(): \Generator
     {
         yield [''];
         yield [str_repeat('a', 39)];

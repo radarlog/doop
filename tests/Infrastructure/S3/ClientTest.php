@@ -23,7 +23,7 @@ final class ClientTest extends FunctionalTestCase
 
     public function testUpload(): void
     {
-        $fixture = $this->fixturePath('Images/avatar.jpg');
+        $fixture = self::fixturePath('Images/avatar.jpg');
         $content = (string) file_get_contents($fixture);
 
         $file = new Image\File($content);
@@ -50,7 +50,7 @@ final class ClientTest extends FunctionalTestCase
 
     public function testDelete(): void
     {
-        $fixture = $this->fixturePath('Images/avatar.jpg');
+        $fixture = self::fixturePath('Images/avatar.jpg');
         $content = (string) file_get_contents($fixture);
 
         $file = new Image\File($content);

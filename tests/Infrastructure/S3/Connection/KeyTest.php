@@ -9,7 +9,7 @@ use Radarlog\Doop\Tests\UnitTestCase;
 
 final class KeyTest extends UnitTestCase
 {
-    public function validKeysProvider(): iterable
+    public static function validKeysProvider(): iterable
     {
         yield ['secRET'];
         yield ['sec/RET'];

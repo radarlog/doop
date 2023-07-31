@@ -71,7 +71,7 @@ deptrac: ; $(info $(M) Running Deptrac:)
 
 .PHONY: phpunit
 phpunit: ; $(info $(M) Running PHPUnit:)
-	docker-compose exec -T php vendor/bin/phpunit --coverage-text
+	docker-compose exec -T -e XDEBUG_MODE=off php vendor/bin/phpunit --coverage-text
 
 .PHONY: tests
 tests: run linters phpstan psalm deptrac phpunit

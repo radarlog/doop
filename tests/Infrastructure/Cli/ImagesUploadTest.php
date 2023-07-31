@@ -43,7 +43,7 @@ final class ImagesUploadTest extends DbTestCase
     public function testExecuteUpload(): void
     {
         $this->commandTester->execute([
-            'path' => [$this->fixturePath('Images/avatar.jpg')],
+            'path' => [self::fixturePath('Images/avatar.jpg')],
         ]);
 
         self::assertStringContainsString('Images/avatar.jpg: Uploaded', $this->commandTester->getDisplay());

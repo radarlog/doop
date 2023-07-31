@@ -11,7 +11,7 @@ final class FormatTest extends UnitTestCase
 {
     public function testUnsupportedFormat(): void
     {
-        $fixturePath = $this->fixturePath('Images/avatar.tga');
+        $fixturePath = self::fixturePath('Images/avatar.tga');
 
         $content = (string) file_get_contents($fixturePath);
 
@@ -21,12 +21,12 @@ final class FormatTest extends UnitTestCase
         new Image\Format($content);
     }
 
-    public function mimeProvider(): \Generator
+    public static function mimeProvider(): \Generator
     {
-        yield [$this->fixturePath('Images/avatar.jpg'), 'image/jpeg'];
-        yield [$this->fixturePath('Images/octopus.png'), 'image/png'];
-        yield [$this->fixturePath('Images/schedule.svg'), 'image/svg+xml'];
-        yield [$this->fixturePath('Images/banner.gif'), 'image/gif'];
+        yield [self::fixturePath('Images/avatar.jpg'), 'image/jpeg'];
+        yield [self::fixturePath('Images/octopus.png'), 'image/png'];
+        yield [self::fixturePath('Images/schedule.svg'), 'image/svg+xml'];
+        yield [self::fixturePath('Images/banner.gif'), 'image/gif'];
     }
 
     /**

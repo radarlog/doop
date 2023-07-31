@@ -9,7 +9,7 @@ use Radarlog\Doop\Tests\UnitTestCase;
 
 final class StateTest extends UnitTestCase
 {
-    public function invalidKeysProvider(): \Generator
+    public static function invalidKeysProvider(): \Generator
     {
         yield 'missing all keys' => [['key' => 'value']];
         yield 'redundant key' => [['uuid' => 'u', 'hash' => 'h', 'name' => 'n', 'uploaded_at' => 'd', 'k' => 'v']];

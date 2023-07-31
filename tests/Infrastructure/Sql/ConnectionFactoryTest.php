@@ -9,7 +9,7 @@ use Radarlog\Doop\Tests\UnitTestCase;
 
 final class ConnectionFactoryTest extends UnitTestCase
 {
-    public function replicaDelimitersProvider(): \Generator
+    public static function replicaDelimitersProvider(): iterable
     {
         yield ["\n"];
         yield [','];

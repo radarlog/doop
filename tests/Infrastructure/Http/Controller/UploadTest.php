@@ -11,7 +11,7 @@ final class UploadTest extends ControllerTestCase
 {
     public function testAction(): void
     {
-        $fixture = $this->fixturePath('Images/avatar.jpg');
+        $fixture = self::fixturePath('Images/avatar.jpg');
 
         $image = new UploadedFile($fixture, 'avatar.jpg');
 

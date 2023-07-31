@@ -10,7 +10,7 @@ use Radarlog\Doop\Tests\UnitTestCase;
 
 final class EndpointTest extends UnitTestCase
 {
-    public function urlsProvider(): iterable
+    public static function urlsProvider(): iterable
     {
         yield ['http://host:42'];
         yield ['http://host'];

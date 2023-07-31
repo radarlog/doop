@@ -9,7 +9,7 @@ use Radarlog\Doop\Tests\UnitTestCase;
 
 final class NameTest extends UnitTestCase
 {
-    public function invalidLengthProvider(): \Generator
+    public static function invalidLengthProvider(): \Generator
     {
         yield [''];
         yield ["\t\n"];

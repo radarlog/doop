@@ -37,7 +37,7 @@ final class UploadHandlerTest extends UnitTestCase
                 return $state['hash'] === self::HASH && $state['name'] === self::NAME;
             }));
 
-        $fixture = $this->fixturePath('Images/avatar.jpg');
+        $fixture = self::fixturePath('Images/avatar.jpg');
         $content = (string) file_get_contents($fixture);
 
         $command = new Command\Image\Upload(self::NAME, $content);

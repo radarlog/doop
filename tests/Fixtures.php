@@ -6,7 +6,7 @@ namespace Radarlog\Doop\Tests;
 
 trait Fixtures
 {
-    protected function fixturePath(string $path): string
+    protected static function fixturePath(string $path): string
     {
         $path = __DIR__ . '/Fixtures/' . ltrim($path, DIRECTORY_SEPARATOR);
 

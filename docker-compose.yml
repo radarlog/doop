@@ -8,7 +8,7 @@ services:
     nginx:
         depends_on:
             - php
-        image: nginx:1.22-alpine
+        image: nginx:1.25-alpine-slim
         networks:
             - doop
         volumes:
@@ -54,7 +54,7 @@ services:
         command: yarn dev-server --host 0.0.0.0 --port 8765
 
     postgres:
-        image: postgres:15.1-alpine
+        image: postgres:15.3-alpine
         networks:
             - doop
         volumes:
