@@ -41,7 +41,7 @@ services:
             PHP_MEMORY_LIMIT: 256M
 
     encore:
-        image: node:19.2-alpine
+        image: node:20.5-alpine
         networks:
             - doop
         user: $MYUID:$MYGID

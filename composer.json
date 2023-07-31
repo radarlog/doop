@@ -30,7 +30,7 @@
         "symfony/monolog-bundle": "^v3.8",
         "symfony/twig-bundle": "^6.3",
         "symfony/uid": "^6.3",
-        "symfony/webpack-encore-bundle": "^1.17",
+        "symfony/webpack-encore-bundle": "^2.0",
         "symfony/yaml": "^6.3"
     },
     "require-dev": {
