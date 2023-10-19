@@ -91,7 +91,7 @@ jobs:
                 run: docker-compose exec -T php vendor/bin/deptrac --ansi --fail-on-uncovered --no-interaction
 
             -   name: Run PHPUnit
-                run: docker-compose exec -T php vendor/bin/phpunit --coverage-text --coverage-clover var/cache/clover.xml
+                run: docker-compose exec -T -e XDEBUG_MODE=coverage php vendor/bin/phpunit --coverage-text --coverage-clover var/cache/clover.xml
 
             -   name: Upload coverage to Codecov
                 uses: codecov/codecov-action@v3

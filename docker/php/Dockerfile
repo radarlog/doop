@@ -10,7 +10,6 @@ FROM $COMPOSER_IMAGE AS composer
 # builder image
 FROM $PHP_FPM_IMAGE AS builder
 
-ARG PCOV_VERSION=1.0.11
 ARG XDEBUG_VERSION=3.2.2
 
 COPY --from=php_extension_installer /usr/bin/install-php-extensions /usr/local/bin/
@@ -20,7 +19,6 @@ RUN set -e \
     # Install dependencies
     && install-php-extensions opcache \
     && install-php-extensions pcntl \
-    && install-php-extensions pcov-$PCOV_VERSION \
     && install-php-extensions pdo_pgsql \
     && install-php-extensions xdebug-$XDEBUG_VERSION
 
