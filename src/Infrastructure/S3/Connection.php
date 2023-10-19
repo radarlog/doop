@@ -22,7 +22,7 @@ final class Connection
             'accessKeyId' => $credentials->getAccessKeyId(),
             'accessKeySecret' => $credentials->getSecretKey(),
             'endpoint' => $endpoint->url(),
-            'pathStyleEndpoint' => true,
+            'pathStyleEndpoint' => 'true',
             'region' => $region->name(),
         ]);
     }

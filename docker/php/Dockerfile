@@ -1,5 +1,5 @@
 ARG PHP_FPM_IMAGE=php:8.2-fpm-alpine
-ARG COMPOSER_IMAGE=composer:2.5
+ARG COMPOSER_IMAGE=composer:2.6
 ARG PHP_EXTENSION_INSTALLER=mlocati/php-extension-installer:2.1
 
 # development dependencies
