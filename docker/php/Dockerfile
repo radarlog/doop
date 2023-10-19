@@ -17,10 +17,11 @@ COPY --from=php_extension_installer /usr/bin/install-php-extensions /usr/local/b
 RUN set -e \
     #
     # Install dependencies
-    && install-php-extensions opcache \
-    && install-php-extensions pcntl \
-    && install-php-extensions pdo_pgsql \
-    && install-php-extensions xdebug-$XDEBUG_VERSION
+    && install-php-extensions  \
+        opcache \
+        pcntl \
+        pdo_pgsql \
+        xdebug-$XDEBUG_VERSION
 
 
 # base image
