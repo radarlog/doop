@@ -44,7 +44,7 @@ final class RemoveImage extends Console\Command\Command implements Executable
     // phpcs:disable SlevomatCodingStandard.Functions.UnusedParameter
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $command = new Command\Image\Remove($this->uuid);
+        $command = new Command\Image\Delete($this->uuid);
 
         $this->bus->execute($command);
 

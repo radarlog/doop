@@ -22,7 +22,7 @@ final class Remove extends AbstractController implements Http\Controller
     {
         $uuid = (string) $request->attributes->get('uuid');
 
-        $command = new Command\Image\Remove($uuid);
+        $command = new Command\Image\Delete($uuid);
 
         $this->bus->execute($command);
 

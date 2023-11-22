@@ -7,17 +7,17 @@ namespace Radarlog\Doop\Tests\Application\Command\Image;
 use Radarlog\Doop\Application\Command;
 use Radarlog\Doop\Tests\UnitTestCase;
 
-final class RemoveTest extends UnitTestCase
+final class DeleteTest extends UnitTestCase
 {
     private const UUID = '572b3706-ffb8-723c-a317-d0ca8016a345';
 
-    private Command\Image\Remove $command;
+    private Command\Image\Delete $command;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->command = new Command\Image\Remove(self::UUID);
+        $this->command = new Command\Image\Delete(self::UUID);
     }
 
     public function testId(): void
@@ -27,7 +27,7 @@ final class RemoveTest extends UnitTestCase
 
     public function testFqcnHandler(): void
     {
-        self::assertSame(Command\Image\RemoveHandler::class, $this->command->fqcnHandler());
+        self::assertSame(Command\Image\DeleteHandler::class, $this->command->fqcnHandler());
     }
 
     public function testSerialize(): void

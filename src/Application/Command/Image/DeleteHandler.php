@@ -9,7 +9,7 @@ use Radarlog\Doop\Application\Query;
 use Radarlog\Doop\Domain;
 use Radarlog\Doop\Domain\Image;
 
-final class RemoveHandler implements Command\Handler
+final class DeleteHandler implements Command\Handler
 {
     private readonly Domain\Storage $storage;
 
@@ -25,7 +25,7 @@ final class RemoveHandler implements Command\Handler
     }
 
     /**
-     * @param Command&Remove $command
+     * @param Command&Delete $command
      *
      * @throws Image\InvalidArgument
      *

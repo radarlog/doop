@@ -10,7 +10,7 @@ use Radarlog\Doop\Application\Query;
 use Radarlog\Doop\Domain;
 use Radarlog\Doop\Tests\UnitTestCase;
 
-final class RemoveHandlerTest extends UnitTestCase
+final class DeleteHandlerTest extends UnitTestCase
 {
     private const UUID = '572b3706-ffb8-723c-a317-d0ca8016a345';
     private const HASH = '2080492d54a6b8579968901f366b13614fe188f2';
@@ -21,7 +21,7 @@ final class RemoveHandlerTest extends UnitTestCase
     /** @var MockObject&Query */
     private Query $query;
 
-    private Command\Image\RemoveHandler $handler;
+    private Command\Image\DeleteHandler $handler;
 
     protected function setUp(): void
     {
@@ -36,7 +36,7 @@ final class RemoveHandlerTest extends UnitTestCase
             ->method('remove')
             ->with(self::callback(static fn(Domain\Image\Uuid $uuid) => (string) $uuid === self::UUID));
 
-        $this->handler = new Command\Image\RemoveHandler($this->storage, $repository, $this->query);
+        $this->handler = new Command\Image\DeleteHandler($this->storage, $repository, $this->query);
     }
 
     public function testHandleOneHash(): void
@@ -51,7 +51,7 @@ final class RemoveHandlerTest extends UnitTestCase
             ->method('delete')
             ->with(self::callback(static fn(Domain\Image\Hash $hash) => (string) $hash === self::HASH));
 
-        $command = new Command\Image\Remove(self::UUID);
+        $command = new Command\Image\Delete(self::UUID);
 
         $this->handler->handle($command);
     }
@@ -67,7 +67,7 @@ final class RemoveHandlerTest extends UnitTestCase
             ->expects(self::never())
             ->method('delete');
 
-        $command = new Command\Image\Remove(self::UUID);
+        $command = new Command\Image\Delete(self::UUID);
 
         $this->handler->handle($command);
     }

@@ -6,7 +6,7 @@ namespace Radarlog\Doop\Application\Command\Image;
 
 use Radarlog\Doop\Application\Command;
 
-final class Remove implements Command
+final class Delete implements Command
 {
     private readonly string $uuid;
 
@@ -22,7 +22,7 @@ final class Remove implements Command
 
     public function fqcnHandler(): string
     {
-        return RemoveHandler::class;
+        return DeleteHandler::class;
     }
 
     public function serialize(): array
