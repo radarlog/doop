@@ -7,6 +7,7 @@
          colors="true"
          executionOrder="random"
          cacheDirectory="var/cache/phpunit/"
+         testdox="true"
 >
     <testsuites>
         <testsuite name="Doop Test Suite">
