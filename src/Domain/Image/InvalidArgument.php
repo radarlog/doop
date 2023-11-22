@@ -9,9 +9,9 @@ use Radarlog\Doop\Domain\Throwable;
 final class InvalidArgument extends \InvalidArgumentException implements Throwable
 {
     // phpcs:disable Generic.CodeAnalysis.UselessOverridingMethod.Found
-    private function __construct(string $message, int $code, ?\Throwable $previous = null)
+    private function __construct(string $message, int $code)
     {
-        parent::__construct($message, $code, $previous);
+        parent::__construct($message, $code);
     }
 
     public static function uuid(string $uuid): self
