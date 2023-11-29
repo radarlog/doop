@@ -9,6 +9,7 @@ use Radarlog\Doop\Domain\Repository;
 use Radarlog\Doop\Tests\DbTestCase;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
+use Symfony\Component\HttpKernel\KernelInterface;
 
 final class ImagesListTest extends DbTestCase
 {
@@ -27,6 +28,7 @@ final class ImagesListTest extends DbTestCase
 
         $this->repository = self::getContainer()->get(Repository::class);
 
+        assert(self::$kernel instanceof KernelInterface);
         $application = new Application(self::$kernel);
         $command = $application->find('images:list');
 

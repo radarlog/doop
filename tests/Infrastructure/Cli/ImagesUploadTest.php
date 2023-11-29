@@ -8,6 +8,7 @@ use Radarlog\Doop\Tests\DbTestCase;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Exception\RuntimeException;
 use Symfony\Component\Console\Tester\CommandTester;
+use Symfony\Component\HttpKernel\KernelInterface;
 
 final class ImagesUploadTest extends DbTestCase
 {
@@ -17,6 +18,7 @@ final class ImagesUploadTest extends DbTestCase
     {
         parent::setUp();
 
+        assert(self::$kernel instanceof KernelInterface);
         $application = new Application(self::$kernel);
         $command = $application->find('images:upload');
 
