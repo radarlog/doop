@@ -1,5 +1,7 @@
 version: '3.8'
 
+name: doop
+
 networks:
     default:
         name: doop
