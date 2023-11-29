@@ -1,4 +1,4 @@
-ARG PHP_FPM_IMAGE=php:8.2-fpm-alpine
+ARG PHP_FPM_IMAGE=php:8.3-fpm-alpine
 ARG COMPOSER_IMAGE=composer:2.6
 ARG PHP_EXTENSION_INSTALLER=mlocati/php-extension-installer:2.1
 
@@ -10,7 +10,7 @@ FROM $COMPOSER_IMAGE AS composer
 # builder image
 FROM $PHP_FPM_IMAGE AS builder
 
-ARG XDEBUG_VERSION=3.2.2
+ARG XDEBUG_VERSION=3.3.0alpha3
 
 COPY --from=php_extension_installer /usr/bin/install-php-extensions /usr/local/bin/
 
