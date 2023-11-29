@@ -1,16 +1,16 @@
 version: '3.8'
 
+name: doop
+
 networks:
-    doop:
-        driver: bridge
+    default:
+        name: doop
 
 services:
     nginx:
         depends_on:
             - php
         image: nginx:1.25-alpine-slim
-        networks:
-            - doop
         volumes:
             - ./docker/nginx/templates:/etc/nginx/templates:ro
         ports:
@@ -29,8 +29,7 @@ services:
         build:
             context: docker/php
             target: development
-        networks:
-            - doop
+
         volumes:
             - .:/app:rw
         environment:
@@ -42,8 +41,6 @@ services:
 
     encore:
         image: node:20.5-alpine
-        networks:
-            - doop
         user: $MYUID:$MYGID
         volumes:
             - .:/app:rw
@@ -55,8 +52,6 @@ services:
 
     postgres:
         image: postgres:15.3-alpine
-        networks:
-            - doop
         volumes:
             - ./docker/postgres/create-test-db.sql:/docker-entrypoint-initdb.d/create-test-db.sql:ro
         ports:
@@ -69,8 +64,6 @@ services:
 
     minio:
         image: minio/minio:latest
-        networks:
-            - doop
         ports:
             - "9000:9000"
         environment:
