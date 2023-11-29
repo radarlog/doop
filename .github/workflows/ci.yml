@@ -33,11 +33,6 @@ jobs:
             YARN_CACHE_DIR: .yarn/
 
         steps:
-            -   name: Debug step
-                run: |
-                    docker-compose --version
-                    docker compose version
-
             -   name: Checkout
                 uses: actions/checkout@v2
 
@@ -54,13 +49,13 @@ jobs:
                     restore-keys: ${{ env.CACHE_KEY_PREFIX }}
 
             -   name: Install frontend dependencies
-                run: docker-compose run -T --rm -e YARN_CACHE_FOLDER=$YARN_CACHE_DIR encore yarn install --frozen-lockfile --non-interactive
+                run: docker compose run -T --rm -e YARN_CACHE_FOLDER=$YARN_CACHE_DIR encore yarn install --frozen-lockfile --non-interactive
 
-            -   name: Build docker-compose stack
+            -   name: Build docker compose stack
                 run: |
-                    docker-compose build --build-arg MYUID=$MYUID --build-arg MYGID=$MYGID php
-                    docker-compose up -d
-                    docker-compose ps
+                    docker compose build --build-arg MYUID=$MYUID --build-arg MYGID=$MYGID php
+                    docker compose up -d
+                    docker compose ps
 
             -   name: Composer Cache
                 uses: actions/cache@v3
@@ -73,30 +68,30 @@ jobs:
 
             -   name: Install composer dependencies
                 run: |
-                    docker-compose exec -T -e COMPOSER_CACHE_DIR=$COMPOSER_CACHE_DIR php composer validate --ansi --no-interaction --strict
-                    docker-compose exec -T -e COMPOSER_CACHE_DIR=$COMPOSER_CACHE_DIR php composer check-platform-reqs --ansi --no-dev --no-interaction
-                    docker-compose exec -T -e COMPOSER_CACHE_DIR=$COMPOSER_CACHE_DIR php composer install --ansi --no-interaction
-                    docker-compose exec -T -e COMPOSER_CACHE_DIR=$COMPOSER_CACHE_DIR php composer normalize --ansi --dry-run --no-interaction
+                    docker compose exec -T -e COMPOSER_CACHE_DIR=$COMPOSER_CACHE_DIR php composer validate --ansi --no-interaction --strict
+                    docker compose exec -T -e COMPOSER_CACHE_DIR=$COMPOSER_CACHE_DIR php composer check-platform-reqs --ansi --no-dev --no-interaction
+                    docker compose exec -T -e COMPOSER_CACHE_DIR=$COMPOSER_CACHE_DIR php composer install --ansi --no-interaction
+                    docker compose exec -T -e COMPOSER_CACHE_DIR=$COMPOSER_CACHE_DIR php composer normalize --ansi --dry-run --no-interaction
 
             -   name: Run migrations
-                run: docker-compose exec -T -e APP_ENV=test php bin/console migrations:migrate --ansi --allow-no-migration --no-interaction
+                run: docker compose exec -T -e APP_ENV=test php bin/console migrations:migrate --ansi --allow-no-migration --no-interaction
 
             -   name: Check Coding Standards
                 run: |
-                    docker-compose exec -T php vendor/bin/phpcs
-                    docker-compose exec -T encore yarn lint
+                    docker compose exec -T php vendor/bin/phpcs
+                    docker compose exec -T encore yarn lint
 
             -   name: Run PHPStan
-                run: docker-compose exec -T php vendor/bin/phpstan analyse --ansi
+                run: docker compose exec -T php vendor/bin/phpstan analyse --ansi
 
             -   name: Run Psalm
-                run: docker-compose exec -T php vendor/bin/psalm --output-format=github --show-info=true
+                run: docker compose exec -T php vendor/bin/psalm --output-format=github --show-info=true
 
             -   name: Run Deptrac
-                run: docker-compose exec -T php vendor/bin/deptrac --ansi --fail-on-uncovered --no-interaction
+                run: docker compose exec -T php vendor/bin/deptrac --ansi --fail-on-uncovered --no-interaction
 
             -   name: Run PHPUnit
-                run: docker-compose exec -T -e XDEBUG_MODE=coverage php vendor/bin/phpunit --coverage-text --coverage-clover var/cache/clover.xml
+                run: docker compose exec -T -e XDEBUG_MODE=coverage php vendor/bin/phpunit --coverage-text --coverage-clover var/cache/clover.xml
 
             -   name: Upload coverage to Codecov
                 uses: codecov/codecov-action@v3
