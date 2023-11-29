@@ -14,28 +14,28 @@
         "lint": "eslint src/Frontend/ts/"
     },
     "dependencies": {
-        "bootstrap": "^5.2"
+        "bootstrap": "^5.3"
     },
     "devDependencies": {
         "@babel/core": "^7.23",
         "@babel/preset-env": "^7.23",
         "@popperjs/core": "^2.11",
-        "@symfony/webpack-encore": "^4.4",
-        "@typescript-eslint/eslint-plugin": "^6.8",
-        "@typescript-eslint/parser": "^6.8",
+        "@symfony/webpack-encore": "^4.5",
+        "@typescript-eslint/eslint-plugin": "^6.13",
+        "@typescript-eslint/parser": "^6.13",
         "core-js": "^3.33",
         "cssnano": "^6.0",
-        "eslint": "^8.51",
+        "eslint": "^8.54",
         "eslint-config-prettier": "^9.0",
         "eslint-plugin-prettier": "^5.0",
         "nodemon": "^3.0",
         "postcss": "^8.4",
         "postcss-loader": "^7.3",
-        "prettier": "^3.0",
+        "prettier": "^3.1",
         "sass": "^1.69",
         "sass-loader": "^13.3",
         "ts-loader": "^9.5",
-        "typescript": "^5.2",
+        "typescript": "^5.3",
         "webpack": "^5.89",
         "webpack-cli": "^5.1"
     },
