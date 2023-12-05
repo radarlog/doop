@@ -10,7 +10,7 @@ FROM $COMPOSER_IMAGE AS composer
 # builder image
 FROM $PHP_FPM_IMAGE AS builder
 
-ARG XDEBUG_VERSION=3.3.0alpha3
+ARG XDEBUG_VERSION=3.3.0
 
 COPY --from=php_extension_installer /usr/bin/install-php-extensions /usr/local/bin/
 
