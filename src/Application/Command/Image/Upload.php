@@ -6,11 +6,11 @@ namespace Radarlog\Doop\Application\Command\Image;
 
 use Radarlog\Doop\Application\Command;
 
-final class Upload implements Command
+final readonly class Upload implements Command
 {
-    private readonly string $name;
+    private string $name;
 
-    private readonly string $content;
+    private string $content;
 
     public function __construct(string $name, string $content)
     {

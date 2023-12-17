@@ -12,8 +12,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class RemoveImage extends Console\Command\Command implements Executable
 {
-    private const NAME = 'images:remove';
-    private const DESCRIPTION = 'Remove image';
+    private const string NAME = 'images:remove';
+    private const string DESCRIPTION = 'Remove image';
 
     private readonly Command\Bus $bus;
 

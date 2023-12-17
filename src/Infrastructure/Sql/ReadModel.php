@@ -8,9 +8,9 @@ use Radarlog\Doop\Application\Query;
 use Radarlog\Doop\Domain\Image;
 use Radarlog\Doop\Infrastructure\Sql;
 
-final class ReadModel implements Query
+final readonly class ReadModel implements Query
 {
-    private readonly Sql\Connection $connection;
+    private Sql\Connection $connection;
 
     public function __construct(Sql\Connection $connection)
     {

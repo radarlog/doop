@@ -8,7 +8,7 @@ use Doctrine\DBAL\Connections\PrimaryReadReplicaConnection;
 
 final class Connection extends PrimaryReadReplicaConnection
 {
-    private const IMAGES_TABLE = 'images';
+    private const string IMAGES_TABLE = 'images';
 
     public function imagesTable(): string
     {

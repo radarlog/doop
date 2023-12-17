@@ -9,13 +9,13 @@ use Radarlog\Doop\Application\Query;
 use Radarlog\Doop\Domain;
 use Radarlog\Doop\Domain\Image;
 
-final class DeleteHandler implements Command\Handler
+final readonly class DeleteHandler implements Command\Handler
 {
-    private readonly Domain\Storage $storage;
+    private Domain\Storage $storage;
 
-    private readonly Domain\Repository $repository;
+    private Domain\Repository $repository;
 
-    private readonly Query $query;
+    private Query $query;
 
     public function __construct(Domain\Storage $storage, Domain\Repository $repository, Query $query)
     {

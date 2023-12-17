@@ -7,11 +7,11 @@ namespace Radarlog\Doop\Infrastructure\Http;
 use Radarlog\Doop\Application;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 
-final class ThrowableHandlerBus implements Application\Command\Bus
+final readonly class ThrowableHandlerBus implements Application\Command\Bus
 {
-    private readonly FlashBagInterface $flashBag;
+    private FlashBagInterface $flashBag;
 
-    private readonly Application\Command\Bus $innerBus;
+    private Application\Command\Bus $innerBus;
 
     public function __construct(FlashBagInterface $flashBag, Application\Command\Bus $innerBus)
     {

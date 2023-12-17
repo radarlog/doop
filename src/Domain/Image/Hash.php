@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Domain\Image;
 
-final class Hash implements \Stringable
+final readonly class Hash implements \Stringable
 {
-    private const SHA1_LENGTH = 40;
+    private const int SHA1_LENGTH = 40;
 
-    private readonly string $hash;
+    private string $hash;
 
     public function __construct(string $hash)
     {

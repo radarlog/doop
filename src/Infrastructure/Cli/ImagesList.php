@@ -13,8 +13,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class ImagesList extends Command implements Executable
 {
-    private const NAME = 'images:list';
-    private const DESCRIPTION = 'List uploaded images';
+    private const string NAME = 'images:list';
+    private const string DESCRIPTION = 'List uploaded images';
 
     private readonly Query $query;
 

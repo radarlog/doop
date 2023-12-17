@@ -6,9 +6,9 @@ namespace Radarlog\Doop\Infrastructure\Sql;
 
 use Doctrine\DBAL;
 
-final class ConnectionFactory
+final readonly class ConnectionFactory
 {
-    private readonly Connection $connection;
+    private Connection $connection;
 
     private function __construct(string $primaryDsn, string $replicaDsn)
     {

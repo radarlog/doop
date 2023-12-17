@@ -7,11 +7,11 @@ namespace Radarlog\Doop\Infrastructure\S3;
 use AsyncAws\S3;
 use Radarlog\Doop\Domain;
 
-final class Client implements Domain\Storage
+final readonly class Client implements Domain\Storage
 {
-    private readonly S3\S3Client $client;
+    private S3\S3Client $client;
 
-    private readonly string $bucketName;
+    private string $bucketName;
 
     public function __construct(string $bucketName, Connection $connection)
     {

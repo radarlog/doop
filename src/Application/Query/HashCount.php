@@ -6,11 +6,11 @@ namespace Radarlog\Doop\Application\Query;
 
 use Radarlog\Doop\Domain\Image;
 
-final class HashCount
+final readonly class HashCount
 {
-    private readonly Image\Hash $hash;
+    private Image\Hash $hash;
 
-    private readonly int $count;
+    private int $count;
 
     public function __construct(string $hash, int $count)
     {

@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Domain\Image;
 
-final class Format
+final readonly class Format
 {
-    private const SUPPORTED_MIME_TYPES = [
+    private const array SUPPORTED_MIME_TYPES = [
         'image/gif',
         'image/jpeg',
         'image/png',
         'image/svg+xml',
     ];
 
-    private readonly string $mime;
+    private string $mime;
 
     /**
      * @throws InvalidArgument

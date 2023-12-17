@@ -6,9 +6,9 @@ namespace Radarlog\Doop\Infrastructure\S3\Connection;
 
 use Radarlog\Doop\Infrastructure\S3\InvalidArgument;
 
-final class Endpoint
+final readonly class Endpoint
 {
-    private readonly string $url;
+    private string $url;
 
     public function __construct(string $url)
     {

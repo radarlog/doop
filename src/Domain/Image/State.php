@@ -6,9 +6,9 @@ namespace Radarlog\Doop\Domain\Image;
 
 use Radarlog\Doop\Domain;
 
-final class State implements Domain\State
+final readonly class State implements Domain\State
 {
-    private const EXPECTED_KEYS = [
+    private const array EXPECTED_KEYS = [
         'uuid',
         'hash',
         'name',
@@ -16,7 +16,7 @@ final class State implements Domain\State
     ];
 
     /** @var string[] */
-    private readonly array $state;
+    private array $state;
 
     /**
      * @param string[] $state

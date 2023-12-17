@@ -7,9 +7,9 @@ namespace Radarlog\Doop\Infrastructure\S3\Connection;
 /**
  * @link https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region
  */
-final class Region
+final readonly class Region
 {
-    private readonly string $region;
+    private string $region;
 
     public function __construct(string $name)
     {

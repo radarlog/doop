@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Domain\Image;
 
-final class File
+final readonly class File
 {
-    private readonly Hash $hash;
+    private Hash $hash;
 
-    private readonly string $content;
+    private string $content;
 
-    private readonly Format $format;
+    private Format $format;
 
     /**
      * @throws InvalidArgument

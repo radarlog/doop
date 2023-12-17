@@ -6,9 +6,9 @@ namespace Radarlog\Doop\Application\Command\Image;
 
 use Radarlog\Doop\Application\Command;
 
-final class Delete implements Command
+final readonly class Delete implements Command
 {
-    private readonly string $uuid;
+    private string $uuid;
 
     public function __construct(string $uuid)
     {

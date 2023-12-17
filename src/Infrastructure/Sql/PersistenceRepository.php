@@ -9,9 +9,9 @@ use Radarlog\Doop\Domain\Image;
 use Radarlog\Doop\Domain\Repository;
 use Symfony\Component\Uid\Uuid;
 
-final class PersistenceRepository implements Repository
+final readonly class PersistenceRepository implements Repository
 {
-    private readonly Connection $connection;
+    private Connection $connection;
 
     public function __construct(Connection $connection)
     {

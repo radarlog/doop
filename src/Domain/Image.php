@@ -6,7 +6,7 @@ namespace Radarlog\Doop\Domain;
 
 final class Image
 {
-    private const DATETIME_FORMAT = 'Y-m-d H:i:s';
+    private const string DATETIME_FORMAT = 'Y-m-d H:i:s';
 
     private readonly Image\Uuid $uuid;
 

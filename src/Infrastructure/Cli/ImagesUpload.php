@@ -12,8 +12,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 final class ImagesUpload extends Console\Command\Command implements Executable
 {
-    private const NAME = 'images:upload';
-    private const DESCRIPTION = 'Uploaded new images';
+    private const string NAME = 'images:upload';
+    private const string DESCRIPTION = 'Uploaded new images';
 
     private readonly Command\Bus $bus;
 

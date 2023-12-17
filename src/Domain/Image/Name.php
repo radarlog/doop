@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Domain\Image;
 
-final class Name implements \Stringable
+final readonly class Name implements \Stringable
 {
-    private const LENGTH_MIN = 3;
-    private const LENGTH_MAX = 255;
+    private const int LENGTH_MIN = 3;
+    private const int LENGTH_MAX = 255;
 
-    private readonly string $name;
+    private string $name;
 
     public function __construct(string $name)
     {

@@ -10,9 +10,9 @@ use Radarlog\Doop\Infrastructure\S3\Connection\Endpoint;
 use Radarlog\Doop\Infrastructure\S3\Connection\Key;
 use Radarlog\Doop\Infrastructure\S3\Connection\Region;
 
-final class Connection
+final readonly class Connection
 {
-    private readonly Configuration $configuration;
+    private Configuration $configuration;
 
     public function __construct(Endpoint $endpoint, Key $key, Key $secret, Region $region)
     {
