@@ -35,7 +35,7 @@ tests/               unit and functional tests
 
 ## Running locally
 
-Make sure you have `docker-compose` and `make` installed.
+Make sure you have `docker compose` and `make` installed.
 Clone the latest version and run:
 
 ```bash
@@ -45,7 +45,7 @@ then navigate to `http://localhost/` with your favorite browser.
 
 ## Testing
 
-Make sure you have `docker-compose` and `make` installed.
+Make sure you have `docker compose` and `make` installed.
 Perform all the necessary QA-checks like coding styles, static analysis and unit/functional tests:
 
 ``` bash
