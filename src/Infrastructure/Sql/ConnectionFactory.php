@@ -6,23 +6,34 @@ namespace Radarlog\Doop\Infrastructure\Sql;
 
 use Doctrine\DBAL;
 
+/**
+ * @psalm-import-type Params from DBAL\DriverManager
+ */
 final readonly class ConnectionFactory
 {
     private Connection $connection;
 
-    private function __construct(string $primaryDsn, string $replicaDsn)
+    private function __construct(string $primaryDsn, string $replicasDsn)
     {
-        /** @var Connection $connection */
-        $connection = DBAL\DriverManager::getConnection([
+        $dsnParser = new DBAL\Tools\DsnParser();
+
+        /** @var Params $params */
+        $params = [
             'driverClass' => DBAL\Driver\PDO\PgSQL\Driver::class,
             'driverOptions' => [
                 \PDO::ATTR_EMULATE_PREPARES => false,
                 \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
             ],
-            'primary' => ['url' => $primaryDsn],
-            'replica' => $this->parseReplicas($replicaDsn),
+            'primary' => $dsnParser->parse($primaryDsn),
+            'replica' => array_map(
+                static fn(string $replicaDsn) => $dsnParser->parse($replicaDsn),
+                $this->findReplicas($replicasDsn),
+            ),
             'wrapperClass' => Connection::class,
-        ]);
+        ];
+
+        /** @var Connection $connection */
+        $connection = DBAL\DriverManager::getConnection($params);
 
         $this->connection = $connection;
     }
@@ -35,17 +46,13 @@ final readonly class ConnectionFactory
     }
 
     /**
-     * @return array<int, array{url: string}>
+     * @return string[]
      */
-    private function parseReplicas(string $replicasDsn): array
+    private function findReplicas(string $replicasDsn): array
     {
         $replicas = (array) preg_split('/[\n|,]/', $replicasDsn);
         $replicas = array_filter($replicas);
-        $replicas = array_unique($replicas);
 
-        return array_map(
-            static fn(string $replicaDsn) => ['url' => $replicaDsn],
-            $replicas,
-        );
+        return array_unique($replicas);
     }
 }
