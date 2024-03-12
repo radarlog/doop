@@ -54,7 +54,7 @@ jobs:
 
             -   name: Build docker compose stack
                 run: |
-                    docker compose build --build-arg MYUID=$MYUID --build-arg MYGID=$MYGID php
+                    docker compose build --build-arg MYUID=$MYUID --build-arg MYGID=$MYGID --build-arg PHP_VERSION=${{ matrix.php }} php
                     docker compose up -d
                     docker compose ps
 
