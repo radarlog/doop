@@ -17,7 +17,7 @@ Encore
                 errors: true,
                 warnings: false,
             },
-            webSocketURL: 'ws://localhost/ws',
+            webSocketURL: 'ws://0.0.0.0/ws',
         };
     })
 
