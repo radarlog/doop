@@ -1,1 +1,1 @@
-import '~doop/css/doop.scss';
+import '#doop/css/doop.scss';

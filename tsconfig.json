@@ -1,18 +1,25 @@
 {
     "compilerOptions": {
         "allowJs": false,
-        "baseUrl": "src/",
-        "esModuleInterop": true,
+        "esModuleInterop": false,
         "noImplicitAny": true,
-        "paths": {
-            "~doop/*": [
-                "Frontend/*"
-            ]
-        },
         "preserveConstEnums": true,
         "removeComments": true,
         "resolveJsonModule": true,
         "sourceMap": true,
-        "strict": true
+        "strict": true,
+        "module": "es2022",
+        "moduleResolution": "bundler",
+        "target": "es2022",
+        "isolatedModules": true,
+        "declaration": false,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "incremental": true,
+        "preserveWatchOutput": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUncheckedIndexedAccess": true
     }
 }

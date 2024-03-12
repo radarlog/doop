@@ -3,8 +3,12 @@
     "license": "MIT",
     "private": true,
     "engines": {
-        "node": ">= 19.0",
+        "node": ">= 21.0",
         "yarn": ">= 1.22"
+    },
+    "type": "module",
+    "imports": {
+        "#doop/*": "./src/Frontend/*"
     },
     "scripts": {
         "dev-server": "nodemon --exec 'encore dev-server --keep-public-path --config config/encore.js'",
