@@ -25,6 +25,7 @@
     <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
     <rule ref="Generic.Classes.DuplicateClassName"/>
     <rule ref="Generic.CodeAnalysis.EmptyStatement"/>
+    <rule ref="Generic.CodeAnalysis.RequireExplicitBooleanOperatorPrecedence"/>
     <rule ref="Generic.CodeAnalysis.UnnecessaryFinalModifier"/>
     <rule ref="Generic.CodeAnalysis.UselessOverridingMethod"/>
     <rule ref="Generic.ControlStructures.DisallowYodaConditions"/>
@@ -48,10 +49,7 @@
     </rule>
     <rule ref="Generic.Functions.CallTimePassByReference"/>
     <rule ref="Generic.NamingConventions.ConstructorName"/>
-    <rule ref="Generic.NamingConventions.UpperCaseConstantName">
-        <!-- https://github.com/squizlabs/PHP_CodeSniffer/issues/3927 -->
-        <exclude name="Generic.NamingConventions.UpperCaseConstantName"/>
-    </rule>
+    <rule ref="Generic.NamingConventions.UpperCaseConstantName"/>
     <rule ref="Generic.PHP.BacktickOperator"/>
     <rule ref="Generic.PHP.CharacterBeforePHPOpeningTag"/>
     <rule ref="Generic.PHP.DeprecatedFunctions"/>
