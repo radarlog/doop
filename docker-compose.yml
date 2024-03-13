@@ -54,6 +54,8 @@ services:
         image: postgres:15.6-alpine
         volumes:
             - ./docker/postgres/create-test-db.sql:/docker-entrypoint-initdb.d/create-test-db.sql:ro
+        tmpfs:
+            - /var/lib/postgresql/data
         ports:
             - "5432:5432"
         environment:
