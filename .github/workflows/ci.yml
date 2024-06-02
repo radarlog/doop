@@ -10,20 +10,17 @@ on:
 
 jobs:
     tests:
-        name: PHP ${{ matrix.php }} tests on ${{ matrix.os }}
-        runs-on: ${{ matrix.os }}
+        name: PHP ${{ matrix.php }} tests
+        runs-on: ubuntu-latest
         continue-on-error: ${{ matrix.experimental }}
         strategy:
             fail-fast: false
             matrix:
-                os:
-                    - ubuntu-22.04
                 php:
                     - 8.3
                 experimental: [ false ]
                 include:
                     -   php: 8.4
-                        os: ubuntu-22.04
                         experimental: true
 
         env:
@@ -42,7 +39,7 @@ jobs:
             -   name: Yarn Cache
                 uses: actions/cache@v3
                 env:
-                    CACHE_KEY_PREFIX: ${{ matrix.os }}-${{ matrix.php }}-yarn-v2
+                    CACHE_KEY_PREFIX: ${{ matrix.php }}-yarn-v2
                 with:
                     path: ${{ env.YARN_CACHE_DIR }}
                     key: ${{ env.CACHE_KEY_PREFIX }}-${{ hashFiles('**/yarn.lock') }}
@@ -60,7 +57,7 @@ jobs:
             -   name: Composer Cache
                 uses: actions/cache@v3
                 env:
-                    CACHE_KEY_PREFIX: ${{ matrix.os }}-${{ matrix.php }}-composer-v2
+                    CACHE_KEY_PREFIX: ${{ matrix.php }}-composer-v2
                 with:
                     path: ${{ env.COMPOSER_CACHE_DIR }}
                     key: ${{ env.CACHE_KEY_PREFIX }}-${{ hashFiles('**/composer.lock') }}
