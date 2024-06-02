@@ -24,6 +24,7 @@ services:
             - encore
             - minio
             - postgres
+        user: $MYUID:$MYGID
         build:
             context: docker/php
             target: development
