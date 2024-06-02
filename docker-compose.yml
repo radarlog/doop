@@ -8,7 +8,7 @@ services:
     nginx:
         depends_on:
             - php
-        image: nginx:1.25-alpine-slim
+        image: nginx:1.26-alpine-slim
         volumes:
             - ./docker/nginx/templates:/etc/nginx/templates:ro
         ports:
@@ -40,7 +40,7 @@ services:
             PHP_MEMORY_LIMIT: 256M
 
     encore:
-        image: node:21.7-alpine
+        image: node:22.2-alpine
         user: $MYUID:$MYGID
         volumes:
             - .:/app:rw
@@ -51,7 +51,7 @@ services:
         command: yarn dev-server --host 0.0.0.0 --port 8765
 
     postgres:
-        image: postgres:16.2-alpine
+        image: postgres:16.3-alpine
         volumes:
             - ./docker/postgres/create-test-db.sql:/docker-entrypoint-initdb.d/create-test-db.sql:ro
         tmpfs:
@@ -65,7 +65,7 @@ services:
             POSTGRES_INITDB_ARGS: "--no-sync"
 
     minio:
-        image: minio/minio:RELEASE.2024-03-30T09-41-56Z
+        image: minio/minio:RELEASE.2024-05-28T17-19-04Z
         ports:
             - "9000:9000"
         environment:
