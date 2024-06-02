@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Tests\Domain\Image;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use Radarlog\Doop\Domain\Image;
 use Radarlog\Doop\Tests\UnitTestCase;
 
@@ -11,7 +12,10 @@ final class HashTest extends UnitTestCase
 {
     private const string HASH = 'f32b67c7e26342af42efabc674d441dca0a281c5';
 
-    public static function invalidHashProvider(): \Generator
+    /**
+     * @return iterable<array<int,string>>
+     */
+    public static function invalidHashProvider(): iterable
     {
         yield [''];
         yield [str_repeat('a', 39)];
@@ -19,9 +23,7 @@ final class HashTest extends UnitTestCase
         yield [str_repeat('x', 40)];
     }
 
-    /**
-     * @dataProvider invalidHashProvider
-     */
+    #[DataProvider('invalidHashProvider')]
     public function testInvalidHash(string $value): void
     {
         $this->expectException(Image\InvalidArgument::class);

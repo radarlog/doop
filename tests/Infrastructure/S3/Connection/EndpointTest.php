@@ -4,21 +4,23 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Tests\Infrastructure\S3\Connection;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use Radarlog\Doop\Infrastructure\S3\Connection\Endpoint;
 use Radarlog\Doop\Infrastructure\S3\InvalidArgument;
 use Radarlog\Doop\Tests\UnitTestCase;
 
 final class EndpointTest extends UnitTestCase
 {
+    /**
+     * @return iterable<array<int,string>>
+     */
     public static function urlsProvider(): iterable
     {
-        yield ['http://host:42'];
-        yield ['http://host'];
+        yield ['https://host:42'];
+        yield ['https://host'];
     }
 
-    /**
-     * @dataProvider urlsProvider
-     */
+    #[DataProvider('urlsProvider')]
     public function testEndpoint(string $url): void
     {
         $endpoint = new Endpoint($url);

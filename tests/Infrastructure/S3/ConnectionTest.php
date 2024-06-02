@@ -11,12 +11,12 @@ use Radarlog\Doop\Tests\UnitTestCase;
 
 final class ConnectionTest extends UnitTestCase
 {
-    private const string ENDPOINT = 'http://host:42';
+    private const string ENDPOINT = 'https://host:42';
     private const string KEY = 'key';
     private const string SECRET = 'secret';
     private const string REGION = 'region';
 
-    private const string DSN = 'http://key:secret@host:42/region';
+    private const string DSN = 'https://key:secret@host:42/region';
 
     private Connection $connection;
 

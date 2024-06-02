@@ -4,12 +4,16 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Tests\Domain\Image;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use Radarlog\Doop\Domain\Image;
 use Radarlog\Doop\Tests\UnitTestCase;
 
 final class StateTest extends UnitTestCase
 {
-    public static function invalidKeysProvider(): \Generator
+    /**
+     * @return iterable<array<int, array<string,string>>>
+     */
+    public static function invalidKeysProvider(): iterable
     {
         yield 'missing all keys' => [['key' => 'value']];
         yield 'redundant key' => [['uuid' => 'u', 'hash' => 'h', 'name' => 'n', 'uploaded_at' => 'd', 'k' => 'v']];
@@ -17,8 +21,9 @@ final class StateTest extends UnitTestCase
     }
 
     /**
-     * @dataProvider invalidKeysProvider
+     * @param array<string,string> $state
      */
+    #[DataProvider('invalidKeysProvider')]
     public function testInvalidKeysThrowException(array $state): void
     {
         $this->expectException(Image\InvalidArgument::class);

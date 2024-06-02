@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Tests\Infrastructure\Sql;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use Radarlog\Doop\Infrastructure\Sql;
 use Radarlog\Doop\Tests\UnitTestCase;
 
 final class ConnectionFactoryTest extends UnitTestCase
 {
+    /**
+     * @return iterable<array<int,string>>
+     */
     public static function replicaDelimitersProvider(): iterable
     {
         yield ["\n"];
@@ -18,9 +22,8 @@ final class ConnectionFactoryTest extends UnitTestCase
 
     /**
      * @psalm-suppress InternalMethod
-     *
-     * @dataProvider replicaDelimitersProvider
      */
+    #[DataProvider('replicaDelimitersProvider')]
     public function testCreateTwoReplicas(string $delimiter): void
     {
         $primaryDsn = 'pgsql://user:user@host:3306/db';

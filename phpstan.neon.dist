@@ -5,7 +5,8 @@ includes:
 parameters:
     tmpDir: var/cache/phpstan
 
-    checkMissingIterableValueType: false
+#    ignoreErrors:
+#        - identifier: missingType.iterableValue
 
     paths:
         - bin

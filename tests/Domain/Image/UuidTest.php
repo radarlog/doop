@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Tests\Domain\Image;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use Radarlog\Doop\Domain\Image;
 use Radarlog\Doop\Tests\UnitTestCase;
 
@@ -11,6 +12,9 @@ final class UuidTest extends UnitTestCase
 {
     private const string UUID = '572b3706-ffb8-723c-a317-d0ca8016a345';
 
+    /**
+     * @return iterable<array<int,string>>
+     */
     public static function invalidUuidProvider(): iterable
     {
         yield 'empty' => [''];
@@ -20,9 +24,7 @@ final class UuidTest extends UnitTestCase
         yield 'with leading eol' => ["\n572b3706-ffb8-723c-a317-d0ca8016a345"];
     }
 
-    /**
-     * @dataProvider invalidUuidProvider
-     */
+    #[DataProvider('invalidUuidProvider')]
     public function testInvalidUuid(string $uuid): void
     {
         $this->expectException(Image\InvalidArgument::class);

@@ -15,11 +15,9 @@ final class DeleteHandlerTest extends UnitTestCase
     private const string UUID = '572b3706-ffb8-723c-a317-d0ca8016a345';
     private const string HASH = '2080492d54a6b8579968901f366b13614fe188f2';
 
-    /** @var MockObject&Domain\Storage */
-    private Domain\Storage $storage;
+    private MockObject & Domain\Storage $storage;
 
-    /** @var MockObject&Query */
-    private Query $query;
+    private MockObject & Query $query;
 
     private Command\Image\DeleteHandler $handler;
 

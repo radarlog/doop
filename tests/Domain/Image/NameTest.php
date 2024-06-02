@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Radarlog\Doop\Tests\Domain\Image;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use Radarlog\Doop\Domain\Image;
 use Radarlog\Doop\Tests\UnitTestCase;
 
@@ -18,9 +19,7 @@ final class NameTest extends UnitTestCase
         yield [str_repeat('x', 256)];
     }
 
-    /**
-     * @dataProvider invalidLengthProvider
-     */
+    #[DataProvider('invalidLengthProvider')]
     public function testInvalidLength(string $origin): void
     {
         $this->expectException(Image\InvalidArgument::class);
