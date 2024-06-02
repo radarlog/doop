@@ -74,7 +74,7 @@ jobs:
                 run: |
                     docker compose exec -T -e COMPOSER_CACHE_DIR=$COMPOSER_CACHE_DIR php composer validate --ansi --no-interaction --strict
                     docker compose exec -T -e COMPOSER_CACHE_DIR=$COMPOSER_CACHE_DIR php composer check-platform-reqs --ansi --no-dev --no-interaction
-                    docker compose exec -T -e COMPOSER_CACHE_DIR=$COMPOSER_CACHE_DIR php composer install --ansi --no-interaction --verbose
+                    docker compose exec -T -e COMPOSER_CACHE_DIR=$COMPOSER_CACHE_DIR -e COMPOSER_ALLOW_SUPERUSER=1 php composer install --ansi --no-interaction --verbose
                     docker compose exec -T -e COMPOSER_CACHE_DIR=$COMPOSER_CACHE_DIR php composer normalize --ansi --dry-run --no-interaction
 
             -   name: Run migrations
