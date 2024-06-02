@@ -9,8 +9,8 @@ use Radarlog\Doop\Tests\UnitTestCase;
 
 final class UploadTest extends UnitTestCase
 {
-    private const NAME = 'name';
-    private const CONTENT = 'content';
+    private const string NAME = 'name';
+    private const string CONTENT = 'content';
 
     private Command\Image\Upload $command;
 

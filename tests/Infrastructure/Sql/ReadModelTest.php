@@ -11,18 +11,18 @@ use Radarlog\Doop\Tests\DbTestCase;
 
 final class ReadModelTest extends DbTestCase
 {
-    private const UUID1 = '9f2149bb-b6e5-7ae0-a188-e616cddc8e98';
-    private const UUID2 = '572b3706-ffb8-723c-a317-d0ca8016a345';
+    private const string UUID1 = '9f2149bb-b6e5-7ae0-a188-e616cddc8e98';
+    private const string UUID2 = '572b3706-ffb8-723c-a317-d0ca8016a345';
 
-    private const NAME1 = 'name1';
-    private const NAME2 = 'name2';
+    private const string NAME1 = 'name1';
+    private const string NAME2 = 'name2';
 
-    private const DATE1 = '2019-03-18 23:22:36';
-    private const DATE2 = '2019-03-18 23:22:37';
+    private const string DATE1 = '2019-03-18 23:22:36';
+    private const string DATE2 = '2019-03-18 23:22:37';
 
-    private const HASH = '2080492d54a6b8579968901f366b13614fe188f2';
+    private const string HASH = '2080492d54a6b8579968901f366b13614fe188f2';
 
-    private const MISSING_UUID = '384a2c67-4d6d-41a9-9954-b5bf75de708e';
+    private const string MISSING_UUID = '384a2c67-4d6d-41a9-9954-b5bf75de708e';
 
     private Query $query;
 

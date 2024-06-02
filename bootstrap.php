@@ -8,12 +8,12 @@ use Symfony\Component\ErrorHandler\Debug;
 require __DIR__ . '/vendor/autoload.php';
 
 return (new class () {
-    private const APP_ENV = 'APP_ENV';
-    private const APP_DEBUG = 'APP_DEBUG';
+    private const string APP_ENV = 'APP_ENV';
+    private const string APP_DEBUG = 'APP_DEBUG';
 
-    private const ENV_PROD = 'prod';
-    private const ENV_DEV = 'dev';
-    private const ENV_TEST = 'test';
+    private const string ENV_PROD = 'prod';
+    private const string ENV_DEV = 'dev';
+    private const string ENV_TEST = 'test';
 
     private string $appEnv = self::ENV_DEV;
     private bool $isDebug = false;

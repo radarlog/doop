@@ -9,7 +9,7 @@ use Radarlog\Doop\Tests\UnitTestCase;
 
 final class DeleteTest extends UnitTestCase
 {
-    private const UUID = '572b3706-ffb8-723c-a317-d0ca8016a345';
+    private const string UUID = '572b3706-ffb8-723c-a317-d0ca8016a345';
 
     private Command\Image\Delete $command;
 

@@ -9,7 +9,7 @@ use Radarlog\Doop\Tests\UnitTestCase;
 
 final class HashTest extends UnitTestCase
 {
-    private const HASH = 'f32b67c7e26342af42efabc674d441dca0a281c5';
+    private const string HASH = 'f32b67c7e26342af42efabc674d441dca0a281c5';
 
     public static function invalidHashProvider(): \Generator
     {

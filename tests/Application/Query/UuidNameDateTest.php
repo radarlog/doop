@@ -9,9 +9,9 @@ use Radarlog\Doop\Tests\UnitTestCase;
 
 final class UuidNameDateTest extends UnitTestCase
 {
-    private const UUID = '572b3706-ffb8-723c-a317-d0ca8016a345';
-    private const NAME = 'name';
-    private const DATE = '2019-03-18 23:22:36';
+    private const string UUID = '572b3706-ffb8-723c-a317-d0ca8016a345';
+    private const string NAME = 'name';
+    private const string DATE = '2019-03-18 23:22:36';
 
     private UuidNameDate $uuidNameDate;
 

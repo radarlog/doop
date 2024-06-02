@@ -11,9 +11,9 @@ use Symfony\Component\Uid\Uuid;
 
 final class PersistenceRepositoryTest extends DbTestCase
 {
-    private const UUID = '572b3706-ffb8-723c-a317-d0ca8016a345';
-    private const HASH = '2080492d54a6b8579968901f366b13614fe188f2';
-    private const NAME = 'name';
+    private const string UUID = '572b3706-ffb8-723c-a317-d0ca8016a345';
+    private const string HASH = '2080492d54a6b8579968901f366b13614fe188f2';
+    private const string NAME = 'name';
 
     private Repository $repository;
 

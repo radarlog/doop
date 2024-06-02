@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 
 final class ThrowableHandlerBusTest extends TestCase
 {
-    private const ERROR_MESSAGE_TYPE = 'error';
+    private const string ERROR_MESSAGE_TYPE = 'error';
 
     public function testExecute(): void
     {
