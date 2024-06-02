@@ -33,8 +33,20 @@ jobs:
             -   name: Checkout
                 uses: actions/checkout@v4
 
-            -   uses: satackey/action-docker-layer-caching@v0.0.11
-                continue-on-error: true
+            -   uses: docker/setup-buildx-action@v3
+                with:
+                    install: true
+
+            -   name: Build PHP docker image
+                uses: docker/build-push-action@v5
+                with:
+                    context: docker/php
+                    build-args: |
+                        PHP_VERSION=${{ matrix.php }}
+                        MYUID=${{ env.MYUID }}
+                        MYGID=${{ env.MYGID }}
+                    cache-from: type=gha
+                    cache-to: type=gha,mode=max
 
             -   name: Yarn Cache
                 uses: actions/cache@v4
@@ -48,9 +60,8 @@ jobs:
             -   name: Install frontend dependencies
                 run: docker compose run -T --rm -e YARN_CACHE_FOLDER=$YARN_CACHE_DIR encore yarn install --frozen-lockfile --non-interactive
 
-            -   name: Build docker compose stack
+            -   name: Run docker compose stack
                 run: |
-                    docker compose build --build-arg MYUID=$MYUID --build-arg MYGID=$MYGID --build-arg PHP_VERSION=${{ matrix.php }} php
                     docker compose up -d
                     docker compose ps
 
