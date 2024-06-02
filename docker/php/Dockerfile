@@ -1,5 +1,4 @@
 ARG PHP_VERSION=8.3
-ARG PHP_FPM_IMAGE=php:${PHP_VERSION}-fpm-alpine
 ARG COMPOSER_IMAGE=composer:2.7
 ARG PHP_EXTENSION_INSTALLER=mlocati/php-extension-installer:2.2
 
@@ -9,7 +8,7 @@ FROM $COMPOSER_IMAGE AS composer
 
 
 # builder image
-FROM $PHP_FPM_IMAGE AS builder
+FROM php:${PHP_VERSION}-fpm-alpine AS builder
 
 ARG XDEBUG_VERSION=3.3.1
 
@@ -26,7 +25,7 @@ RUN set -e \
 
 
 # base image
-FROM $PHP_FPM_IMAGE AS base
+FROM php:${PHP_VERSION}-fpm-alpine AS base
 
 ENV RUNTIME_DEPS="postgresql-libs"
 

@@ -28,7 +28,7 @@ services:
             context: docker/php
             target: development
             args:
-                PHP_FPM_IMAGE: php:8.3-fpm-alpine
+                PHP_VERSION: 8.3
         volumes:
             - .:/app:rw
         environment:
