@@ -31,13 +31,13 @@ jobs:
 
         steps:
             -   name: Checkout
-                uses: actions/checkout@v2
+                uses: actions/checkout@v4
 
             -   uses: satackey/action-docker-layer-caching@v0.0.11
                 continue-on-error: true
 
             -   name: Yarn Cache
-                uses: actions/cache@v3
+                uses: actions/cache@v4
                 env:
                     CACHE_KEY_PREFIX: ${{ matrix.php }}-yarn-v2
                 with:
@@ -55,7 +55,7 @@ jobs:
                     docker compose ps
 
             -   name: Composer Cache
-                uses: actions/cache@v3
+                uses: actions/cache@v4
                 env:
                     CACHE_KEY_PREFIX: ${{ matrix.php }}-composer-v2
                 with:
@@ -91,7 +91,9 @@ jobs:
                 run: docker compose exec -T -e XDEBUG_MODE=coverage php vendor/bin/phpunit --coverage-text --coverage-clover var/cache/clover.xml
 
             -   name: Upload coverage to Codecov
-                uses: codecov/codecov-action@v3
+                uses: codecov/codecov-action@v4
                 with:
                     files: var/cache/clover.xml
                     verbose: true
+                env:
+                    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
