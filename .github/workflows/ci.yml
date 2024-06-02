@@ -36,6 +36,9 @@ jobs:
             -   uses: satackey/action-docker-layer-caching@v0.0.11
                 continue-on-error: true
 
+            -   name: Build PHP docker image
+                run: docker compose build --build-arg MYUID=$MYUID --build-arg MYGID=$MYGID --build-arg PHP_VERSION=${{ matrix.php }} php
+
             -   name: Yarn Cache
                 uses: actions/cache@v4
                 env:
@@ -48,9 +51,8 @@ jobs:
             -   name: Install frontend dependencies
                 run: docker compose run -T --rm -e YARN_CACHE_FOLDER=$YARN_CACHE_DIR encore yarn install --frozen-lockfile --non-interactive
 
-            -   name: Build docker compose stack
+            -   name: Run docker compose stack
                 run: |
-                    docker compose build --build-arg MYUID=$MYUID --build-arg MYGID=$MYGID --build-arg PHP_VERSION=${{ matrix.php }} php
                     docker compose up -d
                     docker compose ps
 
