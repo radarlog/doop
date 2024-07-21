@@ -25,6 +25,6 @@ services:
             - '@Doctrine\Migrations\Configuration\Connection\ExistingConnection'
 
     Doctrine\Migrations\Tools\Console\Command\:
-        resource: '../vendor/doctrine/migrations/lib/Doctrine/Migrations/Tools/Console/Command'
+        resource: '../vendor/doctrine/migrations/src/Tools/Console/Command'
         exclude:
-            - '../vendor/doctrine/migrations/lib/Doctrine/Migrations/Tools/Console/Command/DiffCommand.php'
+            - '../vendor/doctrine/migrations/src/Tools/Console/Command/DiffCommand.php'

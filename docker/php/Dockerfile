@@ -10,7 +10,7 @@ FROM $COMPOSER_IMAGE AS composer
 # builder image
 FROM php:${PHP_VERSION}-fpm-alpine AS builder
 
-ARG XDEBUG_VERSION=3.3.1
+ARG XDEBUG_VERSION=3.3.2
 
 COPY --from=php_extension_installer /usr/bin/install-php-extensions /usr/local/bin/
 
